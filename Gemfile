@@ -44,6 +44,7 @@ end
 group :development, :staging do
   gem 'rubocop', '~> 0.72.0', require: false
   gem 'rubocop-rails'
+  gem 'slim_lint', require: false
 end
 
 
