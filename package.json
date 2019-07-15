@@ -1,0 +1,43 @@
+{
+  "name": "my_app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier-stylelint --quiet --write ./css/style.css",
+    "eslint": "eslint -c .eslintrc.yml --color './src/**/*.{js,jsx}'",
+    "eslint:fix": "eslint -c .eslintrc.yml --color './src/**/*.{js,jsx}' --fix",
+    "stylelint": "stylelint --config .stylelintrc.yml './src/**/*.scss'",
+    "stylelint:fix": "stylelint --config .stylelintrc.yml './src/**/*.scss' --fix"  
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jinugasachio/my_app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jinugasachio/my_app/issues"
+  },
+  "homepage": "https://github.com/jinugasachio/my_app#readme",
+  "devDependencies": {
+    "eslint": "^6.0.1",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-config-standard": "^13.0.1",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "prettier": "^1.18.2",
+    "prettier-stylelint": "^0.4.2",
+    "stylelint": "^10.1.0",
+    "stylelint-config-recess-order": "^2.0.3",
+    "stylelint-config-standard": "^18.3.0",
+    "stylelint-scss": "^3.9.1"
+  }
+}

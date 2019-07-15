@@ -1,0 +1,21 @@
+plugins:
+  - stylelint-scss
+extends:
+  - stylelint-config-standard
+  - stylelint-config-recess-order
+syntax:
+  - scss
+rules:
+  at-rule-no-unknown: null
+  scss/at-rule-no-unknown: true
+  at-rule-no-vendor-prefix: true # @ルールのベンタープリフィックス禁止
+  font-family-name-quotes: always-where-recommended # 'font-family'はスペースで区切られたフォント名の場合クオートで囲む
+  font-weight-notation: named-where-possible # 'font-weight'はnormalなどのキーワードが使える場合はそちらを使う（400はNG）
+  function-url-quotes: always # 'url()'の引数はクオートで囲む
+  media-feature-name-no-vendor-prefix: true # '@media'内のベンダープリフィックス禁止
+  no-descending-specificity: null # 詳細度の高いセレクタより後に詳細度の低いセレクタを定義するのを許容
+  property-no-vendor-prefix: true # プロパティのベンダープリフィックス禁止
+  selector-attribute-quotes: never # '[type=text]'などのセレクタの属性はクオートで囲まない
+  selector-no-vendor-prefix: true # セレクタのベンダープリフィックス禁止
+  string-quotes: single # 文字列はシングルクオートで囲む
+  value-no-vendor-prefix: true # 値のベンダープリフィックス禁止

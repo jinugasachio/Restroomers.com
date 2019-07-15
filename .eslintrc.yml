@@ -1,0 +1,15 @@
+extends:
+  - standard
+  - prettier
+plugins:
+  - react
+  - prettier
+env:
+  browser: true
+  jquery: true
+globals:
+  googletag: true
+  ga: true
+rules:
+  prettier/prettier:
+    - error
