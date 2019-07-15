@@ -48,7 +48,7 @@ group :development, :test do
   gem 'capistrano3-unicorn'
 end
 
-group :development, :staging do
+group :development, :test, :staging do
   gem 'rubocop', '~> 0.72.0', require: false
   gem 'rubocop-rails'
   gem 'slim_lint', require: false
