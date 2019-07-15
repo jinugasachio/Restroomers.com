@@ -1,14 +1,14 @@
 inherit_from: .rubocop_todo.yml
 
+
 AllCops:
   TargetRubyVersion: 2.5.5
   Exclude:
     - "vendor/**/*" # rubocop config/default.yml
     - "db/schema.rb"
   DisplayCopNames: true
-
-Rails:
-  Enabled: true
+  Include:
+    - rubocop-rails
 
 # # 日本語でのコメントを許可
 AsciiComments:
@@ -43,5 +43,5 @@ Style/BlockDelimiters:
     - "spec/**/*"
 
 # private/protected は一段深くインデントする
-Style/IndentationConsistency:
-  EnforcedStyle: rails
+Layout/IndentationConsistency:
+  EnforcedStyle: indented_internal_methods
