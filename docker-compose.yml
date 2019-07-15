@@ -13,6 +13,7 @@ services:
       - .:/myapp
     depends_on:
       - mysql
+      - chrome
   mysql:
     image: mysql:8.0.16
     command: --default-authentication-plugin=mysql_native_password
@@ -26,6 +27,11 @@ services:
       - '4306:3306'
     volumes:
       -  ./mysql_data:/var/lib/mysql
+  chrome:
+    image: selenium/standalone-chrome:3.141.59-dubnium
+    ports:
+      - 4444:4444
+        
 volumes:
   bundle:
   mysql_data:
