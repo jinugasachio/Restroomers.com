@@ -15,8 +15,9 @@ jobs:
         environment:
           MYSQL_HOST: 127.0.0.1
           MYSQL_USERNAME: root
-          MYSQL_PASSWORD: root
-          MYSQL_DB: myapp_test
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_PASSWORD: root         
+          MYSQL_DATABASE: myapp_test
 
     working_directory: ~/repo
 
@@ -57,10 +58,12 @@ jobs:
         environment:
           MYSQL_HOST: 127.0.0.1
           MYSQL_USERNAME: root
-          MYSQL_PASSWORD: root
-          MYSQL_DB: myapp_test
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_PASSWORD: root         
+          MYSQL_DATABASE: myapp_test
 
     working_directory: ~/repo
+    
     steps:
       - checkout
       - run:
