@@ -24,13 +24,13 @@ services:
       MYSQL_ROOT_PASSWORD: root
       # MYSQL_PASSWORD: root  
       MYSQL_DATABASE: myapp_development
-      # MYSQL_USER: root
+      MYSQL_USER: root
 
     ports:
       - '4306:3306'
     volumes:
       -  ./mysql_data:/var/lib/mysql
-      - ./mysql-confd:/etc/mysql/conf.d      
+      # - ./mysql-confd:/etc/mysql/conf.d      
   chrome:
     image: selenium/standalone-chrome:3.141.59-dubnium
     ports:
