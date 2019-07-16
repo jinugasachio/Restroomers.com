@@ -88,7 +88,12 @@ jobs:
             - ./vendor/bundler
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
       - run: bundle exec rails db:create         
-      - run: bundle exec rails db:schema:load
+      # - run: bundle exec rails db:schema:load 
+      #上は実際にマイグレーションファイルを実行してスキーマフィルが生成されたら解放する,
+      #以下それまでのエラー文
+      #(/home/circleci/repo/db/schema.rb doesn't exist yet. Run `rails db:migrate` to create it, then try again. )
+
+
       # Rspec
       - run:
           name: Rspec
