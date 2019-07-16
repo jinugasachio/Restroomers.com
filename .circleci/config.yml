@@ -10,6 +10,7 @@ jobs:
         environment:
           RAILS_ENV: test
           MYSQL_HOST: 127.0.0.1
+          BUNDLER_VERSION: 2.0.2        
       - image: circleci/mysql:8.0.16-ram
         environment:
           MYSQL_HOST: 127.0.0.1
@@ -21,6 +22,14 @@ jobs:
 
     steps:
       - checkout
+      - run:
+          name: setup bundler
+          command: |
+            sudo gem update --system
+            sudo gem uninstall bundler
+            sudo rm /usr/local/bin/bundle
+            sudo rm /usr/local/bin/bundler
+            sudo gem install bundler      
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "Gemfile.lock" }}
@@ -43,6 +52,7 @@ jobs:
         environment:
           RAILS_ENV: test
           MYSQL_HOST: 127.0.0.1
+          BUNDLER_VERSION: 2.0.2
       - image: circleci/mysql:8.0.16-ram
         environment:
           MYSQL_HOST: 127.0.0.1
@@ -53,6 +63,14 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
+      - run:
+          name: setup bundler
+          command: |
+            sudo gem update --system
+            sudo gem uninstall bundler
+            sudo rm /usr/local/bin/bundle
+            sudo rm /usr/local/bin/bundler
+            sudo gem install bundler
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "Gemfile.lock" }}
