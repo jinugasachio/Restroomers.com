@@ -14,9 +14,9 @@ jobs:
       - image: circleci/mysql:8.0.16-ram
         environment:
           MYSQL_HOST: 127.0.0.1
-          MYSQL_USERNAME: root
+          # MYSQL_USERNAME: root
           MYSQL_ROOT_PASSWORD: root
-          MYSQL_PASSWORD: root         
+          # MYSQL_PASSWORD: root        
           MYSQL_DATABASE: myapp_test
 
     working_directory: ~/repo
@@ -57,13 +57,13 @@ jobs:
       - image: circleci/mysql:8.0.16-ram
         environment:
           MYSQL_HOST: 127.0.0.1
-          MYSQL_USERNAME: root
+          # MYSQL_USERNAME: root
           MYSQL_ROOT_PASSWORD: root
-          MYSQL_PASSWORD: root         
+          # MYSQL_PASSWORD: root        
           MYSQL_DATABASE: myapp_test
 
     working_directory: ~/repo
-    
+
     steps:
       - checkout
       - run:
