@@ -26,11 +26,11 @@ jobs:
             - v1-dependencies-{{ checksum "Gemfile.lock" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
-      - run: bundle install --jobs=4 --retry=3 --path vendor/bundle
+      - run: bundle install --jobs=4 --retry=3 --path vendor/bundler
       - run: yarn install
       - save_cache:
           paths:
-            - ./vendor/bundle
+            - ./vendor/bundler
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
       # Rubocop
       - run:
@@ -58,11 +58,11 @@ jobs:
             - v1-dependencies-{{ checksum "Gemfile.lock" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
-      - run: bundle install --jobs=4 --retry=3 --path vendor/bundle
+      - run: bundle install --jobs=4 --retry=3 --path vendor/bundler
       - run: yarn install
       - save_cache:
           paths:
-            - ./vendor/bundle
+            - ./vendor/bundler
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
       - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load
