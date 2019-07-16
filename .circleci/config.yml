@@ -12,6 +12,7 @@ jobs:
           MYSQL_HOST: 127.0.0.1
           BUNDLER_VERSION: 2.0.2        
       - image: circleci/mysql:8.0.16-ram
+        command: --default-authentication-plugin=mysql_native_password
         environment:
           MYSQL_HOST: 127.0.0.1
           MYSQL_USERNAME: root
@@ -55,6 +56,7 @@ jobs:
           MYSQL_HOST: 127.0.0.1
           BUNDLER_VERSION: 2.0.2
       - image: circleci/mysql:8.0.16-ram
+        command: --default-authentication-plugin=mysql_native_password
         environment:
           MYSQL_HOST: 127.0.0.1
           MYSQL_USERNAME: root
@@ -74,6 +76,7 @@ jobs:
             sudo rm /usr/local/bin/bundle
             # sudo rm /usr/local/bin/bundler
             sudo gem install bundler
+            --default-authentication-plugin=mysql_native_password
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "Gemfile.lock" }}
