@@ -10,7 +10,7 @@ jobs:
         environment:
           RAILS_ENV: test
           MYSQL_HOST: 127.0.0.1
-          BUNDLER_VERSION: 2.0.1        
+          BUNDLER_VERSION: 2.0.2        
       - image: circleci/mysql:8.0.16-ram
         environment:
           MYSQL_HOST: 127.0.0.1
@@ -52,7 +52,7 @@ jobs:
         environment:
           RAILS_ENV: test
           MYSQL_HOST: 127.0.0.1
-          BUNDLER_VERSION: 2.0.1
+          BUNDLER_VERSION: 2.0.2
       - image: circleci/mysql:8.0.16-ram
         environment:
           MYSQL_HOST: 127.0.0.1
