@@ -21,6 +21,7 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
+      BIND-ADDRESS: 127.0.0.1
       MYSQL_ROOT_PASSWORD: root
       MYSQL_PASSWORD: root  
       MYSQL_DATABASE: myapp_development
