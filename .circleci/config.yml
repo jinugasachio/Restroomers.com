@@ -107,3 +107,9 @@ workflows:
       - rspec:
           requires:
             - rubocop
+      - deploy:
+          requires:
+            - rspec
+          filters:
+            branches:
+              only: master            
