@@ -136,7 +136,7 @@ jobs:
               --overrides file://ecs/run_task_db_migrate.json
       - run:
           name: "Sevice deploy"
-          environment:
+          #environment:
           command: |
             ecs-deploy -c eStreak-cluster -n eStreak_app_service \
               -r ap-northeast-1 -t 240 \
