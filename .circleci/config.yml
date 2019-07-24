@@ -2,7 +2,7 @@ version: 2.1
 orbs:
   aws-ecr: circleci/aws-ecr@0.0.2
   aws-ecs: circleci/aws-ecs@0.0.3
-  aws-cli: circleci/aws-cli@0.1.1 
+  aws-cli: circleci/aws-cli@0.1.13
 jobs:
   rubocop:
     docker:
@@ -108,7 +108,7 @@ jobs:
           profile-name: default
           aws-access-key-id: ${AWS_ACCESS_KEY_ID}
           aws-secret-access-key: ${AWS_SECRET_ACCESS_KEY}
-          aws-region: ${AWS_DEFAULT_REGION}
+          aws-region: ${AWS_REGION}
 
   
 
