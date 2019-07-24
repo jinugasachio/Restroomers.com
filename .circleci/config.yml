@@ -123,7 +123,7 @@ workflows:
       #       - rubocop
       - aws-cli 
       - aws-ecr/build_and_push_image:
-          executor: default
+          #executor: 
           # requires:
           #   - rspec
           account-url: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
@@ -133,7 +133,7 @@ workflows:
       - aws-ecs/deploy-service-update:
           requires:
             - aws-ecr/build_and_push_image
-          executor: default
+          #executor: default
           aws-region: ${AWS_DEFAULT_REGION}
           family: "${AWS_RESOURCE_NAME_PREFIX}-service"
           cluster-name: "${AWS_RESOURCE_NAME_PREFIX}-cluster"
