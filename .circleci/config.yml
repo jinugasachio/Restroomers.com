@@ -103,13 +103,13 @@ workflows:
   version: 2
   build_deploy:
     jobs:
-      - rubocop
-      - rspec:
-          requires:
-            - rubocop
+      # - rubocop
+      # - rspec:
+      #     requires:
+      #       - rubocop
       - aws-ecr/build_and_push_image:
-          requires:
-            - rspec
+          # requires:
+          #   - rspec
           account-url: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
           repo: "${AWS_RESOURCE_NAME_PREFIX}"
           region: ${AWS_DEFAULT_REGION}
