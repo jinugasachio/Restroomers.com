@@ -1,118 +1,11 @@
 version: 2.1
 orbs:
-  aws-ecr: circleci/aws-ecr@6.1.0
-  aws-ecs: circleci/aws-ecs@0.0.8
-# jobs:
-#   rubocop:
-#     docker:
-#       - image: circleci/ruby:2.5.5-stretch-node-browsers-legacy
-#         environment:
-#           RAILS_ENV: test
-#           MYSQL_HOST: 127.0.0.1
-#           BUNDLER_VERSION: 2.0.2        
-#       - image: circleci/mysql:8.0.16-ram
-#         command: --default-authentication-plugin=mysql_native_password
-#         environment:
-#           MYSQL_HOST: 127.0.0.1
-#           MYSQL_USERNAME: root
-#           MYSQL_ROOT_PASSWORD: root
-#           # MYSQL_PASSWORD: root        
-#           MYSQL_DATABASE: myapp_test
-
-#     working_directory: ~/repo
-
-#     steps:
-#       - checkout
-#       - run:
-#           name: setup bundler
-#           command: |
-#             sudo gem update --system
-#             sudo gem uninstall bundler
-#             sudo rm /usr/local/bin/bundle
-#             # sudo rm /usr/local/bin/bundler
-#             sudo gem install bundler      
-#       - restore_cache:
-#           keys:
-#             - v1-dependencies-{{ checksum "Gemfile.lock" }}
-#             # fallback to using the latest cache if no exact match is found
-#             - v1-dependencies-
-#       - run: bundle install --jobs=4 --retry=3 --path vendor/bundler
-#       - run: yarn install
-#       - save_cache:
-#           paths:
-#             - ./vendor/bundler
-#           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-#       # Rubocop
-#       - run:
-#           name: Rubocop
-#           command: bundle exec rubocop
-
-#   rspec:
-#     docker:
-#       - image: circleci/ruby:2.5.5-stretch-node-browsers-legacy
-#         environment:
-#           RAILS_ENV: test
-#           MYSQL_HOST: 127.0.0.1
-#           BUNDLER_VERSION: 2.0.2
-#       - image: circleci/mysql:8.0.16-ram
-#         command: --default-authentication-plugin=mysql_native_password
-#         environment:
-#           MYSQL_HOST: 127.0.0.1
-#           MYSQL_USERNAME: root
-#           MYSQL_ROOT_PASSWORD: root
-#           # MYSQL_PASSWORD: root        
-#           MYSQL_DATABASE: myapp_test
-
-#     working_directory: ~/repo
-
-#     steps:
-#       - checkout
-#       - run:
-#           name: setup bundler
-#           command: |
-#             sudo gem update --system
-#             sudo gem uninstall bundler
-#             sudo rm /usr/local/bin/bundle
-#             # sudo rm /usr/local/bin/bundler
-#             sudo gem install bundler
-#       - restore_cache:
-#           keys:
-#             - v1-dependencies-{{ checksum "Gemfile.lock" }}
-#             # fallback to using the latest cache if no exact match is found
-#             - v1-dependencies-
-#       - run: bundle install --jobs=4 --retry=3 --path vendor/bundler
-#       - run: yarn install
-#       - save_cache:
-#           paths:
-#             - ./vendor/bundler
-#           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-#       - run: bundle exec rails db:create         
-#       # - run: bundle exec rails db:schema:load 
-#       #上は実際にマイグレーションファイルを実行してスキーマフィルが生成されたら解放する,
-#       #以下それまでのエラー文
-#       #(/home/circleci/repo/db/schema.rb doesn't exist yet. Run `rails db:migrate` to create it, then try again. )
-
-
-#       # Rspec
-#       - run:
-#           name: Rspec
-#           command: bundle exec rspec
-
-
-
-
-
-
+  aws-ecr: circleci/aws-ecr@0.0.2
+  aws-ecs: circleci/aws-ecs@0.0.3
 workflows:
-  build_and_push_image:
+  build-and-deploy:
     jobs:
-      # - rubocop
-      # - rspec:
-      #     requires:
-      #       - rubocop
       - aws-ecr/build_and_push_image:
-          # requires:
-          #   - rspec
           account-url: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
           repo: "${AWS_RESOURCE_NAME_PREFIX}"
           region: ${AWS_DEFAULT_REGION}
@@ -124,6 +17,3 @@ workflows:
           family: "${AWS_RESOURCE_NAME_PREFIX}-service"
           cluster-name: "${AWS_RESOURCE_NAME_PREFIX}-cluster"
           container-image-name-updates: "container=${AWS_RESOURCE_NAME_PREFIX}-service,tag=${CIRCLE_SHA1}"
-          filters:
-            branches:
-              only: master            
