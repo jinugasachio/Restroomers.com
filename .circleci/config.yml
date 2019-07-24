@@ -98,8 +98,6 @@ jobs:
           name: Rspec
           command: bundle exec rspec
 
-
-
 workflows:
   version: 2
   build_deploy:
