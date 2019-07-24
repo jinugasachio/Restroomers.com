@@ -2,7 +2,7 @@ version: 2.1
 orbs:
   aws-ecr: circleci/aws-ecr@0.0.2
   aws-ecs: circleci/aws-ecs@0.0.3
-  aws-cli: circleci/aws-cli@0.1.1
+  aws-cli: circleci/aws-cli@0.1.13
 jobs:
   rubocop:
     docker:
@@ -121,8 +121,7 @@ workflows:
       # - rspec:
       #     requires:
       #       - rubocop
-      - aws-cli:
-          context: aws
+      - aws-cli 
       - aws-ecr/build_and_push_image:
           # requires:
           #   - rspec
