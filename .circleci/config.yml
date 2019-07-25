@@ -100,16 +100,7 @@ jobs:
           name: Rspec
           command: bundle exec rspec
 
-  # aws-cli:
-  #   executor: aws-cli/default
-  #   steps:
-  #     - checkout
-  #     - aws-cli/install
-  #     - aws-cli/configure:
-  #         profile-name: default
-  #         aws-access-key-id: ${AWS_ACCESS_KEY_ID}
-  #         aws-secret-access-key: ${AWS_SECRET_ACCESS_KEY}
-  #         aws-region: ${AWS_REGION}
+
 
   
 
@@ -121,20 +112,19 @@ workflows:
       # - rspec:
       #     requires:
       #       - rubocop
-      # - aws-cli 
-      - aws-ecr/build_and_push_image:
+      # - aws-ecr/build_and_push_image:
 
-          # requires:
-          #   - rspec
-          account-url: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
-          repo: "${AWS_RESOURCE_NAME_PREFIX}"
-          region: ${AWS_DEFAULT_REGION}
-          tag: latest
+      #     # requires:
+      #     #   - rspec
+      #     account-url: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
+      #     repo: "${AWS_RESOURCE_NAME_PREFIX}"
+      #     region: ${AWS_DEFAULT_REGION}
+      #     tag: latest
       - aws-ecs/deploy-service-update:
-          requires:
-            - aws-ecr/build_and_push_image
+          # requires:
+          #   - aws-ecr/build_and_push_image
           aws-region: ${AWS_DEFAULT_REGION}
-          family: "${AWS_RESOURCE_NAME_PREFIX}-service"
+          family: "${AWS_RESOURCE_NAME_PREFIX}-service2"
           cluster-name: "${AWS_RESOURCE_NAME_PREFIX}-cluster"
           container-image-name-updates: "container=${AWS_RESOURCE_NAME_PREFIX}-service,tag=${CIRCLE_SHA1}"         
           # filters:
