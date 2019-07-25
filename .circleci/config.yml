@@ -126,6 +126,7 @@ workflows:
           aws-region: ${AWS_DEFAULT_REGION}
           family: "${AWS_RESOURCE_NAME_PREFIX}"
           cluster-name: "${AWS_RESOURCE_NAME_PREFIX}"
+          service-name: "${AWS_RESOURCE_NAME_PREFIX}-service2"
           container-image-name-updates: "container=${AWS_RESOURCE_NAME_PREFIX},tag=${CIRCLE_SHA1}"         
           # filters:
           #   branches:
