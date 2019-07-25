@@ -2,7 +2,7 @@ version: 2.1
 orbs:
   aws-ecr: circleci/aws-ecr@0.0.2
   aws-ecs: circleci/aws-ecs@0.0.3
-  aws-cli: circleci/aws-cli@0.1.1
+  #aws-cli: circleci/aws-cli@0.1.1
 jobs:
   rubocop:
     docker:
@@ -100,16 +100,16 @@ jobs:
           name: Rspec
           command: bundle exec rspec
 
-  aws-cli:
-    executor: aws-cli/default
-    steps:
-      - checkout
-      - aws-cli/install
-      - aws-cli/configure:
-          profile-name: default
-          aws-access-key-id: ${AWS_ACCESS_KEY_ID}
-          aws-secret-access-key: ${AWS_SECRET_ACCESS_KEY}
-          aws-region: ${AWS_REGION}
+  # aws-cli:
+  #   executor: aws-cli/default
+  #   steps:
+  #     - checkout
+  #     - aws-cli/install
+  #     - aws-cli/configure:
+  #         profile-name: default
+  #         aws-access-key-id: ${AWS_ACCESS_KEY_ID}
+  #         aws-secret-access-key: ${AWS_SECRET_ACCESS_KEY}
+  #         aws-region: ${AWS_REGION}
 
   
 
@@ -122,7 +122,7 @@ workflows:
       # - rspec:
       #     requires:
       #       - rubocop
-      - aws-cli 
+      # - aws-cli 
       - aws-ecr/build_and_push_image:
           #executor: 
           # requires:
