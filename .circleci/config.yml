@@ -1,7 +1,7 @@
 version: 2.1
 orbs:
   aws-ecr: circleci/aws-ecr@0.0.2
-  aws-ecs: circleci/aws-ecs@0.0.3
+  aws-ecs: circleci/aws-ecs@0.0.8
   #aws-cli: circleci/aws-cli@0.1.1
 jobs:
   rubocop:
@@ -126,7 +126,7 @@ workflows:
           aws-region: ${AWS_DEFAULT_REGION}
           family: "${AWS_RESOURCE_NAME_PREFIX}"
           cluster-name: "${AWS_RESOURCE_NAME_PREFIX}"
-          service-name: "myapp-service2"
+          service-name: "${AWS_RESOURCE_NAME_PREFIX}-service3"
           container-image-name-updates: "container=${AWS_RESOURCE_NAME_PREFIX},tag=${CIRCLE_SHA1}"         
           # filters:
           #   branches:
