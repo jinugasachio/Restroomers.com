@@ -124,9 +124,9 @@ workflows:
           # requires:
           #   - aws-ecr/build_and_push_image
           aws-region: ${AWS_DEFAULT_REGION}
-          family: "${AWS_RESOURCE_NAME_PREFIX}-service2"
+          family: "${AWS_RESOURCE_NAME_PREFIX}"
           cluster-name: "${AWS_RESOURCE_NAME_PREFIX}"
-          container-image-name-updates: "container=${AWS_RESOURCE_NAME_PREFIX}-service2,tag=${CIRCLE_SHA1}"         
+          container-image-name-updates: "container=${AWS_RESOURCE_NAME_PREFIX},tag=${CIRCLE_SHA1}"         
           # filters:
           #   branches:
           #     only: master  
