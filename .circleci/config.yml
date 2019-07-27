@@ -112,18 +112,18 @@ workflows:
       # - rspec:
       #     requires:
       #       - rubocop
-      # - aws-ecr/build_and_push_image:
+      - aws-ecr/build_and_push_image:
 
       #     # requires:
       #     #   - rspec
-          # account-url: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
-          # repo: "${AWS_RESOURCE_NAME_PREFIX}"
-          # region: ${AWS_DEFAULT_REGION}
-          # tag: latest
+          account-url: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
+          repo: "${AWS_RESOURCE_NAME_PREFIX}"
+          region: ${AWS_DEFAULT_REGION}
+          tag: latest
           
       - aws-ecs/deploy-service-update:
-          # requires:
-          #   - aws-ecr/build_and_push_image
+          requires:
+            - aws-ecr/build_and_push_image
           aws-region: ${AWS_DEFAULT_REGION}
           family: "${AWS_RESOURCE_NAME_PREFIX}-task"
           cluster-name: "${AWS_RESOURCE_NAME_PREFIX}-cluster"
