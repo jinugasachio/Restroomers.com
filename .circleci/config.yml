@@ -118,7 +118,7 @@ workflows:
           account-url: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
           repo: "${AWS_RESOURCE_NAME_PREFIX}"
           region: ${AWS_DEFAULT_REGION}
-          tag: ${CIRCLE_SHA1} #latest
+          tag: latest
           
       - aws-ecs/deploy-service-update:
           requires:
@@ -127,7 +127,7 @@ workflows:
           family: "${AWS_RESOURCE_NAME_PREFIX}-task"
           cluster-name: "${AWS_RESOURCE_NAME_PREFIX}-cluster"
           service-name: "${AWS_RESOURCE_NAME_PREFIX}-service1"
-          container-image-name-updates: "container=${AWS_RESOURCE_NAME_PREFIX},tag=${CIRCLE_SHA1}"         
+          container-image-name-updates: "container=${AWS_RESOURCE_NAME_PREFIX},tag=latest"         
           # filters:
           #   branches:
           #     only: master  
