@@ -6,9 +6,8 @@ RUN apt-get update -qq && apt-get install -y \
     nodejs \
     vim \
     mysql-client \
- && rm -rf /var/lib/apt/lists/*
-
-RUN gem install bundler
+ && rm -rf /var/lib/apt/lists/*\
+ && gem install bundler
 
 
 WORKDIR /tmp
