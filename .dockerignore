@@ -2,3 +2,8 @@
 /vendor
 /node_modules
 /mysql_data
+/.gitignore
+/log
+/.bundle
+/.dockerignore
+/Dockerfile_div
