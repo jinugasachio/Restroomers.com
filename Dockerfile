@@ -1,6 +1,6 @@
 FROM ruby:2.5.5-stretch
 ENV LANG C.UTF-8
-RUN ls -al
+
 
 RUN apt-get update -qq && apt-get install -y \
     build-essential \
