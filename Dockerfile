@@ -1,5 +1,6 @@
 FROM ruby:2.5.5-stretch
 ENV LANG C.UTF-8
+RUN ls -al
 
 RUN apt-get update -qq && apt-get install -y \
     build-essential \
@@ -28,4 +29,5 @@ ENV RAILS_MASTER_KEY $RAILS_MASTER_KEY
 EXPOSE 3000
 
 RUN rm -f tmp/pids/server.pid
+
 CMD ["bundle", "exec", "rails", "s", "puma", "-b", "0.0.0.0", "-p", "3000", "-e", "production"]
