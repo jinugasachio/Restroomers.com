@@ -136,17 +136,17 @@ workflows:
           requires:
             - aws-ecr/build-and-push-image
           verify-revision-is-deployed: true
-
+          task-definition-arn: arn:aws:iam::289066077618:role/ecs-env-myapp
           aws-region: ${AWS_DEFAULT_REGION}
           family: "${AWS_RESOURCE_NAME_PREFIX}-task"
           cluster-name: "${AWS_RESOURCE_NAME_PREFIX}-cluster"
           service-name: "${AWS_RESOURCE_NAME_PREFIX}-service1"
           container-image-name-updates: "container=${AWS_RESOURCE_NAME_PREFIX},tag=latest"
-      - aws-ecs/verify-revision-is-deployed:
-          task-definition-arn: arn:aws:iam::289066077618:role/ecs-env-myapp
-          family: "${AWS_RESOURCE_NAME_PREFIX}-task"
-          cluster-name: "${AWS_RESOURCE_NAME_PREFIX}-cluster"
-          service-name: "${AWS_RESOURCE_NAME_PREFIX}-service1"         
+      # - aws-ecs/verify-revision-is-deployed:
+
+      #     family: "${AWS_RESOURCE_NAME_PREFIX}-task"
+      #     cluster-name: "${AWS_RESOURCE_NAME_PREFIX}-cluster"
+      #     service-name: "${AWS_RESOURCE_NAME_PREFIX}-service1"         
           # filters:
           #   branches:
           #     only: master
