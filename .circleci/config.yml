@@ -1,7 +1,7 @@
 version: 2.1
 orbs:
   aws-ecr: circleci/aws-ecr@0.0.2
-  aws-ecs: circleci/aws-ecs@0.0.8
+  aws-ecs: circleci/aws-ecs@6.2.0
   #aws-cli: circleci/aws-cli@0.1.1
 executors:
   docker:
@@ -125,6 +125,8 @@ workflows:
           repo: "${AWS_RESOURCE_NAME_PREFIX}"
           region: ${AWS_DEFAULT_REGION}
           tag: latest
+          setup-remote-docker: true
+          image: '18.06.0-ce'
   
           
       # - aws-ecs/deploy-service-update:
