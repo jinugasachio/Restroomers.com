@@ -126,7 +126,8 @@ workflows:
           region: ${AWS_DEFAULT_REGION}
           tag: latest
           setup-remote-docker: true
-          image: '18.06.0-ce'
+          # image: '18.06.0-ce'
+          executor: 'docker'
   
           
       # - aws-ecs/deploy-service-update:
