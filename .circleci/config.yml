@@ -127,7 +127,7 @@ workflows:
           repo: "${AWS_RESOURCE_NAME_PREFIX}"
           region: AWS_REGION
           # tag: latest
-          setup-remote-docker: true
+          # setup-remote-docker: true
           # image: '18.06.0-ce'
           executor: 'docker'
   
