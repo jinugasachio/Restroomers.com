@@ -3,6 +3,10 @@ orbs:
   aws-ecr: circleci/aws-ecr@0.0.2
   aws-ecs: circleci/aws-ecs@0.0.8
   #aws-cli: circleci/aws-cli@0.1.1
+executors:
+  docker:
+    docker:
+      - image: 'docker:18.06.0-ce'
 jobs:
   rubocop:
     docker:
@@ -111,10 +115,9 @@ workflows:
       # - rspec:
       #     requires:
       #       - rubocop
-      - setup_remote_docker:
-          version: 18.06.0-ce
-      - aws-ecr/build_and_push_image:
 
+      - aws-ecr/build_and_push_image:
+          executor: 'docker'
       #     # requires:
       #     #   - rspec
           account-url: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
