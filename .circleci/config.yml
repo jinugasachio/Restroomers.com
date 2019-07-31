@@ -142,7 +142,7 @@ workflows:
           cluster-name: "${AWS_RESOURCE_NAME_PREFIX}-cluster"
           service-name: "${AWS_RESOURCE_NAME_PREFIX}-service1"
           container-image-name-updates: "container=${AWS_RESOURCE_NAME_PREFIX},tag=latest"
-      - verify-revision-is-deployed:
+      - aws-ecs/verify-revision-is-deployed:
           task-definition-arn: arn:aws:iam::289066077618:role/ecs-env-myapp
           family: "${AWS_RESOURCE_NAME_PREFIX}-task"
           cluster-name: "${AWS_RESOURCE_NAME_PREFIX}-cluster"
