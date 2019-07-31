@@ -111,6 +111,8 @@ workflows:
       # - rspec:
       #     requires:
       #       - rubocop
+      - setup_remote_docker:
+          version: 18.06.0-ce
       - aws-ecr/build_and_push_image:
 
       #     # requires:
