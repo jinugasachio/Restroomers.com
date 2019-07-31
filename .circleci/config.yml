@@ -117,7 +117,7 @@ workflows:
       # - rspec:
       #     requires:
       #       - rubocop
-      - aws-ecr/build_and_push_image:
+      - aws-ecr/build-and-push-image:
 
       #     # requires:
       #     #   - rspec
