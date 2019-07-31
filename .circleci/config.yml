@@ -8,6 +8,7 @@ executors:
     docker:
       - image: 'docker:18.06.0-ce'
 jobs:
+  
   rubocop:
     docker:
       - image: circleci/ruby:2.5.5-stretch-node-browsers-legacy
@@ -111,13 +112,13 @@ workflows:
   version: 2
   build_deploy:
     jobs:
+
       # - rubocop
       # - rspec:
       #     requires:
       #       - rubocop
-
       - aws-ecr/build_and_push_image:
-          executor: 'docker'
+
       #     # requires:
       #     #   - rspec
           account-url: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
