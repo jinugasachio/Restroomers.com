@@ -121,10 +121,10 @@ workflows:
 
       #     # requires:
       #     #   - rspec
-          account-url: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
+          account-url: AWS_ECR_ACCOUNT_URL
           repo: "${AWS_RESOURCE_NAME_PREFIX}"
-          region: ${AWS_DEFAULT_REGION}
-          tag: latest
+          region: AWS_REGION
+          # tag: latest
           setup-remote-docker: true
           # image: '18.06.0-ce'
           executor: 'docker'
