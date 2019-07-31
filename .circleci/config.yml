@@ -141,11 +141,7 @@ workflows:
           family: "${AWS_RESOURCE_NAME_PREFIX}-task"
           cluster-name: "${AWS_RESOURCE_NAME_PREFIX}-cluster"
           service-name: "${AWS_RESOURCE_NAME_PREFIX}-service1"
-          container-image-name-updates: "container=${AWS_RESOURCE_NAME_PREFIX},tag=latest"
-      - aws-ecs/verify-revision-is-deployed:
-          family: "${AWS_RESOURCE_NAME_PREFIX}-task"
-          cluster-name: "${AWS_RESOURCE_NAME_PREFIX}-cluster"
-          service-name: "${AWS_RESOURCE_NAME_PREFIX}-service1"         
+          container-image-name-updates: "container=${AWS_RESOURCE_NAME_PREFIX},tag=latest"        
           # filters:
           #   branches:
           #     only: master
