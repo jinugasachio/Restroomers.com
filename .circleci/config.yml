@@ -129,7 +129,7 @@ workflows:
           # tag: latest
           # setup-remote-docker: true
           # image: '18.06.0-ce'
-          executor: 'docker'
+          # executor: 'docker'
   
           
       # - aws-ecs/deploy-service-update:
