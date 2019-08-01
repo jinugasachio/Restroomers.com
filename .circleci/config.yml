@@ -3,10 +3,10 @@ orbs:
   aws-ecr: circleci/aws-ecr@6.2.0
   aws-ecs: circleci/aws-ecs@0.0.8
   #aws-cli: circleci/aws-cli@0.1.1
-executors:
-  docker:
-    docker:
-      - image: 'docker:18.06.0-ce'
+# executors:
+#   docker:
+#     docker:
+#       - image: 'docker:18.06.0-ce'
 jobs:
   
   rubocop:
@@ -135,7 +135,7 @@ workflows:
       - aws-ecs/deploy-service-update:
           requires:
             - aws-ecr/build-and-push-image
-          verify-revision-is-deployed: true
+          # verify-revision-is-deployed: true
           # task-definition-arn: arn:aws:iam::289066077618:role/ecs-env-myapp
           aws-region: ${AWS_DEFAULT_REGION}
           family: "${AWS_RESOURCE_NAME_PREFIX}-task"
