@@ -117,31 +117,31 @@ workflows:
       - rspec #:
           # requires:
           #   - rubocop
-      # - aws-ecr/build-and-push-image:
+      - aws-ecr/build-and-push-image:
 
-      #     # requires:
-      #     #   - rspec
-          # aws-access-key-id: ACCESS_KEY_ID 
-          # aws-secret-access-key: SECRET_ACCESS_KEY
-          # account-url: AWS_ECR_ACCOUNT_URL
-          # repo: "${AWS_RESOURCE_NAME_PREFIX}"
-          # region: AWS_REGION
-          # tag: latest
-          # setup-remote-docker: true
-          # image: '18.06.0-ce'
-          # executor: 'docker'
+          # requires:
+          #   - rspec
+          aws-access-key-id: ACCESS_KEY_ID 
+          aws-secret-access-key: SECRET_ACCESS_KEY
+          account-url: AWS_ECR_ACCOUNT_URL
+          repo: "${AWS_RESOURCE_NAME_PREFIX}"
+          region: AWS_REGION
+          tag: latest
+          setup-remote-docker: true
+          image: '18.06.0-ce'
+          executor: 'docker'
   
           
-      # - aws-ecs/deploy-service-update:
-      #     requires:
-      #       - aws-ecr/build-and-push-image
-          # verify-revision-is-deployed: true
-          # task-definition-arn: arn:aws:iam::289066077618:role/ecs-env-myapp
-          # aws-region: ${AWS_DEFAULT_REGION}
-          # family: "${AWS_RESOURCE_NAME_PREFIX}-task"
-          # cluster-name: "${AWS_RESOURCE_NAME_PREFIX}-cluster"
-          # service-name: "${AWS_RESOURCE_NAME_PREFIX}-service1"
-          # container-image-name-updates: "container=${AWS_RESOURCE_NAME_PREFIX},tag=latest"        
-          # filters:
-          #   branches:
-          #     only: master
+      - aws-ecs/deploy-service-update:
+          requires:
+            - aws-ecr/build-and-push-image
+          verify-revision-is-deployed: true
+          task-definition-arn: arn:aws:iam::289066077618:role/ecs-env-myapp
+          aws-region: ${AWS_DEFAULT_REGION}
+          family: "${AWS_RESOURCE_NAME_PREFIX}-task"
+          cluster-name: "${AWS_RESOURCE_NAME_PREFIX}-cluster"
+          service-name: "${AWS_RESOURCE_NAME_PREFIX}-service1"
+          container-image-name-updates: "container=${AWS_RESOURCE_NAME_PREFIX},tag=latest"        
+          filters:
+            branches:
+              only: master
