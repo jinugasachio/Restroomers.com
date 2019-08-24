@@ -4,7 +4,7 @@ services:
   web:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile_div
     ports:
       - "3000:3000"
     tty: true
@@ -27,6 +27,7 @@ services:
       MYSQL_ROOT_PASSWORD: root
       # MYSQL_PASSWORD: root 
       MYSQL_DATABASE: myapp_development
+      # MYSQL_DATABASE: myapp_test
       MYSQL_USERNAME: root
 
     ports:

@@ -1,0 +1,8 @@
+.bundle
+log
+mysql_data
+node_modules
+vendor
+tmp
+.git
+.gitignore

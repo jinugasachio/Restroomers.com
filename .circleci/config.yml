@@ -1,9 +1,14 @@
-# Ruby CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-ruby/ for more details
-#
-version: 2
+version: 2.1
+orbs:
+  aws-ecr: circleci/aws-ecr@6.2.0
+  aws-ecs: circleci/aws-ecs@0.0.8
+  #aws-cli: circleci/aws-cli@0.1.1
+# executors:
+#   docker:
+#     docker:
+#       - image: 'docker:18.06.0-ce'
 jobs:
+  
   rubocop:
     docker:
       - image: circleci/ruby:2.5.5-stretch-node-browsers-legacy
@@ -66,6 +71,7 @@ jobs:
 
     working_directory: ~/repo
 
+    
     steps:
       - checkout
       - run:
@@ -99,59 +105,46 @@ jobs:
           name: Rspec
           command: bundle exec rspec
 
-  deploy:
-    docker:
-      - image: 3.7.4-stretch-node-browsers-legacy 
-    steps:
-      - checkout
-      - set_docker
-      - run:
-          name: install aws
-          command: |
-            sudo pip install awscli
-            aws --version
-      - run:
-          name: Install ecs-deploy
-          command: |
-            curl https://raw.githubusercontent.com/silinternational/ecs-deploy/master/ecs-deploy | sudo tee -a /usr/bin/ecs-deploy
-            sudo chmod +x /usr/bin/ecs-deploy
-      - run:
-          name: Install jq
-          command: sudo apt-get install -y jq
-      - run:
-          name: Log in AWS ECR
-          command: eval $(aws ecr get-login --no-include-email --region ap-northeast-1)
-      - run:
-          name: Build & Push Docker Image
-          command: |
-            docker build -t $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/myapp:latest -t $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/myapp:$CIRCLE_SHA1 -f Dockerfile_pro --build-arg RAILS_MASTER_KEY=$RAILS_MASTER_KEY .
-            docker push $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/myapp:$CIRCLE_SHA1
-      - run:
-          name: "DB Migrate"
-          command: |
-            aws ecs run-task \
-              --region ap-northeast-1 \
-              --cluster myapp \
-              --task-definition myapp \
-              --overrides file://ecs/run_task_db_migrate.json
-      - run:
-          name: "Sevice deploy"
-          #environment:
-          command: |
-            ecs-deploy -c eStreak-cluster -n eStreak_app_service \
-              -r ap-northeast-1 -t 240 \
-              -i $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/estreak_app_repo:$CIRCLE_SHA1
+
+
+
 workflows:
   version: 2
-  test_deploy:
+  build_deploy:
     jobs:
+
       - rubocop
       - rspec:
           requires:
             - rubocop
-      - deploy:
+      - aws-ecr/build-and-push-image:
+
           requires:
             - rspec
+          aws-access-key-id: ACCESS_KEY_ID 
+          aws-secret-access-key: SECRET_ACCESS_KEY
+          account-url: AWS_ECR_ACCOUNT_URL
+          repo: "${AWS_RESOURCE_NAME_PREFIX}"
+          region: AWS_REGION
+          tag: latest
           filters:
             branches:
-              only: master            
+              only: master
+          # setup-remote-docker: true
+          # image: '18.06.0-ce'
+          # executor: 'docker'
+  
+          
+      - aws-ecs/deploy-service-update:
+          requires:
+            - aws-ecr/build-and-push-image
+          verify-revision-is-deployed: true
+          # task-definition-arn: arn:aws:iam::289066077618:role/ecs-env-myapp
+          aws-region: ${AWS_DEFAULT_REGION}
+          family: "${AWS_RESOURCE_NAME_PREFIX}-task"
+          cluster-name: "${AWS_RESOURCE_NAME_PREFIX}-cluster"
+          service-name: "${AWS_RESOURCE_NAME_PREFIX}-service1"
+          container-image-name-updates: "container=${AWS_RESOURCE_NAME_PREFIX},tag=latest"        
+          filters:
+            branches:
+              only: master

@@ -1,0 +1,296 @@
+version: 2
+jobs:
+  rubocop:
+    docker:
+    - image: circleci/ruby:2.5.5-stretch-node-browsers-legacy
+      environment:
+        RAILS_ENV: test
+        MYSQL_HOST: 127.0.0.1
+        BUNDLER_VERSION: 2.0.2
+    - image: circleci/mysql:8.0.16-ram
+      command: --default-authentication-plugin=mysql_native_password
+      environment:
+        MYSQL_HOST: 127.0.0.1
+        MYSQL_USERNAME: root
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: myapp_test
+    working_directory: ~/repo
+    steps:
+    - checkout
+    - run:
+        name: setup bundler
+        command: "sudo gem update --system\nsudo gem uninstall bundler\nsudo rm /usr/local/bin/bundle\n\
+          # sudo rm /usr/local/bin/bundler\nsudo gem install bundler      \n"
+    - restore_cache:
+        keys:
+        - v1-dependencies-{{ checksum "Gemfile.lock" }}
+        - v1-dependencies-
+    - run:
+        command: bundle install --jobs=4 --retry=3 --path vendor/bundler
+    - run:
+        command: yarn install
+    - save_cache:
+        paths:
+        - ./vendor/bundler
+        key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+    - run:
+        name: Rubocop
+        command: bundle exec rubocop
+  rspec:
+    docker:
+    - image: circleci/ruby:2.5.5-stretch-node-browsers-legacy
+      environment:
+        RAILS_ENV: test
+        MYSQL_HOST: 127.0.0.1
+        BUNDLER_VERSION: 2.0.2
+    - image: circleci/mysql:8.0.16-ram
+      command: --default-authentication-plugin=mysql_native_password
+      environment:
+        MYSQL_HOST: 127.0.0.1
+        MYSQL_USERNAME: root
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: myapp_test
+    working_directory: ~/repo
+    steps:
+    - checkout
+    - run:
+        name: setup bundler
+        command: |
+          sudo gem update --system
+          sudo gem uninstall bundler
+          sudo rm /usr/local/bin/bundle
+          # sudo rm /usr/local/bin/bundler
+          sudo gem install bundler
+    - restore_cache:
+        keys:
+        - v1-dependencies-{{ checksum "Gemfile.lock" }}
+        - v1-dependencies-
+    - run:
+        command: bundle install --jobs=4 --retry=3 --path vendor/bundler
+    - run:
+        command: yarn install
+    - save_cache:
+        paths:
+        - ./vendor/bundler
+        key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+    - run:
+        command: bundle exec rails db:create
+    - run:
+        name: Rspec
+        command: bundle exec rspec
+  deploy:
+    docker:
+    - image: circleci/python:3.7.4-stretch-node-browsers-legacy
+    steps:
+    - checkout
+    - setup_remote_docker
+    - run:
+        name: install aws
+        command: |
+          sudo pip install awscli
+          aws --version
+    - run:
+        name: Install ecs-deploy
+        command: |
+          curl https://raw.githubusercontent.com/silinternational/ecs-deploy/master/ecs-deploy | sudo tee -a /usr/bin/ecs-deploy
+          sudo chmod +x /usr/bin/ecs-deploy
+    - run:
+        name: Install jq
+        command: sudo apt-get install -y jq
+    - run:
+        name: Log in AWS ECR
+        command: eval $(aws ecr get-login --no-include-email --region ap-northeast-1)
+    - run:
+        name: Build & Push Docker Image
+        command: |
+          sudo docker build -f ./Dockerfile_pro -t myapp .
+          sudo docker tag myapp:latest 289066077618.dkr.ecr.ap-northeast-1.amazonaws.com/myapp:latest
+          sudo docker push 289066077618.dkr.ecr.ap-northeast-1.amazonaws.com/myapp:latest
+    - run:
+        name: DB Migrate
+        command: |
+          aws ecs run-task \
+            --region ap-northeast-1 \
+            --cluster myapp \
+            --task-definition myapp \
+            --overrides file://ecs/run_task_db_migrate.json
+    - run:
+        name: Sevice deploy
+        command: |
+          ecs-deploy -c myapp-cluster -n myapp_app_service \
+            -r ap-northeast-1 -t 240 \
+            -i $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/myapp:$CIRCLE_SHA1
+workflows:
+  version: 2
+  test_deploy:
+    jobs:
+    - rubocop
+    - rspec:
+        requires:
+        - rubocop
+    - deploy:
+        filters:
+          branches:
+            only: master
+        requires:
+        - rspec
+
+# Original config.yml file:
+# version: 2.1
+# jobs:
+#   rubocop:
+#     docker:
+#       - image: circleci/ruby:2.5.5-stretch-node-browsers-legacy
+#         environment:
+#           RAILS_ENV: test
+#           MYSQL_HOST: 127.0.0.1
+#           BUNDLER_VERSION: 2.0.2        
+#       - image: circleci/mysql:8.0.16-ram
+#         command: --default-authentication-plugin=mysql_native_password
+#         environment:
+#           MYSQL_HOST: 127.0.0.1
+#           MYSQL_USERNAME: root
+#           MYSQL_ROOT_PASSWORD: root
+#           # MYSQL_PASSWORD: root        
+#           MYSQL_DATABASE: myapp_test
+# 
+#     working_directory: ~/repo
+# 
+#     steps:
+#       - checkout
+#       - run:
+#           name: setup bundler
+#           command: |
+#             sudo gem update --system
+#             sudo gem uninstall bundler
+#             sudo rm /usr/local/bin/bundle
+#             # sudo rm /usr/local/bin/bundler
+#             sudo gem install bundler      
+#       - restore_cache:
+#           keys:
+#             - v1-dependencies-{{ checksum \"Gemfile.lock\" }}
+#             # fallback to using the latest cache if no exact match is found
+#             - v1-dependencies-
+#       - run: bundle install --jobs=4 --retry=3 --path vendor/bundler
+#       - run: yarn install
+#       - save_cache:
+#           paths:
+#             - ./vendor/bundler
+#           key: v1-dependencies-{{ checksum \"Gemfile.lock\" }}
+#       # Rubocop
+#       - run:
+#           name: Rubocop
+#           command: bundle exec rubocop
+# 
+#   rspec:
+#     docker:
+#       - image: circleci/ruby:2.5.5-stretch-node-browsers-legacy
+#         environment:
+#           RAILS_ENV: test
+#           MYSQL_HOST: 127.0.0.1
+#           BUNDLER_VERSION: 2.0.2
+#       - image: circleci/mysql:8.0.16-ram
+#         command: --default-authentication-plugin=mysql_native_password
+#         environment:
+#           MYSQL_HOST: 127.0.0.1
+#           MYSQL_USERNAME: root
+#           MYSQL_ROOT_PASSWORD: root
+#           # MYSQL_PASSWORD: root        
+#           MYSQL_DATABASE: myapp_test
+# 
+#     working_directory: ~/repo
+# 
+#     steps:
+#       - checkout
+#       - run:
+#           name: setup bundler
+#           command: |
+#             sudo gem update --system
+#             sudo gem uninstall bundler
+#             sudo rm /usr/local/bin/bundle
+#             # sudo rm /usr/local/bin/bundler
+#             sudo gem install bundler
+#       - restore_cache:
+#           keys:
+#             - v1-dependencies-{{ checksum \"Gemfile.lock\" }}
+#             # fallback to using the latest cache if no exact match is found
+#             - v1-dependencies-
+#       - run: bundle install --jobs=4 --retry=3 --path vendor/bundler
+#       - run: yarn install
+#       - save_cache:
+#           paths:
+#             - ./vendor/bundler
+#           key: v1-dependencies-{{ checksum \"Gemfile.lock\" }}
+#       - run: bundle exec rails db:create         
+#       # - run: bundle exec rails db:schema:load 
+#       #\u4E0A\u306F\u5B9F\u969B\u306B\u30DE\u30A4\u30B0\u30EC\u30FC\u30B7\u30E7\u30F3\u30D5\u30A1\u30A4\u30EB\u3092\u5B9F\u884C\u3057\u3066\u30B9\u30AD\u30FC\u30DE\u30D5\u30A3\u30EB\u304C\u751F\u6210\u3055\u308C\u305F\u3089\u89E3\u653E\u3059\u308B,
+#       #\u4EE5\u4E0B\u305D\u308C\u307E\u3067\u306E\u30A8\u30E9\u30FC\u6587
+#       #(/home/circleci/repo/db/schema.rb doesn't exist yet. Run `rails db:migrate` to create it, then try again. )
+# 
+# 
+#       # Rspec
+#       - run:
+#           name: Rspec
+#           command: bundle exec rspec
+# 
+#   deploy:
+#     docker:
+#       - image: circleci/python:3.7.4-stretch-node-browsers-legacy
+#         # aws_auth:
+#         #   aws_access_key_id: #\u30D7\u30C3\u30B7\u30E5\u3059\u308B\u306A\uFF01\uFF01\uFF01\uFF01\uFF01
+#         #   aws_secret_access_key: 
+#   
+#     steps:
+#       - checkout
+#       - setup_remote_docker
+#       - run:
+#           name: install aws
+#           command: |
+#             sudo pip install awscli
+#             aws --version
+#       - run:
+#           name: Install ecs-deploy
+#           command: |
+#             curl https://raw.githubusercontent.com/silinternational/ecs-deploy/master/ecs-deploy | sudo tee -a /usr/bin/ecs-deploy
+#             sudo chmod +x /usr/bin/ecs-deploy
+#       - run:
+#           name: Install jq
+#           command: sudo apt-get install -y jq
+#       - run:
+#           name: Log in AWS ECR
+#           command: eval $(aws ecr get-login --no-include-email --region ap-northeast-1)
+#       - run:
+#           name: Build & Push Docker Image
+#           command: |
+#             sudo docker build -f ./Dockerfile_pro -t myapp .
+#             sudo docker tag myapp:latest 289066077618.dkr.ecr.ap-northeast-1.amazonaws.com/myapp:latest
+#             sudo docker push 289066077618.dkr.ecr.ap-northeast-1.amazonaws.com/myapp:latest
+#       - run:
+#           name: \"DB Migrate\"
+#           command: |
+#             aws ecs run-task \\
+#               --region ap-northeast-1 \\
+#               --cluster myapp \\
+#               --task-definition myapp \\
+#               --overrides file://ecs/run_task_db_migrate.json
+#       - run:
+#           name: \"Sevice deploy\"
+#         #environment:
+#           command: |
+#             ecs-deploy -c myapp-cluster -n myapp_app_service \\
+#               -r ap-northeast-1 -t 240 \\
+#               -i $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/myapp:$CIRCLE_SHA1
+# workflows:
+#   version: 2.1
+#   test_deploy:
+#     jobs:
+#       - rubocop
+#       - rspec:
+#           requires:
+#             - rubocop
+#       - deploy:
+#           requires:
+#             - rspec
+#           filters:
+#             branches:
+#               only: master            
