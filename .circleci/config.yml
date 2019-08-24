@@ -113,14 +113,14 @@ workflows:
   build_deploy:
     jobs:
 
-      # - rubocop
-      - rspec #:
-          # requires:
-          #   - rubocop
+      - rubocop
+      - rspec:
+          requires:
+            - rubocop
       - aws-ecr/build-and-push-image:
 
-          # requires:
-          #   - rspec
+          requires:
+            - rspec
           aws-access-key-id: ACCESS_KEY_ID 
           aws-secret-access-key: SECRET_ACCESS_KEY
           account-url: AWS_ECR_ACCOUNT_URL
@@ -128,7 +128,7 @@ workflows:
           region: AWS_REGION
           tag: latest
           setup-remote-docker: true
-          image: '18.06.0-ce'
+          # image: '18.06.0-ce'
           executor: 'docker'
   
           
