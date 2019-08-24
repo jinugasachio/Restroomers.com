@@ -27,6 +27,7 @@ services:
       MYSQL_ROOT_PASSWORD: root
       # MYSQL_PASSWORD: root 
       MYSQL_DATABASE: myapp_development
+      # MYSQL_DATABASE: myapp_test
       MYSQL_USERNAME: root
 
     ports:
