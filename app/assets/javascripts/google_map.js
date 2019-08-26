@@ -5,7 +5,52 @@ function initMap() {
   var mapOptions = {
     center: mapPosition,
     zoom: 16,
+    styles: [
+      {
+        "featureType": "landscape.natural.terrain",
+        "stylers": [
+          {
+            "visibility": "off"
+          }
+        ]
+      },
+      {
+        "featureType": "poi.school",
+        "elementType": "labels.icon",
+        "stylers": [
+          {
+            "visibility": "off"
+          }
+        ]
+      },
+      {
+        "featureType": "road.arterial",
+        "stylers": [
+          {
+            "visibility": "off"
+          }
+        ]
+      },
+      {
+        "featureType": "road.highway",
+        "stylers": [
+          {
+            "visibility": "off"
+          }
+        ]
+      },
+      {
+        "featureType": "transit.station.bus",
+        "elementType": "labels.icon",
+        "stylers": [
+          {
+            "visibility": "on"
+          }
+        ]
+      }
+    ],
   };
+
   //マップを生成するMapクラス
   var map = new google.maps.Map(mapArea, mapOptions);
 
@@ -13,7 +58,10 @@ function initMap() {
   var markerOptions = {
     map: map,
     position: mapPosition,
-    icon: "/assets/lip.png",
+    icon: {
+      url: "/assets/lady3.jpeg",
+      scaledSize: new google.maps.Size(38, 38) 
+    }
   };
 
   //解説1：マーカーを生成するMarkerクラス
