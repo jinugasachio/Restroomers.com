@@ -59,8 +59,8 @@ function initMap() {
     map: map,
     position: mapPosition,
     icon: {
-      url: "/assets/lady3.jpeg",
-      scaledSize: new google.maps.Size(38, 38) 
+      url: "/assets/woman.png",
+      scaledSize: new google.maps.Size(50, 50),
     }
   };
 
