@@ -8,12 +8,6 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://maps.google.com/maps/api/js?key=<%= Rails.application.credentials.api_key[:google] %>&language=ja"></script>
-
-    <style>
-    html { height: 100% }
-    body { height: 100% }
-    #map { height: 100%; width: 80%}
-    </style>
   </head>
 
   <body>
