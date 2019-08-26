@@ -13,7 +13,7 @@ function initMap() {
   var markerOptions = {
     map: map,
     position: mapPosition,
-    icon: "/assets/images/lip.png",
+    icon: "/assets/lip.png",
   };
 
   //解説1：マーカーを生成するMarkerクラス
