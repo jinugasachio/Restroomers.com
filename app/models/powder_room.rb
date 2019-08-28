@@ -1,0 +1,2 @@
+class PowderRoom < ApplicationRecord
+end

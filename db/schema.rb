@@ -10,16 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_16_103014) do
+ActiveRecord::Schema.define(version: 2019_08_28_052657) do
 
-  create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name"
-    t.integer "price"
-    t.text "image_url"
-    t.string "manifucturer"
-    t.integer "internal_capacity"
+  create_table "powder_rooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "rate", null: false
+    t.float "double", null: false
+    t.float "lat", null: false
+    t.float "lng", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_powder_rooms_on_user_id"
   end
 
 end

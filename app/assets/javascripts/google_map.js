@@ -57,7 +57,7 @@ function initMap() {
   //マーカー生成のための変数
   var markerOptions = {
     map: map,
-    position: mapPosition,
+    position: mapPosition, //パウダールームの住所の情報をここに持って来れば良い。つまり{lat: 35.658230, lng: 139.701642};この形の配列を渡してeachで回す？
     icon: {
       url: "/assets/woman.png",
       scaledSize: new google.maps.Size(50, 50),
