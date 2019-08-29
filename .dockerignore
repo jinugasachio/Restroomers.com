@@ -1,7 +1,7 @@
 .bundle
 log
 mysql_data
-# node_modules
+node_modules
 vendor
 tmp
 .git
