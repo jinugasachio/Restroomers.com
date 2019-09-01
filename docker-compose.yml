@@ -18,16 +18,18 @@ services:
     depends_on:
       - mysql
       - chrome
-      # - webpack
+      - webpack
 
   webpack:
-    <<: *app_base
+    build:
+      context: .
+      dockerfile: Dockerfile_div
     command: "yarn build"    
     command: "yarn start"
     ports:
       - "3035:3035"
-    depends_on:
-      - web
+    # depends_on:
+      # - web
     tty: false
     stdin_open: false
 

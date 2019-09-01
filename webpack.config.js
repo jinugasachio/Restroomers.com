@@ -53,7 +53,7 @@ module.exports = (env, argv) => {
       new MiniCssExtractPlugin({filename: '[name]-[contentHash].css'}),
     ],
     devServer: {
-      host: 'localhost',
+      host: '0.0.0.0',
       publicPath: 'http://localhost:3035/public/packs/',
       historyApiFallback: true,
       disableHostCheck: true,
