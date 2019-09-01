@@ -4,9 +4,13 @@
     <title>Myapp</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'hello_vue' %>
+    <%# <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%# <%= javascript_include_tag 'application' %>
+    <%# <%= javascript_pack_tag 'hello_vue'%>
+    <%# <%= javascript_bundle_tag 'application' %>
+    <%# <%= stylesheet_bundle_tag 'application-stylesheet' %>
+    <%= javascript_bundle_tag 'hello_vue' %>
+    <%= stylesheet_bundle_tag 'hello_vue' %>
     <script src="https://maps.google.com/maps/api/js?key=<%= Rails.application.credentials.api_key[:google]%>&language=ja&callback=initMap" async></script> 
   </head>
 

@@ -12,7 +12,9 @@
     "eslint": "eslint -c .eslintrc.yml --color './src/**/*.{js,jsx}'",
     "eslint:fix": "eslint -c .eslintrc.yml --color './src/**/*.{js,jsx}' --fix",
     "stylelint": "stylelint --config .stylelintrc.yml './src/**/*.scss'",
-    "stylelint:fix": "stylelint --config .stylelintrc.yml './src/**/*.scss' --fix"
+    "stylelint:fix": "stylelint --config .stylelintrc.yml './src/**/*.scss' --fix",
+    "start": "yarn && webpack-dev-server --mode=development",
+    "build": "yarn && webpack --mode=production"
   },
   "repository": {
     "type": "git",
@@ -25,6 +27,13 @@
   },
   "homepage": "https://github.com/jinugasachio/my_app#readme",
   "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/preset-env": "^7.5.5",
+    "babel-loader": "^8.0.6",
+    "babel-preset-power-assert": "3.0.0",
+    "css-loader": "^3.2.0",
     "eslint": "^6.0.1",
     "eslint-config-prettier": "^6.0.0",
     "eslint-config-standard": "^13.0.1",
@@ -33,16 +42,22 @@
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.0",
+    "file-loader": "^4.2.0",
+    "mini-css-extract-plugin": "^0.8.0",
+    "node-sass": "^4.12.0",
     "prettier": "^1.18.2",
     "prettier-stylelint": "^0.4.2",
+    "sass-loader": "^8.0.0",
     "stylelint": "^10.1.0",
     "stylelint-config-recess-order": "^2.0.3",
     "stylelint-config-standard": "^18.3.0",
     "stylelint-scss": "^3.9.1",
-    "webpack-dev-server": "^3.8.0"
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7",
+    "webpack-dev-server": "^3.8.0",
+    "webpack-manifest-plugin": "^2.0.4"
   },
   "dependencies": {
-    "@rails/webpacker": "^4.0.7",
     "vue": "^2.6.10",
     "vue-loader": "^15.7.1",
     "vue-template-compiler": "^2.6.10"
