@@ -7,11 +7,11 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = (env, argv) => {
   const isProduction = argv.mode === 'production';
   return {
-    context: path.resolve(__dirname, 'app/javascript/packs'),
+    context: path.resolve(__dirname, 'frontend/packs'),
     entry: {
-      application: './application.js',
-      'application-stylesheet': './application.sass',
-      hello_vue: './hello_vue.js',
+      javascript: './application.js',
+      stylesheet: './application.scss',
+      // hello_vue: './hello_vue.js',
     },
     output: {
       path: path.resolve(__dirname, 'public/packs'),
@@ -24,7 +24,7 @@ module.exports = (env, argv) => {
           include: path.resolve(__dirname, 'app'),
           use: 'babel-loader',
         },
-        { test: /\.(css|sass)$/, use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']},
+        { test: /\.(css|scss|sass)$/, use: [MiniCssExtractPlugin.loader,'css-loader','sass-loader']},
         {
           test: /\.(png|jpg|gif)$/,
           use: [
@@ -54,8 +54,10 @@ module.exports = (env, argv) => {
     ],
     devServer: {
       host: 'localhost',
-      publicPath: '/packs/',
+      publicPath: 'http://localhost:3035/public/packs/',
       historyApiFallback: true,
+      disableHostCheck: true,
+      hot: true,
       port: 3035,
     },    
   };

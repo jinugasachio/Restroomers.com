@@ -112,13 +112,12 @@ workflows:
   version: 2
   build_deploy:
     jobs:
-
       - rubocop
       - rspec:
           requires:
             - rubocop
-      - aws-ecr/build-and-push-image:
 
+      - aws-ecr/build-and-push-image:
           requires:
             - rspec
           aws-access-key-id: ACCESS_KEY_ID 
@@ -133,8 +132,6 @@ workflows:
           # setup-remote-docker: true
           # image: '18.06.0-ce'
           # executor: 'docker'
-  
-          
       - aws-ecs/deploy-service-update:
           requires:
             - aws-ecr/build-and-push-image
