@@ -1,10 +1,10 @@
 version: '3'
 
 services:
-  web: #&app_base
+  web: 
     build:
       context: .
-      dockerfile: Dockerfile_div
+      dockerfile: dockers/Dockerfile_div
     ports:
       - "3000:3000"
     tty: true
@@ -12,37 +12,13 @@ services:
     environment:
       RAILS_ENV: development
       DATABASE_URL: mysql2://root:root@mysql:3306 #これ超重！要絶対パスで場所を指定ってことなのかな？
-      # MYSQL_ROOT_PASSWORD: root
-      # WEBPACK_DEV_SERVER_HOST: webpack
-      # WEBPACK_DEV_SERVER_PUBLIC: webpack:3035
-      # WEBPACK_DEV_SERVER_HOST: 0.0.0.0
-      # WEBPACK_PORT: 3035
+      WEBPACKER_DEV_SERVER_HOST: webpack
+      WEBPACKER_DEV_SERVER_PUBLIC: webpack:3035
     volumes:
       - .:/myapp
     depends_on:
       - mysql
       - chrome
-      - webpack
-
-  webpack:
-    build:
-      context: .
-      dockerfile: Dockerfile_div #yarnインストールのために使用
-    command: yarn build    
-    command: yarn start
-    environment:
-      # NODE_ENV: development
-      RAILS_ENV: development
-      # WEBPACK_DEV_SERVER_HOST: 0.0.0.0
-      # WEBPACK_DEV_SERVER_PUBLIC: 0.0.0.0:3035
-    volumes:
-      - .:/myapp
-    ports:
-      - "3035:3035"
-    # depends_on:
-    #   - web
-    tty: false
-    stdin_open: false
 
   mysql:
     image: mysql:8.0.16
@@ -51,20 +27,18 @@ services:
     environment:
       MYSQL_HOST: 127.0.0.1
       MYSQL_ROOT_PASSWORD: root
-      # MYSQL_PASSWORD: root 
       MYSQL_DATABASE: myapp_development
-      # MYSQL_DATABASE: myapp_test
       MYSQL_USERNAME: root
     ports:
     - 4306:3306
     volumes:
       -  ./mysql_data:/var/lib/mysql
-
+ 
   chrome:
     image: selenium/standalone-chrome:3.141.59-dubnium
     ports:
       - 4444:4444
-        
+
 volumes:
   bundle:
   mysql_data:
