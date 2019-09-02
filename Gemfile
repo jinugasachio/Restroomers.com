@@ -44,6 +44,7 @@ group :development, :test do
 end
 
 group :development, :test, :staging do
+  gem 'pry-rails'
   gem 'rubocop', '~> 0.72.0', require: false
   gem 'rubocop-rails'
   gem 'slim_lint', require: false
@@ -74,4 +75,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 
 gem 'devise'
-gem 'pry-rails'
+
