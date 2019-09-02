@@ -54,7 +54,7 @@ module.exports = (env, argv) => {
     ],
     devServer: {
       host: '0.0.0.0',
-      publicPath: 'http://localhost:3035/public/packs/',
+      publicPath: 'http://0.0.0.0:3035/public/packs/',
       historyApiFallback: true,
       disableHostCheck: true,
       hot: true,

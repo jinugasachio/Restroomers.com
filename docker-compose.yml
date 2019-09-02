@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  web: &app_base
+  web: #&app_base
     build:
       context: .
       dockerfile: Dockerfile_div
@@ -13,6 +13,10 @@ services:
       RAILS_ENV: development
       DATABASE_URL: mysql2://root:root@mysql:3306 #これ超重！要絶対パスで場所を指定ってことなのかな？
       # MYSQL_ROOT_PASSWORD: root
+      # WEBPACK_DEV_SERVER_HOST: webpack
+      # WEBPACK_DEV_SERVER_PUBLIC: webpack:3035
+      # WEBPACK_DEV_SERVER_HOST: 0.0.0.0
+      # WEBPACK_PORT: 3035
     volumes:
       - .:/myapp
     depends_on:
@@ -23,13 +27,20 @@ services:
   webpack:
     build:
       context: .
-      dockerfile: Dockerfile_div
-    command: "yarn build"    
-    command: "yarn start"
+      dockerfile: Dockerfile_div #yarnインストールのために使用
+    command: yarn build    
+    command: yarn start
+    environment:
+      # NODE_ENV: development
+      RAILS_ENV: development
+      # WEBPACK_DEV_SERVER_HOST: 0.0.0.0
+      # WEBPACK_DEV_SERVER_PUBLIC: 0.0.0.0:3035
+    volumes:
+      - .:/myapp
     ports:
       - "3035:3035"
     # depends_on:
-      # - web
+    #   - web
     tty: false
     stdin_open: false
 

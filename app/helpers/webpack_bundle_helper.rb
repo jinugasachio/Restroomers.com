@@ -33,6 +33,7 @@ module WebpackBundleHelper
   def asset_server
     port = Rails.env === "development" ? "3035" : "3000"
     "http://#{request.host}:#{port}"
+    #  "http://0.0.0.0:#{port}" #これでも違ったデフォルトは上
   end
 
   def pro_manifest
@@ -40,6 +41,7 @@ module WebpackBundleHelper
   end
 
   def dev_manifest
+    # binding.pry
     OpenURI.open_uri("#{asset_server}/public/packs/manifest.json").read
   end
 
