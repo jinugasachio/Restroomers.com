@@ -8,8 +8,9 @@ services:
     ports:
       - "3000:3000"
     tty: true
-    command: yarn start
-    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    # command: yarn start
+    # command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    command: foreman start
     environment:
       RAILS_ENV: development
       DATABASE_URL: mysql2://root:root@mysql:3306 #これ超重！要絶対パスで場所を指定ってことなのかな？
