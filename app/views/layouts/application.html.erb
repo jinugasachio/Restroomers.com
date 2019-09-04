@@ -13,7 +13,7 @@
     = stylesheet_bundle_tag "#{params[:controller]}#{params[:action].capitalize}" %>
 
     <%# 下記のこれあとで消す、いらなくなるかも %>
-    <script src="https://maps.google.com/maps/api/js?key=<%= Rails.application.credentials.api_key[:google]%>&language=ja&callback=initMap" async></script>
+    <%# <script src="https://maps.google.com/maps/api/js?key=<%= Rails.application.credentials.api_key[:google]%>&language=ja&callback=initMap" async></script> %>
   </head>
 
   <body>
