@@ -55,9 +55,6 @@ module.exports = (env, argv) => {
     devServer: {
       host: '0.0.0.0',
       publicPath: 'http://0.0.0.0:3035/public/packs/',
-      // host: 'localhost',
-      // publicPath: 'http://localhost:3035/public/packs/',
-      // contentBase: path.resolve(__dirname, 'public/packs/'),
       historyApiFallback: true,
       disableHostCheck: true,
       hot: true,

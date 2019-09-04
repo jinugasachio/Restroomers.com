@@ -14,9 +14,9 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 p {
-  font-size: 2em;
+  font-size: 5em;
   text-align: center;
 }
 </style>
