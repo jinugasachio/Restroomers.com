@@ -4,7 +4,7 @@ services:
   web: 
     build:
       context: .
-      dockerfile: dockers/Dockerfile_div
+      dockerfile: Dockerfile_div
     ports:
       - "3000:3000" #rails
       - "3035:3035" #webpack
