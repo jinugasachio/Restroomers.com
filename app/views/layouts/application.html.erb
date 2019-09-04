@@ -4,10 +4,16 @@
     <title>Myapp</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'hello_vue' %>
-    <script src="https://maps.google.com/maps/api/js?key=<%= Rails.application.credentials.api_key[:google]%>&language=ja&callback=initMap" async></script> 
+    <%= javascript_bundle_tag 'javascript' %>
+    <%= stylesheet_bundle_tag 'javascript' %>
+    <%= stylesheet_bundle_tag 'stylesheet' %>
+    <%= javascript_bundle_tag 'stylesheet' %>
+    <%# ゆくゆくは下記にしたい %>
+    <%# = javascript_bundle_tag "#{params[:controller]}#{params[:action].capitalize}"
+    = stylesheet_bundle_tag "#{params[:controller]}#{params[:action].capitalize}" %>
+
+    <%# 下記のこれあとで消す、いらなくなるかも %>
+    <script src="https://maps.google.com/maps/api/js?key=<%= Rails.application.credentials.api_key[:google]%>&language=ja&callback=initMap" async></script>
   </head>
 
   <body>

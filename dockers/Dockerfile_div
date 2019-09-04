@@ -28,7 +28,7 @@ RUN mkdir -p $APP_HOME
 WORKDIR $APP_HOME
 ADD . $APP_HOME
 
-EXPOSE 3000
+
 
 
 RUN rm -f tmp/pids/server.pid
