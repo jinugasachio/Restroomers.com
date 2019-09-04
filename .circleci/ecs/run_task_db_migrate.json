@@ -1,8 +1,0 @@
-{
-  "containerOverrides": [
-    {
-      "name": "myapp",
-      "command": ["bundle", "exec", "rails", "db:migrate"]
-    }
-  ]
-}
