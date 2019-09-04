@@ -32,7 +32,7 @@ module WebpackBundleHelper
 
   def asset_server
     port = Rails.env === "development" ? "3035" : "3000"
-    "http://#{request.host}:#{port}"
+    "https://#{request.host}:#{port}"
     #  "http://0.0.0.0:#{port}" #これでも違ったデフォルトは上
   end
 
