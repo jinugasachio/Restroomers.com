@@ -36,6 +36,7 @@ ENV RAILS_MASTER_KEY $RAILS_MASTER_KEY
 
 EXPOSE 3000
 
+RUN yarn build && yarn start
 RUN rm -f tmp/pids/server.pid
 
 CMD ["bundle", "exec", "rails", "s", "puma", "-b", "0.0.0.0", "-p", "3000", "-e", "production"]
