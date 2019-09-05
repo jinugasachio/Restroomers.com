@@ -5,4 +5,3 @@ vendor
 tmp
 .git
 .gitignore
-.node_modules
