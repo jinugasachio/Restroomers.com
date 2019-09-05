@@ -33,11 +33,15 @@ module WebpackBundleHelper
   
   def asset_server
     port = Rails.env === "development" ? "3035" : "3000"
+    if port == "3000"
     # 本番用
     "https://#{request.host}:#{port}"
+    else
     # ローカル用
-    # "http://#{request.host}:#{port}"
-    #  "http://0.0.0.0:#{port}" #これでも違ったデフォルトは上
+    "http://#{request.host}:#{port}"
+    end
+    # "http://#{request.host}:3000"
+
   end
 
   def pro_manifest
@@ -50,7 +54,7 @@ module WebpackBundleHelper
   end
 
   def test_manifest
-    File.read("public/assets-test/manifest.json")
+    File.read("public/packs/manifest.json")
   end
 
   def manifest
@@ -66,6 +70,10 @@ module WebpackBundleHelper
 
   def asset_bundle_path(entry, **options)
     valid_entry?(entry)
-    asset_path("#{asset_server}/public/packs/" + manifest.fetch(entry), **options)
+    if Rails.env.development?
+      asset_path("#{asset_server}/public/packs/" + manifest.fetch(entry), **options)
+    else
+      asset_path("public/packs/" + manifest.fetch(entry), **options)
+    end
   end
 end

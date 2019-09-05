@@ -2,7 +2,7 @@
 
 //Vue
 import Vue from 'vue'
-import App from './components/app.vue'
+// import App from './components/app.vue'
 
 import './components/google_map.js'
 
