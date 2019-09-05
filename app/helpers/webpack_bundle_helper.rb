@@ -34,13 +34,12 @@ module WebpackBundleHelper
   def asset_server
     port = Rails.env === "development" ? "3035" : "3000"
     if port == "3000"
-    # 本番用
-    "https://#{request.host}:#{port}"
+      # 本番用
+      "https://#{request.host}:#{port}"
     else
-    # ローカル用
-    "http://#{request.host}:#{port}"
+      # ローカル用
+      "http://#{request.host}:#{port}"
     end
-    # "http://#{request.host}:3000"
 
   end
 
@@ -68,7 +67,7 @@ module WebpackBundleHelper
     raise BundleNotFound, "Could not find bundle with name #{entry}"
   end
 
-  
+
   def asset_bundle_path(entry, **options)
     valid_entry?(entry)
     if Rails.env.development?
