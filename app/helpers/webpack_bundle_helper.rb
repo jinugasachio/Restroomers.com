@@ -70,10 +70,10 @@ module WebpackBundleHelper
 
   def asset_bundle_path(entry, **options)
     valid_entry?(entry)
-    if Rails.env.development?
-      asset_path("#{asset_server}/public/packs/" + manifest.fetch(entry), **options)
-    else
-      asset_path("public/packs/" + manifest.fetch(entry), **options)
-    end
+    # if Rails.env.development?
+    asset_path("#{asset_server}/public/packs/" + manifest.fetch(entry), **options)
+    # else
+      # asset_path("public/packs/" + manifest.fetch(entry), **options)
+    # end
   end
 end
