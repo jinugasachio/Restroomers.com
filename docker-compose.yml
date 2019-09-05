@@ -1,6 +1,7 @@
 version: '3'
 
 services:
+
   web: 
     build:
       context: .
@@ -9,7 +10,6 @@ services:
       - "3000:3000" #rails
       - "3035:3035" #webpack
     tty: true
-    command: rm tmp/pids/server.pid
     command: foreman start
     environment:
       RAILS_ENV: development

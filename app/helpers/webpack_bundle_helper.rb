@@ -9,7 +9,7 @@ module WebpackBundleHelper
     else
       path = "packs/#{manifest.fetch("#{entry}.js")}"
     end
-    
+
     options = {
       src: path,
       defer: true,
@@ -35,6 +35,7 @@ module WebpackBundleHelper
 
     stylesheet_link_tag '', **options
   end
+
 
 
   private
