@@ -17,6 +17,7 @@ export default {
 <style lang="scss" scoped>
 p {
   font-size: 5em;
+  color: blue;
   text-align: center;
 }
 </style>
