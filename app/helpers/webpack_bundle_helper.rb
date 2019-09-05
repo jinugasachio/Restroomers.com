@@ -68,6 +68,7 @@ module WebpackBundleHelper
     raise BundleNotFound, "Could not find bundle with name #{entry}"
   end
 
+  
   def asset_bundle_path(entry, **options)
     valid_entry?(entry)
     if Rails.env.development?
