@@ -1,23 +1,11 @@
 <template>
-  <div id="app">
-    <p>{{ message }}</p>
-  </div>
+  <div id="google_map"></div>
 </template>
 
 <script>
-export default {
-  data: function () {
-    return {
-      message: "Hello Vue!!!!"
-    }
-  }
-}
+
+
 </script>
 
 <style lang="scss" scoped>
-p {
-  font-size: 3em;
-  color: green;
-  text-align: center;
-}
 </style>

@@ -1,4 +1,4 @@
-// webpackerエントリーポイント用jsファイル
+// webpackエントリーポイント用jsファイル
 
 //Vue
 import Vue from 'vue'
@@ -18,5 +18,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
   console.log(app)
 
-  
 })
