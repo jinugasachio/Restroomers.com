@@ -1,5 +1,6 @@
 <template>
-  <div id="google_map"></div>
+  <div id="map">
+  </div>
 </template>
 
 <script>
@@ -9,7 +10,7 @@ export default {
 
   data: function () {
     return {
-      mapName: "google_map", //mapを紐付ける要素のID
+      mapName: "map", //mapを紐付ける要素のID
       map: null, //GoogleMapのインスタンスを入れる変数
       markers: [], //マーカー群を入れる配列
     }
@@ -19,16 +20,18 @@ export default {
     // マップ表示メソッド
     initMap: function () {
       // const my_this = this; //thisを別名で退避しておく（あとでつかうので）
-
+      const mapArea = document.getElementById("map");
       // マップの初期値
       const mapOptions ={
         center: {lat: 35.658230, lng: 139.701642}, //渋谷駅スタート
         styles: gmapStyle,
         zoom: 16,
       };
-
-      // マップを生成
+      // debugger;
+      // マップ生成
+      // this.map = new google.maps.Map(document.getElementById(this.mapName), mapOptions);
       this.map = new google.maps.Map(document.getElementById(this.mapName), mapOptions);
+      
     },
   },
   mounted: function () {
@@ -40,11 +43,13 @@ export default {
 
 </script>
 
+
 <style lang="scss" scoped>
 
-#google_map {
-  width: 80%;
+#map {
+  width: 100%;
   height: 100%;
+  // background-color: red;
 }
 
 </style>
