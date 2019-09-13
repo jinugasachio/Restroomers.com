@@ -57,7 +57,7 @@ module.exports = (env, argv) => {
       publicPath: 'http://0.0.0.0:3035/public/packs/',
       historyApiFallback: true,
       disableHostCheck: true,
-      // inline: false,
+      // inline: false, (デフォルトがtrue)
       // hot: true,
       port: 3035,
     },    
