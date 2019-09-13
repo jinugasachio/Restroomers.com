@@ -4,6 +4,7 @@
 import Vue from 'vue'
 // import App from './components/app.vue'
 import App from './components/google_map.vue'
+
 //Image
 import './images/woman.png'
 
