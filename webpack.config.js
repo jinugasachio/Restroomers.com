@@ -32,7 +32,7 @@ module.exports = (env, argv) => {
               loader: 'file-loader',
               options: {
                 outputPath: 'images/',
-                name: '[name]-[hash].[ext]',
+                name: '[name].[ext]',
               },
             },
           ],
