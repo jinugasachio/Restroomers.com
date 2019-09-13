@@ -7,10 +7,11 @@ html,
 body {
   width: 100%;
   height: 100%;
-  // background-color: red;
 }
 
-#google_map {
-  width: 100%;
-  height: 100%;
+// デフォルトのGmapの要素をリセット
+.gmnoprint,
+.gm-style-cc,
+.gm-control-active {
+  display: none;
 }

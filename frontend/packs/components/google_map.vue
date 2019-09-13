@@ -27,9 +27,7 @@ export default {
         styles: gmapStyle,
         zoom: 16,
       };
-      // debugger;
       // マップ生成
-      // this.map = new google.maps.Map(document.getElementById(this.mapName), mapOptions);
       this.map = new google.maps.Map(document.getElementById(this.mapName), mapOptions);
       
     },
@@ -47,7 +45,7 @@ export default {
 <style lang="scss" scoped>
 
 #map {
-  width: 100%;
+  width: 70%;
   height: 100%;
   // background-color: red;
 }
