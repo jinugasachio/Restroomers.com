@@ -27,7 +27,11 @@ export default {
     // マップの生成
     createMap: function() {
       const mapArea = document.getElementById("map");
-      const mapOptions ={ center: this.center, styles: this.styles, zoom: this.zoom };
+      const mapOptions = { 
+        center: this.center, 
+        styles: this.styles, 
+        zoom:   this.zoom 
+      };
       this.map = new google.maps.Map(mapArea, mapOptions);
     },
 
