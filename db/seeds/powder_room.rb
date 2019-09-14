@@ -6,7 +6,7 @@ user = User.create!(
 )
 
 # ソース https://pathee.com/region/tokyo/shibuya/powderroom.html
-rooms = [ {
+rooms = [{
   name: '西武渋谷店 A館 2F',
   rate: 0,
   lat: 35.66019636,
