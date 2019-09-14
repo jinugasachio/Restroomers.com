@@ -14,7 +14,7 @@ export default {
       mapName: "map",
       map: null,
       // center: {lat: 35.658230, lng: 139.701642},//渋谷駅スタート
-      center: { lat: 35.6595442, lng: 139.69962510000005 },
+      center: { lat: 35.66019636, lng: 139.70036142 },
       styles: gmapStyle,
       zoom: 16,
       markers: [],
