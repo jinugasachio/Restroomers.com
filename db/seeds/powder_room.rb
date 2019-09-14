@@ -56,11 +56,11 @@ rooms = [ {
   user_id: user.id
 }, {
   name: 'DHCコミュニケーションスペース',
-  rate: 35.6590397,
-  lat: 139.69893582,
-  lng: ,
+  rate: 0,
+  lat: 35.6590397,
+  lng: 139.69893582,
   user_id: user.id
-},  {
+}, {
   name: '渋谷マルイ 4F',
   rate: 0,
   lat: 35.66090679,
