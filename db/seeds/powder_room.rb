@@ -9,8 +9,8 @@ user = User.create!(
 rooms = [{
   name: '西武 A館 2F 渋谷店',
   rate: 5,
-  lat: 35.658230,
-  lng: 139.701642,
+  lat: 35.6595442,
+  lng: 139.69962510000005,
   user_id: user.id}
 # }, {
 #   name: '渋谷ちかみちラウンジ',
