@@ -11,12 +11,12 @@ module Myapp
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
 
-  config.generators do |g|
-    g.test_framework = "rspec"
-    g.helper_specs = false    #helper用のspecファイルは生成しない
-    g.view_specs = false      #view用のspecファイルは生成しない
-  end
-
- 
+    config.generators do |g|
+      g.test_framework = 'rspec'
+      g.helper_specs = false    # helper用のspecファイルは生成しない
+      g.view_specs = false      # view用のspecファイルは生成しない
+      g.assets = false
+      g.views = false
+    end
   end
 end
