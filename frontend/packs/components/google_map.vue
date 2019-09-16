@@ -11,7 +11,7 @@ export default {
     return {
       mapName: "map",
       map: null,
-      center: {lat: 35.658230, lng: 139.701642},//渋谷駅スタート
+      center: {lat: 35.658230, lng: 139.701642}, //渋谷駅スタート
       styles: gmapStyle,
       zoom: 16,
       markers: [],
@@ -38,13 +38,15 @@ export default {
     // マーカーの生成
     setMarkers: function() {
       const vm = this
-      let powderRooms = this.markers
+      const powderRooms = this.markers
+      // let powderRooms = this.markers 上とyyどっちがいいのだろうか。
 
+      // indexいらないかも
       powderRooms.forEach(function(room, index){
         let markerOptions = { 
-          map:      vm.map, 
-          position: {lat: room.lat, lng: room.lng}, 
-          icon:     vm.icon
+          map:        vm.map, 
+          position: { lat: room.lat, lng: room.lng }, 
+          icon:       vm.icon
         };
         new google.maps.Marker(markerOptions);
       });
@@ -54,6 +56,17 @@ export default {
 
   mounted: function() {
     this.createMap();  // マップの生成
+
+  // ここにaxiosでのリクエストを呼ぶメソッドを書く？
+  // 懸念点としては、rails側ではルートページのコントローラーとアクションが既に
+  // 呼ばれている状態なので、2回クエリを発行することにならないかということ。
+  // それともjson formatとコントローラーに指定しておけば問題ない？
+  // それともapiで呼ぶので、呼ぶコントローラーも変える必要がある？つまり
+  // データをとる式は別のコントローラーに書いておくということ。
+  // 流れとしては、static(ここではviewのみ) → apiで他のコントローラーを呼びそこに
+  // PowderRoom.all(json形式)とか書く感じなのかな？
+
+    
     this.setMarkers(); // マーカーの生成
   }
 }
@@ -62,7 +75,7 @@ export default {
 
 <style lang="scss" scoped>
 #map {
-  width: 70%;
+  width: 70%; //最終的には全画面にしたいので100になるかも！
   height: 100%;
 }
 </style>

@@ -1,11 +1,10 @@
 user = User.create!(
-  nickname: 'Example User',
+  nickname: '管理人',
   email: 'aaa@gmail.com',
   password: '123456',
   password_confirmation: '123456'
 )
 
-# ソース https://pathee.com/region/tokyo/shibuya/powderroom.html
 rooms = [{
   name: '西武渋谷店 A館 2F',
   rate: 0,
