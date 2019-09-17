@@ -50,7 +50,11 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
+  adapter: mysql2
+  encoding: utf8
   database: dbformyapp
-  username: myapp
-  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
+  username: admin
+  password: yu91230316
+  host: database-1.c9iier8ia6ta.ap-northeast-1.rds.amazonaws.com
+  port: 3306
+  # password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
