@@ -52,9 +52,9 @@ test:
 production:
   adapter: mysql2
   encoding: utf8
-  database: dbformyapp
-  username: admin
-  password: yu91230316
-  host: database-1.c9iier8ia6ta.ap-northeast-1.rds.amazonaws.com
-  port: 3306
-  # password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
+  database: <%= Rails.application.credentials.production[:mysql][:database]%>
+  username: <%= Rails.application.credentials.production[:mysql][:username]%>
+  password: <%= Rails.application.credentials.production[:mysql][:password]%>
+  host: <%= Rails.application.credentials.production[:mysql][:host]%>
+  port: <%= Rails.application.credentials.production[:mysql][:port]%>
+
