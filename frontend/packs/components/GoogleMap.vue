@@ -38,6 +38,7 @@ export default {
     //ルームデータの呼び出し
     pullMarkers: function(){
       const vm = this
+
       axios.get('/api/powder_rooms')
         .then(function(response){
           vm.markers = response.data
@@ -50,7 +51,9 @@ export default {
 
   mounted: function() {
     this.createMap();
+    // this.addListener();
     this.pullMarkers();
+    // this.addListener();
   },
 
   watch: {
@@ -64,12 +67,30 @@ export default {
       const powderRooms = vm.markers
 
       powderRooms.forEach(function(room){
+        const roomName = `<div class='room_name' data-id='${room.id}'>
+                            ${room.name}
+                          </div>`
+        const infowindow = new google.maps.InfoWindow({ content: roomName });
+
         const markerOptions = { 
           map:        vm.map, 
           position: { lat: room.lat, lng: room.lng }, 
           icon:       vm.icon
         };
-        new google.maps.Marker(markerOptions);
+        const marker = new google.maps.Marker(markerOptions);
+
+        marker.addListener('click', function() {
+          // infowindow.close();
+          infowindow.open(map, marker);
+          this.map.addListener('click', function(){
+            infowindow.close();
+          })
+          // marker.addListener('click', function(){
+          //   infowindow.close();
+          // })
+
+        });
+
       });
     }
   }
