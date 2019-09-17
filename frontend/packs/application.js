@@ -3,7 +3,7 @@
 
 import Vue from 'vue'
 // import axios from 'axios'
-import App from './components/google_map.vue'
+import App from './components/GoogleMap.vue'
 
 //Image
 import './images/woman.png'
