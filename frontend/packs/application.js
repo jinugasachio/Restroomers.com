@@ -7,6 +7,7 @@ import App from './components/GoogleMap.vue'
 
 //Image
 import './images/woman.png'
+import './images/lip.png'
 
 
 Vue.use

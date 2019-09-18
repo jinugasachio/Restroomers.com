@@ -18,3 +18,19 @@ body {
 .gm-control-active {
   display: none;
 }
+
+.gm-ui-hover-effect {
+  display: none !important;
+}
+
+.room_name {
+  color: #1f1f1f;
+  text-decoration: none;
+
+  .lip_image {
+    position: relative;
+    top: 0.19rem;
+    width: 1rem;
+    height: 1rem;
+  }
+}

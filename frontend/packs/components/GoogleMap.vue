@@ -94,9 +94,10 @@ export default {
         // ただ名前の横に可愛いアイコンをつけたいので、そのためにはinfowindowのhtmlを
         // カスタマイズする必要がある。ので一旦下は消さない
 
-        const roomName = `<div class='room_name' data-id='${room.id}'>
+        const roomName = `<a href='#' class='room_name' data-id='${room.id}'>
                             ${room.name}
-                          </div>`
+                            <img src='packs/images/lip.png' alt='口紅の写真' class='lip_image'>
+                          </a>`
 
         const infowindow = new google.maps.InfoWindow({
           content: roomName,
@@ -118,7 +119,6 @@ export default {
   }
 
 }
-
 </script>
 
 <style lang="scss" scoped>
