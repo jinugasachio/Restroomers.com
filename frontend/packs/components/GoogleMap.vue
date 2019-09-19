@@ -96,7 +96,7 @@ export default {
 
         const roomName = `<a href='#' class='room_name' data-id='${room.id}'>
                             ${room.name}
-                            <img src='packs/images/lipstickgit .png' alt='口紅の写真' class='lip_image'>
+                            <img src='packs/images/lipstick.png' alt='口紅の写真' class='lip_image'>
                           </a>`
 
         const infowindow = new google.maps.InfoWindow({
