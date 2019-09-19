@@ -23,14 +23,20 @@ body {
   display: none !important;
 }
 
+// .room_name {
+//   &:hover {
+//     background-color: ;
+//   }
+// }
+
 .room_name {
-  color: #1f1f1f;
+  color: #3b3b3b;
   text-decoration: none;
 
   .lip_image {
     position: relative;
     top: 0.19rem;
-    width: 1rem;
-    height: 1rem;
+    width: 1.1rem;
+    height: 1.1rem;
   }
 }

@@ -13,7 +13,7 @@ export default {
       map: null,
       center: { lat: 35.658230, lng: 139.701642 }, //渋谷駅スタート
       styles: gmapStyle,
-      zoom: 16,
+      zoom: 17,
       markers: null,
       icon: {
           url: "packs/images/woman.png",
@@ -96,7 +96,7 @@ export default {
 
         const roomName = `<a href='#' class='room_name' data-id='${room.id}'>
                             ${room.name}
-                            <img src='packs/images/lip.png' alt='口紅の写真' class='lip_image'>
+                            <img src='packs/images/lipstick.png' alt='口紅の写真' class='lip_image'>
                           </a>`
 
         const infowindow = new google.maps.InfoWindow({
