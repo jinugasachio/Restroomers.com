@@ -9,9 +9,34 @@ body {
   height: 100%;
 }
 
+// .gm-style-iw
+// .gm-style-iw-c
+
 // デフォルトのGmapの要素をリセット
 .gmnoprint,
 .gm-style-cc,
 .gm-control-active {
   display: none;
+}
+
+.gm-ui-hover-effect {
+  display: none !important;
+}
+
+// .room_name {
+//   &:hover {
+//     background-color: ;
+//   }
+// }
+
+.room_name {
+  color: #3b3b3b;
+  text-decoration: none;
+
+  .lip_image {
+    position: relative;
+    top: 0.19rem;
+    width: 1.1rem;
+    height: 1.1rem;
+  }
 }

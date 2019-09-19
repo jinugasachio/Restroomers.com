@@ -5,6 +5,8 @@
     
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <script src="https://maps.google.com/maps/api/js?key=<%= Rails.application.credentials.api_key[:google]%>&language=ja" async></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <%# Railsとvueは以下の４つのヘルパーでつながっているということ、
     その他はAPIを叩く or vue.routerを使って解決 %>
@@ -13,8 +15,6 @@
     <%= stylesheet_bundle_tag 'stylesheet' %>
     <%= javascript_bundle_tag 'javascript' %>
 
-    <script src="https://maps.google.com/maps/api/js?key=<%= Rails.application.credentials.api_key[:google]%>&language=ja" async></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
 
   <body>
