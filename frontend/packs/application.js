@@ -1,16 +1,17 @@
 // webpackエントリーポイント用jsファイル
 
-
+import 'babel-polyfill'
 import Vue from 'vue'
+import Vuex from 'vuex'
 // import axios from 'axios'
 import App from './components/GoogleMap.vue'
 
 //Image
 import './images/woman.png'
-import './images/lip.png'
+import './images/lipstick.png'
 
 
-Vue.use
+Vue.use(Vuex)
 
 // 最初に仮の<root></root>要素を入れてそれをrenderで差し替えるっていうこと.
 // このVueインスタンスではこのテンプレートを使いますという意味。
