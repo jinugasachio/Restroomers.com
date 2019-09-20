@@ -4,13 +4,14 @@
 import Vue from 'vue'
 import App from './components/GoogleMap.vue'
 import store from './store.js' //import vuex as store
+import VueOnsen from 'vue-onsenui'
 
 //Image
 import './images/woman.png'
 import './images/lipstick.png'
 
 
-// Vue.use(Vuex)
+Vue.use(VueOnsen)
 
 // 最初に仮の<root></root>要素を入れてそれをrenderで差し替えるっていうこと.
 // このVueインスタンスではこのテンプレートを使いますという意味。
