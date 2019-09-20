@@ -14,12 +14,17 @@ export default {
       center: { lat: 35.658230, lng: 139.701642 }, //渋谷駅スタート
       styles: gmapStyle,
       zoom: 17,
-      markers: null,
       icon: {
           url: "packs/images/woman.png",
-          scaledSize: new google.maps.Size(70, 70)
+          scaledSize: new google.maps.Size(80, 80)
       },
     }
+  },
+
+  computed: {
+    markers(){
+      return this.$store.getters.powderRooms
+    },
   },
 
   methods: {
@@ -33,19 +38,6 @@ export default {
         zoom:   this.zoom 
       };
       this.map = new google.maps.Map(mapArea, mapOptions);
-    },
-
-    //ルームデータの取り出し
-    pullMarkers: function(){
-      const vm = this
-
-      axios.get('/api/powder_rooms')
-        .then(function(response){
-          vm.markers = response.data
-        })
-        .catch(function (error) {
-          console.log(error);
-        })
     },
 
     // デフォルトのinfowindowを非表示にする
@@ -66,8 +58,8 @@ export default {
 
   mounted: function() {
     this.createMap();
-    this.pullMarkers();
     this.fixInfoWindow();
+    this.$store.dispatch('pullPowderRoomData') //算出プロパティmarkersを更新
   },
 
   watch: {
@@ -100,6 +92,8 @@ export default {
                           </a>`
 
         const infowindow = new google.maps.InfoWindow({
+          // pixelOffset: new google.maps.Size(0, 0), 位置を調整できるoption
+          maxWidth: 600,
           content: roomName,
           noSuppress: true 
         });
