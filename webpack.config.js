@@ -10,8 +10,8 @@ module.exports = (env, argv) => {
     context: path.resolve(__dirname, 'frontend/packs'),
     entry: {
       javascript: './application.js',
-      stylesheet: './application.scss',
-      // hello_vue: './hello_vue.js',
+      javascript2: './application2.js', //onsen UI用
+      stylesheet: './application.scss'
     },
     output: {
       path: path.resolve(__dirname, 'public/packs'),
