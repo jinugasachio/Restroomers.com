@@ -16,7 +16,7 @@ export default {
       zoom: 17,
       icon: {
           url: "packs/images/woman.png",
-          scaledSize: new google.maps.Size(70, 70)
+          scaledSize: new google.maps.Size(80, 80)
       },
     }
   },
@@ -28,7 +28,7 @@ export default {
   },
 
   methods: {
-    
+
     // マップの生成
     createMap: function() {
       const mapArea = document.getElementById("map");
@@ -92,6 +92,8 @@ export default {
                           </a>`
 
         const infowindow = new google.maps.InfoWindow({
+          // pixelOffset: new google.maps.Size(0, 0), 位置を調整できるoption
+          maxWidth: 600,
           content: roomName,
           noSuppress: true 
         });
