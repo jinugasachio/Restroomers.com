@@ -3,7 +3,9 @@
 
 import Vue from 'vue'
 import App from './components/GoogleMap.vue'
-import store from './store.js' //import vuex as store
+import store from './store.js'
+import router from './router.js'
+
 // import VueOnsen from 'vue-onsenui'
 // import './application2.js'
 
@@ -21,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
     el,
     store,
+    router,
     render: h => h(App)
   })
   console.log(app)
