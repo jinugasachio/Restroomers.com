@@ -1,5 +1,7 @@
 <template>
-  <GoogleMap></GoogleMap>
+  <!-- <GoogleMap></GoogleMap> -->
+  <!-- <router-link to="/post">これはルーターリンクえ</router-link> -->
+  <a href= '/post'>これは</a>
 </template>
 
 <script>
