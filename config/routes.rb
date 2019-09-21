@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   # エラーを防げる、今の所は一つづつ書いてくしかないかなー？
   # もっとスマートな書き方があるはず。
   get 'post', to: 'static_pages#top'
+  get 'room/:id', to: 'static_pages#top'
+
 
   namespace :api do
     resources :powder_rooms, defaults: { format: 'json' }
