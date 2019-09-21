@@ -8,6 +8,10 @@
     <script src="https://maps.google.com/maps/api/js?key=<%= Rails.application.credentials.api_key[:google]%>&language=ja" async></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+
     <%# Railsとvueは以下の４つのヘルパーでつながっているということ、
     その他はAPIを叩く or vue.routerを使って解決 %>
     <%= javascript_bundle_tag 'stylesheet' %>
