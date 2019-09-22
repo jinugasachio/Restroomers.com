@@ -117,7 +117,7 @@ export default {
 
 <style lang="scss" scoped>
 #map {
-  width: 70%; //最終的には全画面にしたいので100になるかも！
+  width: 100%; //最終的には全画面にしたいので100になるかも！
   height: 100%;
 }
 </style>

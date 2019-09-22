@@ -9,8 +9,7 @@ module.exports = (env, argv) => {
   return {
     context: path.resolve(__dirname, 'frontend/packs'),
     entry: {
-      javascript: './application.js',
-      javascript2: './application2.js', //onsen UI用
+      javascript: './main.js',
       stylesheet: './application.scss'
     },
     output: {

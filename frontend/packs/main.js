@@ -8,11 +8,13 @@ import store from './store.js'
 import router from './router.js'
 
 // import VueOnsen from 'vue-onsenui'
-// import './application2.js'
+
 
 //Image
 import './images/woman.png'
 import './images/lipstick.png'
+import './images/ladyicon.png'
+
 
 
 // Vue.use(VueOnsen)
