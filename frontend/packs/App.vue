@@ -1,8 +1,8 @@
 <template>
-  <v-app>
+  <div class="wrapper">
     <router-view></router-view>
     <TabBar/>
-  </v-app>
+  </div>
 </template>
 
 <script>

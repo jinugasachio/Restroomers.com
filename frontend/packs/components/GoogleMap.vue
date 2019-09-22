@@ -1,6 +1,8 @@
 <template>
-  <div id="map">
-  </div>
+  <v-ons-page id="map">
+    <!-- <div id="map">
+    </div> -->
+  </v-ons-page>
 </template>
 
 <script>

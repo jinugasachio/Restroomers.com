@@ -30,12 +30,16 @@
 // };
 
 import UserPage from './UserPage.vue'
+import GoogleMap from './GoogleMap.vue'
+import Example from './Example.vue'
+
 
 
 
 export default {
   components: {
-    UserPage
+    UserPage,
+    GoogleMap
   },
   data: function() {
     return {
@@ -44,7 +48,7 @@ export default {
         {
           icon: 'ion-ios-home',
           label: '',
-          page: UserPage,
+          page: GoogleMap,
           props: {
             myProp: 'This is a page prop!'
           },
@@ -55,7 +59,7 @@ export default {
           // 上の形では指定できないっぽい
           icon: '',
           label: '',
-          page: UserPage,
+          page: Example,
           badge: 7,
           // key: "newsPage"
         },
