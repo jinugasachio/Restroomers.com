@@ -7,23 +7,22 @@
     <%= csp_meta_tag %>
     <script src="https://maps.google.com/maps/api/js?key=<%= Rails.application.credentials.api_key[:google]%>&language=ja" async></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
- 
     <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
-
+    <link rel="stylesheet" href="https://unpkg.com/onsenui@2.10.10/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui@2.10.10/css/onsen-css-components.min.css">
     <%# Railsとvueは以下の４つのヘルパーでつながっているということ、
     その他はAPIを叩く or vue.routerを使って解決 %>
     <%= javascript_bundle_tag 'stylesheet' %>
     <%= stylesheet_bundle_tag 'javascript' %>
     <%= stylesheet_bundle_tag 'stylesheet' %>
     <%= javascript_bundle_tag 'javascript' %>
-    <link rel="stylesheet" href="https://unpkg.com/onsenui@2.10.10/css/onsenui.css">
-    <link rel="stylesheet" href="https://unpkg.com/onsenui@2.10.10/css/onsen-css-components.min.css">
+ 
   </head>
 
   <body>
-    <%= yield %> 
-    
+    <div id="app">
+      <%= yield %> 
+    </div>
   </body>
 
 </html>

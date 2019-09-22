@@ -1,5 +1,5 @@
 <template>
-<div class='wrapper'>
+<div class="wrapper">
   <router-view></router-view>
   <TabBar/>
 </div>

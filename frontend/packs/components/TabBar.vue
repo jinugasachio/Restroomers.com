@@ -1,18 +1,19 @@
 <template>
-    <ons-tabbar swipeable position="auto"
+    <v-ons-tabbar swipeable position="auto"
       :tabs="tabs"
       :visible="true"
       :index.sync="activeIndex"
     >
-      <ons-tab v-for="(tab, i) in tabs"
+      <v-ons-tab v-for="(tab, i) in tabs"
         :icon="tabs[i].icon"
         :label="tabs[i].label"
         :badge="tabs[i].badge"
         :key= i
       >
-      </ons-tab>
-    </ons-tabbar>
+      </v-ons-tab>
+    </v-ons-tabbar>
 </template>
+
 
 <script>
 // const homePage = {
@@ -84,5 +85,4 @@ export default {
   //   }
   // }
 }
-
 </script>
