@@ -12,7 +12,6 @@
       >
       </ons-tab>
     </ons-tabbar>
-
 </template>
 
 <script>
@@ -44,7 +43,9 @@ export default {
           key: "homePage"
         },
         {
-          icon: 'packs/images/lipstick.png',
+          // icon: 'packs/images/lipstick.png',
+          // 上の形では指定できないっぽい
+          icon: '',
           label: '',
           page: newsPage,
           badge: 7,
