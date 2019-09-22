@@ -15,22 +15,27 @@
 </template>
 
 <script>
-const homePage = {
-  template: '#home',
-  props: ['myProp']
-};
+// const homePage = {
+//   template: '#home',
+//   props: ['myProp']
+// };
 
-const newsPage = {
-  template: '#news'
-};
+// const newsPage = {
+//   template: '#news'
+// };
 
-const settingsPage = {
-  template: '#settings'
-};
+// const settingsPage = {
+//   template: '#settings'
+// };
+
+import UserPage from './UserPage.vue'
 
 
 
 export default {
+  components: {
+    UserPage
+  },
   data: function() {
     return {
       activeIndex: 0,
@@ -38,32 +43,32 @@ export default {
         {
           icon: 'ion-ios-home',
           label: '',
-          page: homePage,
+          page: UserPage,
           props: {
             myProp: 'This is a page prop!'
           },
-          key: "homePage"
+          // key: "homePage"
         },
         {
           // icon: 'packs/images/lipstick.png',
           // 上の形では指定できないっぽい
           icon: '',
           label: '',
-          page: newsPage,
+          page: UserPage,
           badge: 7,
-          key: "newsPage"
+          // key: "newsPage"
         },
         {
           icon: 'ion-ios-search',
           label: '',
-          page: settingsPage,
-          key: "settingsPage"
+          page: UserPage,
+          // key: "settingsPage"
         },
         {
           icon: 'ion-ios-navigate',
           label: '',
-          page: settingsPage,
-          key: "settingsPage"
+          page: UserPage,
+          // key: "settingsPage"
         }
       ]
     };
