@@ -1,8 +1,8 @@
 <template>
-<div class="wrapper">
-  <router-view></router-view>
-  <TabBar/>
-</div>
+  <v-app>
+    <router-view></router-view>
+    <TabBar/>
+  </v-app>
 </template>
 
 <script>
@@ -16,6 +16,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
 .wrapper {
   width: 100%;
   height: 100%;

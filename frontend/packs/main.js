@@ -7,15 +7,11 @@ import App from './App.vue'
 import store from './store.js'
 import router from './router.js'
 
-// import VueOnsen from 'vue-onsenui'
-
-
 //Image
 import './images/woman.png'
 import './images/lipstick.png'
 import './images/ladyicon.png'
 
-// Vue.use(VueOnsen)
 
 // 最初に仮の<root></root>要素を入れてそれをrenderで差し替えるっていうこと.
 // このVueインスタンスではこのテンプレートを使いますという意味。
