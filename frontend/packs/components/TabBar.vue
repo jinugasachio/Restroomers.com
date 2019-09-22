@@ -28,6 +28,8 @@ const settingsPage = {
   template: '#settings'
 };
 
+
+
 export default {
   data: function() {
     return {

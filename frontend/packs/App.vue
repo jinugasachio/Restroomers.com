@@ -1,8 +1,7 @@
 <template>
 <div class='wrapper'>
-  <TabBar/>
-  <!-- ルーティングで振り分けるテンプレートが下記に入る -->
   <router-view></router-view>
+  <TabBar/>
 </div>
 </template>
 
