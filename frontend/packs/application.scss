@@ -9,9 +9,6 @@ body {
   height: 100%;
 }
 
-// .gm-style-iw
-// .gm-style-iw-c
-
 // デフォルトのGmapの要素をリセット
 .gmnoprint,
 .gm-style-cc,
@@ -23,16 +20,26 @@ body {
   display: none !important;
 }
 
+// 下記のよおうに直接当てるとoverflowの要素が働くときに
+// スクロールの箇所だけ染まらなくなる。ので一旦保留。
+// .gm-style-iw,
+// .gm-style-iw-d {
+//   &:hover {
+//     background: black;
+//   }
+// }
+
 .room_name {
   padding-left: 9px;
+  font-size: 1.4rem;
   color: #3b3b3b;
   text-decoration: none;
 
   .lip_image {
     position: relative;
     top: 0.36rem;
-    width: 20px;
-    height: 20px;
+    width: 1.5rem;
+    height: 1.5rem;
     padding-left: 0.2rem;
   }
 }

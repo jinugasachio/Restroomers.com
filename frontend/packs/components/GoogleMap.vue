@@ -1,6 +1,8 @@
 <template>
-  <div id="map">
-  </div>
+  <v-ons-page>
+    <div id="map">
+    </div>
+  </v-ons-page>
 </template>
 
 <script>
@@ -29,8 +31,13 @@ export default {
 
   methods: {
 
+    // reload: function(){
+    //   location.reload();
+    // },
+
     // マップの生成
     createMap: function() {
+      
       const mapArea = document.getElementById("map");
       const mapOptions = { 
         center: this.center, 
@@ -55,6 +62,10 @@ export default {
     }
 
   },
+
+  // created: function(){
+  //   this.reload(); これだと無限リロードループ
+  // },
 
   mounted: function() {
     this.createMap();
@@ -86,7 +97,7 @@ export default {
         // ただ名前の横に可愛いアイコンをつけたいので、そのためにはinfowindowのhtmlを
         // カスタマイズする必要がある。ので一旦下は消さない
 
-        const roomName = `<a href='#' class='room_name' data-id='${room.id}'>
+        const roomName = `<a href='/room/${room.id}' class='room_name'>
                             ${room.name}
                             <img src='packs/images/lipstick.png' alt='口紅の写真' class='lip_image'>
                           </a>`
@@ -117,7 +128,7 @@ export default {
 
 <style lang="scss" scoped>
 #map {
-  width: 70%; //最終的には全画面にしたいので100になるかも！
+  width: 100%; //最終的には全画面にしたいので100になるかも！
   height: 100%;
 }
 </style>
