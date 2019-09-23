@@ -1,13 +1,13 @@
 <template>
-  <GoogleMap></GoogleMap>
+  <TabBar></TabBar>
 </template>
 
 <script>
-import GoogleMap from './GoogleMap.vue'
+import TabBar from './TabBar.vue'
 
 export default {
   components: {
-    GoogleMap
+    TabBar
   }
 }
 </script>

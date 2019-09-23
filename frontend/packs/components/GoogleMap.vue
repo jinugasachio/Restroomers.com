@@ -1,7 +1,7 @@
 <template>
-  <v-ons-page id="map">
-    <!-- <div id="map">
-    </div> -->
+  <v-ons-page>
+    <div id="map">
+    </div>
   </v-ons-page>
 </template>
 
@@ -31,8 +31,13 @@ export default {
 
   methods: {
 
+    // reload: function(){
+    //   location.reload();
+    // },
+
     // マップの生成
     createMap: function() {
+      
       const mapArea = document.getElementById("map");
       const mapOptions = { 
         center: this.center, 
@@ -57,6 +62,10 @@ export default {
     }
 
   },
+
+  // created: function(){
+  //   this.reload(); これだと無限リロードループ
+  // },
 
   mounted: function() {
     this.createMap();

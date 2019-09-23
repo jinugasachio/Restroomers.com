@@ -16,30 +16,13 @@
 
 
 <script>
-// const homePage = {
-//   template: '#home',
-//   props: ['myProp']
-// };
-
-// const newsPage = {
-//   template: '#news'
-// };
-
-// const settingsPage = {
-//   template: '#settings'
-// };
-
 import UserPage from './UserPage.vue'
 import GoogleMap from './GoogleMap.vue'
-import Example from './Example.vue'
-
-
-
 
 export default {
   components: {
     UserPage,
-    GoogleMap
+    UserPage,
   },
   data: function() {
     return {
@@ -52,28 +35,28 @@ export default {
           props: {
             myProp: 'This is a page prop!'
           },
-          // key: "homePage"
+          // key: ""
         },
         {
           // icon: 'packs/images/lipstick.png',
           // 上の形では指定できないっぽい
           icon: '',
           label: '',
-          page: Example,
+          page: UserPage,
           badge: 7,
-          // key: "newsPage"
+          // key: ""
         },
         {
           icon: 'ion-ios-search',
           label: '',
           page: UserPage,
-          // key: "settingsPage"
+          // key: ""
         },
         {
           icon: 'ion-ios-navigate',
           label: '',
           page: UserPage,
-          // key: "settingsPage"
+          // key: ""
         }
       ]
     };
