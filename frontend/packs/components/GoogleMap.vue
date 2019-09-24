@@ -15,7 +15,7 @@ export default {
       map: null,
       center: { lat: 35.658230, lng: 139.701642 }, //渋谷駅スタート
       styles: gmapStyle,
-      zoom: 17,
+      zoom: 16,
       icon: {
           url: "packs/images/woman.png",
           scaledSize: new google.maps.Size(80, 80)

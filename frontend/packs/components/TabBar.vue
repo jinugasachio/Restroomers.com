@@ -1,5 +1,5 @@
 <template>
-    <v-ons-tabbar swipeable position="auto"
+    <v-ons-tabbar  position="auto"
       :tabs="tabs"
       :visible="true"
       :index.sync="activeIndex"
