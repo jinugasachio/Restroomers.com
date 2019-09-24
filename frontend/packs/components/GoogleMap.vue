@@ -18,7 +18,7 @@ export default {
       zoom: 16,
       icon: {
           url: "packs/images/woman.png",
-          scaledSize: new google.maps.Size(80, 80)
+          scaledSize: new google.maps.Size(70, 70)
       },
     }
   },
