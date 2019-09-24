@@ -1,13 +1,28 @@
 <template>
+
   <v-ons-page>
+    <p style="text-align: center;">
+      This is the first page
+      <v-ons-button @click="push">Push Page 2</v-ons-button>
+    </p>
+
     <div id="map">
     </div>
   </v-ons-page>
+
 </template>
 
 <script>
 import gmapStyle from "../modules/gmap_style.json"
+import PowderRoom from './PowderRoom.vue'
+import Navigator from './Navigator.vue'
+
 export default {
+
+  components: {
+    PowderRoom,
+    Navigator
+  },
 
   data: function () {
     return {
@@ -34,6 +49,10 @@ export default {
     // reload: function(){
     //   location.reload();
     // },
+
+    push() {
+      this.$emit('push-page', PowderRoom);
+    },
 
     // マップの生成
     createMap: function() {

@@ -18,11 +18,13 @@
 <script>
 import UserPage from './UserPage.vue'
 import GoogleMap from './GoogleMap.vue'
+import Navigator from './Navigator.vue'
+
 
 export default {
   components: {
     UserPage,
-    UserPage,
+    Navigator,
   },
   data: function() {
     return {
@@ -31,7 +33,7 @@ export default {
         {
           icon: 'ion-ios-home',
           label: '',
-          page: GoogleMap,
+          page: Navigator,
           props: {
             myProp: 'This is a page prop!'
           },
