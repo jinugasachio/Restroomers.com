@@ -1,10 +1,10 @@
 <template>
 
   <v-ons-page>
-    <p style="text-align: center;">
+    <!-- <p style="text-align: center;">
       This is the first page
       <v-ons-button @click="push">Push Page 2</v-ons-button>
-    </p>
+    </p> -->
 
     <div id="map">
     </div>
