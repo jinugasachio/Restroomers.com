@@ -116,27 +116,44 @@ export default {
         // ただ名前の横に可愛いアイコンをつけたいので、そのためにはinfowindowのhtmlを
         // カスタマイズする必要がある。ので一旦下は消さない
 
-        const roomName = `<a href='/room/${room.id}' class='room_name'>
+        // const roomName = `<a href='/room/${room.id}' class='room_name'>
+        //                     ${room.name}
+        //                     <img src='packs/images/lipstick.png' alt='口紅の写真' class='lip_image'>
+        //                   </a>`
+      const roomName = `<div class='room_name'>
                             ${room.name}
                             <img src='packs/images/lipstick.png' alt='口紅の写真' class='lip_image'>
-                          </a>`
+                        </div>`
+        
 
-        const infowindow = new google.maps.InfoWindow({
+        const infoWindow = new google.maps.InfoWindow({
           // pixelOffset: new google.maps.Size(0, 0), 位置を調整できるoption
           maxWidth: 600,
           content: roomName,
           noSuppress: true 
         });
 
+        // infoWindow.addEventListener('click', vm.push())
+
         google.maps.event.addListener(marker, 'click', function() {
           if (openWindow) {
+            // debugger;
             openWindow.close();
           }
           this.map.addListener('click', function(){
             openWindow.close();
           })
-          infowindow.open(map, marker);
-          openWindow = infowindow;
+       
+          infoWindow.open(map, marker);
+
+          openWindow = infoWindow;
+          google.maps.event.addListener(openWindow, 'domready', function() {
+            let a = document.getElementsByClassName('room_name')
+
+            a[0].addEventListener('click', function() {
+              vm.push();
+            });
+          });
         });
       });
     }
