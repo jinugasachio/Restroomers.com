@@ -8,7 +8,7 @@
     </v-ons-toolbar>
 
     <v-ons-card>
-      <img src="https://monaca.io/img/logos/download_image_onsenui_01.png" alt="Onsen UI" style="width: 100%">
+      <img src="https://monaca.io/img/logos/download_image_onsenui_01.png" alt="Onsen UI" style="width: 100%;">
       <div class="title">
         Awesome framework
       </div>
@@ -33,9 +33,3 @@ export default {
   
 }
 </script>
-
-<style lang="scss" scoped>
-.back-button {
-  cursor: pointer;
-}
-</style>
