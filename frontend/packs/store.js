@@ -1,14 +1,17 @@
 import 'babel-polyfill'
 import Vue from 'vue'
 import Vuex from 'vuex'
+import defaultData from './modules/default_data.json'
 
 Vue.use(Vuex)
 
 const store =  new Vuex.Store({
 
+  
+
   state: {
     powderRooms: null,
-    powderRoom: null
+    powderRoom: defaultData //コンソールエラー防止。
   },
 
   getters: {
@@ -42,12 +45,12 @@ const store =  new Vuex.Store({
       })
     },
     // 特定の一つのpowder_roomデータの取り出し
-    pullPowderRoomData(context, id){
-      debugger;
-      axios.get('/api/powder_rooms/' + id)
+    pullPowderRoomData(context, url){
+      // debugger;
+      axios.get('/api/powder_rooms/' + url)
 
       .then(function(response){
-        debugger;
+        // debugger;
         context.commit('updatePowderRoom', { powderRoom: response.data })
       })
       .catch(function (error) {

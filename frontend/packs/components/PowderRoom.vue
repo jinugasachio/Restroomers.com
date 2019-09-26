@@ -4,7 +4,7 @@
       <div class="left">
         <v-ons-back-button></v-ons-back-button>
       </div>
-      <div class="center">PowderRoom.name</div>
+      <div class="center">{{ detail.name }}</div>
     </v-ons-toolbar>
 
     <v-ons-card>
@@ -31,5 +31,16 @@
 <script>
 export default {
   
+  // data: function(){
+  //   return {
+  //     powderRoom: detail
+  //   }
+  // },
+
+  computed: {
+    detail(){
+      return this.$store.getters.powderRoom
+    },
+  },
 }
 </script>

@@ -129,19 +129,14 @@ export default {
           this.map.addListener('click', function(){
             openWindow.close();
           })
+          
           infoWindow.open(map, marker);
           openWindow = infoWindow;
 
           google.maps.event.addListener(openWindow, 'domready', function() {
             const roomName = document.getElementById('room_name')
-            // roomName.addEventListener('click', vm.push);
-            // debugger;
-            roomName.addEventListener('click', function(){
-              const id = roomName.dataset.id
-              vm.$store.dispatch('pullPowderRoomData', id)
-              vm.push
-            });
-            
+            vm.$store.dispatch('pullPowderRoomData', roomName.dataset.id)
+            roomName.addEventListener('click', vm.push);
           });
         });
       });
