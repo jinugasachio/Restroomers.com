@@ -9,7 +9,7 @@ class Api::PowderRoomsController < ApplicationController
   end
 
   def show
-    powder_room = PowderRoom.find() #find_by()
+    powder_room = PowderRoom.find(params[:id])
     render json: powder_room
   end
 end

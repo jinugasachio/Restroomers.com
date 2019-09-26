@@ -110,7 +110,7 @@ export default {
         // ただ名前の横に可愛いアイコンをつけたいので、そのためにはinfowindowのhtmlを
         // カスタマイズする必要がある。ので一旦下は消さない
 
-        const roomName = `<div id='room_name'>
+        const roomName = `<div id='room_name' data-id=${room.id}>
                             ${room.name}
                             <img src='packs/images/lipstick.png' alt='口紅の写真' class='lip_image'>
                           </div>`
@@ -124,23 +124,23 @@ export default {
 
         google.maps.event.addListener(marker, 'click', function() {
           if (openWindow) {
-            // debugger;
             openWindow.close();
           }
           this.map.addListener('click', function(){
-            // debugger;
             openWindow.close();
           })
-          // debugger;
           infoWindow.open(map, marker);
-          // debugger;
           openWindow = infoWindow;
-          // console.log(openWindow)
 
           google.maps.event.addListener(openWindow, 'domready', function() {
             const roomName = document.getElementById('room_name')
+            // roomName.addEventListener('click', vm.push);
             // debugger;
-            roomName.addEventListener('click', vm.push);
+            roomName.addEventListener('click', function(){
+              const id = roomName.dataset.id
+              vm.$store.dispatch('pullPowderRoomData', id)
+              vm.push
+            });
             
           });
         });
