@@ -42,7 +42,7 @@ export default {
         {
           // icon: 'packs/images/lipstick.png',
           // 上の形では指定できないっぽい
-          icon: '',
+          icon: 'ion-ios-woman',
           label: '',
           page: UserPage,
           badge: 7,
