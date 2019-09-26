@@ -1,15 +1,8 @@
 <template>
-
   <v-ons-page>
-    <!-- <p style="text-align: center;">
-      This is the first page
-      <v-ons-button @click="push">Push Page 2</v-ons-button>
-    </p> -->
-
     <div id="map">
     </div>
   </v-ons-page>
-
 </template>
 
 <script>
@@ -117,7 +110,7 @@ export default {
         // ただ名前の横に可愛いアイコンをつけたいので、そのためにはinfowindowのhtmlを
         // カスタマイズする必要がある。ので一旦下は消さない
 
-        const roomName = `<div class='room_name'>
+        const roomName = `<div id='room_name'>
                             ${room.name}
                             <img src='packs/images/lipstick.png' alt='口紅の写真' class='lip_image'>
                           </div>`
@@ -138,13 +131,13 @@ export default {
           })
           
           infoWindow.open(map, marker);
+          // debugger;
           openWindow = infoWindow;
 
           google.maps.event.addListener(openWindow, 'domready', function() {
-            let roomNames = document.getElementsByClassName('room_name')
-            roomNames[0].addEventListener('click', function() {
-              vm.push();
-            });
+            let roomName = document.getElementById('room_name')
+            debugger;
+            roomName.addEventListener('click', vm.push);
           });
         });
       });

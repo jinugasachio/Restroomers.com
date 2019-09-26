@@ -1,5 +1,5 @@
 <template>
-    <v-ons-tabbar  position="auto"
+    <v-ons-tabbar  position="auto" animation="none"
       :tabs="tabs"
       :visible="true"
       :index.sync="activeIndex"
