@@ -26,7 +26,7 @@ export default {
       zoom: 16,
       icon: {
           url: "packs/images/woman.png",
-          scaledSize: new google.maps.Size(70, 70)
+          scaledSize: new google.maps.Size(30, 40)
       },
     }
   },
@@ -83,7 +83,7 @@ export default {
   mounted: function() {
     this.createMap();
     this.fixInfoWindow();
-    this.$store.dispatch('pullPowderRoomData') //算出プロパティmarkersを更新
+    this.$store.dispatch('pullPowderRoomsData') //mountesのメソッドが全て実行された後に算出プロパティmarkersを更新
   },
 
   watch: {
@@ -116,28 +116,32 @@ export default {
                           </div>`
         
         const infoWindow = new google.maps.InfoWindow({
-          // pixelOffset: new google.maps.Size(0, 0), 位置を調整できるoption
-          maxWidth: 600,
+          // pixelOffset: new google.maps.Size(10, 0), //位置を調整できるoption
+          // maxWidth: 600,
           content: roomName,
           noSuppress: true 
         });
 
         google.maps.event.addListener(marker, 'click', function() {
           if (openWindow) {
+            // debugger;
             openWindow.close();
           }
           this.map.addListener('click', function(){
+            // debugger;
             openWindow.close();
           })
-          
+          // debugger;
           infoWindow.open(map, marker);
           // debugger;
           openWindow = infoWindow;
+          // console.log(openWindow)
 
           google.maps.event.addListener(openWindow, 'domready', function() {
-            let roomName = document.getElementById('room_name')
-            debugger;
+            const roomName = document.getElementById('room_name')
+            // debugger;
             roomName.addEventListener('click', vm.push);
+            
           });
         });
       });
