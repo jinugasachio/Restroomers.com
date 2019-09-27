@@ -11,7 +11,8 @@ const store =  new Vuex.Store({
 
   state: {
     powderRooms: null,
-    powderRoom: defaultData //コンソールエラー防止。
+    powderRoom: defaultData, //コンソールエラー防止。
+    powderRoomList: null
   },
 
   getters: {
@@ -20,6 +21,9 @@ const store =  new Vuex.Store({
     },
     powderRoom(state) {
       return state.powderRoom;
+    },
+    powderRoomList(state) {
+      return state.powderRoomList;
     },
 
   },
@@ -31,6 +35,10 @@ const store =  new Vuex.Store({
     updatePowderRoom(state, payload) {
       state.powderRoom = payload.powderRoom
     },
+    updatePowderRoomList(state, payload) {
+      state.powderRoomList = payload.powderRoomList
+    },
+
   },
 
   actions: {

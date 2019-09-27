@@ -8,6 +8,7 @@
 <script>
 import gmapStyle from "../modules/gmap_style.json"
 import PowderRoom from './PowderRoom.vue'
+import PowderRoomList from './PowderRoomList.vue'
 import Navigator from './Navigator.vue'
 
 export default {
@@ -44,8 +45,12 @@ export default {
     // },
 
     // Navigator用メソッド
-    push: function() {
+    pushRoom: function() {
       this.$emit('push-page', PowderRoom);
+    },
+
+    pushRoomList: function() {
+      this.$emit('push-page', PowderRoomList);
     },
 
     // マップの生成
@@ -136,7 +141,7 @@ export default {
           google.maps.event.addListener(openWindow, 'domready', function() {
             const roomName = document.getElementById('room_name')
             vm.$store.dispatch('getPowderRoom', roomName.dataset.id)
-            roomName.addEventListener('click', vm.push);
+            roomName.addEventListener('click', vm.pushRoomList);
           });
         });
       });

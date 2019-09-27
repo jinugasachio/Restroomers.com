@@ -17,7 +17,7 @@
 
 <script>
 import UserPage from './UserPage.vue'
-import GoogleMap from './GoogleMap.vue'
+// import GoogleMap from './GoogleMap.vue'
 import Navigator from './Navigator.vue'
 
 
