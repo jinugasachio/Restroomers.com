@@ -22,12 +22,14 @@ body {
 
 // 下記のよおうに直接当てるとoverflowの要素が働くときに
 // スクロールの箇所だけ染まらなくなる。ので一旦保留。
-// .gm-style-iw,
-// .gm-style-iw-c {
-//   // &:hover {
-//   //   background: black;
-//   // }
-// }
+.gm-style-iw,
+.gm-style-iw-c {
+  // &:hover {
+  //   background: black;
+  // }
+  max-width: 400px;
+  max-height: 400px;
+}
 
 #room_name {
   padding-left: 9px;
