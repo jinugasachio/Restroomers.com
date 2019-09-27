@@ -8,6 +8,7 @@
 <script>
 import gmapStyle from "../modules/gmap_style.json"
 import PowderRoom from './PowderRoom.vue'
+import PowderRoomList from './PowderRoomList.vue'
 import Navigator from './Navigator.vue'
 
 export default {
@@ -17,7 +18,7 @@ export default {
     Navigator
   },
 
-  data: function () {
+  data() {
     return {
       mapName: "map",
       map: null,
@@ -44,13 +45,16 @@ export default {
     // },
 
     // Navigator用メソッド
-    push: function() {
-      this.$emit('push-page', PowderRoom);
+    push(){
+      if (this.$store.state.powderRoomList.length > 1){
+        this.$emit('push-page', PowderRoomList);
+      } else {
+        this.$emit('push-page', PowderRoom);
+      }
     },
 
     // マップの生成
-    createMap: function() {
-      
+    createMap() {
       const mapArea = document.getElementById("map");
       const mapOptions = { 
         center: this.center, 
@@ -61,7 +65,7 @@ export default {
     },
 
     // デフォルトのinfowindowを非表示にする
-    fixInfoWindow: function(){
+    fixInfoWindow(){
       const set = google.maps.InfoWindow.prototype.set
 
       google.maps.InfoWindow.prototype.set = function(key, val) {
@@ -80,10 +84,10 @@ export default {
   //   this.reload(); これだと無限リロードループ
   // },
 
-  mounted: function() {
+  mounted() {
     this.createMap();
     this.fixInfoWindow();
-    this.$store.dispatch('pullPowderRoomsData') //mountesのメソッドが全て実行された後に算出プロパティmarkersを更新
+    this.$store.dispatch('getPowderRooms') //mountesのメソッドが全て実行された後に算出プロパティmarkersを更新
   },
 
   watch: {
@@ -93,7 +97,7 @@ export default {
     // https://se-tomo.com/2018/10/25/vue-js%E3%81%AE%E7%9B%A3%E8%A6%96%E3%83%97%E3%83%AD%E3%83%91%E3%83%86%E3%82%A3%E3%82%A6%E3%82%A9%E3%83%83%E3%83%81%E3%83%A3/
 
     // マーカーの生成
-    markers: function(){
+    markers(){
       const vm = this
       const powderRooms = vm.markers
       let   openWindow = null
@@ -124,6 +128,7 @@ export default {
 
         google.maps.event.addListener(marker, 'click', function() {
           if (openWindow) {
+            vm.$store.dispatch('resetPowderRoomList')
             openWindow.close();
           }
           this.map.addListener('click', function(){
@@ -135,7 +140,7 @@ export default {
 
           google.maps.event.addListener(openWindow, 'domready', function() {
             const roomName = document.getElementById('room_name')
-            vm.$store.dispatch('pullPowderRoomData', roomName.dataset.id)
+            vm.$store.dispatch('getPowderRoom', roomName.dataset.id)
             roomName.addEventListener('click', vm.push);
           });
         });

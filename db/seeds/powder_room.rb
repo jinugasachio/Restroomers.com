@@ -5,7 +5,7 @@ user = User.create!(
   password_confirmation: '123456'
 )
 
-rooms = [{
+shibuya_parent = [{
   name: '西武渋谷店 A館 2F',
   rate: 0,
   lat: 35.66019636,
@@ -73,12 +73,116 @@ rooms = [{
   user_id: user.id
 }]
 
-rooms.each do |room|
+shibuya_children = [{
+  name: '5F Relax STAGE',
+  rate: 0,
+  lat: shibuya_parent[2][:lat],
+  lng: shibuya_parent[2][:lng],
+  user_id: user.id,
+  ancestry: '3'
+}, {
+  name: '4F Accent STAGE',
+  rate: 0,
+  lat: shibuya_parent[2][:lat],
+  lng: shibuya_parent[2][:lng],
+  user_id: user.id,
+  ancestry: '3'
+}, {
+  name: '3F Style up STAGE',
+  rate: 0,
+  lat: shibuya_parent[2][:lat],
+  lng: shibuya_parent[2][:lng],
+  user_id: user.id,
+  ancestry: '3'
+}, {
+  name: 'B1F Beauty presentation STAGE',
+  rate: 0,
+  lat: shibuya_parent[2][:lat],
+  lng: shibuya_parent[2][:lng],
+  user_id: user.id,
+  ancestry: '3'
+}, {
+  name: "B2F Mammy's STAGE",
+  rate: 0,
+  lat: shibuya_parent[2][:lat],
+  lng: shibuya_parent[2][:lng],
+  user_id: user.id,
+  ancestry: '3'
+}, {
+  name: 'B3F Open STAGE',
+  rate: 0,
+  lat: shibuya_parent[2][:lat],
+  lng: shibuya_parent[2][:lng],
+  user_id: user.id,
+  ancestry: '3'
+}, {
+  name: '南館 5F',
+  rate: 0,
+  lat: shibuya_parent[3][:lat],
+  lng: shibuya_parent[3][:lng],
+  user_id: user.id,
+  ancestry: '4'
+}, {
+  name: '南館 4F',
+  rate: 0,
+  lat: shibuya_parent[3][:lat],
+  lng: shibuya_parent[3][:lng],
+  user_id: user.id,
+  ancestry: '4'
+}, {
+  name: '南館 B1F',
+  rate: 0,
+  lat: shibuya_parent[3][:lat],
+  lng: shibuya_parent[3][:lng],
+  user_id: user.id,
+  ancestry: '4'
+}, {
+  name: '6F',
+  rate: 0,
+  lat: shibuya_parent[4][:lat],
+  lng: shibuya_parent[4][:lng],
+  user_id: user.id,
+  ancestry: '5'
+}, {
+  name: '3F',
+  rate: 0,
+  lat: shibuya_parent[4][:lat],
+  lng: shibuya_parent[4][:lng],
+  user_id: user.id,
+  ancestry: '5'
+}, {
+  name: '6F',
+  rate: 0,
+  lat: shibuya_parent[6][:lat],
+  lng: shibuya_parent[6][:lng],
+  user_id: user.id,
+  ancestry: '7'
+}, {
+  name: '4F',
+  rate: 0,
+  lat: shibuya_parent[6][:lat],
+  lng: shibuya_parent[6][:lng],
+  user_id: user.id,
+  ancestry: '7'
+}]
+
+shibuya_parent.each do |room|
   PowderRoom.create(
     name: room[:name],
     rate: room[:rate],
     lat: room[:lat],
     lng: room[:lng],
     user_id: room[:user_id]
+  )
+end
+
+shibuya_children.each do |room|
+  PowderRoom.create(
+    name: room[:name],
+    rate: room[:rate],
+    lat: room[:lat],
+    lng: room[:lng],
+    user_id: room[:user_id],
+    ancestry: room[:ancestry]
   )
 end
