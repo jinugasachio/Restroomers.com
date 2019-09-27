@@ -14,3 +14,12 @@
     </v-ons-list>
   </v-ons-page>
 </template>
+
+<script>
+export default {
+
+  mounted: function(){
+    this.$store.dispatch('resetPowderRoomList')
+  }
+}
+</script>

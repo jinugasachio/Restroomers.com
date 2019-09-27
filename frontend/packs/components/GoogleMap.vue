@@ -45,12 +45,12 @@ export default {
     // },
 
     // Navigator用メソッド
-    pushRoom: function() {
-      this.$emit('push-page', PowderRoom);
-    },
-
-    pushRoomList: function() {
-      this.$emit('push-page', PowderRoomList);
+    push: function() {
+      if (this.$store.state.powderRoomList.length > 1){
+        this.$emit('push-page', PowderRoomList);
+      } else {
+        this.$emit('push-page', PowderRoom);
+      }
     },
 
     // マップの生成
@@ -141,7 +141,7 @@ export default {
           google.maps.event.addListener(openWindow, 'domready', function() {
             const roomName = document.getElementById('room_name')
             vm.$store.dispatch('getPowderRoom', roomName.dataset.id)
-            roomName.addEventListener('click', vm.pushRoomList);
+            roomName.addEventListener('click', vm.push);
           });
         });
       });

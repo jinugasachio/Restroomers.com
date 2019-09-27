@@ -1,7 +1,6 @@
 import 'babel-polyfill'
 import Vue from 'vue'
 import Vuex from 'vuex'
-import defaultData from './modules/default_data.json'
 
 Vue.use(Vuex)
 
@@ -11,7 +10,7 @@ const store =  new Vuex.Store({
 
   state: {
     powderRooms: null,
-    powderRoom: defaultData, //コンソールエラー防止。
+    powderRoom: null,
     powderRoomList: []
   },
 
@@ -38,6 +37,9 @@ const store =  new Vuex.Store({
     updatePowderRoomList(state, payload) {
       state.powderRoomList = payload.powderRoomList
     },
+    resetPowderRoomList(state) {
+      state.powderRoomList = []
+    }
 
   },
 
@@ -52,11 +54,11 @@ const store =  new Vuex.Store({
         alert(error);
       })
     },
-    // 特定の一つのpowder_room もしくは、その子供の取り出し
+    // 特定の一つのpowder_room もしくは、その'子'の取り出し
     getPowderRoom(context, url){
       axios.get('/api/powder_rooms/' + url)
       .then(function(response){
-        debugger
+        // debugger;
         if (response.data.length > 1){
           context.commit('updatePowderRoomList', { powderRoomList: response.data })
         } else {
@@ -66,6 +68,10 @@ const store =  new Vuex.Store({
       .catch(function (error) {
         alert(error);
       })
+    },
+    // Navigatorの挙動が変わるのでリセット
+    resetPowderRoomList(context){
+      context.commit('resetPowderRoomList')
     },
 
 
