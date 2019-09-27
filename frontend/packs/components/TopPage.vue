@@ -4,10 +4,12 @@
 
 <script>
 import TabBar from './TabBar.vue'
+// import Navigator from './Navigator.vue'
 
 export default {
   components: {
-    TabBar
+    TabBar,
+    Navigator
   }
 }
 </script>

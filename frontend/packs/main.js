@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     router,
     render: h => h(App),
     beforeCreate() {
-      this.$ons.disableAutoStyling();
+      this.$ons.disableAutoStyling(); //onsが端末に合わせて自動でデザインが変わるのを防ぐ設定
     }
   }).$mount('#app')
 })

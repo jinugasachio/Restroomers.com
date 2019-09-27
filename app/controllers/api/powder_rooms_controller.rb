@@ -7,4 +7,9 @@ class Api::PowderRoomsController < ApplicationController
     # その場合はchat_spaceの時みたいに分岐させた上で、
     # jbuilderが必要になる。
   end
+
+  def show
+    powder_room = PowderRoom.find(params[:id])
+    render json: powder_room
+  end
 end

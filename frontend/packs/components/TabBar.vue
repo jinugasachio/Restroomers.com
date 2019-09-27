@@ -1,5 +1,5 @@
 <template>
-    <v-ons-tabbar swipeable position="auto"
+    <v-ons-tabbar  position="auto" animation="none"
       :tabs="tabs"
       :visible="true"
       :index.sync="activeIndex"
@@ -18,11 +18,13 @@
 <script>
 import UserPage from './UserPage.vue'
 import GoogleMap from './GoogleMap.vue'
+import Navigator from './Navigator.vue'
+
 
 export default {
   components: {
     UserPage,
-    UserPage,
+    Navigator,
   },
   data: function() {
     return {
@@ -31,7 +33,7 @@ export default {
         {
           icon: 'ion-ios-home',
           label: '',
-          page: GoogleMap,
+          page: Navigator,
           props: {
             myProp: 'This is a page prop!'
           },
@@ -40,7 +42,7 @@ export default {
         {
           // icon: 'packs/images/lipstick.png',
           // 上の形では指定できないっぽい
-          icon: '',
+          icon: 'ion-ios-woman',
           label: '',
           page: UserPage,
           badge: 7,
@@ -73,3 +75,9 @@ export default {
   // }
 }
 </script>
+
+<style lang="scss" scoped>
+button {
+  cursor: pointer !important;
+}
+</style>

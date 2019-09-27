@@ -7,7 +7,15 @@
 
 <script>
 import gmapStyle from "../modules/gmap_style.json"
+import PowderRoom from './PowderRoom.vue'
+import Navigator from './Navigator.vue'
+
 export default {
+
+  components: {
+    PowderRoom,
+    Navigator
+  },
 
   data: function () {
     return {
@@ -15,10 +23,10 @@ export default {
       map: null,
       center: { lat: 35.658230, lng: 139.701642 }, //渋谷駅スタート
       styles: gmapStyle,
-      zoom: 17,
+      zoom: 16,
       icon: {
           url: "packs/images/woman.png",
-          scaledSize: new google.maps.Size(80, 80)
+          scaledSize: new google.maps.Size(30, 40)
       },
     }
   },
@@ -34,6 +42,11 @@ export default {
     // reload: function(){
     //   location.reload();
     // },
+
+    // Navigator用メソッド
+    push: function() {
+      this.$emit('push-page', PowderRoom);
+    },
 
     // マップの生成
     createMap: function() {
@@ -70,7 +83,7 @@ export default {
   mounted: function() {
     this.createMap();
     this.fixInfoWindow();
-    this.$store.dispatch('pullPowderRoomData') //算出プロパティmarkersを更新
+    this.$store.dispatch('pullPowderRoomsData') //mountesのメソッドが全て実行された後に算出プロパティmarkersを更新
   },
 
   watch: {
@@ -97,14 +110,14 @@ export default {
         // ただ名前の横に可愛いアイコンをつけたいので、そのためにはinfowindowのhtmlを
         // カスタマイズする必要がある。ので一旦下は消さない
 
-        const roomName = `<a href='/room/${room.id}' class='room_name'>
+        const roomName = `<div id='room_name' data-id=${room.id}>
                             ${room.name}
                             <img src='packs/images/lipstick.png' alt='口紅の写真' class='lip_image'>
-                          </a>`
-
-        const infowindow = new google.maps.InfoWindow({
-          // pixelOffset: new google.maps.Size(0, 0), 位置を調整できるoption
-          maxWidth: 600,
+                          </div>`
+        
+        const infoWindow = new google.maps.InfoWindow({
+          // pixelOffset: new google.maps.Size(10, 0), //位置を調整できるoption
+          // maxWidth: 600,
           content: roomName,
           noSuppress: true 
         });
@@ -116,8 +129,15 @@ export default {
           this.map.addListener('click', function(){
             openWindow.close();
           })
-          infowindow.open(map, marker);
-          openWindow = infowindow;
+          
+          infoWindow.open(map, marker);
+          openWindow = infoWindow;
+
+          google.maps.event.addListener(openWindow, 'domready', function() {
+            const roomName = document.getElementById('room_name')
+            vm.$store.dispatch('pullPowderRoomData', roomName.dataset.id)
+            roomName.addEventListener('click', vm.push);
+          });
         });
       });
     }
