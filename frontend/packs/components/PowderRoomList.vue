@@ -4,7 +4,7 @@
       <div class="left">
         <v-ons-back-button></v-ons-back-button>
       </div>
-      <div class="center">List</div>
+      <div class="center">{{ parentName }}</div>
     </v-ons-toolbar>
 
     <v-ons-list>
@@ -34,9 +34,15 @@ export default {
     list(){
       return this.$store.getters.powderRoomList
     },
+    parentName(){
+      const num = this.$store.getters.powderRoomList[0].ancestry
+      const parent = this.$store.state.powderRooms[num - 1]
+      return parent.name
+    },
   },
 
-  updated: function(){ //Navigatorでも取った時にリセットするという意味
+  updated(){ //Navigatorでも取った時にリセットするという意味
+  debugger;
     this.$store.dispatch('resetPowderRoomList')
   }
 }
@@ -44,6 +50,6 @@ export default {
 
 <style lang="scss" scoped>
 .list-item {
-  padding: 15px 0 15px 20px;
+  padding: 13px 0 13px 20px;
 }
 </style>
