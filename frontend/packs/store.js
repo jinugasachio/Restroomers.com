@@ -35,7 +35,7 @@ const store =  new Vuex.Store({
 
   actions: {
     // 全てのpowder_roomデータの取り出し
-    pullPowderRoomsData(context){
+    getPowderRooms(context){
       axios.get("/api/powder_rooms")
       .then(function(response){
         context.commit('updatePowderRooms', { powderRooms: response.data })
@@ -45,12 +45,9 @@ const store =  new Vuex.Store({
       })
     },
     // 特定の一つのpowder_roomデータの取り出し
-    pullPowderRoomData(context, url){
-      // debugger;
+    getPowderRoom(context, url){
       axios.get('/api/powder_rooms/' + url)
-
       .then(function(response){
-        // debugger;
         context.commit('updatePowderRoom', { powderRoom: response.data })
       })
       .catch(function (error) {

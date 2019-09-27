@@ -83,7 +83,7 @@ export default {
   mounted: function() {
     this.createMap();
     this.fixInfoWindow();
-    this.$store.dispatch('pullPowderRoomsData') //mountesのメソッドが全て実行された後に算出プロパティmarkersを更新
+    this.$store.dispatch('getPowderRooms') //mountesのメソッドが全て実行された後に算出プロパティmarkersを更新
   },
 
   watch: {
@@ -135,7 +135,7 @@ export default {
 
           google.maps.event.addListener(openWindow, 'domready', function() {
             const roomName = document.getElementById('room_name')
-            vm.$store.dispatch('pullPowderRoomData', roomName.dataset.id)
+            vm.$store.dispatch('getPowderRoom', roomName.dataset.id)
             roomName.addEventListener('click', vm.push);
           });
         });
