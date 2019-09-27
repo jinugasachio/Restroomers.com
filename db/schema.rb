@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_14_040437) do
+ActiveRecord::Schema.define(version: 2019_09_27_050430) do
 
   create_table "powder_rooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 2019_09_14_040437) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "ancestry"
+    t.index ["ancestry"], name: "index_powder_rooms_on_ancestry"
     t.index ["user_id"], name: "index_powder_rooms_on_user_id"
   end
 
