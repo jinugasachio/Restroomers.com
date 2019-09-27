@@ -50,7 +50,6 @@ export default {
 
   methods: {
     push(event) {
-      // debugger;
       const roomItem = event.currentTarget
       this.$store.dispatch('getPowderRoom', roomItem.dataset.id)
       this.$emit('push-page', PowderRoom);
@@ -58,7 +57,6 @@ export default {
   },
 
   updated(){ //Navigatorでも取った時にリセットするという意味
-  // debugger;
     this.$store.dispatch('resetPowderRoomList')
   }
 }
