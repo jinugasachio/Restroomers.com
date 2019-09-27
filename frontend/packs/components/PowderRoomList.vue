@@ -8,7 +8,7 @@
     </v-ons-toolbar>
 
     <v-ons-list>
-      <!-- <v-ons-list-header></v-ons-list-header> -->
+      <v-ons-list-header></v-ons-list-header>
       <v-ons-list-item modifier="chevron longdivider" tappable 
       v-for="room in list" 
       :key = room.id
@@ -41,3 +41,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.list-item {
+  padding: 15px 0 15px 20px;
+}
+</style>
