@@ -9,8 +9,14 @@
 
     <v-ons-list>
       <!-- <v-ons-list-header></v-ons-list-header> -->
-      <v-ons-list-item modifier="chevron longdivider" tappable>Item A</v-ons-list-item>
-      <v-ons-list-item >Item B</v-ons-list-item>
+      <v-ons-list-item modifier="chevron longdivider" tappable 
+      v-for="room in list" 
+      :key = room.id
+      :name = room.name
+      >
+      {{ room.name }}
+      </v-ons-list-item>
+      <!-- <v-ons-list-item >Item B</v-ons-list-item> -->
     </v-ons-list>
   </v-ons-page>
 </template>
@@ -18,7 +24,19 @@
 <script>
 export default {
 
-  mounted: function(){
+  // data: function(){
+  //   return {
+  //     list: this.$store.getters.powderRoomsList
+  //   }
+  // },
+
+  computed: {
+    list(){
+      return this.$store.getters.powderRoomList
+    },
+  },
+
+  updated: function(){ //Navigatorでも取った時にリセットするという意味
     this.$store.dispatch('resetPowderRoomList')
   }
 }

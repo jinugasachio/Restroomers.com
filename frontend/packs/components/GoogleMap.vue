@@ -129,6 +129,7 @@ export default {
 
         google.maps.event.addListener(marker, 'click', function() {
           if (openWindow) {
+            vm.$store.dispatch('resetPowderRoomList')
             openWindow.close();
           }
           this.map.addListener('click', function(){
