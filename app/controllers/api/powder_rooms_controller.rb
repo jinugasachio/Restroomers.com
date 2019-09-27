@@ -10,6 +10,11 @@ class Api::PowderRoomsController < ApplicationController
 
   def show
     powder_room = PowderRoom.find(params[:id])
-    render json: powder_room
+    if powder_room.children == []
+      render json: powder_room
+    else
+      children = powder_room.children
+      render json: children
+    end
   end
 end

@@ -12,7 +12,7 @@ const store =  new Vuex.Store({
   state: {
     powderRooms: null,
     powderRoom: defaultData, //コンソールエラー防止。
-    powderRoomList: null
+    powderRoomList: []
   },
 
   getters: {
@@ -49,17 +49,22 @@ const store =  new Vuex.Store({
         context.commit('updatePowderRooms', { powderRooms: response.data })
       })
       .catch(function (error) {
-        console.log(error);
+        alert(error);
       })
     },
-    // 特定の一つのpowder_roomデータの取り出し
+    // 特定の一つのpowder_room もしくは、その子供の取り出し
     getPowderRoom(context, url){
       axios.get('/api/powder_rooms/' + url)
       .then(function(response){
-        context.commit('updatePowderRoom', { powderRoom: response.data })
+        debugger
+        if (response.data.length > 1){
+          context.commit('updatePowderRoomList', { powderRoomList: response.data })
+        } else {
+          context.commit('updatePowderRoom', { powderRoom: response.data })
+        }
       })
       .catch(function (error) {
-        console.log(error);
+        alert(error);
       })
     },
 
