@@ -9,10 +9,11 @@
 
     <v-ons-list>
       <v-ons-list-header></v-ons-list-header>
-      <v-ons-list-item modifier="chevron longdivider" tappable 
+      <v-ons-list-item modifier="chevron longdivider" tappable
+      @click="push"
       v-for="room in list" 
-      :key = room.id
-      :name = room.name
+      :key=room.id
+      :data-id=room.id
       >
       {{ room.name }}
       </v-ons-list-item>
@@ -22,7 +23,13 @@
 </template>
 
 <script>
+import PowderRoom from './PowderRoom.vue'
+
 export default {
+  
+  components: {
+    PowderRoom
+  },
 
   // data: function(){
   //   return {
@@ -41,8 +48,17 @@ export default {
     },
   },
 
+  methods: {
+    push(event) {
+      // debugger;
+      const roomItem = event.currentTarget
+      this.$store.dispatch('getPowderRoom', roomItem.dataset.id)
+      this.$emit('push-page', PowderRoom);
+    }
+  },
+
   updated(){ //Navigatorでも取った時にリセットするという意味
-  debugger;
+  // debugger;
     this.$store.dispatch('resetPowderRoomList')
   }
 }
