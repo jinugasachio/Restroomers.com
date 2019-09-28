@@ -45,3 +45,6 @@ Style/BlockDelimiters:
 # private/protected は一段深くインデントする
 Layout/IndentationConsistency:
   EnforcedStyle: indented_internal_methods
+
+Layout/AlignHash:
+  Enabled: false

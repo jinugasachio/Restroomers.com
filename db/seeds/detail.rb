@@ -1,11 +1,11 @@
 shibuya_details = [{
-  open: '10:00',
-  close: '21:00',
+  open:         '10:00',
+  close:        '21:00',
   phone_number: '03-3462-0111',
-  address: '東京都渋谷区宇田川町21-1 西武渋谷店A館 2F',
+  address:      '東京都渋谷区宇田川町21-1 西武渋谷店A館 2F',
   official_url: 'https://www.sogo-seibu.jp/shibuya/floor_guide/',
-  membership: 0,
-  rate_plan: '無料',
+  membership:    0,
+  rate_plan:    '無料',
 }]
 
 rooms = PowderRoom.all
@@ -14,15 +14,15 @@ rooms.each_with_index do |r, num|
   d = shibuya_details[num]
 
   detail = r.build_detail(
-    open: d[:open],
-    close: d[:close],
+    open:         d[:open],
+    close:        d[:close],
     phone_number: d[:phone_number],
-    address: d[:address],
+    address:      d[:address],
     official_url: d[:official_url],
-    membership: d[:membership],
-    rate_plan: d[:rate_plan]
+    membership:   d[:membership],
+    rate_plan:    d[:rate_plan]
   )
-  
+
   detail.save
 end
 
