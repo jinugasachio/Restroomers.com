@@ -1,2 +1,3 @@
 class Image < ApplicationRecord
+  
 end
