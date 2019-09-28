@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_27_050430) do
+ActiveRecord::Schema.define(version: 2019_09_28_041947) do
+
+  create_table "details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.time "open"
+    t.time "close"
+    t.string "phone_number"
+    t.string "address"
+    t.text "official_url"
+    t.integer "membership", default: 0
+    t.string "rate_plan"
+    t.bigint "powder_room_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["powder_room_id"], name: "index_details_on_powder_room_id"
+  end
 
   create_table "powder_rooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -38,4 +52,5 @@ ActiveRecord::Schema.define(version: 2019_09_27_050430) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "details", "powder_rooms"
 end
