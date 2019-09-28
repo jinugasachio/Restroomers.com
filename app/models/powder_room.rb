@@ -3,4 +3,5 @@ class PowderRoom < ApplicationRecord
 
   # Association
   has_one :detail
+  has_one :facility
 end
