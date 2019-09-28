@@ -11,8 +11,8 @@ class CreateFacilities < ActiveRecord::Migration[5.2]
       t.string :outlet,          default: '-', null: false
       t.string :dust_box,        default: '-', null: false
       t.string :waiting_sofa,    default: '-', null: false
-      t.string :rental
-      t.string :others
+      t.string :rental,          default: '-', null: false
+      t.string :others,          default: '-', null: false
       t.references :powder_room, foreign_key: true
       t.timestamps
     end

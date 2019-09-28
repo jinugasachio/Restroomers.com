@@ -37,8 +37,8 @@ ActiveRecord::Schema.define(version: 2019_09_28_060706) do
     t.string "outlet", default: "-", null: false
     t.string "dust_box", default: "-", null: false
     t.string "waiting_sofa", default: "-", null: false
-    t.string "rental"
-    t.string "others"
+    t.string "rental", default: "-", null: false
+    t.string "others", default: "-", null: false
     t.bigint "powder_room_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
