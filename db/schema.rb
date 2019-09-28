@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_28_060706) do
+ActiveRecord::Schema.define(version: 2019_09_28_081252) do
 
   create_table "details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.time "open"
@@ -45,6 +45,14 @@ ActiveRecord::Schema.define(version: 2019_09_28_060706) do
     t.index ["powder_room_id"], name: "index_facilities_on_powder_room_id"
   end
 
+  create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "url", null: false
+    t.bigint "powder_room_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["powder_room_id"], name: "index_images_on_powder_room_id"
+  end
+
   create_table "powder_rooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.integer "rate", null: false
@@ -73,4 +81,5 @@ ActiveRecord::Schema.define(version: 2019_09_28_060706) do
 
   add_foreign_key "details", "powder_rooms"
   add_foreign_key "facilities", "powder_rooms"
+  add_foreign_key "images", "powder_rooms"
 end
