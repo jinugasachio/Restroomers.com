@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_28_041947) do
+ActiveRecord::Schema.define(version: 2019_09_28_060706) do
 
   create_table "details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.time "open"
@@ -24,6 +24,25 @@ ActiveRecord::Schema.define(version: 2019_09_28_041947) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["powder_room_id"], name: "index_details_on_powder_room_id"
+  end
+
+  create_table "facilities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "dresser", default: "-", null: false
+    t.string "body_mirror", default: "-", null: false
+    t.string "makeup_mirror", default: "-", null: false
+    t.string "wifi", default: "-", null: false
+    t.string "fitting_booth", default: "-", null: false
+    t.string "washstands", default: "-", null: false
+    t.string "luggage_storage", default: "-", null: false
+    t.string "outlet", default: "-", null: false
+    t.string "dust_box", default: "-", null: false
+    t.string "waiting_sofa", default: "-", null: false
+    t.string "rental"
+    t.string "others"
+    t.bigint "powder_room_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["powder_room_id"], name: "index_facilities_on_powder_room_id"
   end
 
   create_table "powder_rooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -53,4 +72,5 @@ ActiveRecord::Schema.define(version: 2019_09_28_041947) do
   end
 
   add_foreign_key "details", "powder_rooms"
+  add_foreign_key "facilities", "powder_rooms"
 end

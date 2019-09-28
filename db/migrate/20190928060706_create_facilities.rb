@@ -1,16 +1,16 @@
 class CreateFacilities < ActiveRecord::Migration[5.2]
   def change
     create_table :facilities do |t|
-      t.integer :dresser,         default: 0, null: false
-      t.integer :body_mirror,     default: 0, null: false
-      t.integer :makeup_mirror,   default: 0, null: false
-      t.integer :wifi,            default: 0, null: false
-      t.integer :fitting_booth,   default: 0, null: false
-      t.integer :washstands,      default: 0, null: false
-      t.integer :luggage_storage, default: 0, null: false
-      t.integer :outlet,          default: 0, null: false
-      t.integer :dust_box,        default: 0, null: false
-      t.integer :waiting_sofa,    default: 0, null: false
+      t.string :dresser,         default: '-', null: false
+      t.string :body_mirror,     default: '-', null: false
+      t.string :makeup_mirror,   default: '-', null: false
+      t.string :wifi,            default: '-', null: false
+      t.string :fitting_booth,   default: '-', null: false
+      t.string :washstands,      default: '-', null: false
+      t.string :luggage_storage, default: '-', null: false
+      t.string :outlet,          default: '-', null: false
+      t.string :dust_box,        default: '-', null: false
+      t.string :waiting_sofa,    default: '-', null: false
       t.string :rental
       t.string :others
       t.references :powder_room, foreign_key: true
