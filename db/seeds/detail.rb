@@ -6,13 +6,13 @@ shibuya_details = [{
   official_url: 'https://www.sogo-seibu.jp/shibuya/floor_guide/',
   membership: 0,
   rate_plan: '無料',
-  powder_room_id: 1
 }]
 
 rooms = PowderRoom.all
 
 rooms.each_with_index do |r, num|
   d = shibuya_details[num]
+
   detail = r.build_detail(
     open: d[:open],
     close: d[:close],
@@ -22,6 +22,7 @@ rooms.each_with_index do |r, num|
     membership: d[:membership],
     rate_plan: d[:rate_plan]
   )
+  
   detail.save
 end
 
