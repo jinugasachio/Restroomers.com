@@ -1,6 +1,7 @@
 import 'babel-polyfill'
 import Vue from 'vue'
 import Vuex from 'vuex'
+import defaultData from './modules/default_data.json'
 
 Vue.use(Vuex)
 
@@ -10,7 +11,7 @@ const store =  new Vuex.Store({
 
   state: {
     powderRooms: null,
-    powderRoom: null,
+    powderRoom: defaultData, //コンソールエラー防止のため
     powderRoomList: []
   },
 
