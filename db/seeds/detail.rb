@@ -44,7 +44,7 @@ shibuya_parent_details = [{
   open:         '10:00',
   close:        '20:00',
   phone_number: '03-5458-5143',
-  address:      ' 東京都渋谷区5 道玄坂2丁目5-9',
+  address:      '東京都渋谷区5 道玄坂2-5-9 渋谷駅構内 出口4番隣',
   official_url: 'https://www.tokyu.co.jp/shibuyachikamichi/lounge/',
 }, {
   open:         '10:00',
@@ -73,7 +73,7 @@ rooms.each_with_index do |room, num|
   d = shibuya_parent_details[num]
   if room.parent.present?
     parent_detail_hash = room.parent.detail.attributes
-    parent_detail_hash.delete("id")
+    parent_detail_hash.delete('id')
     detail = room.build_detail(parent_detail_hash)
   else
     detail = room.build_detail(
