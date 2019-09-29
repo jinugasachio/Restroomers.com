@@ -23,7 +23,7 @@
             <div class="right">{{ room.open }}~{{ room.close }}</div>
           </v-ons-list-item>
           <v-ons-list-item>TEL
-            <div class="right">{{ room.phone_number }}</div>
+            <a class="right" :href="'tel:' + room.phone_number">{{ room.phone_number }}</a>
           </v-ons-list-item>
           <v-ons-list-item>住所
             <div class="right">{{ room.address }}</div>
