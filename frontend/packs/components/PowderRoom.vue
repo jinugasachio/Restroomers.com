@@ -19,10 +19,10 @@
         </div>
         <v-ons-list>
           <v-ons-list-header>詳細情報</v-ons-list-header>
-          <v-ons-list-item>営業時間<div class="right">{{  }}</div></v-ons-list-item>
-          <v-ons-list-item>TEL<div class="right">{{  }}</div></v-ons-list-item>
-          <v-ons-list-item>住所<div class="right">{{  }}</div></v-ons-list-item>
-          <v-ons-list-item>公式HP<div class="right">{{  }}</div></v-ons-list-item>
+          <v-ons-list-item>営業時間<div class="right">{{ room.open }}~{{ room.close }}</div></v-ons-list-item>
+          <v-ons-list-item>TEL<div class="right">{{ room.phone_number }}</div></v-ons-list-item>
+          <v-ons-list-item>住所<div class="right">{{ room.address }}</div></v-ons-list-item>
+          <v-ons-list-item>公式HP<a class="right" href=room.official_url>{{ room.official_url }}</a></v-ons-list-item>
         </v-ons-list>
       </div>
     </v-ons-card>

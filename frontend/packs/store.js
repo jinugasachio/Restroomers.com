@@ -59,7 +59,7 @@ const store =  new Vuex.Store({
     getPowderRoom(context, url){
       axios.get('/api/powder_rooms/' + url)
       .then(function(response){
-        debugger;
+        // debugger;
         if (response.data.length > 1){
           context.commit('updatePowderRoomList', { powderRoomList: response.data })
         } else {
