@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_28_083838) do
+ActiveRecord::Schema.define(version: 2019_09_29_021615) do
 
   create_table "details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.time "open"
@@ -18,8 +18,6 @@ ActiveRecord::Schema.define(version: 2019_09_28_083838) do
     t.string "phone_number"
     t.string "address"
     t.text "official_url"
-    t.integer "membership", default: 0
-    t.string "rate_plan"
     t.bigint "powder_room_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
