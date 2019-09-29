@@ -4,7 +4,7 @@
       <div class="left">
         <v-ons-back-button></v-ons-back-button>
       </div>
-      <div class="center">{{ detail.name }}</div>
+      <div class="center">{{ room.name }}</div>
     </v-ons-toolbar>
 
     <v-ons-card>
@@ -18,10 +18,11 @@
           <v-ons-button><v-ons-icon icon="ion-share"></v-ons-icon></v-ons-button>
         </div>
         <v-ons-list>
-          <v-ons-list-header>Bindings</v-ons-list-header>
-          <v-ons-list-item>Vue</v-ons-list-item>
-          <v-ons-list-item>Angular</v-ons-list-item>
-          <v-ons-list-item>React</v-ons-list-item>
+          <v-ons-list-header>詳細情報</v-ons-list-header>
+          <v-ons-list-item>営業時間<div class="right">{{  }}</div></v-ons-list-item>
+          <v-ons-list-item>TEL<div class="right">{{  }}</div></v-ons-list-item>
+          <v-ons-list-item>住所<div class="right">{{  }}</div></v-ons-list-item>
+          <v-ons-list-item>公式HP<div class="right">{{  }}</div></v-ons-list-item>
         </v-ons-list>
       </div>
     </v-ons-card>
@@ -38,7 +39,7 @@ export default {
   // },
 
   computed: {
-    detail(){
+    room(){
       return this.$store.getters.powderRoom
     },
   },
