@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_29_021810) do
+ActiveRecord::Schema.define(version: 2019_09_29_023030) do
 
   create_table "details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.time "open"
-    t.time "close"
+    t.string "open"
+    t.string "close"
     t.string "phone_number"
     t.string "address"
     t.text "official_url"

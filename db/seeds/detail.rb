@@ -9,7 +9,7 @@ shibuya_parent_details = [{
   close:        '21:00',
   phone_number: '03-3462-0111',
   address:      '東京都渋谷区宇田川町21-1 西武渋谷店B館 2F',
-  official_url: 'https://www.sogo-seibu.jp/shibuya/floor_guide/',
+  official_url: 'https://www.sogo-seibu.jp/shibuya/floor_guide/index_b.html',
 }, {
   open:         '10:00',
   close:        '21:00',
@@ -69,7 +69,7 @@ shibuya_parent_details = [{
 rooms = PowderRoom.all
 
 rooms.each_with_index do |r, num|
-  d = shibuya_details[num]
+  d = shibuya_parent_details[num]
 
   detail = r.build_detail(
     open:         d[:open],
