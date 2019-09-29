@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_29_112021) do
+ActiveRecord::Schema.define(version: 2019_09_29_112359) do
 
   create_table "details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "open"
@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(version: 2019_09_29_112021) do
     t.string "outlet", default: "-", null: false
     t.string "dust_box", default: "-", null: false
     t.string "waiting_space", default: "-", null: false
-    t.string "rental", default: "-", null: false
     t.string "others", default: "-", null: false
     t.bigint "powder_room_id"
     t.datetime "created_at", null: false
