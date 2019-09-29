@@ -371,8 +371,9 @@ shibuya_facilities.each do |f|
     luggage_storage:  f[:luggage_storage],
     outlet:           f[:outlet],
     dust_box:         f[:dust_box],
-    waiting_space:     f[:waiting_space],
-    rental:           f[:rental],
+    waiting_space:    f[:waiting_space],
+    membership:       f[:membership],
+    rate_plan:        f[:rate_plan],
     others:           f[:others],
     powder_room_id:   f[:powder_room_id]
   )
