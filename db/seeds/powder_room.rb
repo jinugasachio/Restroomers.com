@@ -186,4 +186,3 @@ shibuya_children.each do |room|
     ancestry: room[:ancestry]
   )
 end
-

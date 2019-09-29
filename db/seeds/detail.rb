@@ -66,33 +66,23 @@ shibuya_parent_details = [{
   official_url: 'https://shibuyastream.jp/',
 }]
 
+# 共通のchildrenは同じdetailを当てるようにする
 rooms = PowderRoom.all
 
-rooms.each_with_index do |r, num|
+rooms.each_with_index do |room, num|
   d = shibuya_parent_details[num]
-
-  detail = r.build_detail(
-    open:         d[:open],
-    close:        d[:close],
-    phone_number: d[:phone_number],
-    address:      d[:address],
-    official_url: d[:official_url],
-    membership:   d[:membership],
-    rate_plan:    d[:rate_plan]
-  )
-
+  if room.parent.present?
+    parent_detail_hash = room.parent.detail.attributes
+    parent_detail_hash.delete("id")
+    detail = room.build_detail(parent_detail_hash)
+  else
+    detail = room.build_detail(
+      open:         d[:open],
+      close:        d[:close],
+      phone_number: d[:phone_number],
+      address:      d[:address],
+      official_url: d[:official_url],
+    )
+  end
   detail.save
 end
-
-# shibuya_details.each do |d|
-#   Detail.create(
-    # open: d[:open],
-    # close: d[:close],
-    # phone_number: d[:phone_number],
-    # address: d[:address],
-    # official_url: d[:official_url],
-    # membership: d[:membership],
-    # powder_room_id: d[:powder_room_id],
-    # rate_plan: d[:rate_plan],
-#   )
-# end
