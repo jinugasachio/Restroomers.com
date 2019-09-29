@@ -10,16 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_28_060706) do
+ActiveRecord::Schema.define(version: 2019_09_29_112359) do
 
   create_table "details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.time "open"
-    t.time "close"
+    t.string "open"
+    t.string "close"
     t.string "phone_number"
     t.string "address"
     t.text "official_url"
-    t.integer "membership", default: 0
-    t.string "rate_plan"
     t.bigint "powder_room_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -36,13 +34,22 @@ ActiveRecord::Schema.define(version: 2019_09_28_060706) do
     t.string "luggage_storage", default: "-", null: false
     t.string "outlet", default: "-", null: false
     t.string "dust_box", default: "-", null: false
-    t.string "waiting_sofa", default: "-", null: false
-    t.string "rental", default: "-", null: false
+    t.string "waiting_space", default: "-", null: false
     t.string "others", default: "-", null: false
     t.bigint "powder_room_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "membership"
+    t.string "rate_plan"
     t.index ["powder_room_id"], name: "index_facilities_on_powder_room_id"
+  end
+
+  create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "powder_room_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.json "urls"
+    t.index ["powder_room_id"], name: "index_images_on_powder_room_id"
   end
 
   create_table "powder_rooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -73,4 +80,5 @@ ActiveRecord::Schema.define(version: 2019_09_28_060706) do
 
   add_foreign_key "details", "powder_rooms"
   add_foreign_key "facilities", "powder_rooms"
+  add_foreign_key "images", "powder_rooms"
 end
