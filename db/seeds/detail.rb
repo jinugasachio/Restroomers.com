@@ -5,7 +5,15 @@ shibuya_details = [{
   address:      '東京都渋谷区宇田川町21-1 西武渋谷店A館 2F',
   official_url: 'https://www.sogo-seibu.jp/shibuya/floor_guide/',
   membership:    0,
-  rate_plan:    '無料',
+  rate_plan:    '無料'
+}, {
+  open:         '10:00',
+  close:        '21:00',
+  phone_number: '03-3462-0111',
+  address:      '東京都渋谷区宇田川町21-1 西武渋谷店A館 2F',
+  official_url: 'https://www.sogo-seibu.jp/shibuya/floor_guide/',
+  membership:    0,
+  rate_plan:    '無料'
 }]
 
 rooms = PowderRoom.all
