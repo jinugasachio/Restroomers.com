@@ -11,9 +11,7 @@ shibuya_facilities = [{
   waiting_space:    '○',
   membership:      0,
   rate_plan:       '無料',
-  others:          '-',
-  powder_room_id:  1
-}, {
+  others:          '-'}, {
   dresser:         '○',
   body_mirror:     '○',
   makeup_mirror:   '×',
@@ -26,9 +24,7 @@ shibuya_facilities = [{
   waiting_space:    '-',
   membership:      0,
   rate_plan:       '無料',
-  others:          '-',
-  powder_room_id:  2
-}, {
+  others:          '-'}, {
   dresser:         '-',
   body_mirror:     '-',
   makeup_mirror:   '-',
@@ -41,9 +37,7 @@ shibuya_facilities = [{
   waiting_space:    '-',
   membership:      0,
   rate_plan:       '無料',
-  others:          '-',
-  powder_room_id:  3
-}, {
+  others:          '-'}, {
   dresser:         '-',
   body_mirror:     '-',
   makeup_mirror:   '-',
@@ -56,9 +50,7 @@ shibuya_facilities = [{
   waiting_space:    '-',
   membership:      0,
   rate_plan:       '無料',
-  others:          '-',
-  powder_room_id:  4
-}, {
+  others:          '-'}, {
   dresser:         '-',
   body_mirror:     '-',
   makeup_mirror:   '-',
@@ -71,9 +63,7 @@ shibuya_facilities = [{
   waiting_space:    '-',
   membership:      0,
   rate_plan:       '無料',
-  others:          '-',
-  powder_room_id:  5
-}, {
+  others:          '-'}, {
   dresser:         '○',
   body_mirror:     '○',
   makeup_mirror:   '-',
@@ -86,9 +76,7 @@ shibuya_facilities = [{
   waiting_space:    '×',
   membership:      0,
   rate_plan:       '無料',
-  others:          'テスター、ドライヤー、コテなど有り',
-  powder_room_id:  6
-}, {
+  others:          'テスター、ドライヤー、コテなど有り'}, {
   dresser:         '-',
   body_mirror:     '-',
   makeup_mirror:   '-',
@@ -101,9 +89,7 @@ shibuya_facilities = [{
   waiting_space:    '-',
   membership:      0,
   rate_plan:       '無料',
-  others:          '-',
-  powder_room_id:  7
-}, {
+  others:          '-'}, {
   dresser:         '○',
   body_mirror:     '×',
   makeup_mirror:   '○',
@@ -116,9 +102,7 @@ shibuya_facilities = [{
   waiting_space:    '○',
   membership:      0,
   rate_plan:       '無料',
-  others:          '東急カードで入室可。カードが無い場合は名前を記入すれば入室できます。',
-  powder_room_id:  8
-}, {
+  others:          '東急カードで入室可。カードが無い場合は名前を記入すれば入室できます。'}, {
   dresser:         '○',
   body_mirror:     '×',
   makeup_mirror:   '×',
@@ -131,9 +115,7 @@ shibuya_facilities = [{
   waiting_space:   '×',
   membership:      1,
   rate_plan:       '無料',
-  others:          '※ 女子大生限定 コテ、アイロン、ドライヤー、一部のDHC商品、パソコン、プリンタ、携帯充電器',
-  powder_room_id:  9
-}, {
+  others:          '※ 女子大生限定 コテ、アイロン、ドライヤー、一部のDHC商品、パソコン、プリンタ、携帯充電器'}, {
   dresser:         '○',
   body_mirror:     '×',
   makeup_mirror:   '×',
@@ -146,8 +128,7 @@ shibuya_facilities = [{
   waiting_space:    '×',
   membership:      0,
   rate_plan:       '無料',
-  others:          'パウダールームと化粧室が分かれています',
-  powder_room_id:  10
+  others:          'パウダールームと化粧室が分かれています'
 }, {
   dresser:         '×',
   body_mirror:     '×',
@@ -161,8 +142,7 @@ shibuya_facilities = [{
   waiting_space:   '×',
   membership:      0,
   rate_plan:       '無料',
-  others:          'ドレッサーはないが化粧ブースがあります',
-  powder_room_id:  11
+  others:          'ドレッサーはないが化粧ブースがあります'
 }, {
   dresser:         '○',
   body_mirror:     '○',
@@ -176,8 +156,7 @@ shibuya_facilities = [{
   waiting_space:   '○',
   membership:      1,
   rate_plan:       '無料',
-  others:          'TOP&ClubQカード女性会員専用、フットマッサージ、酸素バー(有料)、携帯充電器テーブル',
-  powder_room_id:  12
+  others:          'TOP&ClubQカード女性会員専用、フットマッサージ、酸素バー(有料)、携帯充電器テーブル'
 }, {
   dresser:         '○',
   body_mirror:     '○',
@@ -191,8 +170,7 @@ shibuya_facilities = [{
   waiting_space:   '×',
   membership:      0,
   rate_plan:       '無料',
-  others:          '-',
-  powder_room_id:  13
+  others:          '-'
 }, {
   dresser:         '○',
   body_mirror:     '○',
@@ -206,8 +184,7 @@ shibuya_facilities = [{
   waiting_space:   '○',
   membership:      0,
   rate_plan:       '無料',
-  others:          'エアシャワーブース、歯磨きボウル、羽根つきナプキン',
-  powder_room_id:  14
+  others:          'エアシャワーブース、歯磨きボウル、羽根つきナプキン'
 }, {
   dresser:         '○',
   body_mirror:     '○',
@@ -221,8 +198,7 @@ shibuya_facilities = [{
   waiting_space:   '-',
   membership:      0,
   rate_plan:       '無料',
-  others:          '-',
-  powder_room_id:  15
+  others:          '-'
 }, {
   dresser:         '○',
   body_mirror:     '○',
@@ -236,8 +212,7 @@ shibuya_facilities = [{
   waiting_space:   '○',
   membership:      0,
   rate_plan:       '無料',
-  others:          '授乳室、ベビーベッド、ベビー休憩室、電子レンジ、給湯器、キッズトイレ',
-  powder_room_id:  16
+  others:          '授乳室、ベビーベッド、ベビー休憩室、電子レンジ、給湯器、キッズトイレ'
 }, {
   dresser:         '○',
   body_mirror:     '○',
@@ -251,8 +226,7 @@ shibuya_facilities = [{
   waiting_space:   '○',
   membership:      0,
   rate_plan:       '無料',
-  others:          '-',
-  powder_room_id:  17
+  others:          '-'
 }, {
   dresser:         '×',
   body_mirror:     '○',
@@ -266,8 +240,7 @@ shibuya_facilities = [{
   waiting_space:   '○',
   membership:      0,
   rate_plan:       '無料',
-  others:          'ドレッサーはないが化粧ブースは有り',
-  powder_room_id:  18
+  others:          'ドレッサーはないが化粧ブースは有り'
 }, {
   dresser:         '×',
   body_mirror:     '×',
@@ -281,8 +254,7 @@ shibuya_facilities = [{
   waiting_space:   '-',
   membership:      0,
   rate_plan:       '無料',
-  others:          'ドレッサーはないが化粧ブースは有り',
-  powder_room_id:  19
+  others:          'ドレッサーはないが化粧ブースは有り'
 }, {
   dresser:         '×',
   body_mirror:     '○',
@@ -296,8 +268,7 @@ shibuya_facilities = [{
   waiting_space:   '-',
   membership:      0,
   rate_plan:       '無料',
-  others:          'ドレッサーはないが化粧ブースは有り',
-  powder_room_id:  20
+  others:          'ドレッサーはないが化粧ブースは有り'
 }, {
   dresser:         '○',
   body_mirror:     '○',
@@ -311,8 +282,7 @@ shibuya_facilities = [{
   waiting_space:   '○',
   membership:      0,
   rate_plan:       '無料',
-  others:          '-',
-  powder_room_id:  21
+  others:          '-'
 }, {
   dresser:         '○',
   body_mirror:     '○',
@@ -326,8 +296,7 @@ shibuya_facilities = [{
   waiting_space:   '○',
   membership:      0,
   rate_plan:       '無料',
-  others:          '-',
-  powder_room_id:  22
+  others:          '-'
 }, {
   dresser:         '×',
   body_mirror:     '○',
@@ -341,8 +310,7 @@ shibuya_facilities = [{
   waiting_space:   '×',
   membership:      0,
   rate_plan:       '無料',
-  others:          '-',
-  powder_room_id:  23
+  others:          '-'
 }, {
   dresser:         '○',
   body_mirror:     '○',
@@ -356,12 +324,14 @@ shibuya_facilities = [{
   waiting_space:   '-',
   membership:      0,
   rate_plan:       '無料',
-  others:          '-',
-  powder_room_id:  24
+  others:          '-'
 }]
 
-shibuya_facilities.each do |f|
-  Facility.create(
+rooms = PowderRoom.all
+
+rooms.each_with_index do |room, num|
+  f = shibuya_facilities[num]
+  facility = room.build_facility(
     dresser:          f[:dresser],
     body_mirror:      f[:body_mirror],
     makeup_mirror:    f[:makeup_mirror],
@@ -375,6 +345,6 @@ shibuya_facilities.each do |f|
     membership:       f[:membership],
     rate_plan:        f[:rate_plan],
     others:           f[:others],
-    powder_room_id:   f[:powder_room_id]
   )
+  facility.save
 end
