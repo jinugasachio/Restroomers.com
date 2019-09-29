@@ -8,9 +8,13 @@ class Api::PowderRoomsController < ApplicationController
     # jbuilderが必要になる。
   end
 
+  # リレーションしてるモデル情報も一緒に返す。
   def show
     powder_room = PowderRoom.find(params[:id])
     if powder_room.children == []
+      detail      = powder_room.detail
+      facility    = powder_room.facility
+      powder_room = powder_room.attributes.merge(detail.attributes).merge(facility.attributes)
       render json: powder_room
     else
       children = powder_room.children
