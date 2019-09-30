@@ -22,51 +22,55 @@
           <v-ons-list-header>設備情報</v-ons-list-header>
           <div class="f-container">
             <div class="f-item">
-              <p>example</p>
+              <p>ドレッサー</p>
               <div><p>○</p></div>
             </div>
             <div class="f-item">
-              <p>example</p>
+              <p>全身鏡</p>
               <div><p>○</p></div>
             </div>
             <div class="f-item">
-              <p>example</p>
+              <p>拡大鏡</p>
               <div><p>○</p></div>
             </div>
             <div class="f-item">
-              <p>example</p>
+              <p>無料Wi-Fi</p>
               <div><p>○</p></div>
             </div>
             <div class="f-item">
-              <p>example</p>
+              <p>フィッティングスペース</p>
               <div><p>○</p></div>
             </div>
             <div class="f-item">
-              <p>example</p>
+              <p>手洗いボウル</p>
               <div><p>○</p></div>
             </div>
             <div class="f-item">
-              <p>example</p>
+              <p>荷物置き</p>
               <div><p>○</p></div>
             </div>
             <div class="f-item">
-              <p>example</p>
+              <p>コンセント</p>
               <div><p>○</p></div>
             </div>
             <div class="f-item">
-              <p>example</p>
+              <p>ウェイティングスペース</p>
               <div><p>○</p></div>
             </div>
             <div class="f-item">
-              <p>example</p>
+              <p>ゴミ箱</p>
               <div><p>○</p></div>
             </div>
             <div class="f-item">
-              <p>example</p>
+              <p>利用条件</p>
               <div><p>○</p></div>
             </div>
             <div class="f-item">
-              <p>example</p>
+              <p>料金プラン</p>
+              <div><p>○</p></div>
+            </div>
+            <div class="f-item others">
+              <p>その他</p>
               <div><p>○</p></div>
             </div>
           </div>
@@ -120,34 +124,38 @@ export default {
 
 <style lang="scss" scoped>
 
-// a {
-//   &:hover {
-//     cursor: pointer !important;
-//   }
-// }
+a {
+  &:hover {
+    cursor: pointer !important;
+  }
+}
 
 .f-container {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
   width: 100%;
-  padding-top: 1rem;
+  padding-top: 0.8rem;
   margin: 0 auto;
 
   .f-item {
-    width: 20%;
+    width: 30%;
     height: 100%;
     margin-bottom: 1rem;
+    font-size: 0.1rem;
     text-align: center;
     border: solid  #b2b2b2 1px;
 
+    &.others {
+      width: 97%;
+    }
+
     div {
-      font-size: 2rem;
       border-top: solid  #b2b2b2 1px;
 
       p {
+        font-size: 2rem;
         line-height: 90%;
-        // border-top: solid  #b2b2b2 1px;
       }
     }
 
@@ -155,5 +163,5 @@ export default {
       padding-bottom: 2px;
     }
   }
-}//#b2b2b2
+}
 </style>
