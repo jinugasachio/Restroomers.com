@@ -3,7 +3,7 @@
     <ToolBar/>
     <v-ons-card>
       <img src="https://monaca.io/img/logos/download_image_onsenui_01.png" alt="Onsen UI" style="width: 100%;">
-      <StarRating/>
+        <StarRating/>
       <div class="content">
         <!-- <div>
           <v-ons-button><v-ons-icon icon="ion-thumbsup"></v-ons-icon></v-ons-button>

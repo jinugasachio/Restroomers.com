@@ -3,55 +3,55 @@
     <v-ons-list-header>設備情報</v-ons-list-header>
     <div class="f-container">
       <div class="f-item">
-        <p>ドレッサー</p>
+        <p class="f-item-name">ドレッサー</p>
         <div><p>{{ room.dresser }}</p></div>
       </div>
       <div class="f-item">
-        <p>全身鏡</p>
+        <p class="f-item-name">全身鏡</p>
         <div><p>{{ room.body_mirror }}</p></div>
       </div>
       <div class="f-item">
-        <p>拡大鏡</p>
+        <p class="f-item-name">拡大鏡</p>
         <div><p>{{ room.makeup_mirror }}</p></div>
       </div>
       <div class="f-item">
-        <p>無料Wi-Fi</p>
+        <p class="f-item-name">無料Wi-Fi</p>
         <div><p>{{ room.wifi }}</p></div>
       </div>
       <div class="f-item">
-        <p>フィッティングスペース</p>
+        <p class="f-item-name">フィッティングスペース</p>
         <div><p>{{ room.fitting_booth }}</p></div>
       </div>
       <div class="f-item">
-        <p>手洗いボウル</p>
+        <p class="f-item-name">手洗いボウル</p>
         <div><p>{{ room.washstands }}</p></div>
       </div>
       <div class="f-item">
-        <p>荷物置き</p>
+        <p class="f-item-name">荷物置き</p>
         <div><p>{{ room.luggage_storage }}</p></div>
       </div>
       <div class="f-item">
-        <p>コンセント</p>
+        <p class="f-item-name">コンセント</p>
         <div><p>{{ room.outlet }}</p></div>
       </div>
       <div class="f-item">
-        <p>ウェイティングスペース</p>
+        <p class="f-item-name">ウェイティングスペース</p>
         <div><p>{{ room.waiting_space }}</p></div>
       </div>
       <div class="f-item">
-        <p>ゴミ箱</p>
+        <p class="f-item-name">ゴミ箱</p>
         <div><p>{{ room.dust_box }}</p></div>
       </div>
       <div class="f-item">
-        <p>利用条件</p>
+        <p class="f-item-name">利用条件</p>
         <div><p class="letter">{{ room.membership }}</p></div>
       </div>
       <div class="f-item">
-        <p>料金プラン</p>
+        <p class="f-item-name">料金プラン</p>
         <div><p class="letter">{{ room.rate_plan }}</p></div>
       </div>
       <div class="f-item others">
-        <p>その他</p>
+        <p class="f-item-name">その他</p>
         <div><p class="letter">{{ room.others }}</p></div>
       </div>
     </div>
@@ -94,11 +94,15 @@ export default {
     text-align: center;
     border: solid  #b2b2b2 1px;
 
+    .f-item-name {
+      padding: 0.1rem 0 !important;
+    }
+
     &.others {
       width: 97%;
 
       .letter {
-        padding: 1rem 1rem;
+        padding: 0.5rem 1rem;
         line-height: 1.5;
         text-align: left;
       }
@@ -108,13 +112,14 @@ export default {
       border-top: solid  #b2b2b2 1px;
 
       .letter {
-        padding: 0.5rem 0;
-        font-size: 1rem;
+        padding: 0.35rem 0;
+        font-size: 0.7rem;
       }
 
       p {
-        font-size: 2rem;
-        line-height: 90%;
+        font-size: 1.3rem;
+        line-height: 100%;
+        color: #3a3a3a;
       }
     }
 
