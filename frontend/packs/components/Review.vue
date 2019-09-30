@@ -13,6 +13,6 @@ export default {
 
 <style lang="scss" scoped>
 .list-header {
-  margin-top: 1rem;
+  margin-top: 10rem;
 }
 </style>
