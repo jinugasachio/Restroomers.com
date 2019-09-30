@@ -353,6 +353,7 @@ rooms.each_with_index do |room, num|
     waiting_space:    f[:waiting_space],
     membership:       f[:membership],
     rate_plan:        f[:rate_plan],
+    
     others:           f[:others]
   )
   facility.save
