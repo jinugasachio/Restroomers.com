@@ -6,6 +6,7 @@
       </div>
       <div class="center">{{ parentName }}</div>
     </v-ons-toolbar>
+    
 
     <v-ons-list>
       <v-ons-list-header></v-ons-list-header>
@@ -17,17 +18,18 @@
       >
       {{ room.name }}
       </v-ons-list-item>
-      <!-- <v-ons-list-item >Item B</v-ons-list-item> -->
     </v-ons-list>
   </v-ons-page>
 </template>
 
 <script>
+import ToolBar from './ToolBar.vue'
 import PowderRoom from './PowderRoom.vue'
 
 export default {
   
   components: {
+    ToolBar,
     PowderRoom
   },
 

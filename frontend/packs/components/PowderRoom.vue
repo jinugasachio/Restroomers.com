@@ -1,12 +1,6 @@
 <template>
   <v-ons-page>
-    <v-ons-toolbar>
-      <div class="left">
-        <v-ons-back-button></v-ons-back-button>
-      </div>
-      <div class="center">{{ room.name }}</div>
-    </v-ons-toolbar>
-
+    <ToolBar/>
     <v-ons-card>
       <img src="https://monaca.io/img/logos/download_image_onsenui_01.png" alt="Onsen UI" style="width: 100%;">
       <div class="title">
@@ -26,6 +20,7 @@
 </template>
 
 <script>
+import ToolBar from './ToolBar.vue'
 import Facility from './PowderRoomFacility.vue'
 import Detail from './PowderRoomDetail.vue'
 
@@ -37,6 +32,7 @@ export default {
   //   }
   // },
   components: {
+    ToolBar,
     Facility,
     Detail
   },

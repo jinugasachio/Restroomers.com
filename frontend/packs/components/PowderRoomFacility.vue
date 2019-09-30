@@ -99,6 +99,7 @@ export default {
 
       .letter {
         padding: 1rem 1rem;
+        line-height: 1.5;
         text-align: left;
       }
     }
