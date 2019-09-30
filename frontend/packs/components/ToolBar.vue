@@ -11,7 +11,7 @@
 
 export default {
   computed: {
-    //下記後でリファクタリング
+    //下記後でリファクタリング,ToolBarを完全にコンポーネント化させたい
     // name() {
     //   if (this.$store.getters.powderRoom.children) {
     //   // debugger;

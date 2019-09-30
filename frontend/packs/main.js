@@ -14,6 +14,7 @@ import './images/lipstick.png'
 import './images/ladyicon.png'
 
 Vue.use(VueOnsen);
+Vue.component('star-rating', VueStarRating.default);
 
 // 最初に仮の<root></root>要素を入れてそれをrenderで差し替えるっていうこと.
 // このVueインスタンスではこのテンプレートを使いますという意味。

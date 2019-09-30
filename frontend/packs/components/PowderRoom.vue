@@ -3,9 +3,7 @@
     <ToolBar/>
     <v-ons-card>
       <img src="https://monaca.io/img/logos/download_image_onsenui_01.png" alt="Onsen UI" style="width: 100%;">
-      <div class="title">
-        Awesome framework
-      </div>
+      <StarRating/>
       <div class="content">
         <!-- <div>
           <v-ons-button><v-ons-icon icon="ion-thumbsup"></v-ons-icon></v-ons-button>
@@ -21,6 +19,7 @@
 
 <script>
 import ToolBar from './ToolBar.vue'
+import StarRating from './StarRating.vue'
 import Facility from './PowderRoomFacility.vue'
 import Detail from './PowderRoomDetail.vue'
 
@@ -32,6 +31,7 @@ export default {
   //   }
   // },
   components: {
+    StarRating,
     ToolBar,
     Facility,
     Detail
