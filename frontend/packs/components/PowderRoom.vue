@@ -129,14 +129,15 @@ export default {
 .f-container {
   display: flex;
   flex-flow: row wrap;
-  justify-content: center;
+  justify-content: space-around;
   width: 100%;
-  // height: 500px;
+  padding-top: 1rem;
   margin: 0 auto;
 
   .f-item {
     width: 20%;
     height: 100%;
+    margin-bottom: 1rem;
     text-align: center;
     border: solid  #b2b2b2 1px;
 
