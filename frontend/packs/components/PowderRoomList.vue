@@ -11,10 +11,10 @@
     <v-ons-list>
       <v-ons-list-header></v-ons-list-header>
       <v-ons-list-item modifier="chevron longdivider" tappable
-      @click="push"
-      v-for="room in list" 
-      :key=room.id
-      :data-id=room.id
+        @click="push"
+        v-for="room in list" 
+        :key=room.id
+        :data-id=room.id
       >
       {{ room.name }}
       </v-ons-list-item>

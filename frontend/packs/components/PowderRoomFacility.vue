@@ -2,7 +2,7 @@
   <v-ons-list>
     <v-ons-list-header>設備情報</v-ons-list-header>
     <div class="f-container">
-      <div class="f-item">
+      <!-- <div class="f-item">
         <p class="f-item-name"></p>
         <div><p>{{ room.dresser }}</p></div>
       </div>
@@ -41,7 +41,20 @@
       <div class="f-item">
         <p class="f-item-name">ゴミ箱</p>
         <div><p>{{ room.dust_box }}</p></div>
+      </div> -->
+
+      <div class="f-item"
+        v-for="name in names" 
+        :key=name
+      >
+        <p class="f-item-name">{{ name }}</p>
+        <div 
+
+        >
+          <p>{{ room[column] }}</p>
+        </div>
       </div>
+
       <div class="f-item">
         <p class="f-item-name">利用条件</p>
         <div><p class="letter">{{ room.membership }}</p></div>
@@ -64,11 +77,11 @@ export default {
   
   data: function(){
     return {
-      name: ["ドレッサー", "全身鏡", "拡大鏡", "無料Wi-Fi", "フィッティングスペース", 
-             "手洗いボウル", "荷物置き", "コンセント", "ウェイティングスペース", "ゴミ箱"],
+      // names: [{"ドレッサー"}, {"全身鏡"}, {"拡大鏡"}, {"無料Wi-Fi"}, {"フィッティングスペース"}, 
+      //        {"手洗いボウル"}, {"荷物置き"}, {"コンセント"}, {"ウェイティングスペース"}, {"ゴミ箱"}],
 
-      column: ["dresser", "body_mirror", "makeup_mirror", "wifi", "fitting_booth", 
-               "washstands", "luggage_storage", "outlet", "waiting_space", "dust_box"]
+      // columns: ["dresser", "body_mirror", "makeup_mirror", "wifi", "fitting_booth", 
+      //          "washstands", "luggage_storage", "outlet", "waiting_space", "dust_box"]
     }
   },
 
