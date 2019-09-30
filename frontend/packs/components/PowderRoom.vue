@@ -12,6 +12,7 @@
          -->
         <Facility/>
         <Detail/>
+        <Review/>
       </div>
     </v-ons-card>
   </v-ons-page>
@@ -22,6 +23,7 @@ import ToolBar from './ToolBar.vue'
 import StarRating from './StarRating.vue'
 import Facility from './PowderRoomFacility.vue'
 import Detail from './PowderRoomDetail.vue'
+import Review from './Review.vue'
 
 export default {
   
@@ -34,7 +36,8 @@ export default {
     StarRating,
     ToolBar,
     Facility,
-    Detail
+    Detail,
+    Review 
   },
 
   computed: {
