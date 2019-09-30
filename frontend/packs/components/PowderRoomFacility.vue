@@ -3,7 +3,7 @@
     <v-ons-list-header>設備情報</v-ons-list-header>
     <div class="f-container">
       <div class="f-item">
-        <p class="f-item-name">ドレッサー</p>
+        <p class="f-item-name"></p>
         <div><p>{{ room.dresser }}</p></div>
       </div>
       <div class="f-item">
@@ -62,11 +62,15 @@
 
 export default {
   
-  // data: function(){
-  //   return {
-  //     powderRoom: detail
-  //   }
-  // },
+  data: function(){
+    return {
+      name: ["ドレッサー", "全身鏡", "拡大鏡", "無料Wi-Fi", "フィッティングスペース", 
+             "手洗いボウル", "荷物置き", "コンセント", "ウェイティングスペース", "ゴミ箱"],
+
+      column: ["dresser", "body_mirror", "makeup_mirror", "wifi", "fitting_booth", 
+               "washstands", "luggage_storage", "outlet", "waiting_space", "dust_box"]
+    }
+  },
 
   computed: {
     room(){
