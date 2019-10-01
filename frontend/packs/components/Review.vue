@@ -12,7 +12,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .list-header {
   margin-top: 1rem;
 }
+
 </style>
