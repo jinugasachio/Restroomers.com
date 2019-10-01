@@ -102,7 +102,7 @@ export default {
   destroyed() {
     
     // if (this.images.length == 0){
-      
+      // debugger;
       this.$store.dispatch('resetPowderRoomImages')
     // }
 
