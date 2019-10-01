@@ -2,9 +2,10 @@
   <v-ons-page>
     <ToolBar/>
     <v-ons-card>
-
       <img v-if="roomImage" :src=images[0].urls[1].url alt="Room Image" style="width: 100%;">
+
       <img v-else src="packs/images/no_image.png" alt="Room Image" style="width: 100%;">
+
         <StarRating/>
       <div class="content">
         <!-- <div>
@@ -52,15 +53,56 @@ export default {
     },
   },
 
-  created() {
-    this.roomImage = this.images
+  beforeCreate() {
     // debugger;
-    // console.log("hello")
+    console.log("hello")
+    // this.roomImage = false
+  },
+  created() {
+    // debugger;
+    // if (this.images.length > 0){
+    //   this.roomImage = true
+    // }
+      
+    // debugger;
+    console.log("hello")
   },
 
   mounted() {
     // debugger;
     console.log("hello")
-  }
-}
+    // if (this.images.length > 0){
+    //   this.roomImage = true
+    // }
+    // if (this.images.length != 0){
+    //   this.roomImage = true
+    // }
+    // this.roomImage = false
+  },
+
+  beforeUpdated() {
+    debugger
+    console.log("hello")
+    
+    // this.roomImage = false
+  },
+
+  updated() {
+    if (this.images.length != 0){
+      this.roomImage = true
+    }
+    // debugger;
+    console.log("hello")
+    // this.roomImage = false
+  },
+  // beforeDestroy() {
+    // debugger;
+  //   console.log("hello")
+  // },
+  // destroyed(){
+    // debugger;
+  //   console.log("hello")
+  // }
+
+ }
 </script>

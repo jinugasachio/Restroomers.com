@@ -38,6 +38,9 @@ const store =  new Vuex.Store({
     updatePowderRoomList(state, payload) {
       state.powderRoomList = payload.powderRoomList
     },
+    // resetPowderRoom(state) {
+    //   state.powderRoom = null
+    // },
     resetPowderRoomList(state) {
       state.powderRoomList = []
     }
@@ -59,7 +62,7 @@ const store =  new Vuex.Store({
     getPowderRoom(context, url){
       axios.get('/api/powder_rooms/' + url)
       .then(function(response){
-        debugger;
+        // debugger;
         if (response.data.length > 1){
           context.commit('updatePowderRoomList', { powderRoomList: response.data })
         } else {
@@ -70,6 +73,9 @@ const store =  new Vuex.Store({
         alert(error);
       })
     },
+    // resetPowderRoom(context){
+    //   context.commit('resetPowderRoom')
+    // },
     // Navigatorの挙動が変わるのでリセット
     resetPowderRoomList(context){
       context.commit('resetPowderRoomList')
