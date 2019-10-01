@@ -4,55 +4,55 @@
     <div class="f-container">
       <div class="f-item">
         <p class="f-item-name">ドレッサー</p>
-        <div><p>{{ room.dresser }}</p></div>
+        <div><p>{{ facility.dresser }}</p></div>
       </div>
       <div class="f-item">
         <p class="f-item-name">全身鏡</p>
-        <div><p>{{ room.body_mirror }}</p></div>
+        <div><p>{{ facility.body_mirror }}</p></div>
       </div>
       <div class="f-item">
         <p class="f-item-name">拡大鏡</p>
-        <div><p>{{ room.makeup_mirror }}</p></div>
+        <div><p>{{ facility.makeup_mirror }}</p></div>
       </div>
       <div class="f-item">
         <p class="f-item-name">無料Wi-Fi</p>
-        <div><p>{{ room.wifi }}</p></div>
+        <div><p>{{ facility.wifi }}</p></div>
       </div>
       <div class="f-item">
         <p class="f-item-name">フィッティングスペース</p>
-        <div><p>{{ room.fitting_booth }}</p></div>
+        <div><p>{{ facility.fitting_booth }}</p></div>
       </div>
       <div class="f-item">
         <p class="f-item-name">手洗いボウル</p>
-        <div><p>{{ room.washstands }}</p></div>
+        <div><p>{{ facility.washstands }}</p></div>
       </div>
       <div class="f-item">
         <p class="f-item-name">荷物置き</p>
-        <div><p>{{ room.luggage_storage }}</p></div>
+        <div><p>{{ facility.luggage_storage }}</p></div>
       </div>
       <div class="f-item">
         <p class="f-item-name">コンセント</p>
-        <div><p>{{ room.outlet }}</p></div>
+        <div><p>{{ facility.outlet }}</p></div>
       </div>
       <div class="f-item">
         <p class="f-item-name">ウェイティングスペース</p>
-        <div><p>{{ room.waiting_space }}</p></div>
+        <div><p>{{ facility.waiting_space }}</p></div>
       </div>
       <div class="f-item">
         <p class="f-item-name">ゴミ箱</p>
-        <div><p>{{ room.dust_box }}</p></div>
+        <div><p>{{ facility.dust_box }}</p></div>
       </div>
       <div class="f-item">
         <p class="f-item-name">利用条件</p>
-        <div><p class="letter">{{ room.membership }}</p></div>
+        <div><p class="letter">{{ facility.membership }}</p></div>
       </div>
       <div class="f-item">
         <p class="f-item-name">料金プラン</p>
-        <div><p class="letter">{{ room.rate_plan }}</p></div>
+        <div><p class="letter">{{ facility.rate_plan }}</p></div>
       </div>
       <div class="f-item others">
         <p class="f-item-name">その他</p>
-        <div><p class="letter">{{ room.others }}</p></div>
+        <div><p class="letter">{{ facility.others }}</p></div>
       </div>
     </div>
   </v-ons-list>
@@ -76,8 +76,8 @@ export default {
   },
 
   computed: {
-    room(){
-      return this.$store.getters.powderRoom
+    facility(){
+      return this.$store.getters.powderRoom.facility
     },
   },
 
