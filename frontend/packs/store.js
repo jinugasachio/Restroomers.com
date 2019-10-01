@@ -48,6 +48,7 @@ const store =  new Vuex.Store({
   },
 
   actions: {
+
     // 全てのpowder_roomデータの取り出し
     getPowderRooms(context){
       axios.get("/api/powder_rooms")
@@ -58,6 +59,7 @@ const store =  new Vuex.Store({
         alert(error);
       })
     },
+
     // 特定の一つのpowder_room もしくは、その'子'の取り出し
     getPowderRoom(context, url){
       axios.get('/api/powder_rooms/' + url)
@@ -73,10 +75,12 @@ const store =  new Vuex.Store({
         alert(error);
       })
     },
+
     //PowderRoomListに飛んだ時はstoreのPowderRoomのimageを更新する必要がある
     resetPowderRoomImages(context){
       context.commit('resetPowderRoomImages')
     },
+    
     // Navigatorの挙動が変わるのでリセット
     resetPowderRoomList(context){
       context.commit('resetPowderRoomList')

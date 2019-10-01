@@ -102,7 +102,8 @@ export default {
   destroyed() {
     
     // if (this.images.length == 0){
-    //   this.$store.dispatch('resetPowderRoom')
+      
+      this.$store.dispatch('resetPowderRoomImages')
     // }
 
   },
