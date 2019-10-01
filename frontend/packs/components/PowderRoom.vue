@@ -2,7 +2,7 @@
   <v-ons-page>
     <ToolBar/>
     <v-ons-card>
-      <img v-if="roomImage" :src=images[0].urls[1].url alt="Room Image" style="width: 100%;">
+      <img v-if="roomImage" :src=images[0].urls[0].url alt="Room Image" style="width: 100%;">
 
       <img v-else src="packs/images/no_image.png" alt="Room Image" style="width: 100%;">
 
@@ -109,9 +109,11 @@ export default {
   watch: {
     images: {
       handler: function() {
+        // debugger
         if (this.images.length != 0){
           this.roomImage = true
         }
+        // debugger
         console.log("変わった")
       },
       immediate: true
