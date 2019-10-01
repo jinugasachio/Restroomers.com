@@ -39,7 +39,8 @@ const store =  new Vuex.Store({
       state.powderRoomList = payload.powderRoomList
     },
     resetPowderRoom(state) {
-      state.powderRoom = null
+      // debugger;
+      state.powderRoom.images = []
     },
     resetPowderRoomList(state) {
       state.powderRoomList = []

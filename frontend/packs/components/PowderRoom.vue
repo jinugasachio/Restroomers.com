@@ -94,16 +94,27 @@ export default {
     //   this.roomImage = true
     // }
     // debugger;
-    console.log("hello")
+    // this.$store.dispatch('resetPowderRoom')
+    // console.log("hello")
     // this.roomImage = false
   },
-  watch: {
-    images() {
-    if (this.images.length != 0){
-      this.roomImage = true
+
+  destroyed() {
+    
+    if (this.images.length == 0){
+      this.$store.dispatch('resetPowderRoom')
     }
-      // debugger;
-      console.log("変わった")
+
+  },
+  watch: {
+    images: {
+      handler: function() {
+        if (this.images.length != 0){
+          this.roomImage = true
+        }
+        console.log("変わった")
+      },
+      immediate: true
     }
   }
 
