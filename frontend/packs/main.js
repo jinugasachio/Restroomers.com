@@ -20,9 +20,7 @@ Vue.component('star-rating', VueStarRating.default);
 // 最初に仮の<root></root>要素を入れてそれをrenderで差し替えるっていうこと.
 // このVueインスタンスではこのテンプレートを使いますという意味。
 document.addEventListener('DOMContentLoaded', () => {
-  // const el = document.body.appendChild(document.createElement('root'))
   new Vue({
-    // el: '#app',
     store,
     router,
     render: h => h(App),
