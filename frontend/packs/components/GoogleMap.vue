@@ -48,6 +48,7 @@ export default {
     push(){
       if (this.$store.state.powderRoomList.length > 1){
         this.$emit('push-page', PowderRoomList);
+        this.$store.dispatch('resetPowderRoom')
       } else {
         this.$emit('push-page', PowderRoom);
       }
