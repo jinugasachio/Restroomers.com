@@ -24,7 +24,7 @@ export default {
     // },
 
     room(){
-      return this.$store.getters.powderRoom
+      return this.$store.getters.powderRoom.powder_room
     },
 
   },

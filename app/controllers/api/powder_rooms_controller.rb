@@ -14,10 +14,20 @@ class Api::PowderRoomsController < ApplicationController
     if powder_room.children == []
       # i binding.pry
       images      = powder_room.images
+      # detail      = powder_room.detail
+      # facility    = powder_room.facility
+      # powder_room = powder_room.attributes.merge(detail.attributes).merge(facility.attributes)#.merge(images[0].attributes)
+      # render json: powder_room
       detail      = powder_room.detail
       facility    = powder_room.facility
-      powder_room = powder_room.attributes.merge(detail.attributes).merge(facility.attributes).merge(images)
-      render json: powder_room
+      # powder_room = powder_room.attributes.merge(detail.attributes).merge(facility.attributes)#.merge(images[0].attributes)
+      render json: {
+        powder_room: powder_room,
+        facility: facility,
+        detail: detail,
+        images: images,
+      }
+      # render json: images
     else
       children = powder_room.children
       render json: children
