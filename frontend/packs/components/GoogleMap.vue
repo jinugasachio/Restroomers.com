@@ -48,7 +48,7 @@ export default {
     push(){
       if (this.$store.state.powderRoomList.length > 1){
         this.$emit('push-page', PowderRoomList);
-        // this.$store.dispatch('resetPowderRoomImages')
+        this.$store.dispatch('resetPowderRoomImages')
       } else {
         this.$emit('push-page', PowderRoom);
       }
