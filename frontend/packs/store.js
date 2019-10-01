@@ -39,7 +39,6 @@ const store =  new Vuex.Store({
       state.powderRoomList = payload.powderRoomList
     },
     resetPowderRoomImages(state) {
-      // debugger;
       state.powderRoom.images = []
     },
     resetPowderRoomList(state) {
@@ -74,6 +73,7 @@ const store =  new Vuex.Store({
         alert(error);
       })
     },
+    //PowderRoomListに飛んだ時はstoreのPowderRoomのimageを更新する必要がある
     resetPowderRoomImages(context){
       context.commit('resetPowderRoomImages')
     },
