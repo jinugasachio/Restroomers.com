@@ -62,7 +62,7 @@ export default {
     this.$store.dispatch('resetPowderRoomList')
     // this.$store.dispatch('resetPowderRoom')
   },
-  mounted(){
+  beforeCreate(){
     // debugger;
     // console.log("ttttt")
     // this.$store.dispatch('resetPowderRoom')
