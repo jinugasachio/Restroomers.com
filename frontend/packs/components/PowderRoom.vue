@@ -2,8 +2,9 @@
   <v-ons-page>
     <ToolBar/>
     <v-ons-card>
-      
-      <img :src=images[0].urls[1].url alt="Room Image" style="width: 100%;">
+
+      <img v-if="roomImage" :src=images[0].urls[1].url alt="Room Image" style="width: 100%;">
+      <img v-else src="packs/images/no_image.png" alt="Room Image" style="width: 100%;">
         <StarRating/>
       <div class="content">
         <!-- <div>
@@ -28,17 +29,18 @@ import Review from './Review.vue'
 
 export default {
   
-  // data: function(){
-  //   return {
-  //     powderRoom: detail
-  //   }
-  // },
   components: {
     StarRating,
     ToolBar,
     Facility,
     Detail,
     Review 
+  },
+
+  data() {
+    return {
+      roomImage: false
+    }
   },
 
   computed: {
@@ -49,5 +51,16 @@ export default {
     return this.$store.getters.powderRoom.images
     },
   },
+
+  created() {
+    this.roomImage = this.images
+    // debugger;
+    // console.log("hello")
+  },
+
+  mounted() {
+    // debugger;
+    console.log("hello")
+  }
 }
 </script>

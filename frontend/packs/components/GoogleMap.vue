@@ -87,7 +87,9 @@ export default {
   mounted() {
     this.createMap();
     this.fixInfoWindow();
+    // debugger;
     this.$store.dispatch('getPowderRooms') //mountesのメソッドが全て実行された後に算出プロパティmarkersを更新
+
   },
 
   watch: {
