@@ -2,7 +2,8 @@
   <v-ons-page>
     <ToolBar/>
     <v-ons-card>
-      <img src="/uploads/image/urls/1/pr11-1.jpg" alt="Onsen UI" style="width: 100%;">
+      
+      <img :src=images[0].urls[1].url alt="Room Image" style="width: 100%;">
         <StarRating/>
       <div class="content">
         <!-- <div>
@@ -43,6 +44,9 @@ export default {
   computed: {
     room(){
       return this.$store.getters.powderRoom.powder_room
+    },
+    images(){
+    return this.$store.getters.powderRoom.images
     },
   },
 }

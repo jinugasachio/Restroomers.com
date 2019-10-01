@@ -12,6 +12,7 @@ import router from './router.js'
 import './images/woman.png'
 import './images/lipstick.png'
 import './images/ladyicon.png'
+import './images/no_image.png'
 
 Vue.use(VueOnsen);
 Vue.component('star-rating', VueStarRating.default);

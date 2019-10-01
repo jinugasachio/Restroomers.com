@@ -11,7 +11,7 @@ const store =  new Vuex.Store({
 
   state: {
     powderRooms: null,
-    powderRoom: defaultData, //コンソールエラー防止のため
+    powderRoom: defaultData, //コンソールエラー防止のため | リレーションしてるモデルデータも合わせて格納している
     powderRoomList: []
   },
 
