@@ -59,6 +59,7 @@ export default {
   },
 
   updated(){ //Navigatorでも取った時にリセットするという意味
+  // debugger
     this.$store.dispatch('resetPowderRoomList')
     // this.$store.dispatch('resetPowderRoom')
   },
@@ -66,6 +67,9 @@ export default {
     // debugger;
     // console.log("ttttt")
     // this.$store.dispatch('resetPowderRoom')
+  },
+  mounted(){
+    // debugger;
   }
 }
 </script>

@@ -64,7 +64,6 @@ const store =  new Vuex.Store({
     getPowderRoom(context, url){
       axios.get('/api/powder_rooms/' + url)
       .then(function(response){
-        // debugger;
         if (response.data.length > 1){
           context.commit('updatePowderRoomList', { powderRoomList: response.data })
         } else {
@@ -80,7 +79,7 @@ const store =  new Vuex.Store({
     resetPowderRoomImages(context){
       context.commit('resetPowderRoomImages')
     },
-    
+
     // Navigatorの挙動が変わるのでリセット
     resetPowderRoomList(context){
       context.commit('resetPowderRoomList')
