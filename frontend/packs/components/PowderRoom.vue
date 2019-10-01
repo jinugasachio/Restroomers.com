@@ -54,12 +54,12 @@ export default {
   },
 
   beforeCreate() {
-    // debugger;
+    debugger;
     console.log("hello")
     // this.roomImage = false
   },
   created() {
-    // debugger;
+    debugger;
     // if (this.images.length > 0){
     //   this.roomImage = true
     // }
@@ -69,7 +69,7 @@ export default {
   },
 
   mounted() {
-    // debugger;
+    debugger;
     console.log("hello")
     // if (this.images.length > 0){
     //   this.roomImage = true
@@ -80,28 +80,25 @@ export default {
     // this.roomImage = false
   },
 
-  beforeUpdated() {
-    debugger
+  beforeUpdate() {
+    debugger;
     console.log("hello")
     
     // this.roomImage = false
   },
 
   updated() {
-    if (this.images.length != 0){
-      this.roomImage = true
-    }
-    // debugger;
+    // if (this.images.length != 0){
+    //   this.roomImage = true
+    // }
+    debugger;
     console.log("hello")
     // this.roomImage = false
   },
-  // beforeDestroy() {
-    // debugger;
-  //   console.log("hello")
-  // },
-  // destroyed(){
-    // debugger;
-  //   console.log("hello")
+  // watch: {
+  //   images() {
+  //     this.roomImage = true
+  //   }
   // }
 
  }

@@ -38,9 +38,9 @@ const store =  new Vuex.Store({
     updatePowderRoomList(state, payload) {
       state.powderRoomList = payload.powderRoomList
     },
-    // resetPowderRoom(state) {
-    //   state.powderRoom = null
-    // },
+    resetPowderRoom(state) {
+      state.powderRoom = null
+    },
     resetPowderRoomList(state) {
       state.powderRoomList = []
     }
@@ -73,9 +73,9 @@ const store =  new Vuex.Store({
         alert(error);
       })
     },
-    // resetPowderRoom(context){
-    //   context.commit('resetPowderRoom')
-    // },
+    resetPowderRoom(context){
+      context.commit('resetPowderRoom')
+    },
     // Navigatorの挙動が変わるのでリセット
     resetPowderRoomList(context){
       context.commit('resetPowderRoomList')

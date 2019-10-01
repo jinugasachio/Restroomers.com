@@ -60,12 +60,13 @@ export default {
 
   updated(){ //Navigatorでも取った時にリセットするという意味
     this.$store.dispatch('resetPowderRoomList')
+    // this.$store.dispatch('resetPowderRoom')
   },
-  // beforeDestroy(){
-  //   debugger;
-  //   // console.log("ttttt")
-  //   this.$store.dispatch('resetPowderRoom')
-  // }
+  mounted(){
+    // debugger;
+    // console.log("ttttt")
+    // this.$store.dispatch('resetPowderRoom')
+  }
 }
 </script>
 
