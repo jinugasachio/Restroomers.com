@@ -2,7 +2,7 @@
   <v-ons-page>
     <ToolBar/>
     <v-ons-card>
-      <img src="https://monaca.io/img/logos/download_image_onsenui_01.png" alt="Onsen UI" style="width: 100%;">
+      <img :src=room.image alt="Onsen UI" style="width: 100%;">
         <StarRating/>
       <div class="content">
         <!-- <div>

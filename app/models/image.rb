@@ -1,5 +1,5 @@
 class Image < ApplicationRecord
-  mount_uploaders :urls, ImageUploaderUploader
+  mount_uploader :urls, ImageUploaderUploader
 
   # Association
   belongs_to :powder_room
