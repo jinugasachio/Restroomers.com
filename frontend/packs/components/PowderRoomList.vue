@@ -13,7 +13,7 @@
     <v-ons-list>
       <v-ons-list-header></v-ons-list-header>
       <v-ons-list-item modifier="chevron longdivider" tappable
-        @click="push"
+        @click="get($event);"
         v-for="room in list" 
         :key=room.id
         :data-id=room.id
@@ -42,6 +42,9 @@ export default {
   // },
 
   computed: {
+    powderRoom(){
+      return this.$store.getters.powderRoom
+    },
     list(){
       return this.$store.getters.powderRoomList
     },
@@ -53,12 +56,21 @@ export default {
   },
 
   methods: {
-    push(event) {
+
+    get(event){
+      debugger;
       const roomItem = event.currentTarget
-      this.$emit('push-page', PowderRoom);
-      this.$store.dispatch('addPage')
       this.$store.dispatch('getPowderRoom', roomItem.dataset.id)
     },
+
+
+    // push: function(event) {
+    //   debugger;
+    //   // const roomItem = event.currentTarget
+    //   this.$emit('push-page', PowderRoom);
+    //   this.$store.dispatch('addPage')
+    //   // this.$store.dispatch('getPowderRoom', roomItem.dataset.id)
+    // },
   },
 
   updated(){ //Navigatorで取った時に前のstore情報をリセットするという意味
@@ -67,6 +79,13 @@ export default {
   destroyed(){ //Navigatorの中から外れた時storeを更新
     this.$store.dispatch('removePage')
   },
+
+  watch: {
+    powderRoom(){
+      this.$emit('push-page', PowderRoom);
+      this.$store.dispatch('addPage')
+    }
+  }
 }
 </script>
 

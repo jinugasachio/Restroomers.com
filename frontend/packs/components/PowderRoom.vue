@@ -2,7 +2,7 @@
   <v-ons-page>
     <ToolBar/>
     <v-ons-card>
-      <img v-if="roomImage" :src=images[0].urls[0].url alt="Room Image" class="top_image">
+      <img v-if="roomImage" :src=activeImage alt="Room Image" class="top_image">
       <img v-else src="packs/images/no_image.png" alt="Room Image" class="top_image">
       <StarRating/>
       <div class="content">
@@ -10,7 +10,9 @@
           <div v-for="(url, index) in imageUrls"
                :key=index
                class="image_box">
-            <img :src=url.url class="image">
+            <img :src=url.url
+                 @click="addActive"
+                 class="image">
           </div>
         </div>
         <Facility/>
@@ -40,7 +42,8 @@ export default {
 
   data() {
     return {
-      roomImage: false
+      roomImage: false,
+      activeImage: true//this.$store.getters.powderRoom.images[0].urls[0].url
     }
   },
 
@@ -62,8 +65,37 @@ export default {
         })
       })
       return urlsArray
+    },
+    // activeImage(){
+    //   vm = this
+    //   return function(){}
+    // }
+  },
+
+  methods: {
+    addActive(event){
+      const url = event.target.getAttribute('src')
+      this.activeImage = url
     }
   },
+  beforeCreate(){
+    debugger;
+  },
+  created(){
+    debugger;
+  },
+
+  mounted() {
+    debugger;
+  },
+  beforeUpdated(){
+    debugger;
+  },
+  updated() {
+    debugger;
+    // this.activeImage = this.$store.getters.powderRoom.images[0].urls[0].url
+  },
+
 
   destroyed() {
     this.$store.dispatch('removePage')
@@ -74,13 +106,18 @@ export default {
 
   watch: {
     images: {
-      handler: function() {
+      handler() {
         if (this.images.length != 0){
           this.roomImage = true
         }
         console.log("変わった")
       },
       immediate: true
+    },
+    activeImage: {
+      handler() {
+        this.activeImage = this.$store.getters.powderRoom.images[0].urls[0].url
+      }
     }
   }
 
