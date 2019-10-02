@@ -13,7 +13,7 @@
     <v-ons-list>
       <v-ons-list-header></v-ons-list-header>
       <v-ons-list-item modifier="chevron longdivider" tappable
-        @click="get($event);"
+        @click="getRoom($event);"
         v-for="room in list" 
         :key=room.id
         :data-id=room.id
@@ -57,8 +57,8 @@ export default {
 
   methods: {
 
-    get(event){
-      debugger;
+    getRoom(event){
+      // debugger;
       const roomItem = event.currentTarget
       this.$store.dispatch('getPowderRoom', roomItem.dataset.id)
     },

@@ -43,7 +43,7 @@ export default {
   data() {
     return {
       roomImage: false,
-      activeImage: true//this.$store.getters.powderRoom.images[0].urls[0].url
+      activeImage: "packs/images/no_image.png"//this.$store.getters.powderRoom.images[0].urls[0].url
     }
   },
 
@@ -74,25 +74,35 @@ export default {
 
   methods: {
     addActive(event){
+      // debugger;
+      console.log(this.activeImage)
       const url = event.target.getAttribute('src')
       this.activeImage = url
+      console.log(this.activeImage)
+
     }
   },
   beforeCreate(){
-    debugger;
+    // debugger;
   },
   created(){
-    debugger;
+    // debugger;
+    if(this.images.length > 0){
+      this.activeImage = this.imageUrls[0].url
+    }
   },
 
   mounted() {
-    debugger;
+    // debugger;
+    // if(this.images.length > 0){
+    //   activeImage = this.imageUrls[0]
+    // }
   },
   beforeUpdated(){
-    debugger;
+    // debugger;
   },
   updated() {
-    debugger;
+    // debugger;
     // this.activeImage = this.$store.getters.powderRoom.images[0].urls[0].url
   },
 
@@ -114,11 +124,11 @@ export default {
       },
       immediate: true
     },
-    activeImage: {
-      handler() {
-        this.activeImage = this.$store.getters.powderRoom.images[0].urls[0].url
-      }
-    }
+    // activeImage: {
+    //   handler() {
+    //     this.activeImage = this.$store.getters.powderRoom.images[0].urls[0].url
+    //   }
+    // }
   }
 
  }
