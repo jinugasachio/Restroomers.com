@@ -1,5 +1,4 @@
-// webpackエントリーポイント用jsファイル
-
+// webpackエントリーポイントファイル
 
 import Vue from 'vue'
 import VueOnsen from 'vue-onsenui';
@@ -7,8 +6,6 @@ import App from './App.vue'
 import store from './store.js'
 import router from './router.js'
 
-
-//Image
 import './images/woman.png'
 import './images/lipstick.png'
 import './images/ladyicon.png'

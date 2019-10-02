@@ -98,11 +98,13 @@ const store =  new Vuex.Store({
     resetPowderRoomList(context){
       context.commit('resetPowderRoomList')
     },
-    // 
+
+    // Navigator.vueのpageStackと同期させるためのメソッド
     addPage(context){
       context.commit('addPage')
     },
-
+    
+    // Navigator.vueのpageStackと同期させるためのメソッド
     removePage(context){
       context.commit('removePage')
     },

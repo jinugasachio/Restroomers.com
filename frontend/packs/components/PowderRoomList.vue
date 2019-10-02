@@ -56,13 +56,12 @@ export default {
     push(event) {
       const roomItem = event.currentTarget
       this.$emit('push-page', PowderRoom);
-      this.$store.dispatch('getPowderRoom', roomItem.dataset.id)
-      // this.$emit('push-page', PowderRoom);
       this.$store.dispatch('addPage')
+      this.$store.dispatch('getPowderRoom', roomItem.dataset.id)
     },
   },
 
-  updated(){ //Navigatorでも取った時にリセットするという意味
+  updated(){ //Navigatorで取った時に前のstore情報をリセットするという意味
     this.$store.dispatch('resetPowderRoomList')
   },
   destroyed(){ //Navigatorの中から外れた時storeを更新
