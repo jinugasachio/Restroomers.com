@@ -25,9 +25,6 @@ export default {
 
   computed: {
 
-    // room(){
-    //   return this.$store.getters.powderRoom.powder_room
-    // },
     images(){
       return this.$store.getters.powderRoom.images
     },
