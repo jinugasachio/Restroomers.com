@@ -55,6 +55,9 @@ const store =  new Vuex.Store({
     addNavigatorItem(state) {
       state.navgatorItems.push("item")
     },
+    removeNavigatorItem(state) {
+      state.navgatorItems.pop()
+    }
 
   },
 
@@ -98,7 +101,11 @@ const store =  new Vuex.Store({
 
     addNavigatorItem(context){
       context.commit('addNavigatorItem')
-    }
+    },
+
+    removeNavigatorItem(context){
+      context.commit('removeNavigatorItem')
+    },
 
   },
 

@@ -55,6 +55,7 @@ export default {
       const roomItem = event.currentTarget
       this.$store.dispatch('getPowderRoom', roomItem.dataset.id)
       this.$emit('push-page', PowderRoom);
+      this.$store.dispatch('addNavigatorItem')
     }
   },
 

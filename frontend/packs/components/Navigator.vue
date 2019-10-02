@@ -20,7 +20,7 @@ export default {
 
   data() {
     return {
-      pageStack: [GoogleMap,] //後ろに来た方が先に読み込まれるっぽい。
+      pageStack: [GoogleMap] //後ろに来た方が先に読み込まれるっぽい。
     };
   }
 }
