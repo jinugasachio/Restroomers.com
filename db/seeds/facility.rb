@@ -130,7 +130,7 @@ shibuya_facilities = [{
   makeup_mirror:   '×',
   wifi:            '×',
   fitting_booth:   '×',
-  washstands:      '隣の化粧室に有ります',
+  washstands:      '○',
   luggage_storage: '-',
   outlet:          '-',
   dust_box:        '-',
