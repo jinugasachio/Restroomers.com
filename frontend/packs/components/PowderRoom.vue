@@ -2,36 +2,15 @@
   <v-ons-page>
     <ToolBar/>
     <v-ons-card>
-      <img v-if="roomImage" :src=images[0].urls[0].url alt="Room Image" style="width: 100%;" class="top_image">
-      <img v-else src="packs/images/no_image.png" alt="Room Image" style="width: 100%;" class="top_image">
-
+      <img v-if="roomImage" :src=images[0].urls[0].url alt="Room Image" class="top_image">
+      <img v-else src="packs/images/no_image.png" alt="Room Image" class="top_image">
       <StarRating/>
       <div class="content">
-        <div v-if="roomImage" class="images_box" style="width: 100%;">
-          <!-- <img alt="Room Image" style="width: 15%;"
-            v-for="image in images"
-            :key=image.id
-            :src=image.urls[0].url 
-          > -->
-          <!-- <div alt="Room Image"
-               v-for="image in images"
-               :key=image.id
-               class="image_box"
-          >
-            <img v-if="image.urls.length == 1"
-                 :src=image.urls[0].url
-                 class="image_child"
-            >
-            <img v-else
-                 v-for="url in image.urls"
-                 :key=url.url
-                 :src=url.url
-                 class="image_child"
-            >
-          </div> -->
+        <div v-if="roomImage" class="images_box">
           <div v-for="(url, index) in imageUrls"
-               :key=index class="image_box">
-               <img :src=url.url class="image">
+               :key=index
+               class="image_box">
+            <img :src=url.url class="image">
           </div>
         </div>
         <Facility/>
@@ -80,7 +59,6 @@ export default {
       this.images.forEach(function(image){
         image.urls.forEach(function(url){
           urlsArray.push(url);
-          // debugger;
         })
       })
       return urlsArray
@@ -111,6 +89,8 @@ export default {
 
 <style>
 .top_image {
+  width: 100%;
+  height: 20rem;
   margin-bottom: 0.4rem;
 }
 
@@ -118,6 +98,7 @@ export default {
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
+  width: 100%;
   margin-left: 0.2rem;
 }
 
