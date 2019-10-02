@@ -17,15 +17,14 @@
             v-for="image in images"
             :key=image.id
           >
-            <img v-if="image.urls.length == 1"
-                 :src=image.urls[0].url
-                 style="width: 15%;">
-            <img v-else 
+            <img class="image_child"
+                 v-if="image.urls.length == 1"
+                 :src=image.urls[0].url>
+            <img v-else
+                 class="image_child"
                  v-for="url in image.urls"
                  :key=url.url
-                 :src=url.url
-                 style="width: 15%;"
-            >
+                 :src=url.url>
           </div>
         </div>
         <Facility/>
@@ -92,3 +91,14 @@ export default {
 
  }
 </script>
+
+<style>
+.image_child {
+  width: 3rem;
+  height: 3rem;
+
+  /* object-fit: cover; */
+
+  /* 親もリサイズしたほうがいいかも、要検討 */
+}
+</style>
