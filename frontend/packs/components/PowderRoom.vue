@@ -16,7 +16,7 @@
                  class="image">
           </div>
         </div>
-        
+        <!-- <Images/> -->
         <Facility/>
         <Detail/>
         <Review/>
@@ -28,6 +28,7 @@
 <script>
 import ToolBar from './ToolBar.vue'
 import StarRating from './StarRating.vue'
+// import Images from './Images.vue'
 import Facility from './PowderRoomFacility.vue'
 import Detail from './PowderRoomDetail.vue'
 import Review from './Review.vue'
@@ -36,6 +37,7 @@ export default {
   
   components: {
     StarRating,
+    // Images,
     ToolBar,
     Facility,
     Detail,

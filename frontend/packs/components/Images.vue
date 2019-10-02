@@ -1,46 +1,20 @@
 <template>
-  <v-ons-page>
-    <ToolBar/>
-    <v-ons-card>
-      <img v-if="roomImage" :src=activeImage alt="Room Image" class="top_image">
-      <img v-else src="packs/images/no_image.png" alt="Room Image" class="top_image">
-      <StarRating/>
-      <div class="content">
-
-        <div v-if="roomImage" class="images_box">
-          <div v-for="(url, index) in imageUrls"
-               :key=index
-               class="image_box">
-            <img :src=url.url
-                 @click="addActive"
-                 class="image">
-          </div>
-        </div>
-        
-        <Facility/>
-        <Detail/>
-        <Review/>
-      </div>
-    </v-ons-card>
-  </v-ons-page>
+  <div v-if="roomImage" class="images_box">
+    <div v-for="(url, index) in imageUrls"
+          :key=index
+          class="image_box">
+      <img :src=url.url
+            @click="addActive"
+            class="image">
+    </div>
+  </div>
 </template>
 
 <script>
-import ToolBar from './ToolBar.vue'
-import StarRating from './StarRating.vue'
-import Facility from './PowderRoomFacility.vue'
-import Detail from './PowderRoomDetail.vue'
-import Review from './Review.vue'
 
 export default {
-  
-  components: {
-    StarRating,
-    ToolBar,
-    Facility,
-    Detail,
-    Review 
-  },
+
+  props: [''],
 
   data() {
     return {
@@ -51,9 +25,9 @@ export default {
 
   computed: {
 
-    room(){
-      return this.$store.getters.powderRoom.powder_room
-    },
+    // room(){
+    //   return this.$store.getters.powderRoom.powder_room
+    // },
     images(){
       return this.$store.getters.powderRoom.images
     },
@@ -71,8 +45,10 @@ export default {
 
   methods: {
     addActive(event){
+      console.log('hello')
       const url = event.target.getAttribute('src')
       this.activeImage = url
+      // this.$emit('addActive')
     }
   },
 
@@ -99,11 +75,6 @@ export default {
 </script>
 
 <style>
-.top_image {
-  width: 100%;
-  height: 20rem;
-  margin-bottom: 0.4rem;
-}
 
 .images_box {
   display: flex;
@@ -117,9 +88,5 @@ export default {
   width: 3.5rem;
   height: 3.5rem;
   margin: 0 0.3rem 0 0;
-
-  /* object-fit: cover; */
-
-  /* 親もリサイズしたほうがいいかも、要検討 */
 }
 </style>
