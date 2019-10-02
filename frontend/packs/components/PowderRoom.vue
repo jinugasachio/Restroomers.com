@@ -51,14 +51,14 @@ export default {
     images(){
       return this.$store.getters.powderRoom.images
     },
-    navigatorItems(){
-      return this.$store.getters.navgatorItems.length
+    pageStack(){
+      return this.$store.getters.pageStack.length
     },
   },
 
   destroyed() {
-    this.$store.dispatch('removeNavigatorItem')
-    if (this.navigatorItems == 2) {
+    this.$store.dispatch('removePage')
+    if (this.pageStack == 2) {
       this.$store.dispatch('resetPowderRoomImages')
     }
   },

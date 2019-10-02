@@ -14,7 +14,7 @@ const store =  new Vuex.Store({
     powderRooms: null,
     powderRoom: defaultData, //コンソールエラー防止のため | リレーションしてるモデルデータも合わせて格納している
     powderRoomList: [],
-    navgatorItems: ["item"]
+    pageStack: ["item"]
 
   },
 
@@ -29,8 +29,8 @@ const store =  new Vuex.Store({
     powderRoomList(state) {
       return state.powderRoomList;
     },
-    navgatorItems(state) {
-      return state.navgatorItems;
+    pageStack(state) {
+      return state.pageStack;
     }
 
   },
@@ -52,12 +52,12 @@ const store =  new Vuex.Store({
     resetPowderRoomList(state) {
       state.powderRoomList = []
     },
-    addNavigatorItem(state) {
-      state.navgatorItems.push("item")
+    addPage(state) {
+      state.pageStack.push("page")
     },
-    removeNavigatorItem(state) {
-      state.navgatorItems.pop()
-    }
+    removePage(state) {
+      state.pageStack.pop()
+    },
 
   },
 
@@ -98,13 +98,13 @@ const store =  new Vuex.Store({
     resetPowderRoomList(context){
       context.commit('resetPowderRoomList')
     },
-
-    addNavigatorItem(context){
-      context.commit('addNavigatorItem')
+    // 
+    addPage(context){
+      context.commit('addPage')
     },
 
-    removeNavigatorItem(context){
-      context.commit('removeNavigatorItem')
+    removePage(context){
+      context.commit('removePage')
     },
 
   },

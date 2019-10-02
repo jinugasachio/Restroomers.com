@@ -50,36 +50,24 @@ export default {
       const parent = this.$store.state.powderRooms[num - 1]
       return parent.name
     },
-    // navigatorItems(){
-    //   return this.$store.getters.navgatorItems
-    // },
   },
 
   methods: {
     push(event) {
       const roomItem = event.currentTarget
-      this.$store.dispatch('getPowderRoom', roomItem.dataset.id)
       this.$emit('push-page', PowderRoom);
-      this.$store.dispatch('addNavigatorItem')
+      this.$store.dispatch('getPowderRoom', roomItem.dataset.id)
+      // this.$emit('push-page', PowderRoom);
+      this.$store.dispatch('addPage')
     },
   },
 
   updated(){ //Navigatorでも取った時にリセットするという意味
-  // debugger
     this.$store.dispatch('resetPowderRoomList')
-    // this.$store.dispatch('resetPowderRoom')
   },
-  beforeCreate(){
-    // debugger;
-    // console.log("ttttt")
-    // this.$store.dispatch('resetPowderRoom')
+  destroyed(){ //Navigatorの中から外れた時storeを更新
+    this.$store.dispatch('removePage')
   },
-  mounted(){
-    // debugger;
-  },
-  destroyed(){
-    this.$store.dispatch('removeNavigatorItem')
-  }
 }
 </script>
 
