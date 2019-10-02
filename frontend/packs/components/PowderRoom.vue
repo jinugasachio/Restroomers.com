@@ -7,25 +7,28 @@
 
       <StarRating/>
       <div class="content">
-        <div v-if="roomImage" class="image_box" style="width: 100%;">
+        <div v-if="roomImage" class="images_box" style="width: 100%;">
           <!-- <img alt="Room Image" style="width: 15%;"
             v-for="image in images"
             :key=image.id
             :src=image.urls[0].url 
           > -->
-          <div alt="Room Image"
-            v-for="image in images"
-            :key=image.id
+          <!-- <div alt="Room Image"
+               v-for="image in images"
+               :key=image.id
+               class="image_box"
           >
-            <img class="image_child"
-                 v-if="image.urls.length == 1"
-                 :src=image.urls[0].url>
-            <img v-else
+            <img v-if="image.urls.length == 1"
+                 :src=image.urls[0].url
                  class="image_child"
+            >
+            <img v-else
                  v-for="url in image.urls"
                  :key=url.url
-                 :src=url.url>
-          </div>
+                 :src=url.url
+                 class="image_child"
+            >
+          </div> -->
         </div>
         <Facility/>
         <Detail/>
@@ -68,6 +71,20 @@ export default {
     pageStack(){
       return this.$store.getters.pageStack.length
     },
+    imageUrls(){
+      let urlsArray = []
+      this.images.forEach(function(image){
+        image.urls.forEach(function(url){
+          urlsArray.push(url);
+          debugger;
+        })
+      })
+      return urlsArray
+    }
+  },
+
+  mounted(){
+    debugger;
   },
 
   destroyed() {
@@ -96,9 +113,14 @@ export default {
 .image_child {
   width: 3rem;
   height: 3rem;
+  margin: 0 0.5rem 0.5rem 0;
 
   /* object-fit: cover; */
 
   /* 親もリサイズしたほうがいいかも、要検討 */
+}
+
+.image_box {
+  display: inline-block;
 }
 </style>
