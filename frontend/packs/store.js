@@ -10,13 +10,16 @@ const store =  new Vuex.Store({
   
 
   state: {
+
     powderRooms: null,
     powderRoom: defaultData, //コンソールエラー防止のため | リレーションしてるモデルデータも合わせて格納している
     powderRoomList: [],
     navgatorItems: ["item"]
+
   },
 
   getters: {
+
     powderRooms(state) {
       return state.powderRooms;
     },
@@ -29,9 +32,11 @@ const store =  new Vuex.Store({
     navgatorItems(state) {
       return state.navgatorItems;
     }
+
   },
 
   mutations: {
+
     updatePowderRooms(state, payload) {
       state.powderRooms = payload.powderRooms
     },
@@ -94,8 +99,6 @@ const store =  new Vuex.Store({
     addNavigatorItem(context){
       context.commit('addNavigatorItem')
     }
-
-
 
   },
 

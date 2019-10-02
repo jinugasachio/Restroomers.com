@@ -51,6 +51,9 @@ export default {
     images(){
       return this.$store.getters.powderRoom.images
     },
+    navigatorItems(){
+      return this.$store.getters.navgatorItems
+    },
   },
 
   beforeCreate() {
