@@ -2,8 +2,8 @@
   <v-ons-page>
     <ToolBar/>
     <v-ons-card>
-      <img v-if="roomImage" :src=images[0].urls[0].url alt="Room Image" style="width: 100%;">
-      <img v-else src="packs/images/no_image.png" alt="Room Image" style="width: 100%;">
+      <img v-if="roomImage" :src=images[0].urls[0].url alt="Room Image" style="width: 100%;" class="top_image">
+      <img v-else src="packs/images/no_image.png" alt="Room Image" style="width: 100%;" class="top_image">
 
       <StarRating/>
       <div class="content">
@@ -29,6 +29,10 @@
                  class="image_child"
             >
           </div> -->
+          <div v-for="(url, index) in imageUrls"
+               :key=index class="image_box">
+               <img :src=url.url class="image">
+          </div>
         </div>
         <Facility/>
         <Detail/>
@@ -76,15 +80,11 @@ export default {
       this.images.forEach(function(image){
         image.urls.forEach(function(url){
           urlsArray.push(url);
-          debugger;
+          // debugger;
         })
       })
       return urlsArray
     }
-  },
-
-  mounted(){
-    debugger;
   },
 
   destroyed() {
@@ -110,17 +110,24 @@ export default {
 </script>
 
 <style>
-.image_child {
-  width: 3rem;
-  height: 3rem;
-  margin: 0 0.5rem 0.5rem 0;
+.top_image {
+  margin-bottom: 0.4rem;
+}
+
+.images_box {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  margin-left: 0.2rem;
+}
+
+.image {
+  width: 3.5rem;
+  height: 3.5rem;
+  margin: 0 0.3rem 0 0;
 
   /* object-fit: cover; */
 
   /* 親もリサイズしたほうがいいかも、要検討 */
-}
-
-.image_box {
-  display: inline-block;
 }
 </style>
