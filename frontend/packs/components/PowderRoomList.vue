@@ -36,6 +36,7 @@ export default {
   },
 
   computed: {
+
     powderRoom(){
       return this.$store.getters.powderRoom
     },
@@ -60,14 +61,11 @@ export default {
   updated(){ //Navigatorで取った時に前のstore情報をリセットするという意味
     this.$store.dispatch('resetPowderRoomList')
   },
-  // destroyed(){ //Navigatorの中から外れた時storeを更新
-  //   this.$store.dispatch('removePage')
-  // },
 
   watch: {
+
     powderRoom(){
       this.$emit('push-page', PowderRoom);
-      // this.$store.dispatch('addPage')
     }
   }
 }
