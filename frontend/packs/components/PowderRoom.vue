@@ -52,7 +52,7 @@ export default {
       return this.$store.getters.powderRoom.images
     },
     navigatorItems(){
-      return this.$store.getters.navgatorItems
+      return this.$store.getters.navgatorItems.length
     },
   },
 
@@ -103,12 +103,10 @@ export default {
   },
 
   destroyed() {
-    
-    // if (this.images.length == 0){
-      // debugger;
+    this.$store.dispatch('removeNavigatorItem')
+    if (this.navigatorItems == 2) {
       this.$store.dispatch('resetPowderRoomImages')
-    // }
-
+    }
   },
   watch: {
     images: {

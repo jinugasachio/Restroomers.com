@@ -2,7 +2,9 @@
   <v-ons-page>
     <v-ons-toolbar>
       <div class="left">
+        <div>
         <v-ons-back-button></v-ons-back-button>
+        </div>
       </div>
       <div class="center">{{ parentName }}</div>
     </v-ons-toolbar>
@@ -48,6 +50,9 @@ export default {
       const parent = this.$store.state.powderRooms[num - 1]
       return parent.name
     },
+    // navigatorItems(){
+    //   return this.$store.getters.navgatorItems
+    // },
   },
 
   methods: {
@@ -56,7 +61,7 @@ export default {
       this.$store.dispatch('getPowderRoom', roomItem.dataset.id)
       this.$emit('push-page', PowderRoom);
       this.$store.dispatch('addNavigatorItem')
-    }
+    },
   },
 
   updated(){ //Navigatorでも取った時にリセットするという意味
@@ -71,6 +76,9 @@ export default {
   },
   mounted(){
     // debugger;
+  },
+  destroyed(){
+    this.$store.dispatch('removeNavigatorItem')
   }
 }
 </script>
