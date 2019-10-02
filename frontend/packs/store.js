@@ -80,7 +80,7 @@ const store =  new Vuex.Store({
     resetPowderRoomList(context){
       context.commit('resetPowderRoomList')
     },
-
+    
   },
 
 })

@@ -43,20 +43,18 @@ export default {
   data() {
     return {
       roomImage: false,
-      activeImage: "packs/images/no_image.png"//this.$store.getters.powderRoom.images[0].urls[0].url
+      activeImage: "packs/images/no_image.png"
     }
   },
 
   computed: {
+
     room(){
       return this.$store.getters.powderRoom.powder_room
     },
     images(){
       return this.$store.getters.powderRoom.images
     },
-    // pageStack(){
-    //   return this.$store.getters.pageStack.length
-    // },
     imageUrls(){
       let urlsArray = []
       this.images.forEach(function(image){
@@ -66,6 +64,7 @@ export default {
       })
       return urlsArray
     },
+
   },
 
   methods: {
@@ -81,25 +80,17 @@ export default {
     }
   },
 
-
-
-  // destroyed() {
-  //   this.$store.dispatch('removePage')
-  //   if (this.pageStack == 2) {
-  //     this.$store.dispatch('resetPowderRoomImages')
-  //   }
-  // },
-
   watch: {
+
     images: {
       handler() {
         if (this.images.length != 0){
           this.roomImage = true
         }
-        console.log("変わった")
       },
       immediate: true
     },
+
   }
 
  }
