@@ -13,7 +13,7 @@
     <v-ons-list>
       <v-ons-list-header></v-ons-list-header>
       <v-ons-list-item modifier="chevron longdivider" tappable
-        @click="getRoom($event);"
+        @click="getPowderRoom"
         v-for="room in list" 
         :key=room.id
         :data-id=room.id
@@ -35,12 +35,6 @@ export default {
     PowderRoom
   },
 
-  // data: function(){
-  //   return {
-  //     list: this.$store.getters.powderRoomsList
-  //   }
-  // },
-
   computed: {
     powderRoom(){
       return this.$store.getters.powderRoom
@@ -57,33 +51,23 @@ export default {
 
   methods: {
 
-    getRoom(event){
-      // debugger;
+    getPowderRoom(event){
       const roomItem = event.currentTarget
       this.$store.dispatch('getPowderRoom', roomItem.dataset.id)
     },
-
-
-    // push: function(event) {
-    //   debugger;
-    //   // const roomItem = event.currentTarget
-    //   this.$emit('push-page', PowderRoom);
-    //   this.$store.dispatch('addPage')
-    //   // this.$store.dispatch('getPowderRoom', roomItem.dataset.id)
-    // },
   },
 
   updated(){ //Navigatorで取った時に前のstore情報をリセットするという意味
     this.$store.dispatch('resetPowderRoomList')
   },
-  destroyed(){ //Navigatorの中から外れた時storeを更新
-    this.$store.dispatch('removePage')
-  },
+  // destroyed(){ //Navigatorの中から外れた時storeを更新
+  //   this.$store.dispatch('removePage')
+  // },
 
   watch: {
     powderRoom(){
       this.$emit('push-page', PowderRoom);
-      this.$store.dispatch('addPage')
+      // this.$store.dispatch('addPage')
     }
   }
 }

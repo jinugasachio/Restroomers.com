@@ -54,9 +54,9 @@ export default {
     images(){
       return this.$store.getters.powderRoom.images
     },
-    pageStack(){
-      return this.$store.getters.pageStack.length
-    },
+    // pageStack(){
+    //   return this.$store.getters.pageStack.length
+    // },
     imageUrls(){
       let urlsArray = []
       this.images.forEach(function(image){

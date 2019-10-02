@@ -14,7 +14,6 @@ const store =  new Vuex.Store({
     powderRooms: null,
     powderRoom: defaultData, //コンソールエラー防止のため | リレーションしてるモデルデータも合わせて格納している
     powderRoomList: [],
-    pageStack: ["item"]
 
   },
 
@@ -29,9 +28,6 @@ const store =  new Vuex.Store({
     powderRoomList(state) {
       return state.powderRoomList;
     },
-    pageStack(state) {
-      return state.pageStack;
-    }
 
   },
 
@@ -46,17 +42,8 @@ const store =  new Vuex.Store({
     updatePowderRoomList(state, payload) {
       state.powderRoomList = payload.powderRoomList
     },
-    resetPowderRoomImages(state) {
-      state.powderRoom.images = []
-    },
     resetPowderRoomList(state) {
       state.powderRoomList = []
-    },
-    addPage(state) {
-      state.pageStack.push("page")
-    },
-    removePage(state) {
-      state.pageStack.pop()
     },
 
   },
@@ -89,24 +76,9 @@ const store =  new Vuex.Store({
       })
     },
 
-    //PowderRoomListに飛んだ時はstoreのPowderRoomのimageを更新する必要がある
-    resetPowderRoomImages(context){
-      context.commit('resetPowderRoomImages')
-    },
-
     // Navigatorの挙動が変わるのでリセット
     resetPowderRoomList(context){
       context.commit('resetPowderRoomList')
-    },
-
-    // Navigator.vueのpageStackと同期させるためのメソッド
-    addPage(context){
-      context.commit('addPage')
-    },
-    
-    // Navigator.vueのpageStackと同期させるためのメソッド
-    removePage(context){
-      context.commit('removePage')
     },
 
   },
