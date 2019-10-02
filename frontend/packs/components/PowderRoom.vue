@@ -3,16 +3,31 @@
     <ToolBar/>
     <v-ons-card>
       <img v-if="roomImage" :src=images[0].urls[0].url alt="Room Image" style="width: 100%;">
-
       <img v-else src="packs/images/no_image.png" alt="Room Image" style="width: 100%;">
 
-        <StarRating/>
+      <StarRating/>
       <div class="content">
-        <!-- <div>
-          <v-ons-button><v-ons-icon icon="ion-thumbsup"></v-ons-icon></v-ons-button>
-          <v-ons-button><v-ons-icon icon="ion-share"></v-ons-icon></v-ons-button>
+        <div v-if="roomImage" class="image_box" style="width: 100%;">
+          <!-- <img alt="Room Image" style="width: 15%;"
+            v-for="image in images"
+            :key=image.id
+            :src=image.urls[0].url 
+          > -->
+          <div alt="Room Image"
+            v-for="image in images"
+            :key=image.id
+          >
+            <img v-if="image.urls.length == 1"
+                 :src=image.urls[0].url
+                 style="width: 15%;">
+            <img v-else 
+                 v-for="url in image.urls"
+                 :key=url.url
+                 :src=url.url
+                 style="width: 15%;"
+            >
+          </div>
         </div>
-         -->
         <Facility/>
         <Detail/>
         <Review/>
