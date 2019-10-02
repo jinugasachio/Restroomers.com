@@ -56,66 +56,19 @@ export default {
     },
   },
 
-  beforeCreate() {
-    // debugger;
-    console.log("hello")
-    // this.roomImage = false
-    
-  },
-  created() {
-    // debugger;
-    // if (this.images.length > 0){
-    //   this.roomImage = true
-    // }
-      
-    // debugger;
-    console.log("hello")
-  },
-
-  mounted() {
-    // debugger;
-    console.log("hello")
-    // if (this.images.length > 0){
-    //   this.roomImage = true
-    // }
-    // if (this.images.length != 0){
-    //   this.roomImage = true
-    // }
-    // this.roomImage = false
-    //  this.$store.dispatch('getPowderRoom')
-  },
-
-  beforeUpdate() {
-    // debugger;
-    console.log("hello")
-    
-    // this.roomImage = false
-  },
-
-  updated() {
-    // if (this.images.length != 0){
-    //   this.roomImage = true
-    // }
-    // debugger;
-    // this.$store.dispatch('resetPowderRoom')
-    // console.log("hello")
-    // this.roomImage = false
-  },
-
   destroyed() {
     this.$store.dispatch('removeNavigatorItem')
     if (this.navigatorItems == 2) {
       this.$store.dispatch('resetPowderRoomImages')
     }
   },
+
   watch: {
     images: {
       handler: function() {
-        // debugger
         if (this.images.length != 0){
           this.roomImage = true
         }
-        // debugger
         console.log("変わった")
       },
       immediate: true
