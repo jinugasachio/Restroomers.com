@@ -66,53 +66,29 @@ export default {
       })
       return urlsArray
     },
-    // activeImage(){
-    //   vm = this
-    //   return function(){}
-    // }
   },
 
   methods: {
     addActive(event){
-      // debugger;
-      console.log(this.activeImage)
       const url = event.target.getAttribute('src')
       this.activeImage = url
-      console.log(this.activeImage)
-
     }
   },
-  beforeCreate(){
-    // debugger;
-  },
+
   created(){
-    // debugger;
     if(this.images.length > 0){
       this.activeImage = this.imageUrls[0].url
     }
   },
 
-  mounted() {
-    // debugger;
-    // if(this.images.length > 0){
-    //   activeImage = this.imageUrls[0]
-    // }
-  },
-  beforeUpdated(){
-    // debugger;
-  },
-  updated() {
-    // debugger;
-    // this.activeImage = this.$store.getters.powderRoom.images[0].urls[0].url
-  },
 
 
-  destroyed() {
-    this.$store.dispatch('removePage')
-    if (this.pageStack == 2) {
-      this.$store.dispatch('resetPowderRoomImages')
-    }
-  },
+  // destroyed() {
+  //   this.$store.dispatch('removePage')
+  //   if (this.pageStack == 2) {
+  //     this.$store.dispatch('resetPowderRoomImages')
+  //   }
+  // },
 
   watch: {
     images: {
@@ -124,11 +100,6 @@ export default {
       },
       immediate: true
     },
-    // activeImage: {
-    //   handler() {
-    //     this.activeImage = this.$store.getters.powderRoom.images[0].urls[0].url
-    //   }
-    // }
   }
 
  }
