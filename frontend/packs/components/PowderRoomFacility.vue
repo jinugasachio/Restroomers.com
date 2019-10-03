@@ -98,7 +98,7 @@ export default {
     width: 30%;
     height: 100%;
     margin-bottom: 1rem;
-    font-size: 0.1rem;
+    font-size: 0.6rem;
     text-align: center;
     border: solid  #b2b2b2 1px;
 
@@ -121,7 +121,7 @@ export default {
 
       .letter {
         padding: 0.35rem 0;
-        font-size: 0.7rem;
+        font-size: 0.8rem;
       }
 
       p {
