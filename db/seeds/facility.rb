@@ -334,6 +334,20 @@ shibuya_facilities = [{
   membership:      0,
   rate_plan:       '無料',
   others:          '-'
+}, {
+  dresser:         '×',
+  body_mirror:     '○',
+  makeup_mirror:   '×',
+  wifi:            '×',
+  fitting_booth:   '×',
+  washstands:      '○',
+  luggage_storage: '○',
+  outlet:          '×',
+  dust_box:        '○',
+  waiting_space:   '-',
+  membership:      0,
+  rate_plan:       '無料',
+  others:          'ドレッサーはないが化粧ブースあり。近くに授乳室、ベビー休憩室あり'
 }]
 
 rooms = PowderRoom.all

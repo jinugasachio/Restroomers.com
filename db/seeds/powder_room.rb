@@ -164,6 +164,13 @@ shibuya_children = [{
   lng: shibuya_parent[6][:lng],
   user_id: user.id,
   ancestry: '7'
+}, {
+  name: '南館 6F',
+  rate: 0,
+  lat: shibuya_parent[3][:lat],
+  lng: shibuya_parent[3][:lng],
+  user_id: user.id,
+  ancestry: '4'
 }]
 
 shibuya_parent.each do |room|
