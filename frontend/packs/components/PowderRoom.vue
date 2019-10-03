@@ -8,8 +8,7 @@
       <div class="content">
         <Images v-if="roomImage" 
                 :imageUrls="imageUrls"
-                @addActive="addActive"
-        />
+                @addActive="addActive"/>
         <Facility/>
         <Detail/>
         <Review/>

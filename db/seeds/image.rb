@@ -1,4 +1,4 @@
-require 'open-uri'
+# require 'open-uri'
 
 Image.create(
   urls: [File.open("#{Rails.root}/db/images/pr11/pr11-1.jpg"),
