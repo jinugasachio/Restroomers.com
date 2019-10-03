@@ -2,21 +2,14 @@
   <v-ons-page>
     <ToolBar/>
     <v-ons-card>
-      <img v-if="roomImage" :src=activeImage alt="Room Image" class="top_image">
-      <img v-else src="packs/images/no_image.png" alt="Room Image" class="top_image">
+      <img v-if="roomImage" :src=activeImage class="top_image">
+      <img v-else src="packs/images/no_image.png" class="top_image">
       <StarRating/>
       <div class="content">
-
-        <div v-if="roomImage" class="images_box">
-          <div v-for="(url, index) in imageUrls"
-               :key=index
-               class="image_box">
-            <img :src=url.url
-                 @click="addActive"
-                 class="image">
-          </div>
-        </div>
-        <!-- <Images/> -->
+        <Images v-if="roomImage" 
+                :imageUrls="imageUrls"
+                @addActive="addActive"
+        />
         <Facility/>
         <Detail/>
         <Review/>
@@ -28,7 +21,7 @@
 <script>
 import ToolBar from './ToolBar.vue'
 import StarRating from './StarRating.vue'
-// import Images from './Images.vue'
+import Images from './Images.vue'
 import Facility from './PowderRoomFacility.vue'
 import Detail from './PowderRoomDetail.vue'
 import Review from './Review.vue'
@@ -37,7 +30,7 @@ export default {
   
   components: {
     StarRating,
-    // Images,
+    Images,
     ToolBar,
     Facility,
     Detail,
@@ -101,27 +94,11 @@ export default {
 </script>
 
 <style>
+
 .top_image {
   width: 100%;
   height: 20rem;
   margin-bottom: 0.4rem;
 }
 
-.images_box {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: flex-start;
-  width: 100%;
-  margin-left: 0.2rem;
-}
-
-.image {
-  width: 3.5rem;
-  height: 3.5rem;
-  margin: 0 0.3rem 0 0;
-
-  /* object-fit: cover; */
-
-  /* 親もリサイズしたほうがいいかも、要検討 */
-}
 </style>
