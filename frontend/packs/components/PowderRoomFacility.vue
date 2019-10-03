@@ -19,7 +19,7 @@
         <div><p>{{ facility.wifi }}</p></div>
       </div>
       <div class="f-item">
-        <p class="f-item-name">フィッティングスペース</p>
+        <p class="f-item-name">フィッティングブース</p>
         <div><p>{{ facility.fitting_booth }}</p></div>
       </div>
       <div class="f-item">
@@ -35,7 +35,7 @@
         <div><p>{{ facility.outlet }}</p></div>
       </div>
       <div class="f-item">
-        <p class="f-item-name">ウェイティングスペース</p>
+        <p class="f-item-name">ウェイティングブース</p>
         <div><p>{{ facility.waiting_space }}</p></div>
       </div>
       <div class="f-item">
@@ -98,7 +98,7 @@ export default {
     width: 30%;
     height: 100%;
     margin-bottom: 1rem;
-    font-size: 0.6rem;
+    font-size: 0.7rem;
     text-align: center;
     border: solid  #b2b2b2 1px;
 
