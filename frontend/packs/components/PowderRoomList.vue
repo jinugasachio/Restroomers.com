@@ -2,42 +2,44 @@
   <v-ons-page>
     <v-ons-toolbar>
       <div class="left">
+        <div>
         <v-ons-back-button></v-ons-back-button>
+        </div>
       </div>
       <div class="center">{{ parentName }}</div>
     </v-ons-toolbar>
+    
 
     <v-ons-list>
       <v-ons-list-header></v-ons-list-header>
       <v-ons-list-item modifier="chevron longdivider" tappable
-      @click="push"
-      v-for="room in list" 
-      :key=room.id
-      :data-id=room.id
+        @click="getPowderRoom"
+        v-for="room in list" 
+        :key=room.id
+        :data-id=room.id
       >
       {{ room.name }}
       </v-ons-list-item>
-      <!-- <v-ons-list-item >Item B</v-ons-list-item> -->
     </v-ons-list>
   </v-ons-page>
 </template>
 
 <script>
+import ToolBar from './ToolBar.vue'
 import PowderRoom from './PowderRoom.vue'
 
 export default {
   
   components: {
+    ToolBar,
     PowderRoom
   },
 
-  // data: function(){
-  //   return {
-  //     list: this.$store.getters.powderRoomsList
-  //   }
-  // },
-
   computed: {
+
+    powderRoom(){
+      return this.$store.getters.powderRoom
+    },
     list(){
       return this.$store.getters.powderRoomList
     },
@@ -49,15 +51,22 @@ export default {
   },
 
   methods: {
-    push(event) {
+
+    getPowderRoom(event){
       const roomItem = event.currentTarget
       this.$store.dispatch('getPowderRoom', roomItem.dataset.id)
-      this.$emit('push-page', PowderRoom);
-    }
+    },
   },
 
-  updated(){ //Navigatorでも取った時にリセットするという意味
+  updated(){ //Navigatorで取った時に前のstore情報をリセットするという意味
     this.$store.dispatch('resetPowderRoomList')
+  },
+
+  watch: {
+
+    powderRoom(){
+      this.$emit('push-page', PowderRoom);
+    }
   }
 }
 </script>

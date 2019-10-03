@@ -8,10 +8,11 @@ shibuya_facilities = [{
   luggage_storage: '○',
   outlet:          '×',
   dust_box:        '○',
-  waiting_space:    '○',
+  waiting_space:   '○',
   membership:      0,
   rate_plan:       '無料',
-  others:          '-'}, {
+  others:          '-'
+}, {
   dresser:         '○',
   body_mirror:     '○',
   makeup_mirror:   '×',
@@ -21,10 +22,11 @@ shibuya_facilities = [{
   luggage_storage: '-',
   outlet:          '-',
   dust_box:        '○',
-  waiting_space:    '-',
+  waiting_space:   '-',
   membership:      0,
   rate_plan:       '無料',
-  others:          '-'}, {
+  others:          '-'
+}, {
   dresser:         '-',
   body_mirror:     '-',
   makeup_mirror:   '-',
@@ -34,10 +36,11 @@ shibuya_facilities = [{
   luggage_storage: '-',
   outlet:          '-',
   dust_box:        '-',
-  waiting_space:    '-',
+  waiting_space:   '-',
   membership:      0,
   rate_plan:       '無料',
-  others:          '-'}, {
+  others:          '-'
+}, {
   dresser:         '-',
   body_mirror:     '-',
   makeup_mirror:   '-',
@@ -47,10 +50,11 @@ shibuya_facilities = [{
   luggage_storage: '-',
   outlet:          '-',
   dust_box:        '-',
-  waiting_space:    '-',
+  waiting_space:   '-',
   membership:      0,
   rate_plan:       '無料',
-  others:          '-'}, {
+  others:          '-'
+}, {
   dresser:         '-',
   body_mirror:     '-',
   makeup_mirror:   '-',
@@ -60,10 +64,11 @@ shibuya_facilities = [{
   luggage_storage: '-',
   outlet:          '-',
   dust_box:        '-',
-  waiting_space:    '-',
+  waiting_space:   '-',
   membership:      0,
   rate_plan:       '無料',
-  others:          '-'}, {
+  others:          '-'
+}, {
   dresser:         '○',
   body_mirror:     '○',
   makeup_mirror:   '-',
@@ -73,10 +78,11 @@ shibuya_facilities = [{
   luggage_storage: '-',
   outlet:          '○',
   dust_box:        '○',
-  waiting_space:    '×',
+  waiting_space:   '×',
   membership:      0,
   rate_plan:       '無料',
-  others:          'テスター、ドライヤー、コテなど有り'}, {
+  others:          'テスター、ドライヤー、コテなど有り'
+}, {
   dresser:         '-',
   body_mirror:     '-',
   makeup_mirror:   '-',
@@ -86,10 +92,11 @@ shibuya_facilities = [{
   luggage_storage: '-',
   outlet:          '-',
   dust_box:        '-',
-  waiting_space:    '-',
+  waiting_space:   '-',
   membership:      0,
   rate_plan:       '無料',
-  others:          '-'}, {
+  others:          '-'
+}, {
   dresser:         '○',
   body_mirror:     '×',
   makeup_mirror:   '○',
@@ -99,10 +106,11 @@ shibuya_facilities = [{
   luggage_storage: '○',
   outlet:          '○',
   dust_box:        '○',
-  waiting_space:    '○',
+  waiting_space:   '○',
   membership:      0,
   rate_plan:       '無料',
-  others:          '東急カードで入室可。カードが無い場合は名前を記入すれば入室できます。'}, {
+  others:          '東急カードで入室可。カードが無い場合は名前を記入すれば入室できます。'
+}, {
   dresser:         '○',
   body_mirror:     '×',
   makeup_mirror:   '×',
@@ -115,17 +123,18 @@ shibuya_facilities = [{
   waiting_space:   '×',
   membership:      1,
   rate_plan:       '無料',
-  others:          '※ 女子大生限定 コテ、アイロン、ドライヤー、一部のDHC商品、パソコン、プリンタ、携帯充電器'}, {
+  others:          '※ 女子大生限定 コテ、アイロン、ドライヤー、一部のDHC商品、パソコン、プリンタ、携帯充電器'
+}, {
   dresser:         '○',
   body_mirror:     '×',
   makeup_mirror:   '×',
   wifi:            '×',
   fitting_booth:   '×',
-  washstands:      '隣の化粧室に有ります',
+  washstands:      '○',
   luggage_storage: '-',
   outlet:          '-',
   dust_box:        '-',
-  waiting_space:    '×',
+  waiting_space:   '×',
   membership:      0,
   rate_plan:       '無料',
   others:          'パウダールームと化粧室が分かれています'
@@ -156,7 +165,7 @@ shibuya_facilities = [{
   waiting_space:   '○',
   membership:      1,
   rate_plan:       '無料',
-  others:          'TOP&ClubQカード女性会員専用、フットマッサージ、酸素バー(有料)、携帯充電器テーブル'
+  others:          'TOP&ClubQカード女性会員専用、フットマッサージ、酸素バー(有料)、携帯充電器テーブル、ウォーターサーバー'
 }, {
   dresser:         '○',
   body_mirror:     '○',
@@ -325,6 +334,20 @@ shibuya_facilities = [{
   membership:      0,
   rate_plan:       '無料',
   others:          '-'
+}, {
+  dresser:         '×',
+  body_mirror:     '○',
+  makeup_mirror:   '×',
+  wifi:            '×',
+  fitting_booth:   '×',
+  washstands:      '○',
+  luggage_storage: '○',
+  outlet:          '×',
+  dust_box:        '○',
+  waiting_space:   '-',
+  membership:      0,
+  rate_plan:       '無料',
+  others:          'ドレッサーはないが化粧ブースあり。近くに授乳室、ベビー休憩室あり'
 }]
 
 rooms = PowderRoom.all
@@ -344,7 +367,8 @@ rooms.each_with_index do |room, num|
     waiting_space:    f[:waiting_space],
     membership:       f[:membership],
     rate_plan:        f[:rate_plan],
-    others:           f[:others],
+    
+    others:           f[:others]
   )
   facility.save
 end

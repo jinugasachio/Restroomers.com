@@ -10,12 +10,15 @@ const store =  new Vuex.Store({
   
 
   state: {
+
     powderRooms: null,
-    powderRoom: defaultData, //コンソールエラー防止のため
-    powderRoomList: []
+    powderRoom: defaultData, //コンソールエラー防止のため | リレーションしてるモデルデータも合わせて格納している
+    powderRoomList: [],
+
   },
 
   getters: {
+
     powderRooms(state) {
       return state.powderRooms;
     },
@@ -29,6 +32,7 @@ const store =  new Vuex.Store({
   },
 
   mutations: {
+
     updatePowderRooms(state, payload) {
       state.powderRooms = payload.powderRooms
     },
@@ -40,11 +44,12 @@ const store =  new Vuex.Store({
     },
     resetPowderRoomList(state) {
       state.powderRoomList = []
-    }
+    },
 
   },
 
   actions: {
+
     // 全てのpowder_roomデータの取り出し
     getPowderRooms(context){
       axios.get("/api/powder_rooms")
@@ -55,11 +60,11 @@ const store =  new Vuex.Store({
         alert(error);
       })
     },
+
     // 特定の一つのpowder_room もしくは、その'子'の取り出し
     getPowderRoom(context, url){
       axios.get('/api/powder_rooms/' + url)
       .then(function(response){
-        // debugger;
         if (response.data.length > 1){
           context.commit('updatePowderRoomList', { powderRoomList: response.data })
         } else {
@@ -70,13 +75,12 @@ const store =  new Vuex.Store({
         alert(error);
       })
     },
+
     // Navigatorの挙動が変わるのでリセット
     resetPowderRoomList(context){
       context.commit('resetPowderRoomList')
     },
-
-
-
+    
   },
 
 })

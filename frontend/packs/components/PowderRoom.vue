@@ -1,46 +1,103 @@
 <template>
   <v-ons-page>
-    <v-ons-toolbar>
-      <div class="left">
-        <v-ons-back-button></v-ons-back-button>
-      </div>
-      <div class="center">{{ detail.name }}</div>
-    </v-ons-toolbar>
-
+    <ToolBar/>
     <v-ons-card>
-      <img src="https://monaca.io/img/logos/download_image_onsenui_01.png" alt="Onsen UI" style="width: 100%;">
-      <div class="title">
-        Awesome framework
-      </div>
+      <img v-if="roomImage" :src=activeImage class="top_image">
+      <img v-else src="packs/images/no_image.png" class="top_image">
+      <StarRating/>
       <div class="content">
-        <div>
-          <v-ons-button><v-ons-icon icon="ion-thumbsup"></v-ons-icon></v-ons-button>
-          <v-ons-button><v-ons-icon icon="ion-share"></v-ons-icon></v-ons-button>
-        </div>
-        <v-ons-list>
-          <v-ons-list-header>Bindings</v-ons-list-header>
-          <v-ons-list-item>Vue</v-ons-list-item>
-          <v-ons-list-item>Angular</v-ons-list-item>
-          <v-ons-list-item>React</v-ons-list-item>
-        </v-ons-list>
+        <Images v-if="roomImage" 
+                :imageUrls="imageUrls"
+                @addActive="addActive"/>
+        <Facility/>
+        <Detail/>
+        <Review/>
       </div>
     </v-ons-card>
   </v-ons-page>
 </template>
 
 <script>
+import ToolBar from './ToolBar.vue'
+import StarRating from './StarRating.vue'
+import Images from './Images.vue'
+import Facility from './PowderRoomFacility.vue'
+import Detail from './PowderRoomDetail.vue'
+import Review from './Review.vue'
+
 export default {
   
-  // data: function(){
-  //   return {
-  //     powderRoom: detail
-  //   }
-  // },
+  components: {
+    StarRating,
+    Images,
+    ToolBar,
+    Facility,
+    Detail,
+    Review 
+  },
+
+  data() {
+    return {
+      roomImage: false,
+      activeImage: "packs/images/no_image.png"
+    }
+  },
 
   computed: {
-    detail(){
-      return this.$store.getters.powderRoom
+
+    room(){
+      return this.$store.getters.powderRoom.powder_room
     },
+    images(){
+      return this.$store.getters.powderRoom.images
+    },
+    imageUrls(){
+      let urlsArray = []
+      this.images.forEach(function(image){
+        image.urls.forEach(function(url){
+          urlsArray.push(url);
+        })
+      })
+      return urlsArray
+    },
+
   },
-}
+
+  methods: {
+    addActive(event){
+      const url = event.target.getAttribute('src')
+      this.activeImage = url
+    }
+  },
+
+  created(){
+    if(this.images.length > 0){
+      this.activeImage = this.imageUrls[0].url
+    }
+  },
+
+  watch: {
+
+    images: {
+      handler() {
+        if (this.images.length != 0){
+          this.roomImage = true
+        }
+      },
+      immediate: true
+    },
+
+  }
+
+ }
 </script>
+
+<style>
+
+.top_image {
+  width: 100%;
+  height: 20rem;
+  margin-bottom: 0.4rem;
+}
+
+</style>

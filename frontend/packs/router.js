@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+
 //Components for router
 import TopPage from './components/TopPage.vue'
 import PowderRoom from './components/PowderRoom.vue'

@@ -1,1 +1,43 @@
-{"id":1,"name":"西武渋谷店 A館 2F","rate":0,"lat":35.66019636,"lng":139.70036142,"user_id":1,"created_at":"2019-09-27T06:41:45.000Z","updated_at":"2019-09-27T06:41:45.000Z","ancestry":null}
+{"powder_room": 
+  { "id":1,
+    "name":"西武渋谷店 A館 2F",
+    "rate":0,
+    "lat":35.66019636,
+    "lng":139.70036142,
+    "user_id":1,
+    "created_at":"2019-09-27T06:41:45.000Z",
+    "updated_at":"2019-09-27T06:41:45.000Z",
+    "ancestry":null
+  },
+  "facility":
+  { "body_mirror": "×",
+    "created_at": "2019-10-01T13:30:24.000+09:00",
+    "dresser": "×",
+    "dust_box": "-",
+    "fitting_booth": "×",
+    "id": 11,
+    "luggage_storage": "○",
+    "makeup_mirror": "×",
+    "membership": "特になし",
+    "others": "ドレッサーはないが化粧ブースがあります",
+    "outlet": "×",
+    "powder_room_id": 11,
+    "rate_plan": "無料",
+    "updated_at": "2019-10-01T13:30:24.000+09:00",
+    "waiting_space": "×",
+    "washstands": "○",
+    "wifi": "×"
+  },
+  "detail":
+  { "address": "東京都渋谷区渋谷三丁目21-3",
+    "close": "21:00",
+    "created_at": "2019-10-01T13:30:16.000+09:00",
+    "id": 11,
+    "official_url": "https://shibuyastream.jp/",
+    "open": "10:00",
+    "phone_number": "0570-050-428",
+    "powder_room_id": 11,
+    "updated_at": "2019-10-01T13:30:16.000+09:00"
+  },
+  "images":[]
+}
