@@ -1,19 +1,10 @@
-# require 'open-uri'
 
-Image.create(
-  urls: [File.open("#{Rails.root}/db/images/pr11/pr11-1.jpg"),
-         File.open("#{Rails.root}/db/images/pr11/pr11-2.jpg"),
-         File.open("#{Rails.root}/db/images/pr11/pr11-3.jpg"),],
-  powder_room_id: 11
-)
 
-Image.create(
-  urls: [File.open("#{Rails.root}/db/images/pr11/pr11-2.jpg"),
-         File.open("#{Rails.root}/db/images/pr11/pr11-3.jpg"),],
-  powder_room_id: 8
-)
-
-Image.create(
-  urls: [File.open("#{Rails.root}/db/images/pr11/pr11-3.jpg"),],
-  powder_room_id: 12
-)
+image_dir_array = ['./db/images/pr1/*']
+urls = []
+image_dir_array.each.with_index(1) do |dir, n|
+  Dir.glob(dir).each do |image|
+    urls.push(File.open(image))
+  end
+  Image.create(urls: urls, powder_room_id: n)
+end
