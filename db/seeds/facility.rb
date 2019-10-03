@@ -165,7 +165,7 @@ shibuya_facilities = [{
   waiting_space:   '○',
   membership:      1,
   rate_plan:       '無料',
-  others:          'TOP&ClubQカード女性会員専用、フットマッサージ、酸素バー(有料)、携帯充電器テーブル'
+  others:          'TOP&ClubQカード女性会員専用、フットマッサージ、酸素バー(有料)、携帯充電器テーブル、ウォーターサーバー'
 }, {
   dresser:         '○',
   body_mirror:     '○',
