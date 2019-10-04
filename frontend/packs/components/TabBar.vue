@@ -44,7 +44,7 @@ export default {
           icon: 'ion-ios-heart',
           label: '',
           page: UserPage,
-          badge: 7,
+          badge: '',
           // key: ""
         },
         {

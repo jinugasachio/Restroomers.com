@@ -76,6 +76,21 @@ export default {
           }
           set.apply(this, arguments);
       }
+    },
+
+    getPosition(){
+      if( navigator.geolocation )
+      {
+        // 現在位置を取得できる場合の処理
+        alert( "あなたの端末では、現在位置を取得することができます。" ) ;
+      }
+
+      // Geolocation APIに対応していない
+      else
+      {
+        // 現在位置を取得できない場合の処理
+        alert( "あなたの端末では、現在位置を取得できません。" ) ;
+      }
     }
 
   },
@@ -88,6 +103,7 @@ export default {
     this.createMap();
     this.fixInfoWindow();
     this.$store.dispatch('getPowderRooms') //mountesのメソッドが全て実行された後に算出プロパティmarkersを更新
+    // this.getPosition();
   },
 
   watch: {
