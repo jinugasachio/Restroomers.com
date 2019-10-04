@@ -15,6 +15,7 @@ export default {
 
   components: {
     PowderRoom,
+    POwderRoomList,
     Navigator
   },
 
@@ -126,10 +127,6 @@ export default {
         };
         const marker = new google.maps.Marker(markerOptions);
 
-        // 名前から個別情報を識別できるのであればカスタムデータ属性をつける必要はない
-        // ただ名前の横に可愛いアイコンをつけたいので、そのためにはinfowindowのhtmlを
-        // カスタマイズする必要がある。ので一旦下は消さない
-
         const roomName = `<div id='room_name' data-id=${room.id}>
                             ${room.name}
                             <img src='packs/images/lipstick.png' alt='口紅の写真' class='lip_image'>
@@ -169,7 +166,7 @@ export default {
 
 <style lang="scss" scoped>
 #map {
-  width: 100%; //最終的には全画面にしたいので100になるかも！
+  width: 100%;
   height: 100%;
 }
 </style>
