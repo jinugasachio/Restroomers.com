@@ -11,10 +11,10 @@
         :key= i
       >
       </v-ons-tab>
-      <v-ons-tab 
+      <!-- <v-ons-tab 
       :icon="positionTab.icon"
       
-      />
+      /> -->
     </v-ons-tabbar>
 </template>
 
