@@ -82,21 +82,18 @@ export default {
     getPosition(){
       if( navigator.geolocation )
       {
+        const geoSuccess = function(position){};
+        const geoError = function(error){};
+        const geoOptions = {};
         // 現在位置を取得できる場合の処理
-        navigator.geolocation.getCurrentPosition( 
-          function(position){
-            	// alert( "あなたの現在位置は、\n[" + lat + "," + lng + "]\nです。" ) ;
-
-	          // 経度をアラート表示
-	            alert( position.coords.longitude ) ;
-          }); //, errorFunc , optionObj ) ;
+        navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions) ;
       }
 
       // Geolocation APIに対応していない
       else
       {
         // 現在位置を取得できない場合の処理
-        alert( "あなたの端末では、現在位置を取得できません。" ) ;
+        alert( "お使いの端末では、現在位置を取得できません。" ) ;
       }
     }
 
