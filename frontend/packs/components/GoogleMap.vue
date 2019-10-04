@@ -85,7 +85,7 @@ export default {
     getPosition(){
       const vm = this
       if( navigator.geolocation )
-      { // 現在位置を取得できる場合の処理
+      {
         const geoSuccess = function(position){
           const data = position.coords
           const lat = data.latitude
@@ -109,10 +109,14 @@ export default {
           }
           alert( errorMessage[error.code]);
         };
+
         const geoOptions = {
           enableHighAccuracy: false,
+          timeout: 60000, //１分でタイムアウト
+          // maximumAge: 0 , 位置情報の有効期限
         };
-        navigator.geolocation.getCurrentPosition(geoSuccess);//, geoError, geoOptions) ;
+
+        navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
       }
 
       // Geolocation APIに対応していない
@@ -133,7 +137,7 @@ export default {
     this.createMap();
     this.fixInfoWindow();
     this.$store.dispatch('getPowderRooms') //mountesのメソッドが全て実行された後に算出プロパティmarkersを更新
-    // this.getPosition();
+    this.getPosition();
   },
 
   watch: {
