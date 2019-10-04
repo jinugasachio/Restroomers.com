@@ -55,9 +55,16 @@ GEM
       aws-partitions (~> 1.0)
       aws-sigv4 (~> 1.1)
       jmespath (~> 1.0)
+    aws-sdk-kms (1.24.0)
+      aws-sdk-core (~> 3, >= 3.61.1)
+      aws-sigv4 (~> 1.1)
     aws-sdk-rails (2.1.0)
       aws-sdk-ses (~> 1)
       railties (>= 3)
+    aws-sdk-s3 (1.48.0)
+      aws-sdk-core (~> 3, >= 3.61.1)
+      aws-sdk-kms (~> 1)
+      aws-sigv4 (~> 1.1)
     aws-sdk-ses (1.26.0)
       aws-sdk-core (~> 3, >= 3.61.1)
       aws-sigv4 (~> 1.1)
@@ -323,6 +330,7 @@ PLATFORMS
 DEPENDENCIES
   ancestry
   aws-sdk-rails
+  aws-sdk-s3
   bootsnap (>= 1.1.0)
   byebug
   capybara (>= 2.15)
