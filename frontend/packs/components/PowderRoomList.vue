@@ -8,8 +8,6 @@
       </div>
       <div class="center">{{ parentName }}</div>
     </v-ons-toolbar>
-    
-
     <v-ons-list>
       <v-ons-list-header></v-ons-list-header>
       <v-ons-list-item modifier="chevron longdivider" tappable

@@ -6,22 +6,20 @@
 </template>
 
 <script>
-// import PowderRoom from './PowderRoom.vue'
-// import PowderRoomList from './PowderRoomList.vue'
 import GoogleMap from './GoogleMap.vue'
 
 
 export default {
-  components: {
-    GoogleMap,
-    // PowderRoomList,
-    // PowderRoom
-  },
 
+  components: {
+    GoogleMap
+  },
+  
   data() {
     return {
-      pageStack: [GoogleMap] //後ろに来た方が先に読み込まれるっぽい。
+      pageStack: [GoogleMap]
     };
   }
+
 }
 </script>

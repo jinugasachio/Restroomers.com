@@ -77,7 +77,7 @@ export default {
                   return;
               }
           }
-          set.apply(this, arguments);
+        set.apply(this, arguments);
       }
     },
 
@@ -190,7 +190,7 @@ export default {
         });
       });
     }
-    
+
   }
 
 }
