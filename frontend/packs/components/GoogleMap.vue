@@ -71,7 +71,6 @@ export default {
     // デフォルトのinfowindowを非表示にする
     fixInfoWindow(){
       const set = google.maps.InfoWindow.prototype.set
-
       google.maps.InfoWindow.prototype.set = function(key, val) {
           if (key === "map") {
               if (! this.get("noSuppress")) {
@@ -82,6 +81,7 @@ export default {
       }
     },
 
+    //現在地を取得する
     getPosition(){
       const vm = this
       if( navigator.geolocation )
@@ -90,15 +90,16 @@ export default {
           const data = position.coords
           const lat = data.latitude
           const lng = data.longitude
-
           const latlng = new google.maps.LatLng(lat,lng)
+
           new google.maps.Marker({
             map: vm.map,
             position: latlng,
             icon: vm.icon[1]
           });
-          vm.map.panTo(new google.maps.LatLng(lat,lng)); //現在地がその時表示しているmap城の近くだったらスライドで移動する
+          vm.map.panTo(new google.maps.LatLng(lat,lng)); //現在地がその時表示しているmap城の近くだったらスライドで移動する、地図が滑らかに動くには、移動先が表示画面内に存在している必要があります。
         };
+
         // const geoError = function(error){};
         // const geoOptions = {};
         // 現在位置を取得できる場合の処理
