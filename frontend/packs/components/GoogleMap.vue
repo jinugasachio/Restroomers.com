@@ -27,10 +27,12 @@ export default {
       styles: gmapStyle,
       zoom: 16,
       icon: [{
-          url: "packs/images/woman.png",
-          scaledSize: new google.maps.Size(30, 40)
-      },{         url: "packs/images/woman.png",
-          scaledSize: new google.maps.Size(30, 40)}],
+        url: "packs/images/woman.png",
+        scaledSize: new google.maps.Size(30, 40)
+        }, {
+        url: "packs/images/position.png",
+        scaledSize: new google.maps.Size(30, 40)
+      }],
     }
   },
 
@@ -91,7 +93,7 @@ export default {
           new google.maps.Marker({
             map: vm.map,
             position: latlng,
-            icon: vm.icon[0]
+            icon: vm.icon[1]
           });
         };
         // const geoError = function(error){};
