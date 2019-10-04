@@ -15,7 +15,7 @@ export default {
 
   components: {
     PowderRoom,
-    POwderRoomList,
+    PowderRoomList,
     Navigator
   },
 
@@ -83,7 +83,13 @@ export default {
       if( navigator.geolocation )
       {
         // 現在位置を取得できる場合の処理
-        alert( "あなたの端末では、現在位置を取得することができます。" ) ;
+        navigator.geolocation.getCurrentPosition( 
+          function(position){
+            	// alert( "あなたの現在位置は、\n[" + lat + "," + lng + "]\nです。" ) ;
+
+	          // 経度をアラート表示
+	            alert( position.coords.longitude ) ;
+          }); //, errorFunc , optionObj ) ;
       }
 
       // Geolocation APIに対応していない
@@ -104,7 +110,7 @@ export default {
     this.createMap();
     this.fixInfoWindow();
     this.$store.dispatch('getPowderRooms') //mountesのメソッドが全て実行された後に算出プロパティmarkersを更新
-    // this.getPosition();
+    this.getPosition();
   },
 
   watch: {
