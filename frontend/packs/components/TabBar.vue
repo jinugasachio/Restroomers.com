@@ -11,6 +11,10 @@
         :key= i
       >
       </v-ons-tab>
+      <v-ons-tab 
+      :icon="positionTab.icon"
+      
+      />
     </v-ons-tabbar>
 </template>
 
@@ -53,13 +57,17 @@ export default {
           page: UserPage,
           // key: ""
         },
-        {
-          icon: 'ion-ios-navigate',
-          label: '',
-          page: UserPage,
-          // key: ""
-        }
-      ]
+        // {
+        //   icon: 'ion-ios-navigate',
+        //   label: '',
+        //   page: UserPage,
+        //   // key: ""
+        // }
+      ],
+      positionTab: {
+        icon: 'ion-ios-navigate',
+        label: ''
+      },
     };
   },
   // methods: {
