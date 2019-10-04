@@ -135,7 +135,7 @@ export default {
     this.createMap();
     this.fixInfoWindow();
     this.$store.dispatch('getPowderRooms') //mountesのメソッドが全て実行された後に算出プロパティmarkersを更新
-    this.getPosition();
+    // this.getPosition();
   },
 
   watch: {
