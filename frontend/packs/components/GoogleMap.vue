@@ -84,8 +84,9 @@ export default {
     //現在地を取得する
     getPosition(){
       const vm = this
+      // Geolocation APIに対応してる場合
       if( navigator.geolocation )
-      {
+      { //取得成功
         const geoSuccess = function(position){
           const data = position.coords
           const lat = data.latitude
@@ -99,7 +100,7 @@ export default {
           });
           vm.map.panTo(new google.maps.LatLng(lat,lng)); //現在地がその時表示しているmap城の近くだったらスライドで移動する、地図が滑らかに動くには、移動先が表示画面内に存在している必要があります。
         };
-
+        //取得失敗
         const geoError = function(error){
           const errorMessage = {
             0: "原因不明のエラーが発生しました。" ,
@@ -109,7 +110,7 @@ export default {
           }
           alert( errorMessage[error.code]);
         };
-
+        //オプション
         const geoOptions = {
           enableHighAccuracy: false,
           timeout: 60000, //１分でタイムアウト
@@ -118,11 +119,8 @@ export default {
 
         navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
       }
-
-      // Geolocation APIに対応していない
-      else
-      {
-        // 現在位置を取得できない場合の処理
+      // Geolocation APIに対応していない場合
+      else {
         alert( "お使いの端末では、現在位置を取得できません。" ) ;
       }
     }
@@ -192,6 +190,7 @@ export default {
         });
       });
     }
+    
   }
 
 }
