@@ -88,14 +88,16 @@ export default {
       {
         const geoSuccess = function(position){
           const data = position.coords
-          const latlng = new google.maps.LatLng(data.latitude, data.longitude)
-          // debugger;
+          const lat = data.latitude
+          const lng = data.longitude
+
+          const latlng = new google.maps.LatLng(lat,lng)
           new google.maps.Marker({
             map: vm.map,
             position: latlng,
             icon: vm.icon[1]
           });
-          vm.map.panTo(new google.maps.LatLng(data.latitude, data.longitude));
+          vm.map.panTo(new google.maps.LatLng(lat,lng)); //現在地がその時表示しているmap城の近くだったらスライドで移動する
         };
         // const geoError = function(error){};
         // const geoOptions = {};
@@ -121,7 +123,7 @@ export default {
     this.createMap();
     this.fixInfoWindow();
     this.$store.dispatch('getPowderRooms') //mountesのメソッドが全て実行された後に算出プロパティmarkersを更新
-    this.getPosition();
+    // this.getPosition();
   },
 
   watch: {
