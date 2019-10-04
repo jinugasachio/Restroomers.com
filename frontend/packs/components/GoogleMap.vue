@@ -26,10 +26,11 @@ export default {
       center: { lat: 35.658230, lng: 139.701642 }, //渋谷駅スタート
       styles: gmapStyle,
       zoom: 16,
-      icon: {
+      icon: [{
           url: "packs/images/woman.png",
           scaledSize: new google.maps.Size(30, 40)
-      },
+      },{         url: "packs/images/woman.png",
+          scaledSize: new google.maps.Size(30, 40)}],
     }
   },
 
@@ -90,7 +91,7 @@ export default {
           new google.maps.Marker({
             map: vm.map,
             position: latlng,
-            icon: vm.icon
+            icon: vm.icon[0]
           });
         };
         // const geoError = function(error){};
@@ -136,7 +137,7 @@ export default {
         const markerOptions = { 
           map:        vm.map, 
           position: { lat: room.lat, lng: room.lng }, 
-          icon:       vm.icon
+          icon:       vm.icon[0]
         };
         const marker = new google.maps.Marker(markerOptions);
 
