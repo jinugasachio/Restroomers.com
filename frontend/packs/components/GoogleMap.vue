@@ -80,13 +80,23 @@ export default {
     },
 
     getPosition(){
+      const vm = this
       if( navigator.geolocation )
       {
-        const geoSuccess = function(position){};
-        const geoError = function(error){};
-        const geoOptions = {};
+        const geoSuccess = function(position){
+          const data = position.coords
+          const latlng = new google.maps.LatLng(data.latitude, data.longitude)
+          debugger;
+          new google.maps.Marker({
+            map: vm.map,
+            position: latlng,
+            icon: vm.icon
+          });
+        };
+        // const geoError = function(error){};
+        // const geoOptions = {};
         // 現在位置を取得できる場合の処理
-        navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions) ;
+        navigator.geolocation.getCurrentPosition(geoSuccess);//, geoError, geoOptions) ;
       }
 
       // Geolocation APIに対応していない
