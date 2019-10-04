@@ -17,7 +17,6 @@
 
 <script>
 import UserPage from './UserPage.vue'
-// import GoogleMap from './GoogleMap.vue'
 import Navigator from './Navigator.vue'
 
 
@@ -42,7 +41,7 @@ export default {
         {
           // icon: 'packs/images/lipstick.png',
           // 上の形では指定できないっぽい
-          icon: 'ion-ios-woman',
+          icon: 'ion-ios-heart',
           label: '',
           page: UserPage,
           badge: 7,
