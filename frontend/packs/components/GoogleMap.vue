@@ -85,7 +85,7 @@ export default {
     getPosition(){
       const vm = this
       if( navigator.geolocation )
-      {
+      { // 現在位置を取得できる場合の処理
         const geoSuccess = function(position){
           const data = position.coords
           const lat = data.latitude
@@ -100,9 +100,18 @@ export default {
           vm.map.panTo(new google.maps.LatLng(lat,lng)); //現在地がその時表示しているmap城の近くだったらスライドで移動する、地図が滑らかに動くには、移動先が表示画面内に存在している必要があります。
         };
 
-        // const geoError = function(error){};
-        // const geoOptions = {};
-        // 現在位置を取得できる場合の処理
+        const geoError = function(error){
+          const errorMessage = {
+            0: "原因不明のエラーが発生しました。" ,
+            1: "位置情報の取得が許可されませんでした。" ,
+            2: "電波状況などで位置情報が取得できませんでした。" ,
+            3: "位置情報の取得に時間がかかり過ぎてタイムアウトしました。" ,
+          }
+          alert( errorMessage[error.code]);
+        };
+        const geoOptions = {
+          enableHighAccuracy: false,
+        };
         navigator.geolocation.getCurrentPosition(geoSuccess);//, geoError, geoOptions) ;
       }
 
