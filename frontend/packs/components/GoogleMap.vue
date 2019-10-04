@@ -31,7 +31,7 @@ export default {
         scaledSize: new google.maps.Size(30, 40)
         }, {
         url: "packs/images/position.png",
-        scaledSize: new google.maps.Size(30, 40)
+        scaledSize: new google.maps.Size(22, 22)
       }],
     }
   },
@@ -89,12 +89,13 @@ export default {
         const geoSuccess = function(position){
           const data = position.coords
           const latlng = new google.maps.LatLng(data.latitude, data.longitude)
-          debugger;
+          // debugger;
           new google.maps.Marker({
             map: vm.map,
             position: latlng,
             icon: vm.icon[1]
           });
+          vm.map.panTo(new google.maps.LatLng(data.latitude, data.longitude));
         };
         // const geoError = function(error){};
         // const geoOptions = {};
