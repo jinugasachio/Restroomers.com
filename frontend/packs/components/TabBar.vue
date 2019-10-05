@@ -135,12 +135,12 @@ export default {
     background-color: #f2f2f2;
 
     .tabbar__button {
-      color: #fc744a;
+      color: #ff9705;
     }
   }
 
   :checked + .tabbar__button {
-    color: #fc744a;
+    color: #ff9705;
   }
 }
 </style>
