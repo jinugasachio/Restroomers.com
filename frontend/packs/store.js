@@ -11,10 +11,11 @@ const store =  new Vuex.Store({
 
   state: {
 
+    map: null,
     powderRooms: null,
     powderRoom: defaultData, //コンソールエラー防止のため | リレーションしてるモデルデータも合わせて格納している
     powderRoomList: [],
-
+    
   },
 
   getters: {
@@ -28,22 +29,28 @@ const store =  new Vuex.Store({
     powderRoomList(state) {
       return state.powderRoomList;
     },
+    map(state) {
+      return state.map;
+    }
 
   },
 
   mutations: {
 
     updatePowderRooms(state, payload) {
-      state.powderRooms = payload.powderRooms
+      state.powderRooms = payload.powderRooms;
     },
     updatePowderRoom(state, payload) {
-      state.powderRoom = payload.powderRoom
+      state.powderRoom = payload.powderRoom;
     },
     updatePowderRoomList(state, payload) {
-      state.powderRoomList = payload.powderRoomList
+      state.powderRoomList = payload.powderRoomList;
     },
     resetPowderRoomList(state) {
-      state.powderRoomList = []
+      state.powderRoomList = [];
+    },
+    updataMap(state, payload) {
+      state.map = payload.map
     },
 
   },
@@ -80,6 +87,10 @@ const store =  new Vuex.Store({
     resetPowderRoomList(context){
       context.commit('resetPowderRoomList')
     },
+
+    updateMap(context){
+      context.commit('updateMap')
+    }
     
   },
 
