@@ -63,8 +63,6 @@ const store =  new Vuex.Store({
       state.pageStack.pop();
     }
 
-
-
   },
 
   actions: {
@@ -106,7 +104,6 @@ const store =  new Vuex.Store({
     },
 
     pushPage(context, page){
-      // debugger;
       context.commit('pushPage', page)
     },
 
