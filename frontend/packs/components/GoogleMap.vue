@@ -26,13 +26,10 @@ export default {
       center: { lat: 35.658230, lng: 139.701642 }, //渋谷駅スタート
       styles: gmapStyle,
       zoom: 16,
-      icon: [{
+      icon: {
         url: "packs/images/woman.png",
         scaledSize: new google.maps.Size(30, 40)
-        }, {
-        url: "packs/images/position.png",
-        scaledSize: new google.maps.Size(22, 22)
-      }],
+      }
     }
   },
 
@@ -84,7 +81,7 @@ export default {
       }
     },
 
-    //現在地を取得する
+    // 現在地を取得する
     // getPosition(){
     //   const vm = this
     //   // Geolocation APIに対応してる場合
@@ -136,10 +133,8 @@ export default {
 
   mounted() {
     this.createMap();
-    debugger;
     this.fixInfoWindow();
     this.$store.dispatch('getPowderRooms') //mountesのメソッドが全て実行された後に算出プロパティmarkersを更新
-    // this.getPosition();
   },
 
   watch: {
@@ -158,7 +153,7 @@ export default {
         const markerOptions = { 
           map:        vm.map, 
           position: { lat: room.lat, lng: room.lng }, 
-          icon:       vm.icon[0]
+          icon:       vm.icon
         };
         const marker = new google.maps.Marker(markerOptions);
 

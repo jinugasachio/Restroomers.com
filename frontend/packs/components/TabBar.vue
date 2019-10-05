@@ -38,6 +38,10 @@ export default {
   data: function() {
     return {
       activeIndex: 0,
+      icon: {
+        url: "packs/images/position.png",
+        scaledSize: new google.maps.Size(22, 22)
+      },
       tabs: [
         {
           icon: 'ion-ios-home',
@@ -60,15 +64,62 @@ export default {
 
     };
   },
+
   methods: {
+
     searchRoom(){
       debugger;
       this.activeIndex = 0
       console.log('search!!')
     },
-    getPosition() {
+
+   //現在地を取得する
+    getPosition(){
       this.activeIndex = 0
-      console.log('getposition!')
+
+      const vm = this
+      const state = this.$store.state
+
+      // Geolocation APIに対応してる場合
+      if( navigator.geolocation )
+      { //取得成功
+        const geoSuccess = function(position){
+          const data = position.coords
+          const lat = data.latitude
+          const lng = data.longitude
+          const latlng = new google.maps.LatLng(lat,lng)
+
+          new google.maps.Marker({
+            map: state.map,
+            position: latlng,
+            icon: vm.icon
+          });
+          //現在地がその時表示しているmap城の近くだったらスライドで移動する、
+          //地図が滑らかに動くには、移動先が表示画面内に存在している必要があります。
+          state.map.panTo(new google.maps.LatLng(lat,lng)); 
+        };
+        //取得失敗
+        const geoError = function(error){
+          const errorMessage = {
+            0: "原因不明のエラーが発生しました。" ,
+            1: "位置情報の取得が許可されませんでした。" ,
+            2: "電波状況などで位置情報が取得できませんでした。" ,
+            3: "位置情報の取得に時間がかかり過ぎてタイムアウトしました。" ,
+          }
+          alert( errorMessage[error.code]);
+        };
+        //オプション
+        const geoOptions = {
+          enableHighAccuracy: false,
+          timeout: 60000, //１分でタイムアウト
+          // maximumAge: 0 , 位置情報の有効期限
+        };
+        navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
+      }
+      // Geolocation APIに対応していない場合
+      else {
+        alert( "お使いの端末では、現在位置を取得できません。" ) ;
+      }
     }
   },
 }

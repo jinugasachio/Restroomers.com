@@ -90,7 +90,6 @@ const store =  new Vuex.Store({
 
     //mapを生成または更新
     updateMap(context, map){
-
       context.commit('updateMap', map)
     }
     
