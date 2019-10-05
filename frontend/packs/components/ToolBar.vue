@@ -10,16 +10,19 @@
 <script>
 
 export default {
+
+  name: "ToolBar",
+
   computed: {
     //下記後でリファクタリング,ToolBarを完全にコンポーネント化させたい
     // name() {
-    //   if (this.$store.getters.powderRoom.children) {
+    //   if (this.$store.getters.room.children) {
     //   // debugger;
-    //     const num = this.$store.getters.powderRoomList[0].ancestry
-    //     const parent = this.$store.state.powderRooms[num - 1]
+    //     const num = this.$store.getters.roomList[0].ancestry
+    //     const parent = this.$store.state.rooms[num - 1]
     //     return parent.name
     //   } else {
-    //     return this.$store.getters.powderRoom.name
+    //     return this.$store.getters.room.name
     //   }
     // },
 

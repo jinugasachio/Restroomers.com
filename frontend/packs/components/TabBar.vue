@@ -27,8 +27,9 @@
 import UserPage from './UserPage.vue'
 import Navigator from './Navigator.vue'
 
-
 export default {
+
+  name: "TabBar",
 
   components: {
     UserPage,
@@ -76,7 +77,6 @@ export default {
    //現在地を取得する
     getPosition(){
       this.activeIndex = 0
-
       const vm = this
       const state = this.$store.state
 

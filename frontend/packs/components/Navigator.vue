@@ -11,6 +11,8 @@ import GoogleMap from './GoogleMap.vue'
 
 export default {
 
+  name: "Navigator",
+
   components: {
     GoogleMap
   },
@@ -19,6 +21,10 @@ export default {
     return {
       pageStack: [GoogleMap]
     };
+  },
+
+  updated(){
+    debugger
   }
 
 }

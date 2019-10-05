@@ -13,6 +13,8 @@ import Navigator from './Navigator.vue'
 
 export default {
 
+  name: "GoogleMap",
+
   components: {
     Room,
     RoomList,
