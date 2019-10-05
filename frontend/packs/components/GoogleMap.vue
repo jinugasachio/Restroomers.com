@@ -36,6 +36,7 @@ export default {
   },
 
   computed: {
+    
     markers(){
       return this.$store.getters.allRooms
     },
