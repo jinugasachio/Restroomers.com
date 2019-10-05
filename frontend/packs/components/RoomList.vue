@@ -1,13 +1,12 @@
 <template>
   <v-ons-page>
-    <v-ons-toolbar>
-      <div class="left">
-        <div>
+    <!-- <v-ons-toolbar> -->
+      <!-- <div class="left">
         <v-ons-back-button></v-ons-back-button>
-        </div>
       </div>
       <div class="center">{{ parentName }}</div>
-    </v-ons-toolbar>
+    </v-ons-toolbar> -->
+    <ToolBar/>
     <v-ons-list>
       <v-ons-list-header></v-ons-list-header>
       <v-ons-list-item modifier="chevron longdivider" tappable
