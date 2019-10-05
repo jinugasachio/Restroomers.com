@@ -3,7 +3,7 @@
     <v-ons-toolbar>
       <div class="left">
         <v-ons-back-button
-          @click.prevent="splicePage"
+          @click.prevent="popPage"
         ></v-ons-back-button>
       </div>
       <div class="center">{{ parentName }}</div>
@@ -58,8 +58,8 @@ export default {
       this.$store.dispatch('getRoom', roomItem.dataset.id)
     },
 
-    splicePage(){
-      this.$store.dispatch('splicePage')
+    popPage(){
+      this.$store.dispatch('popPage')
     }
   },
 

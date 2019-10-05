@@ -111,7 +111,7 @@ const store =  new Vuex.Store({
     },
 
     popPage(context) {
-      context.commit('splicePage')
+      context.commit('popPage')
     }
 
   },

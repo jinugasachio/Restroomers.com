@@ -8,7 +8,6 @@
 <script>
 import GoogleMap from './GoogleMap.vue'
 
-
 export default {
 
   name: "Navigator",
@@ -21,13 +20,11 @@ export default {
 
   methods: {
     push(page){
+      debugger;
       this.$store.dispatch('pushPage', page)
     }
   },
 
-  updated(){
-    // debugger
-  }
 
 }
 </script>
