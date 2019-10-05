@@ -2,7 +2,9 @@
   <v-ons-page>
     <v-ons-toolbar>
       <div class="left">
-        <v-ons-back-button></v-ons-back-button>
+        <v-ons-back-button
+          @click.prevent="splicePage"
+        ></v-ons-back-button>
       </div>
       <div class="center">{{ parentName }}</div>
     </v-ons-toolbar>
@@ -55,17 +57,21 @@ export default {
       const roomItem = event.currentTarget
       this.$store.dispatch('getRoom', roomItem.dataset.id)
     },
+
+    splicePage(){
+      this.$store.dispatch('splicePage')
+    }
   },
 
   updated(){ //Navigatorで取った時に前のstore情報をリセットするという意味
     this.$store.dispatch('resetRoomList')
   },
-  // destroyed(){
-  //   debugger;
-  // },
-  // mounted(){
-  //   debugger;
-  // },
+  beforeDestroy(){
+    // debugger;
+  },
+  mounted(){
+    // debugger;
+  },
   // created(){
   //   debugger;
   // },
@@ -73,7 +79,7 @@ export default {
   watch: {
 
     room(){
-      this.$emit('push-page', Room);
+      this.$store.dispatch('pushPage', Room)
     }
   }
 }

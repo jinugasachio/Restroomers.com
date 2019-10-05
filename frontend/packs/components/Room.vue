@@ -79,7 +79,7 @@ export default {
     }
   },
 
-  destroyed(){
+  mounted(){
     // debugger;
   },
 

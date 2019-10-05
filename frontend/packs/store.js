@@ -59,8 +59,8 @@ const store =  new Vuex.Store({
       // debugger;
       state.pageStack.push(payload);
     },
-    splicePage(state) {
-      state.pageStack.splice(1, state.pageStack.length - 1);
+    popPage(state) {
+      state.pageStack.pop();
     }
 
 
@@ -110,7 +110,7 @@ const store =  new Vuex.Store({
       context.commit('pushPage', page)
     },
 
-    splicePage() {
+    popPage(context) {
       context.commit('splicePage')
     }
 

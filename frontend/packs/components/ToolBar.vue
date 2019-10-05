@@ -1,7 +1,10 @@
 <template>
   <v-ons-toolbar>
     <div class="left">
-      <v-ons-back-button></v-ons-back-button>
+      <v-ons-back-button
+        @click.prevent="splicePage"
+      >
+      </v-ons-back-button>
     </div>
     <div class="center">{{ roomName }}</div>
   </v-ons-toolbar>
@@ -31,5 +34,11 @@ export default {
     },
 
   },
+
+  methods: {
+    splicePage(){
+      this.$store.dispatch('splicePage')
+    }
+  }
 }
 </script>
