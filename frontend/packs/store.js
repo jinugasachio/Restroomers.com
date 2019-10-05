@@ -10,9 +10,9 @@ const store =  new Vuex.Store({
   state: {
 
     map: null,
-    powderRoom: defaultData, //コンソールエラー防止のため | リレーションしてるモデルデータも合わせて格納している
-    powderRooms: null,
-    powderRoomList: [],
+    room: defaultData, //コンソールエラー防止のため | リレーションしてるモデルデータも合わせて格納している
+    allRooms: null,
+    roomList: [],
     
   },
 
@@ -20,14 +20,14 @@ const store =  new Vuex.Store({
     map(state) {
       return state.map;
     },
-    powderRoom(state) {
-      return state.powderRoom;
+    room(state) {
+      return state.room;
     },
-    powderRooms(state) {
-      return state.powderRooms;
+    allRooms(state) {
+      return state.allRooms;
     },
-    powderRoomList(state) {
-      return state.powderRoomList;
+    roomList(state) {
+      return state.roomList;
     },
   },
 
@@ -36,17 +36,17 @@ const store =  new Vuex.Store({
     updateMap(state, payload) {
       state.map = payload
     },
-    updatePowderRoom(state, payload) {
-      state.powderRoom = payload.powderRoom;
+    updateRoom(state, payload) {
+      state.room = payload.room;
     },
-    updatePowderRooms(state, payload) {
-      state.powderRooms = payload.powderRooms;
+    updateAllRooms(state, payload) {
+      state.allRooms = payload.allRooms;
     },
-    updatePowderRoomList(state, payload) {
-      state.powderRoomList = payload.powderRoomList;
+    updateRoomList(state, payload) {
+      state.roomList = payload.roomList;
     },
-    resetPowderRoomList(state) {
-      state.powderRoomList = [];
+    resetRoomList(state) {
+      state.roomList = [];
     },
 
 
@@ -60,10 +60,10 @@ const store =  new Vuex.Store({
     },
 
     // 全てのpowder_roomデータの取り出し
-    getPowderRooms(context){
+    getAllRooms(context){
       axios.get("/api/powder_rooms")
       .then(function(response){
-        context.commit('updatePowderRooms', { powderRooms: response.data })
+        context.commit('updateAllRooms', { allRooms: response.data })
       })
       .catch(function (error) {
         alert(error);
@@ -71,13 +71,13 @@ const store =  new Vuex.Store({
     },
 
     // 特定の一つのpowder_room もしくは、その'子'の取り出し
-    getPowderRoom(context, url){
+    getRoom(context, url){
       axios.get('/api/powder_rooms/' + url)
       .then(function(response){
         if (response.data.length > 1){
-          context.commit('updatePowderRoomList', { powderRoomList: response.data })
+          context.commit('updateRoomList', { roomList: response.data })
         } else {
-          context.commit('updatePowderRoom', { powderRoom: response.data })
+          context.commit('updateRoom', { room: response.data })
         }
       })
       .catch(function (error) {
@@ -86,8 +86,8 @@ const store =  new Vuex.Store({
     },
 
     // Navigatorの挙動が変わるのでリセット
-    resetPowderRoomList(context){
-      context.commit('resetPowderRoomList')
+    resetRoomList(context){
+      context.commit('resetRoomList')
     },
 
   },

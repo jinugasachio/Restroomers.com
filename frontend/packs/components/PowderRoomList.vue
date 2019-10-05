@@ -36,14 +36,14 @@ export default {
   computed: {
 
     powderRoom(){
-      return this.$store.getters.powderRoom
+      return this.$store.getters.room
     },
     list(){
-      return this.$store.getters.powderRoomList
+      return this.$store.getters.roomList
     },
     parentName(){
-      const num = this.$store.getters.powderRoomList[0].ancestry
-      const parent = this.$store.state.powderRooms[num - 1]
+      const num = this.$store.getters.roomList[0].ancestry
+      const parent = this.$store.state.allRooms[num - 1]
       return parent.name
     },
   },
@@ -52,12 +52,12 @@ export default {
 
     getPowderRoom(event){
       const roomItem = event.currentTarget
-      this.$store.dispatch('getPowderRoom', roomItem.dataset.id)
+      this.$store.dispatch('getRoom', roomItem.dataset.id)
     },
   },
 
   updated(){ //Navigatorで取った時に前のstore情報をリセットするという意味
-    this.$store.dispatch('resetPowderRoomList')
+    this.$store.dispatch('resetRoomList')
   },
 
   watch: {

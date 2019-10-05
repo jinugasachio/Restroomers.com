@@ -35,7 +35,7 @@ export default {
 
   computed: {
     markers(){
-      return this.$store.getters.powderRooms
+      return this.$store.getters.allRooms
     },
   },
 
@@ -47,7 +47,7 @@ export default {
 
     // Navigator用メソッド
     push(){
-      if (this.$store.state.powderRoomList.length > 1){
+      if (this.$store.state.roomList.length > 1){
         this.$emit('push-page', PowderRoomList);
       } else {
         this.$emit('push-page', PowderRoom);
@@ -90,7 +90,7 @@ export default {
   mounted() {
     this.createMap();
     this.fixInfoWindow();
-    this.$store.dispatch('getPowderRooms') //mountesのメソッドが全て実行された後に算出プロパティmarkersを更新
+    this.$store.dispatch('getAllRooms') //mountesのメソッドが全て実行された後に算出プロパティmarkersを更新
   },
 
   watch: {
@@ -127,7 +127,7 @@ export default {
 
         google.maps.event.addListener(marker, 'click', function() {
           if (openWindow) {
-            vm.$store.dispatch('resetPowderRoomList')
+            vm.$store.dispatch('resetRoomList')
             openWindow.close();
           }
           this.map.addListener('click', function(){
@@ -139,7 +139,7 @@ export default {
 
           google.maps.event.addListener(openWindow, 'domready', function() {
             const roomName = document.getElementById('room_name')
-            vm.$store.dispatch('getPowderRoom', roomName.dataset.id)
+            vm.$store.dispatch('getRoom', roomName.dataset.id)
             roomName.addEventListener('click', vm.push);
           });
         });

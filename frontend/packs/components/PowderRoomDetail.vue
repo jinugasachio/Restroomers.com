@@ -28,7 +28,7 @@
 export default {
   computed: {
     detail(){
-      return this.$store.getters.powderRoom.detail
+      return this.$store.getters.room.detail
     },
   },
 }

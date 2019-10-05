@@ -46,10 +46,10 @@ export default {
   computed: {
 
     room(){
-      return this.$store.getters.powderRoom.powder_room
+      return this.$store.getters.room.powder_room
     },
     images(){
-      return this.$store.getters.powderRoom.images
+      return this.$store.getters.room.images
     },
     imageUrls(){
       let urlsArray = []

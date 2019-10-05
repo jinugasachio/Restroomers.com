@@ -77,7 +77,7 @@ export default {
 
   computed: {
     facility(){
-      return this.$store.getters.powderRoom.facility
+      return this.$store.getters.room.facility
     },
   },
 
