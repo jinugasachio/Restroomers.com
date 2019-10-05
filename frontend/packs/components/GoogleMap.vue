@@ -50,9 +50,9 @@ export default {
     // Navigator用メソッド
     push(){
       if (this.$store.state.roomList.length > 1){
-        this.$emit('push-page', RoomList);
+        this.$store.dispatch('pushPage', RoomList)
       } else {
-        this.$emit('push-page', Room);
+        this.$store.dispatch('pushPage', Room)
       }
     },
 

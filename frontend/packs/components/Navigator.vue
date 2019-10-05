@@ -13,16 +13,6 @@ export default {
 
   name: "Navigator",
 
-  // components: {
-  //   GoogleMap
-  // },
-  
-  // data() {
-  //   return {
-  //     pageStack: [GoogleMap]
-  //   };
-  // },
-
   computed: {
     pageStack(){
       return this.$store.getters.pageStack
