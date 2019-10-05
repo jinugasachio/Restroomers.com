@@ -65,7 +65,10 @@ export default {
         styles: this.styles, 
         zoom:   this.zoom 
       };
+
       this.map = new google.maps.Map(mapArea, mapOptions);
+
+      this.$store.dispatch('updateMap', this.map)
     },
 
     // デフォルトのinfowindowを非表示にする
@@ -133,6 +136,7 @@ export default {
 
   mounted() {
     this.createMap();
+    debugger;
     this.fixInfoWindow();
     this.$store.dispatch('getPowderRooms') //mountesのメソッドが全て実行された後に算出プロパティmarkersを更新
     // this.getPosition();

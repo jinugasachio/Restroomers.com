@@ -49,8 +49,8 @@ const store =  new Vuex.Store({
     resetPowderRoomList(state) {
       state.powderRoomList = [];
     },
-    updataMap(state, payload) {
-      state.map = payload.map
+    updateMap(state, payload) {
+      state.map = payload
     },
 
   },
@@ -88,8 +88,10 @@ const store =  new Vuex.Store({
       context.commit('resetPowderRoomList')
     },
 
-    updateMap(context){
-      context.commit('updateMap')
+    //mapを生成または更新
+    updateMap(context, map){
+
+      context.commit('updateMap', map)
     }
     
   },
