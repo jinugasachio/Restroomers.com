@@ -13,7 +13,7 @@
       </v-ons-tab>
       <v-ons-tab 
       icon="ion-ios-navigate"
-      @click.prevent="hello"
+      @click.prevent="getPosition"
       />
     </v-ons-tabbar>
 </template>
@@ -64,15 +64,12 @@ export default {
         //   // key: ""
         // }
       ],
-      // positionTab: {
-      //   icon: 'ion-ios-navigate',
-      //   label: '',
-      //   page: UserPage,
-      // },
+
     };
   },
   methods: {
-    hello() {
+    getPosition() {
+      this.activeIndex = 0
       console.log('hello')
     }
   },
@@ -88,8 +85,4 @@ export default {
 button {
   cursor: pointer !important;
 }
-
-// .ons-swiper-target.active:not(.swiping) > .page:not([shown]) {
-//   visibility: visible !important;
-// }
 </style>
