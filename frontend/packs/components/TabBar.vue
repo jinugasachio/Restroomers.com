@@ -114,7 +114,10 @@ export default {
           timeout: 60000, //１分でタイムアウト
           // maximumAge: 0 , 位置情報の有効期限
         };
-        navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
+        const consent = window.confirm('現在地を取得してもよろしいですか？')
+        if (consent){
+          navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions)
+        }
       }
       // Geolocation APIに対応していない場合
       else {
