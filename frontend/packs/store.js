@@ -7,41 +7,40 @@ Vue.use(Vuex)
 
 const store =  new Vuex.Store({
 
-  
-
   state: {
 
     map: null,
-    powderRooms: null,
     powderRoom: defaultData, //コンソールエラー防止のため | リレーションしてるモデルデータも合わせて格納している
+    powderRooms: null,
     powderRoomList: [],
     
   },
 
   getters: {
-
-    powderRooms(state) {
-      return state.powderRooms;
+    map(state) {
+      return state.map;
     },
     powderRoom(state) {
       return state.powderRoom;
     },
+    powderRooms(state) {
+      return state.powderRooms;
+    },
     powderRoomList(state) {
       return state.powderRoomList;
     },
-    map(state) {
-      return state.map;
-    }
-
   },
 
   mutations: {
 
-    updatePowderRooms(state, payload) {
-      state.powderRooms = payload.powderRooms;
+    updateMap(state, payload) {
+      state.map = payload
     },
     updatePowderRoom(state, payload) {
       state.powderRoom = payload.powderRoom;
+    },
+    updatePowderRooms(state, payload) {
+      state.powderRooms = payload.powderRooms;
     },
     updatePowderRoomList(state, payload) {
       state.powderRoomList = payload.powderRoomList;
@@ -49,13 +48,16 @@ const store =  new Vuex.Store({
     resetPowderRoomList(state) {
       state.powderRoomList = [];
     },
-    updateMap(state, payload) {
-      state.map = payload
-    },
+
 
   },
 
   actions: {
+
+    //mapを生成または更新
+    updateMap(context, map){
+      context.commit('updateMap', map)
+    },
 
     // 全てのpowder_roomデータの取り出し
     getPowderRooms(context){
@@ -88,11 +90,6 @@ const store =  new Vuex.Store({
       context.commit('resetPowderRoomList')
     },
 
-    //mapを生成または更新
-    updateMap(context, map){
-      context.commit('updateMap', map)
-    }
-    
   },
 
 })
