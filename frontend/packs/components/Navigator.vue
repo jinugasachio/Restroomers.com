@@ -13,15 +13,15 @@ export default {
 
   name: "Navigator",
 
-  components: {
-    GoogleMap
-  },
+  // components: {
+  //   GoogleMap
+  // },
   
-  data() {
-    return {
-      // pageStack: [GoogleMap]
-    };
-  },
+  // data() {
+  //   return {
+  //     pageStack: [GoogleMap]
+  //   };
+  // },
 
   computed: {
     pageStack(){

@@ -1,6 +1,7 @@
 import 'babel-polyfill'
 import Vue from 'vue'
 import Vuex from 'vuex'
+import GoogleMap from './components/GoogleMap.vue'
 import defaultData from './modules/default_data.json'
 
 Vue.use(Vuex)
@@ -13,10 +14,12 @@ const store =  new Vuex.Store({
     room: defaultData, //コンソールエラー防止のため | リレーションしてるモデルデータも合わせて格納している
     allRooms: null,
     roomList: [],
-    
+    pageStack: [GoogleMap]
+
   },
 
   getters: {
+
     map(state) {
       return state.map;
     },
@@ -29,6 +32,10 @@ const store =  new Vuex.Store({
     roomList(state) {
       return state.roomList;
     },
+    pageStack(state){
+      return state.pageStack;
+    }
+
   },
 
   mutations: {
@@ -48,6 +55,13 @@ const store =  new Vuex.Store({
     resetRoomList(state) {
       state.roomList = [];
     },
+    pushPage(state) {
+      state.pageStack = payload
+    },
+    splicePage(state) {
+      state.pageStack.splice(1, state.pageStack.length - 1)
+    }
+
 
 
   },
@@ -89,6 +103,14 @@ const store =  new Vuex.Store({
     resetRoomList(context){
       context.commit('resetRoomList')
     },
+
+    pushPage(){
+      context.commit('pushPage', page)
+    },
+
+    splicePage() {
+      context.commit('splicePage')
+    }
 
   },
 
