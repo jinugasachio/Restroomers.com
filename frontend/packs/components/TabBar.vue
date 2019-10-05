@@ -16,7 +16,6 @@
         @click.prevent="searchRoom"
       />
       <v-ons-tab
-        class="ons-tab"
         icon="ion-ios-navigate"
         @click.prevent="getPosition"
       />
@@ -74,12 +73,19 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 
 .tabbar__item {
   &:active {
-    background-color: #e8e8e8;
+    background-color: #f2f2f2;
+
+    .tabbar__button {
+      color: #fc744a;
+    }
+  }
+
+  :checked + .tabbar__button {
+    color: #fc744a;
   }
 }
-
 </style>
