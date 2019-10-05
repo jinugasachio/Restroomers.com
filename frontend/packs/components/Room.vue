@@ -26,6 +26,8 @@ import Detail from './RoomDetail.vue'
 import Review from './Review.vue'
 
 export default {
+
+  name: "Room",
   
   components: {
     StarRating,
@@ -71,14 +73,14 @@ export default {
   },
 
   created(){
-    debugger;
+    // debugger;
     if(this.images.length > 0){
       this.activeImage = this.imageUrls[0].url
     }
   },
 
   destroyed(){
-    debugger;
+    // debugger;
   },
 
   watch: {

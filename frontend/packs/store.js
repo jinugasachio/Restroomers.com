@@ -55,11 +55,12 @@ const store =  new Vuex.Store({
     resetRoomList(state) {
       state.roomList = [];
     },
-    pushPage(state) {
-      state.pageStack = payload
+    pushPage(state, payload) {
+      // debugger;
+      state.pageStack.push(payload);
     },
     splicePage(state) {
-      state.pageStack.splice(1, state.pageStack.length - 1)
+      state.pageStack.splice(1, state.pageStack.length - 1);
     }
 
 
@@ -104,7 +105,8 @@ const store =  new Vuex.Store({
       context.commit('resetRoomList')
     },
 
-    pushPage(){
+    pushPage(context, page){
+      // debugger;
       context.commit('pushPage', page)
     },
 

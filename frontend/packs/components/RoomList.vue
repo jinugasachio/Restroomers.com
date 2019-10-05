@@ -27,6 +27,8 @@ import ToolBar from './ToolBar.vue'
 import Room from './Room.vue'
 
 export default {
+
+  name: "RoomList",
   
   components: {
     ToolBar,

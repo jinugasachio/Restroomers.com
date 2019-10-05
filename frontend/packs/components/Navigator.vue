@@ -1,7 +1,7 @@
 <template>
     <v-ons-navigator
     :page-stack="pageStack"
-    @push-page="pageStack.push($event)"
+    @push-page="push($event)"
   ></v-ons-navigator>
 </template>
 
@@ -30,8 +30,10 @@ export default {
   },
 
   methods: {
-    
-  }
+    push(page){
+      this.$store.dispatch('pushPage', page)
+    }
+  },
 
   updated(){
     // debugger
