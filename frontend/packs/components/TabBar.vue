@@ -1,5 +1,5 @@
 <template>
-    <v-ons-tabbar  position="auto" animation="none" swipeable
+    <v-ons-tabbar  position="auto" animation="none"
       :tabs="tabs"
       :visible="true"
       :index.sync="activeIndex"
@@ -15,7 +15,8 @@
         icon="ion-ios-search"
         @click.prevent="searchRoom"
       />
-      <v-ons-tab 
+      <v-ons-tab
+        class="ons-tab"
         icon="ion-ios-navigate"
         @click.prevent="getPosition"
       />
@@ -74,7 +75,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-button {
-  cursor: pointer !important;
+
+.tabbar__item {
+  &:active {
+    background-color: #e8e8e8;
+  }
 }
+
 </style>
