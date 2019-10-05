@@ -3,7 +3,7 @@
     <div class="left">
       <v-ons-back-button></v-ons-back-button>
     </div>
-    <div class="center">{{ room.name }}</div>
+    <div class="center">{{ roomName }}</div>
   </v-ons-toolbar>
 </template>
 
@@ -26,8 +26,8 @@ export default {
     //   }
     // },
 
-    room(){
-      return this.$store.getters.room.powder_room
+    roomName(){
+      return this.$store.getters.room.powder_room.name
     },
 
   },
