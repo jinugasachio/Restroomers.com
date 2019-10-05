@@ -6,16 +6,16 @@
 </template>
 
 <script>
-import gmapStyle from "../modules/gmap_style.json"
-import PowderRoom from './PowderRoom.vue'
-import PowderRoomList from './PowderRoomList.vue'
+import GmapStyle from "../modules/gmap_style.json"
+import Room from './Room.vue'
+import RoomList from './RoomList.vue'
 import Navigator from './Navigator.vue'
 
 export default {
 
   components: {
-    PowderRoom,
-    PowderRoomList,
+    Room,
+    RoomList,
     Navigator
   },
 
@@ -24,7 +24,7 @@ export default {
       mapName: "map",
       map: null,
       center: { lat: 35.658230, lng: 139.701642 }, //渋谷駅スタート
-      styles: gmapStyle,
+      styles: GmapStyle,
       zoom: 16,
       icon: {
         url: "packs/images/woman.png",
@@ -48,9 +48,9 @@ export default {
     // Navigator用メソッド
     push(){
       if (this.$store.state.roomList.length > 1){
-        this.$emit('push-page', PowderRoomList);
+        this.$emit('push-page', RoomList);
       } else {
-        this.$emit('push-page', PowderRoom);
+        this.$emit('push-page', Room);
       }
     },
 
@@ -102,10 +102,10 @@ export default {
     // マーカーの生成
     markers(){
       const vm = this
-      const powderRooms = vm.markers
+      const allRooms = vm.markers
       let   openWindow = null
 
-      powderRooms.forEach(function(room){
+      allRooms.forEach(function(room){
         const markerOptions = { 
           map:        vm.map, 
           position: { lat: room.lat, lng: room.lng }, 

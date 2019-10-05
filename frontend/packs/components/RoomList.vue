@@ -11,8 +11,8 @@
     <v-ons-list>
       <v-ons-list-header></v-ons-list-header>
       <v-ons-list-item modifier="chevron longdivider" tappable
-        @click="getPowderRoom"
-        v-for="room in list" 
+        @click="getRoom"
+        v-for="room in roomList" 
         :key=room.id
         :data-id=room.id
       >
@@ -24,21 +24,21 @@
 
 <script>
 import ToolBar from './ToolBar.vue'
-import PowderRoom from './PowderRoom.vue'
+import Room from './Room.vue'
 
 export default {
   
   components: {
     ToolBar,
-    PowderRoom
+    Room
   },
 
   computed: {
 
-    powderRoom(){
+    room(){
       return this.$store.getters.room
     },
-    list(){
+    roomList(){
       return this.$store.getters.roomList
     },
     parentName(){
@@ -50,7 +50,7 @@ export default {
 
   methods: {
 
-    getPowderRoom(event){
+    getRoom(event){
       const roomItem = event.currentTarget
       this.$store.dispatch('getRoom', roomItem.dataset.id)
     },
@@ -62,8 +62,8 @@ export default {
 
   watch: {
 
-    powderRoom(){
-      this.$emit('push-page', PowderRoom);
+    room(){
+      this.$emit('push-page', Room);
     }
   }
 }
