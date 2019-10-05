@@ -19,8 +19,14 @@ export default {
   
   data() {
     return {
-      pageStack: [GoogleMap]
+      // pageStack: [GoogleMap]
     };
+  },
+
+  computed: {
+    pageStack(){
+      return this.$store.getters.pageStack
+    }
   },
 
   updated(){
