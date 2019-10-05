@@ -29,8 +29,12 @@ export default {
     }
   },
 
+  methods: {
+    
+  }
+
   updated(){
-    debugger
+    // debugger
   }
 
 }

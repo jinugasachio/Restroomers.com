@@ -71,9 +71,14 @@ export default {
   },
 
   created(){
+    debugger;
     if(this.images.length > 0){
       this.activeImage = this.imageUrls[0].url
     }
+  },
+
+  destroyed(){
+    debugger;
   },
 
   watch: {

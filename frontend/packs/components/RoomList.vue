@@ -59,6 +59,9 @@ export default {
   updated(){ //Navigatorで取った時に前のstore情報をリセットするという意味
     this.$store.dispatch('resetRoomList')
   },
+  destroyed(){
+    debugger;
+  },
 
   watch: {
 
