@@ -82,48 +82,48 @@ export default {
     },
 
     //現在地を取得する
-    getPosition(){
-      const vm = this
-      // Geolocation APIに対応してる場合
-      if( navigator.geolocation )
-      { //取得成功
-        const geoSuccess = function(position){
-          const data = position.coords
-          const lat = data.latitude
-          const lng = data.longitude
-          const latlng = new google.maps.LatLng(lat,lng)
+    // getPosition(){
+    //   const vm = this
+    //   // Geolocation APIに対応してる場合
+    //   if( navigator.geolocation )
+    //   { //取得成功
+    //     const geoSuccess = function(position){
+    //       const data = position.coords
+    //       const lat = data.latitude
+    //       const lng = data.longitude
+    //       const latlng = new google.maps.LatLng(lat,lng)
 
-          new google.maps.Marker({
-            map: vm.map,
-            position: latlng,
-            icon: vm.icon[1]
-          });
-          vm.map.panTo(new google.maps.LatLng(lat,lng)); //現在地がその時表示しているmap城の近くだったらスライドで移動する、地図が滑らかに動くには、移動先が表示画面内に存在している必要があります。
-        };
-        //取得失敗
-        const geoError = function(error){
-          const errorMessage = {
-            0: "原因不明のエラーが発生しました。" ,
-            1: "位置情報の取得が許可されませんでした。" ,
-            2: "電波状況などで位置情報が取得できませんでした。" ,
-            3: "位置情報の取得に時間がかかり過ぎてタイムアウトしました。" ,
-          }
-          alert( errorMessage[error.code]);
-        };
-        //オプション
-        const geoOptions = {
-          enableHighAccuracy: false,
-          timeout: 60000, //１分でタイムアウト
-          // maximumAge: 0 , 位置情報の有効期限
-        };
+    //       new google.maps.Marker({
+    //         map: vm.map,
+    //         position: latlng,
+    //         icon: vm.icon[1]
+    //       });
+    //       vm.map.panTo(new google.maps.LatLng(lat,lng)); //現在地がその時表示しているmap城の近くだったらスライドで移動する、地図が滑らかに動くには、移動先が表示画面内に存在している必要があります。
+    //     };
+    //     //取得失敗
+    //     const geoError = function(error){
+    //       const errorMessage = {
+    //         0: "原因不明のエラーが発生しました。" ,
+    //         1: "位置情報の取得が許可されませんでした。" ,
+    //         2: "電波状況などで位置情報が取得できませんでした。" ,
+    //         3: "位置情報の取得に時間がかかり過ぎてタイムアウトしました。" ,
+    //       }
+    //       alert( errorMessage[error.code]);
+    //     };
+    //     //オプション
+    //     const geoOptions = {
+    //       enableHighAccuracy: false,
+    //       timeout: 60000, //１分でタイムアウト
+    //       // maximumAge: 0 , 位置情報の有効期限
+    //     };
 
-        navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
-      }
-      // Geolocation APIに対応していない場合
-      else {
-        alert( "お使いの端末では、現在位置を取得できません。" ) ;
-      }
-    }
+    //     navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
+    //   }
+    //   // Geolocation APIに対応していない場合
+    //   else {
+    //     alert( "お使いの端末では、現在位置を取得できません。" ) ;
+    //   }
+    // }
 
   },
 

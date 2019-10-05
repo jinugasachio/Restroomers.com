@@ -1,5 +1,5 @@
 <template>
-    <v-ons-tabbar  position="auto" animation="none"
+    <v-ons-tabbar  position="auto" animation="none" swipeable
       :tabs="tabs"
       :visible="true"
       :index.sync="activeIndex"
@@ -11,10 +11,10 @@
         :key= i
       >
       </v-ons-tab>
-      <!-- <v-ons-tab 
-      :icon="positionTab.icon"
-      
-      /> -->
+      <v-ons-tab 
+      icon="ion-ios-navigate"
+      @click.prevent="hello"
+      />
     </v-ons-tabbar>
 </template>
 
@@ -64,17 +64,18 @@ export default {
         //   // key: ""
         // }
       ],
-      positionTab: {
-        icon: 'ion-ios-navigate',
-        label: ''
-      },
+      // positionTab: {
+      //   icon: 'ion-ios-navigate',
+      //   label: '',
+      //   page: UserPage,
+      // },
     };
   },
-  // methods: {
-  //   md() {
-  //     return this.$ons.platform.isAndroid();
-  //   }
-  // },
+  methods: {
+    hello() {
+      console.log('hello')
+    }
+  },
   // computed: {
   //   title() {
   //     return this.tabs[this.activeIndex].label;
@@ -87,4 +88,8 @@ export default {
 button {
   cursor: pointer !important;
 }
+
+// .ons-swiper-target.active:not(.swiping) > .page:not([shown]) {
+//   visibility: visible !important;
+// }
 </style>
