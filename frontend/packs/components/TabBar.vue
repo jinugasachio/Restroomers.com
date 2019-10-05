@@ -12,8 +12,12 @@
       >
       </v-ons-tab>
       <v-ons-tab 
-      icon="ion-ios-navigate"
-      @click.prevent="getPosition"
+        icon="ion-ios-search"
+        @click.prevent="searchRoom"
+      />
+      <v-ons-tab 
+        icon="ion-ios-navigate"
+        @click.prevent="getPosition"
       />
     </v-ons-tabbar>
 </template>
@@ -25,10 +29,12 @@ import Navigator from './Navigator.vue'
 
 
 export default {
+
   components: {
     UserPage,
     Navigator,
   },
+
   data: function() {
     return {
       activeIndex: 0,
@@ -50,34 +56,20 @@ export default {
           page: UserPage,
           badge: '',
           // key: ""
-        },
-        {
-          icon: 'ion-ios-search',
-          label: '',
-          page: UserPage,
-          // key: ""
-        },
-        // {
-        //   icon: 'ion-ios-navigate',
-        //   label: '',
-        //   page: UserPage,
-        //   // key: ""
-        // }
-      ],
+        }],
 
     };
   },
   methods: {
+    searchRoom(){
+      this.activeIndex = 0
+      console.log('search!!')
+    },
     getPosition() {
       this.activeIndex = 0
-      console.log('hello')
+      console.log('getposition!')
     }
   },
-  // computed: {
-  //   title() {
-  //     return this.tabs[this.activeIndex].label;
-  //   }
-  // }
 }
 </script>
 
