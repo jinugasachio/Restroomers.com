@@ -56,7 +56,6 @@ const store =  new Vuex.Store({
       state.roomList = [];
     },
     pushPage(state, payload) {
-      // debugger;
       state.pageStack.push(payload);
     },
     popPage(state) {
