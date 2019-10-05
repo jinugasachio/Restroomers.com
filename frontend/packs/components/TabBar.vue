@@ -62,6 +62,7 @@ export default {
   },
   methods: {
     searchRoom(){
+      debugger;
       this.activeIndex = 0
       console.log('search!!')
     },
