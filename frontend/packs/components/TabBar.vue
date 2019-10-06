@@ -76,7 +76,6 @@ export default {
 
    //現在地を取得する
     getPosition(){
-      this.activeIndex = 0
       const vm = this
       const state = this.$store.state
 
@@ -116,6 +115,7 @@ export default {
         };
         const consent = window.confirm('現在地を取得してもよろしいですか？')
         if (consent){
+          this.activeIndex = 0
           navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions)
         }
       }
