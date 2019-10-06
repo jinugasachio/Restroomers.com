@@ -184,9 +184,9 @@ debugger;
   },
   mounted(){
     // debugger;
-    this.getPosition();
-    debugger;
-    this.guide();
+    // this.getPosition();
+    // debugger;
+    // this.guide();
   }
 }
 </script>
