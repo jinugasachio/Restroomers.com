@@ -10,6 +10,7 @@ services:
       - "3000:3000" #rails
       - "3035:3035" #webpack
     tty: true
+    stdin_open: true
     command: foreman start
     environment:
       RAILS_ENV: development

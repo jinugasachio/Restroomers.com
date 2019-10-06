@@ -7,8 +7,13 @@
 
 <script>
 
-
 export default {
   
 }
 </script>
+
+<style  lang="scss" scoped>
+.ons-swiper-target.active:not(.swiping) > .page:not([shown]) {
+  visibility: visible;
+}
+</style>

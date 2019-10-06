@@ -10,6 +10,7 @@ import './images/woman.png'
 import './images/lipstick.png'
 import './images/ladyicon.png'
 import './images/no_image.png'
+import './images/position.png'
 
 Vue.use(VueOnsen);
 Vue.component('star-rating', VueStarRating.default);

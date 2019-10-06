@@ -1,5 +1,4 @@
 # powder_roomの数と.timesの数字は等しい
-# 本番と開発で条件分岐しないといけない
 
 image_dir_array = []
 25.times do |num|

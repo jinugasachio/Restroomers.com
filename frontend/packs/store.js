@@ -1,60 +1,84 @@
 import 'babel-polyfill'
 import Vue from 'vue'
 import Vuex from 'vuex'
+import GoogleMap from './components/GoogleMap.vue'
 import defaultData from './modules/default_data.json'
 
 Vue.use(Vuex)
 
 const store =  new Vuex.Store({
 
-  
-
   state: {
 
-    powderRooms: null,
-    powderRoom: defaultData, //コンソールエラー防止のため | リレーションしてるモデルデータも合わせて格納している
-    powderRoomList: [],
+    map: null,
+    room: defaultData, //コンソールエラー防止のため | リレーションしてるモデルデータも合わせて格納している
+    allRooms: null,
+    roomList: [],
+    pageStack: [GoogleMap]
 
   },
 
   getters: {
 
-    powderRooms(state) {
-      return state.powderRooms;
+    map(state) {
+      return state.map;
     },
-    powderRoom(state) {
-      return state.powderRoom;
+    room(state) {
+      return state.room;
     },
-    powderRoomList(state) {
-      return state.powderRoomList;
+    allRooms(state) {
+      return state.allRooms;
     },
+    roomList(state) {
+      return state.roomList;
+    },
+    pageStack(state){
+      return state.pageStack;
+    }
 
   },
 
   mutations: {
 
-    updatePowderRooms(state, payload) {
-      state.powderRooms = payload.powderRooms
+    updateMap(state, payload) {
+      state.map = payload
     },
-    updatePowderRoom(state, payload) {
-      state.powderRoom = payload.powderRoom
+    updateRoom(state, payload) {
+      state.room = payload.room;
     },
-    updatePowderRoomList(state, payload) {
-      state.powderRoomList = payload.powderRoomList
+    updateAllRooms(state, payload) {
+      state.allRooms = payload.allRooms;
     },
-    resetPowderRoomList(state) {
-      state.powderRoomList = []
+    updateRoomList(state, payload) {
+      state.roomList = payload.roomList;
     },
+    resetRoomList(state) {
+      state.roomList = [];
+    },
+    pushPage(state, payload) {
+      state.pageStack.push(payload);
+    },
+    popPage(state) {
+      state.pageStack.pop();
+    },
+    resetPageStack(state) {
+      state.pageStack = [GoogleMap]
+    }
 
   },
 
   actions: {
 
+    //mapを生成または更新
+    updateMap(context, map){
+      context.commit('updateMap', map)
+    },
+
     // 全てのpowder_roomデータの取り出し
-    getPowderRooms(context){
+    getAllRooms(context){
       axios.get("/api/powder_rooms")
       .then(function(response){
-        context.commit('updatePowderRooms', { powderRooms: response.data })
+        context.commit('updateAllRooms', { allRooms: response.data })
       })
       .catch(function (error) {
         alert(error);
@@ -62,13 +86,13 @@ const store =  new Vuex.Store({
     },
 
     // 特定の一つのpowder_room もしくは、その'子'の取り出し
-    getPowderRoom(context, url){
+    getRoom(context, url){
       axios.get('/api/powder_rooms/' + url)
       .then(function(response){
         if (response.data.length > 1){
-          context.commit('updatePowderRoomList', { powderRoomList: response.data })
+          context.commit('updateRoomList', { roomList: response.data })
         } else {
-          context.commit('updatePowderRoom', { powderRoom: response.data })
+          context.commit('updateRoom', { room: response.data })
         }
       })
       .catch(function (error) {
@@ -77,10 +101,22 @@ const store =  new Vuex.Store({
     },
 
     // Navigatorの挙動が変わるのでリセット
-    resetPowderRoomList(context){
-      context.commit('resetPowderRoomList')
+    resetRoomList(context){
+      context.commit('resetRoomList')
     },
-    
+
+    pushPage(context, page){
+      context.commit('pushPage', page)
+    },
+
+    popPage(context) {
+      context.commit('popPage')
+    },
+
+    resetPageStack(context) {
+      context.commit('resetPageStack')
+    },
+
   },
 
 })

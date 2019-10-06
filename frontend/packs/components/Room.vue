@@ -21,11 +21,13 @@
 import ToolBar from './ToolBar.vue'
 import StarRating from './StarRating.vue'
 import Images from './Images.vue'
-import Facility from './PowderRoomFacility.vue'
-import Detail from './PowderRoomDetail.vue'
+import Facility from './RoomFacility.vue'
+import Detail from './RoomDetail.vue'
 import Review from './Review.vue'
 
 export default {
+
+  name: "Room",
   
   components: {
     StarRating,
@@ -46,10 +48,10 @@ export default {
   computed: {
 
     room(){
-      return this.$store.getters.powderRoom.powder_room
+      return this.$store.getters.room.powder_room
     },
     images(){
-      return this.$store.getters.powderRoom.images
+      return this.$store.getters.room.images
     },
     imageUrls(){
       let urlsArray = []

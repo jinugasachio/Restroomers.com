@@ -6,15 +6,18 @@
 </template>
 
 <script>
-import gmapStyle from "../modules/gmap_style.json"
-import PowderRoom from './PowderRoom.vue'
-import PowderRoomList from './PowderRoomList.vue'
+import GmapStyle from "../modules/gmap_style.json"
+import Room from './Room.vue'
+import RoomList from './RoomList.vue'
 import Navigator from './Navigator.vue'
 
 export default {
 
+  name: "GoogleMap",
+
   components: {
-    PowderRoom,
+    Room,
+    RoomList,
     Navigator
   },
 
@@ -23,18 +26,19 @@ export default {
       mapName: "map",
       map: null,
       center: { lat: 35.658230, lng: 139.701642 }, //渋谷駅スタート
-      styles: gmapStyle,
+      styles: GmapStyle,
       zoom: 16,
       icon: {
-          url: "packs/images/woman.png",
-          scaledSize: new google.maps.Size(30, 40)
-      },
+        url: "packs/images/woman.png",
+        scaledSize: new google.maps.Size(30, 40)
+      }
     }
   },
 
   computed: {
+    
     markers(){
-      return this.$store.getters.powderRooms
+      return this.$store.getters.allRooms
     },
   },
 
@@ -46,10 +50,10 @@ export default {
 
     // Navigator用メソッド
     push(){
-      if (this.$store.state.powderRoomList.length > 1){
-        this.$emit('push-page', PowderRoomList);
+      if (this.$store.state.roomList.length > 1){
+        this.$store.dispatch('pushPage', RoomList)
       } else {
-        this.$emit('push-page', PowderRoom);
+        this.$store.dispatch('pushPage', Room)
       }
     },
 
@@ -61,22 +65,24 @@ export default {
         styles: this.styles, 
         zoom:   this.zoom 
       };
+
       this.map = new google.maps.Map(mapArea, mapOptions);
+
+      this.$store.dispatch('updateMap', this.map)
     },
 
     // デフォルトのinfowindowを非表示にする
     fixInfoWindow(){
       const set = google.maps.InfoWindow.prototype.set
-
       google.maps.InfoWindow.prototype.set = function(key, val) {
           if (key === "map") {
               if (! this.get("noSuppress")) {
                   return;
               }
           }
-          set.apply(this, arguments);
+        set.apply(this, arguments);
       }
-    }
+    },
 
   },
 
@@ -87,7 +93,7 @@ export default {
   mounted() {
     this.createMap();
     this.fixInfoWindow();
-    this.$store.dispatch('getPowderRooms') //mountesのメソッドが全て実行された後に算出プロパティmarkersを更新
+    this.$store.dispatch('getAllRooms') //mountesのメソッドが全て実行された後に算出プロパティmarkersを更新
   },
 
   watch: {
@@ -99,20 +105,16 @@ export default {
     // マーカーの生成
     markers(){
       const vm = this
-      const powderRooms = vm.markers
+      const allRooms = vm.markers
       let   openWindow = null
 
-      powderRooms.forEach(function(room){
+      allRooms.forEach(function(room){
         const markerOptions = { 
           map:        vm.map, 
           position: { lat: room.lat, lng: room.lng }, 
           icon:       vm.icon
         };
         const marker = new google.maps.Marker(markerOptions);
-
-        // 名前から個別情報を識別できるのであればカスタムデータ属性をつける必要はない
-        // ただ名前の横に可愛いアイコンをつけたいので、そのためにはinfowindowのhtmlを
-        // カスタマイズする必要がある。ので一旦下は消さない
 
         const roomName = `<div id='room_name' data-id=${room.id}>
                             ${room.name}
@@ -128,7 +130,7 @@ export default {
 
         google.maps.event.addListener(marker, 'click', function() {
           if (openWindow) {
-            vm.$store.dispatch('resetPowderRoomList')
+            vm.$store.dispatch('resetRoomList')
             openWindow.close();
           }
           this.map.addListener('click', function(){
@@ -140,12 +142,13 @@ export default {
 
           google.maps.event.addListener(openWindow, 'domready', function() {
             const roomName = document.getElementById('room_name')
-            vm.$store.dispatch('getPowderRoom', roomName.dataset.id)
+            vm.$store.dispatch('getRoom', roomName.dataset.id)
             roomName.addEventListener('click', vm.push);
           });
         });
       });
     }
+
   }
 
 }
@@ -153,7 +156,7 @@ export default {
 
 <style lang="scss" scoped>
 #map {
-  width: 100%; //最終的には全画面にしたいので100になるかも！
+  width: 100%;
   height: 100%;
 }
 </style>
