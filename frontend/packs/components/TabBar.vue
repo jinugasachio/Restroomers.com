@@ -64,6 +64,7 @@ export default {
         count: 0,
         lastTime: 0,
         marker: null,
+        latlng: null,
         icon: {
           url: "packs/images/position.png",
           scaledSize: new google.maps.Size(22, 22)
@@ -71,6 +72,12 @@ export default {
       },
 
     };
+  },
+
+  computed: {
+    map(){
+      return this.$store.state.map;
+    }
   },
 
   methods: {
@@ -84,39 +91,41 @@ export default {
     getPosition(){
       const consent = window.confirm('現在地を取得してもよろしいですか？')
       if(consent) {
-        const vm = this.watchPosition
-        const map = this.$store.state.map
+        const vm = this;
+        const watchPosition = this.watchPosition;
+        // const map = this.$store.state.map;
 
         // Geolocation APIに対応してる場合
         if(navigator.geolocation){
           //取得成功
           const geoSuccess = function(position){
-            const data = position.coords
-            const latlng = new google.maps.LatLng(data.latitude, data.longitude)
+            const data = position.coords;
+            const latlng = new google.maps.LatLng(data.latitude, data.longitude);
             const nowTime = ~~(new Date() / 1000); // UNIX Timestamp
 
             // 前回の書き出しから3秒以上経過していたら描写
             // 毎回HTMLに書き出していると、ブラウザがフリーズするため
-            if( (vm.lastTime + 3) > nowTime ){
-              return false
+            if( (watchPosition.lastTime + 3) > nowTime ){
+              return false;
             }
-            if(vm.marker == null){
-              vm.marker = new google.maps.Marker({
-                            map: map,
-                            position: latlng,
-                            clickable: true,
-                            icon: vm.icon
-                          });
+            if(watchPosition.marker == null){
+              watchPosition.marker = new google.maps.Marker({
+                                        map: vm.map,
+                                        position: latlng,
+                                        clickable: true,
+                                        icon: watchPosition.icon
+                                      });
             }
 
-            vm.lastTime = nowTime //更新履歴を残す
-            ++vm.count; // 処理回数をカウント
+            watchPosition.lastTime = nowTime; //更新履歴を残す
+            watchPosition.latlng = latlng; //位置を更新
+            ++watchPosition.count; // 処理回数をカウント
             // debugger;
             //現在地がその時表示しているmap城の近くだったらスライドで移動する、
             //地図が滑らかに動くには、移動先が表示画面内に存在している必要があります。
-            map.panTo(latlng);
-            vm.marker.setPosition(latlng)
-            console.log(vm.count+"回目の書き出し")
+            vm.map.panTo(latlng);
+            watchPosition.marker.setPosition(latlng);
+            console.log(watchPosition.count+"回目の書き出し")
           };
 
           //取得失敗
@@ -140,13 +149,36 @@ export default {
           
           this.activeIndex = 0
           this.$store.dispatch('resetPageStack')
-          vm.id = navigator.geolocation.watchPosition(geoSuccess, geoError)
+          watchPosition.id = navigator.geolocation.watchPosition(geoSuccess, geoError)
         }
         // Geolocation APIに対応していない場合
         else {
           alert( "お使いの端末では、現在位置を取得できません。" ) ;
         }
       }
+    },
+
+    //行きたい部屋まで案内する
+    guide(){
+      // const watchPosition = this.watchPosition;
+      const service = new google.maps.DirectionsService();
+      const renderer = new google.maps.DirectionsRenderer();
+      renderer.setMap(this.map);
+
+      const start = this.latlng;
+      const end = new google.maps.LatLng(35.66019636, 139.70036142);
+      const request = {
+        origin: start,      // 出発地点の緯度経度
+        destination: end,   // 到着地点の緯度経度
+        travelMode: 'WALKING'
+      };
+      service.route(request, function(result, status){
+        if (status === 'OK') {
+          renderer.setDirections(result); //取得したルート（結果：result）をセット
+        }else{
+          alert("取得できませんでした：" + status);
+        }
+      });
     }
   },
   updated(){
@@ -159,7 +191,7 @@ export default {
 
 .tabbar__item {
   &:active {
-    background-color: #f2f2f2;
+    background-color: #f3f0ec;
 
     .tabbar__button {
       color: #ff9705;
