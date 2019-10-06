@@ -164,8 +164,9 @@ export default {
       const service = new google.maps.DirectionsService();
       const renderer = new google.maps.DirectionsRenderer();
       renderer.setMap(this.map);
-
-      const start = this.latlng;
+debugger;
+      const start = new google.maps.LatLng(36.504975, 139.76422960000002);
+      debugger;
       const end = new google.maps.LatLng(35.66019636, 139.70036142);
       const request = {
         origin: start,      // 出発地点の緯度経度
@@ -181,8 +182,11 @@ export default {
       });
     }
   },
-  updated(){
+  mounted(){
     // debugger;
+    this.getPosition();
+    debugger;
+    this.guide();
   }
 }
 </script>
