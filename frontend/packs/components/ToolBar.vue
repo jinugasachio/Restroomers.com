@@ -17,17 +17,6 @@ export default {
   name: "ToolBar",
 
   computed: {
-    //下記後でリファクタリング,ToolBarを完全にコンポーネント化させたい
-    // name() {
-    //   if (this.$store.getters.room.children) {
-    //   // debugger;
-    //     const num = this.$store.getters.roomList[0].ancestry
-    //     const parent = this.$store.state.rooms[num - 1]
-    //     return parent.name
-    //   } else {
-    //     return this.$store.getters.room.name
-    //   }
-    // },
 
     roomName(){
       if (this.pageStack.length == 2 && this.pageStack[1].name == "RoomList"){
@@ -45,13 +34,11 @@ export default {
   },
 
   methods: {
+
     popPage(){
       this.$store.dispatch('popPage')
     }
+    
   },
-
-  mounted(){
-    // debugger;
-  }
 }
 </script>

@@ -1,13 +1,5 @@
 <template>
   <v-ons-page>
-    <!-- <v-ons-toolbar>
-      <div class="left">
-        <v-ons-back-button
-          @click.prevent="popPage"
-        ></v-ons-back-button>
-      </div>
-      <div class="center">{{ parentName }}</div>
-    </v-ons-toolbar> -->
     <ToolBar/>
     <v-ons-list>
       <v-ons-list-header></v-ons-list-header>
