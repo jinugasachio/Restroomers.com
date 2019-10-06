@@ -1,6 +1,7 @@
 <template>
   <v-ons-page>
     <ToolBar/>
+    <GuideButton/>
     <v-ons-card>
       <img v-if="roomImage" :src=activeImage class="top_image">
       <img v-else src="packs/images/no_image.png" class="top_image">
@@ -14,7 +15,6 @@
         <Review/>
       </div>
     </v-ons-card>
-    <v-ons-button modifier="large" style="margin: 6px 0;">Large</v-ons-button>
   </v-ons-page>
 </template>
 
@@ -25,6 +25,7 @@ import Images from './Images.vue'
 import Facility from './RoomFacility.vue'
 import Detail from './RoomDetail.vue'
 import Review from './Review.vue'
+import GuideButton from './GuideButton.vue'
 
 export default {
 
@@ -36,7 +37,8 @@ export default {
     ToolBar,
     Facility,
     Detail,
-    Review 
+    Review,
+    GuideButton
   },
 
   data() {
