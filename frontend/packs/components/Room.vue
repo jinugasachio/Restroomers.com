@@ -14,6 +14,7 @@
         <Review/>
       </div>
     </v-ons-card>
+    <v-ons-button modifier="large" style="margin: 6px 0;">Large</v-ons-button>
   </v-ons-page>
 </template>
 
