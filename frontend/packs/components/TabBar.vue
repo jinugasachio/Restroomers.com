@@ -109,9 +109,9 @@ export default {
         };
         //オプション
         const geoOptions = {
-          enableHighAccuracy: false,
+          enableHighAccuracy: false, //かなり正確な位置情報を取得するか否か
           timeout: 60000, //１分でタイムアウト
-          // maximumAge: 0 , 位置情報の有効期限
+          maximumAge: 5 * 60 * 1000, //位置情報の有効期限
         };
         const consent = window.confirm('現在地を取得してもよろしいですか？')
         if (consent){
