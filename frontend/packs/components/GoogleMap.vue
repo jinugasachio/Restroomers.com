@@ -65,9 +65,7 @@ export default {
         styles: this.styles, 
         zoom:   this.zoom 
       };
-
       this.map = new google.maps.Map(mapArea, mapOptions);
-
       this.$store.dispatch('updateMap', this.map)
     },
 

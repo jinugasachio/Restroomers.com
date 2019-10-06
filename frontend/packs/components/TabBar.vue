@@ -92,27 +92,25 @@ export default {
           //取得成功
           const geoSuccess = function(position){
             const data = position.coords
-            const lat = data.latitude
-            const lng = data.longitude
-            const latlng = new google.maps.LatLng(lat,lng)
-            const nowTime = ~~(new Date() / 1000);// UNIX Timestamp
+            const latlng = new google.maps.LatLng(data.latitude, data.longitude)
+            const nowTime = ~~(new Date() / 1000); // UNIX Timestamp
 
             // 前回の書き出しから3秒以上経過していたら描写
             // 毎回HTMLに書き出していると、ブラウザがフリーズするため
             if( (vm.lastTime + 3) > nowTime ){
               return false
             }
-
-            vm.lastTime = nowTime
-
             if(vm.marker == null){
               vm.marker = new google.maps.Marker({
                             map: map,
                             position: latlng,
+                            clickable: true,
                             icon: vm.icon
                           });
             }
-            ++vm.count; // 処理回数
+
+            vm.lastTime = nowTime //更新履歴を残す
+            ++vm.count; // 処理回数をカウント
             // debugger;
             //現在地がその時表示しているmap城の近くだったらスライドで移動する、
             //地図が滑らかに動くには、移動先が表示画面内に存在している必要があります。
@@ -125,7 +123,7 @@ export default {
           const geoError = function(error){
             const errorMessage = {
               0: "原因不明のエラーが発生しました。" ,
-              1: "位置情報サービスをオンにしてください。" ,
+              1: "位置情報サービスをオンにし、ブラウザに位置情報の共有を許可してください。" ,
               2: "電波状況などで位置情報が取得できませんでした。" ,
               3: "位置情報の取得に時間がかかり過ぎてタイムアウトしました。" ,
             }
@@ -172,4 +170,5 @@ export default {
     color: #ff9705;
   }
 }
+
 </style>
