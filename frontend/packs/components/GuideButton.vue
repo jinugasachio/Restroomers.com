@@ -10,6 +10,6 @@ export default {
 
 <style lang="scss" scoped>
 .button--large {
-  background-color: #ff9705;
+  background-color: #ff5a47;
 }
 </style>

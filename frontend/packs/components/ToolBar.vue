@@ -42,3 +42,9 @@ export default {
   },
 }
 </script>
+
+<style lang="scss">
+.back-button__icon {
+  fill: #ff5a47;
+}
+</style>

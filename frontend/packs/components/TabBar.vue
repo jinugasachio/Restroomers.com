@@ -198,12 +198,12 @@ debugger;
     background-color: #f3f0ec;
 
     .tabbar__button {
-      color: #ff9705;
+      color: #ff5a47;
     }
   }
 
   :checked + .tabbar__button {
-    color: #ff9705;
+    color: #ff5a47;
   }
 }
 
