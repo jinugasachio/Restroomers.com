@@ -116,6 +116,7 @@ export default {
         const consent = window.confirm('現在地を取得してもよろしいですか？')
         if (consent){
           this.activeIndex = 0
+          this.$store.dispatch('resetPageStack')
           navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions)
         }
       }
