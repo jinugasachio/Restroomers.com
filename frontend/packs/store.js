@@ -60,6 +60,9 @@ const store =  new Vuex.Store({
     },
     popPage(state) {
       state.pageStack.pop();
+    },
+    resetPageStack(state) {
+      state.pageStack = [GoogleMap]
     }
 
   },
@@ -108,7 +111,11 @@ const store =  new Vuex.Store({
 
     popPage(context) {
       context.commit('popPage')
-    }
+    },
+
+    resetPageStack(context) {
+      context.commit('resetPageStack')
+    },
 
   },
 
