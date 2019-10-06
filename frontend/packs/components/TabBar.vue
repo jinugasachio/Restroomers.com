@@ -162,7 +162,7 @@ export default {
     guide(){
       // const watchPosition = this.watchPosition;
       const service = new google.maps.DirectionsService();
-      const renderer = new google.maps.DirectionsRenderer();
+      const renderer = new google.maps.DirectionsRenderer({suppressMarkers: true});
       renderer.setMap(this.map);
 debugger;
       const start = new google.maps.LatLng(36.504975, 139.76422960000002);
