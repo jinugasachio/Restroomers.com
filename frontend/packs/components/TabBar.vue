@@ -11,10 +11,7 @@
         :key= i
       >
       </v-ons-tab>
-      <v-ons-tab 
-        icon="ion-ios-search"
-        @click.prevent="searchRoom"
-      />
+      <SearchTab @backToMap="backToMap"/>
       <v-ons-tab
         icon="ion-ios-navigate"
         @click.prevent="getPosition"
@@ -26,6 +23,7 @@
 <script>
 import UserPage from './UserPage.vue'
 import Navigator from './Navigator.vue'
+import SearchTab from './SearchTab.vue'
 
 export default {
 
@@ -34,6 +32,7 @@ export default {
   components: {
     UserPage,
     Navigator,
+    SearchTab
   },
 
   data: function() {
@@ -82,9 +81,9 @@ export default {
 
   methods: {
 
-    searchRoom(){
+    backToMap(){
       this.activeIndex = 0
-      console.log('search!!')
+      this.$store.dispatch('resetPageStack')
     },
 
    //現在地を取得する
@@ -147,8 +146,7 @@ export default {
             freaquency: 500 //一定間隔で位置情報を取得する際の間隔を指定
           };
           
-          this.activeIndex = 0
-          this.$store.dispatch('resetPageStack')
+          vm.backToMap();
           watchPosition.id = navigator.geolocation.watchPosition(geoSuccess, geoError)
         }
         // Geolocation APIに対応していない場合
