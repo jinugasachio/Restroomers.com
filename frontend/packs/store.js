@@ -14,7 +14,8 @@ const store =  new Vuex.Store({
     room: defaultData, //コンソールエラー防止のため | リレーションしてるモデルデータも合わせて格納している
     allRooms: null,
     roomList: [],
-    pageStack: [GoogleMap]
+    pageStack: [GoogleMap],
+    trigger: 0
 
   },
 
@@ -34,6 +35,9 @@ const store =  new Vuex.Store({
     },
     pageStack(state){
       return state.pageStack;
+    },
+    trigger(state){
+      return state.trigger;
     }
 
   },
@@ -62,7 +66,10 @@ const store =  new Vuex.Store({
       state.pageStack.pop();
     },
     resetPageStack(state) {
-      state.pageStack = [GoogleMap]
+      state.pageStack = [GoogleMap];
+    },
+    updateTrigger(state) {
+      ++state.trigger;
     }
 
   },
@@ -102,20 +109,24 @@ const store =  new Vuex.Store({
 
     // Navigatorの挙動が変わるのでリセット
     resetRoomList(context){
-      context.commit('resetRoomList')
+      context.commit('resetRoomList');
     },
 
     pushPage(context, page){
-      context.commit('pushPage', page)
+      context.commit('pushPage', page);
     },
 
     popPage(context) {
-      context.commit('popPage')
+      context.commit('popPage');
     },
 
     resetPageStack(context) {
-      context.commit('resetPageStack')
+      context.commit('resetPageStack');
     },
+
+    updateTrigger(context) {
+      context.commit('updateTrigger');
+    }
 
   },
 

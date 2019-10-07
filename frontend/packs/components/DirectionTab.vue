@@ -1,7 +1,7 @@
 <template>
   <v-ons-tab id="direction"
     icon="ion-ios-navigate"
-    @click.prevent="getPosition"
+    @click.prevent="triggerUpdate"
   />
 </template>
 
@@ -35,6 +35,9 @@ export default {
     pageStack(){
       return this.$store.state.pageStack
     },
+    trigger(){
+      return this.$store.state.trigger
+    },
     existRoom(){
       if(this.pageStack.filter(function(page){
         return page.name == "Room"}).length >0){
@@ -43,20 +46,24 @@ export default {
         return false
       }
     },
-    // consent(){
-    //   if(this.existRoom){
-    //     return window.confirm('ここまでのルートを表示してよろしいですか？')
-    //   }else{
-    //     return window.confirm('現在地を取得してもよろしいですか？')
-    //   }
-    // }
+    consent(){
+      if(this.existRoom){
+        return window.confirm('ここまでのルートを表示してもよろしいですか？')
+      }else{
+        return window.confirm('現在地を取得してもよろしいですか？')
+      }
+    }
   },
 
   methods: {
 
+    triggerUpdate(){
+      this.$store.dispatch('updateTrigger')
+    },
+
    //現在地を取得する
     getPosition(){
-      // if(this.consent) {
+      if(this.consent) {
         const vm = this;
         const watchPosition = this.watchPosition;
 
@@ -119,7 +126,7 @@ export default {
         else {
           alert( "お使いの端末では、現在位置を取得できません。" ) ;
         }
-      // }
+      }
     },
 
     //行きたい部屋まで案内する
@@ -153,13 +160,25 @@ export default {
     // this.guide();
   },
   watch: {
-    pageStack:{
-      handler(){
+    pageStack: {
+      handler() {
         const button = document.getElementById('direction');
         if (this.pageStack.length > 1 && this.existRoom){
           button.classList.add('hoge')
         }else{
           button.classList.remove('hoge')
+        }
+      }
+    },
+    trigger: {
+      handler() {
+        if(this.existRoom){
+          // this.getPosition();
+          // this.guide();
+          console.log('at room')
+        }else{
+          // this.getPosition();
+          console.log('at map or list')
         }
       }
     }
