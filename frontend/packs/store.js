@@ -16,7 +16,6 @@ const store =  new Vuex.Store({
     roomList: [],
     pageStack: [GoogleMap],
     directionTrigger: 0,
-    
 
   },
 
@@ -40,9 +39,6 @@ const store =  new Vuex.Store({
     directionTrigger(state){
       return state.directionTrigger;
     },
-    guideTriger(state){
-      return state.guide
-    }
 
   },
 

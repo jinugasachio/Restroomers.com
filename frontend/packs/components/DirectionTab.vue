@@ -164,9 +164,9 @@ export default {
       handler() {
         const button = document.getElementById('direction');
         if (this.pageStack.length > 1 && this.existRoom){
-          button.classList.add('hoge')
+          button.classList.add('direction')
         }else{
-          button.classList.remove('hoge')
+          button.classList.remove('direction')
         }
       }
     },
@@ -175,10 +175,14 @@ export default {
         if(this.existRoom){
           if(window.confirm('ルートを表示してもよろしいですか？')){
             this.getPosition();
+            debugger;
+
           }
         }else{
           if(window.confirm('現在地を取得してもよろしいですか？')){
             this.getPosition();
+            debugger;
+
           }
         }
       }
@@ -193,7 +197,7 @@ export default {
 
 <style lang="scss">
 
-.hoge {
+.direction {
   background-color: #ff5757;
 
   .tabbar__button {
