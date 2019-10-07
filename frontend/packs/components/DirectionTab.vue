@@ -1,6 +1,7 @@
 <template>
   <v-ons-tab id="direction"
     icon="ion-ios-navigate"
+    :label="label"
     @click.prevent="updateDirectionTrigger"
   />
 </template>
@@ -19,18 +20,29 @@ export default {
         count: 0,
         lastTime: 0,
         marker: null,
-        latlng: null,//new google.maps.LatLng(36.504975, 139.76422960000002),
         icon: {
           url: "packs/images/position.png",
           scaledSize: new google.maps.Size(22, 22)
         }
       },
+      latlng: null,//new google.maps.LatLng(36.504975, 139.76422960000002),
     };
   },
 
   computed: {
     map(){
       return this.$store.state.map;
+    },
+    room(){
+      return this.$store.state.room.powder_room;
+    },
+    label(){
+      if(this.existRoom){
+        return 'ルートを表示！'
+      }
+      else if(this.watchPosition.id !== null){
+        return 'GPS起動中！'
+      }
     },
     pageStack(){
       return this.$store.state.pageStack
@@ -54,6 +66,11 @@ export default {
   methods: {
 
     updateDirectionTrigger(){
+      if(this.watchPosition.id !== null){
+        console.log('stop')
+        navigator.geolocation.clearWatch(this.watchPosition.id);
+        this.watchPosition.id = null;
+      }
       this.$store.dispatch('updateDirectionTrigger')
     },
 
@@ -84,15 +101,16 @@ export default {
                                       icon: watchPosition.icon
                                    });
           }
-          watchPosition.lastTime = nowTime; //更新履歴を残す
-          debugger;
-          watchPosition.latlng = latlng; //位置を更新
           ++watchPosition.count; // 処理回数をカウント
-          // debugger;
+          watchPosition.lastTime = nowTime; //更新履歴を残す
+debugger;
           //現在地がその時表示しているmap城の近くだったらスライドで移動する、
           //地図が滑らかに動くには、移動先が表示画面内に存在している必要があります。
           vm.map.panTo(latlng);
           watchPosition.marker.setPosition(latlng);
+          if (watchPosition.count == 1){ //guide();のstart用で最初の一回だけ更新
+            vm.latlng = latlng; //位置を更新
+          }
           console.log(watchPosition.count+"回目の書き出し")
         };
 
@@ -114,8 +132,9 @@ export default {
           maximumAge: 5 * 60 * 1000, //位置情報の有効期限
           freaquency: 500 //一定間隔で位置情報を取得する際の間隔を指定
         };
-        this.$emit('backToMap')
-        watchPosition.id = navigator.geolocation.watchPosition(geoSuccess, geoError)
+        this.$emit('backToMap');
+        watchPosition.count = 0;
+        watchPosition.id = navigator.geolocation.watchPosition(geoSuccess, geoError, geoOptions);
       }
       // Geolocation APIに対応していない場合
       else {
@@ -130,33 +149,25 @@ export default {
       const service = new google.maps.DirectionsService();
       const renderer = new google.maps.DirectionsRenderer({suppressMarkers: true});
       renderer.setMap(this.map);
-
       const start = this.latlng //new google.maps.LatLng(36.504975, 139.76422960000002);
-      debugger;
-      const end = new google.maps.LatLng(35.66019636, 139.70036142);
+      const end = new google.maps.LatLng(this.room.lat, this.room.lng);
       const request = {
         origin: start,      // 出発地点の緯度経度
         destination: end,   // 到着地点の緯度経度
         travelMode: 'WALKING'
       };
+
       service.route(request, function(result, status){
         if (status === 'OK') {
           renderer.setDirections(result); //取得したルート（結果：result）をセット
-        }else{
+        }
+        else{
           alert("取得できませんでした：" + status);
         }
       });
+
     },
   },
-
-
-  mounted(){
-    // debugger;
-    // this.getPosition();
-    // debugger;
-    // this.guide();
-  },
-
 
   watch: {
     pageStack: {
@@ -174,8 +185,6 @@ export default {
         if(this.existRoom){
           if(window.confirm('ルートを表示してもよろしいですか？')){
             this.getPosition();
-            debugger;
-            this.dispatch('updateGuideTrigger')
           }
         } else {
             if(window.confirm('現在地を取得してもよろしいですか？')){
@@ -184,9 +193,11 @@ export default {
         }
       }
     },
-    guideTrigger: {
+    latlng: {
       handler() {
-        this.guide();
+        if(this.watchPosition.count == 1){
+          this.guide();
+        }
       }
     }
   }
