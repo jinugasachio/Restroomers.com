@@ -68,10 +68,28 @@ export default {
     updateDirectionTrigger(){
       if(this.watchPosition.id !== null){
         console.log('stop')
-        navigator.geolocation.clearWatch(this.watchPosition.id);
-        this.watchPosition.id = null;
+        if(window.confirm('GPS追跡を中止しますか？')){
+          navigator.geolocation.clearWatch(this.watchPosition.id);
+          this.watchPosition.id = null;
+          this.changeClass('direction');
+        }
       }
-      this.$store.dispatch('updateDirectionTrigger')
+      else{
+        this.$store.dispatch('updateDirectionTrigger')
+      }
+    },
+
+    changeClass(className){
+      const button = document.getElementById('direction');
+      if (this.pageStack.length > 1 && this.existRoom){
+        button.classList.add(className)
+      }
+      else if(this.watchPosition.id !== null){
+        button.classList.add(className)
+      }
+      else{
+        button.classList.remove(className)
+      }
     },
 
    //現在地を取得する
@@ -103,7 +121,6 @@ export default {
           }
           ++watchPosition.count; // 処理回数をカウント
           watchPosition.lastTime = nowTime; //更新履歴を残す
-debugger;
           //現在地がその時表示しているmap城の近くだったらスライドで移動する、
           //地図が滑らかに動くには、移動先が表示画面内に存在している必要があります。
           vm.map.panTo(latlng);
@@ -132,7 +149,8 @@ debugger;
           maximumAge: 5 * 60 * 1000, //位置情報の有効期限
           freaquency: 500 //一定間隔で位置情報を取得する際の間隔を指定
         };
-        this.$emit('backToMap');
+        vm.$emit('backToMap');
+        vm.changeClass('direction')
         watchPosition.count = 0;
         watchPosition.id = navigator.geolocation.watchPosition(geoSuccess, geoError, geoOptions);
       }
@@ -171,14 +189,16 @@ debugger;
 
   watch: {
     pageStack: {
-      handler() {
-        const button = document.getElementById('direction');
-        if (this.pageStack.length > 1 && this.existRoom){
-          button.classList.add('direction')
-        }else{
-          button.classList.remove('direction')
-        }
-      }
+      // handler() {
+      //   const button = document.getElementById('direction');
+      //   if (this.pageStack.length > 1 && this.existRoom){
+      //     button.classList.add('direction')
+      //   }else{
+      //     button.classList.remove('direction')
+      //   }
+      // }
+    
+      handler(){ this.changeClass('direction')}
     },
     directionTrigger: {
       handler() {
@@ -195,7 +215,7 @@ debugger;
     },
     latlng: {
       handler() {
-        if(this.watchPosition.count == 1){
+        if(this.existRoom && this.watchPosition.count == 1){
           this.guide();
         }
       }
