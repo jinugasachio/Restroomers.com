@@ -1,7 +1,7 @@
 <template>
   <v-ons-page>
     <ToolBar/>
-    <GuideButton/>
+    <!-- <GuideButton/> -->
     <v-ons-card>
       <img v-if="roomImage" :src=activeImage class="top_image">
       <img v-else src="packs/images/no_image.png" class="top_image">

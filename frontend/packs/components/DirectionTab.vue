@@ -1,5 +1,5 @@
 <template>
-  <v-ons-tab
+  <v-ons-tab id="direction"
     icon="ion-ios-navigate"
     @click.prevent="getPosition"
   />
@@ -31,18 +31,34 @@ export default {
   computed: {
     map(){
       return this.$store.state.map;
-    }
+    },
+    pageStack(){
+      return this.$store.state.pageStack
+    },
+    existRoom(){
+      if(this.pageStack.filter(function(page){
+        return page.name == "Room"}).length >0){
+        return true
+      }else{
+        return false
+      }
+    },
+    // consent(){
+    //   if(this.existRoom){
+    //     return window.confirm('ここまでのルートを表示してよろしいですか？')
+    //   }else{
+    //     return window.confirm('現在地を取得してもよろしいですか？')
+    //   }
+    // }
   },
 
   methods: {
 
    //現在地を取得する
     getPosition(){
-      const consent = window.confirm('現在地を取得してもよろしいですか？')
-      if(consent) {
+      // if(this.consent) {
         const vm = this;
         const watchPosition = this.watchPosition;
-        // const map = this.$store.state.map;
 
         // Geolocation APIに対応してる場合
         if(navigator.geolocation){
@@ -103,7 +119,7 @@ export default {
         else {
           alert( "お使いの端末では、現在位置を取得できません。" ) ;
         }
-      }
+      // }
     },
 
     //行きたい部屋まで案内する
@@ -112,7 +128,7 @@ export default {
       const service = new google.maps.DirectionsService();
       const renderer = new google.maps.DirectionsRenderer({suppressMarkers: true});
       renderer.setMap(this.map);
-debugger;
+
       const start = new google.maps.LatLng(36.504975, 139.76422960000002);
       debugger;
       const end = new google.maps.LatLng(35.66019636, 139.70036142);
@@ -135,6 +151,24 @@ debugger;
     // this.getPosition();
     // debugger;
     // this.guide();
+  },
+  watch: {
+    pageStack:{
+      handler(){
+        const button = document.getElementById('direction');
+        if (this.pageStack.length > 1 && this.existRoom){
+          button.classList.add('hoge')
+        }else{
+          button.classList.remove('hoge')
+        }
+      }
+    }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.hoge {
+  background-color: red;
+}
+</style>
