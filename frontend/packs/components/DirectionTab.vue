@@ -12,10 +12,6 @@ export default {
 
   name: "DirectionTab",
 
-  // props: {
-  //   activeIndex: Number
-  // },
-
   data: function() {
     return {
       watchPosition: {
@@ -41,6 +37,9 @@ export default {
     },
     directionTrigger(){
       return this.$store.state.directionTrigger
+    },
+    guideTrigger(){
+      return this.$store.state.guideTrigger
     },
     existRoom(){
       if(this.pageStack.filter(function(page){
@@ -176,20 +175,22 @@ export default {
           if(window.confirm('ルートを表示してもよろしいですか？')){
             this.getPosition();
             debugger;
-
+            this.dispatch('updateGuideTrigger')
           }
-        }else{
-          if(window.confirm('現在地を取得してもよろしいですか？')){
-            this.getPosition();
-            debugger;
-
+        } else {
+            if(window.confirm('現在地を取得してもよろしいですか？')){
+              this.getPosition();
           }
         }
       }
+    },
+    guideTrigger: {
+      handler() {
+        this.guide();
+      }
     }
-
-
   }
+
 }
 </script>
 
