@@ -127,17 +127,17 @@ export default {
         });
 
         google.maps.event.addListener(marker, 'click', function() {
+
           if (openWindow) {
             vm.$store.dispatch('resetRoomList')
             openWindow.close();
-          }
+          };
+
           this.map.addListener('click', function(){
             openWindow.close();
-          })
-          
+          });
           infoWindow.open(map, marker);
           openWindow = infoWindow;
-
           google.maps.event.addListener(openWindow, 'domready', function() {
             const roomName = document.getElementById('room_name')
             vm.$store.dispatch('getRoom', roomName.dataset.id)

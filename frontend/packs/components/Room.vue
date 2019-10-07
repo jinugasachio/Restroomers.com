@@ -82,7 +82,7 @@ export default {
   },
 
   mounted(){
-    // debugger;
+    this.$store.dispatch('updateGuideTrigger')
   },
 
   watch: {

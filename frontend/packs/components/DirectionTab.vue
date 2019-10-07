@@ -6,9 +6,7 @@
   />
 </template>
 
-
 <script>
-
 export default {
 
   name: "DirectionTab",
@@ -108,16 +106,16 @@ export default {
           // 毎回HTMLに書き出していると、ブラウザがフリーズするため
           if( (vm.lastTime + 3) > nowTime){
             return false;
-          }
+          };
 
           if(vm.marker == null){
-          vm.marker = new google.maps.Marker({
-                                      map: vm.map,
-                                      position: latlng,
-                                      clickable: true,
-                                      icon: vm.icon
-                                   });
-          }
+            vm.marker = new google.maps.Marker({
+                            map: vm.map,
+                            position: latlng,
+                            clickable: true,
+                            icon: vm.icon
+                        });
+          };
 
           ++vm.count; // 処理回数をカウント
           vm.lastTime = nowTime; //更新履歴を残す
@@ -128,7 +126,7 @@ export default {
           if (vm.count == 1){ //guide();のstart用で最初の一回だけ更新
             vm.latlng = latlng; //位置を更新
           }
-          console.log(vm.count+"回目の書き出し")
+          console.log(vm.count+"回目の書き出し");
         };
 
         //取得失敗
@@ -138,7 +136,7 @@ export default {
             1: "位置情報サービスをオンにし、ブラウザに位置情報の共有を許可してください。" ,
             2: "電波状況などで位置情報が取得できませんでした。" ,
             3: "位置情報の取得に時間がかかり過ぎてタイムアウトしました。" ,
-          }
+          };
           alert( errorMessage[error.code]);
         };
 
@@ -163,12 +161,10 @@ export default {
 
   //行きたい部屋まで案内する
     guide(){
-      // const = this;
       const service = new google.maps.DirectionsService();
       const renderer = new google.maps.DirectionsRenderer({
-                            suppressMarkers: true
+                         suppressMarkers: true
                        });
-
       renderer.setMap(this.map);
 
       const start = this.latlng 
@@ -214,7 +210,7 @@ export default {
 
     latlng: {
       handler() {
-        if(this.existRoom && this.count == 1){
+        if(this.count == 1){
           this.guide();
         }
       }
