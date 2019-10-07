@@ -15,17 +15,15 @@ export default {
 
   data: function() {
     return {
-      watchPosition: {
         id: null,
         count: 0,
         lastTime: 0,
         marker: null,
+        latlng: null,
         icon: {
           url: "packs/images/position.png",
           scaledSize: new google.maps.Size(22, 22)
-        }
-      },
-      latlng: null,//new google.maps.LatLng(36.504975, 139.76422960000002),
+        },
     };
   },
 
@@ -40,7 +38,7 @@ export default {
       if(this.existRoom){
         return 'ルートを表示！'
       }
-      else if(this.watchPosition.id !== null){
+      else if(this.id !== null){
         return 'GPS起動中！'
       }
     },
@@ -56,8 +54,9 @@ export default {
     existRoom(){
       if(this.pageStack.filter(function(page){
         return page.name == "Room"}).length >0){
-        return true
-      }else{
+          return true
+      }
+      else{
         return false
       }
     },
@@ -66,11 +65,11 @@ export default {
   methods: {
 
     updateDirectionTrigger(){
-      if(this.watchPosition.id !== null){
+      if(this.id !== null){
         console.log('stop')
         if(window.confirm('GPS追跡を中止しますか？')){
-          navigator.geolocation.clearWatch(this.watchPosition.id);
-          this.watchPosition.id = null;
+          navigator.geolocation.clearWatch(this.id);
+          this.id = null;
           this.changeClass('direction');
         }
       }
@@ -84,7 +83,7 @@ export default {
       if (this.pageStack.length > 1 && this.existRoom){
         button.classList.add(className)
       }
-      else if(this.watchPosition.id !== null){
+      else if(this.id !== null){
         button.classList.add(className)
       }
       else{
@@ -95,7 +94,6 @@ export default {
    //現在地を取得する
     getPosition(){
       const vm = this;
-      const watchPosition = this.watchPosition;
 
       // Geolocation APIに対応してる場合
       if(navigator.geolocation){
@@ -108,27 +106,29 @@ export default {
 
           // 前回の書き出しから3秒以上経過していたら描写
           // 毎回HTMLに書き出していると、ブラウザがフリーズするため
-          if( (watchPosition.lastTime + 3) > nowTime ){
+          if( (vm.lastTime + 3) > nowTime){
             return false;
           }
-          if(watchPosition.marker == null){
-            watchPosition.marker = new google.maps.Marker({
+
+          if(vm.marker == null){
+          vm.marker = new google.maps.Marker({
                                       map: vm.map,
                                       position: latlng,
                                       clickable: true,
-                                      icon: watchPosition.icon
+                                      icon: vm.icon
                                    });
           }
-          ++watchPosition.count; // 処理回数をカウント
-          watchPosition.lastTime = nowTime; //更新履歴を残す
+
+          ++vm.count; // 処理回数をカウント
+          vm.lastTime = nowTime; //更新履歴を残す
           //現在地がその時表示しているmap城の近くだったらスライドで移動する、
           //地図が滑らかに動くには、移動先が表示画面内に存在している必要があります。
           vm.map.panTo(latlng);
-          watchPosition.marker.setPosition(latlng);
-          if (watchPosition.count == 1){ //guide();のstart用で最初の一回だけ更新
+          vm.marker.setPosition(latlng);
+          if (vm.count == 1){ //guide();のstart用で最初の一回だけ更新
             vm.latlng = latlng; //位置を更新
           }
-          console.log(watchPosition.count+"回目の書き出し")
+          console.log(vm.count+"回目の書き出し")
         };
 
         //取得失敗
@@ -151,8 +151,8 @@ export default {
         };
         vm.$emit('backToMap');
         vm.changeClass('direction')
-        watchPosition.count = 0;
-        watchPosition.id = navigator.geolocation.watchPosition(geoSuccess, geoError, geoOptions);
+      vm.count = 0;
+      vm.id = navigator.geolocation.watchPosition(geoSuccess, geoError, geoOptions);
       }
       // Geolocation APIに対応していない場合
       else {
@@ -163,11 +163,15 @@ export default {
 
   //行きたい部屋まで案内する
     guide(){
-      // const watchPosition = this.watchPosition;
+      // const = this;
       const service = new google.maps.DirectionsService();
-      const renderer = new google.maps.DirectionsRenderer({suppressMarkers: true});
+      const renderer = new google.maps.DirectionsRenderer({
+                            suppressMarkers: true
+                       });
+
       renderer.setMap(this.map);
-      const start = this.latlng //new google.maps.LatLng(36.504975, 139.76422960000002);
+
+      const start = this.latlng 
       const end = new google.maps.LatLng(this.room.lat, this.room.lng);
       const request = {
         origin: start,      // 出発地点の緯度経度
@@ -188,38 +192,34 @@ export default {
   },
 
   watch: {
+
     pageStack: {
-      // handler() {
-      //   const button = document.getElementById('direction');
-      //   if (this.pageStack.length > 1 && this.existRoom){
-      //     button.classList.add('direction')
-      //   }else{
-      //     button.classList.remove('direction')
-      //   }
-      // }
-    
       handler(){ this.changeClass('direction')}
     },
+
     directionTrigger: {
       handler() {
         if(this.existRoom){
           if(window.confirm('ルートを表示してもよろしいですか？')){
             this.getPosition();
           }
-        } else {
+        }
+        else {
             if(window.confirm('現在地を取得してもよろしいですか？')){
               this.getPosition();
-          }
+            }
         }
       }
     },
+
     latlng: {
       handler() {
-        if(this.existRoom && this.watchPosition.count == 1){
+        if(this.existRoom && this.count == 1){
           this.guide();
         }
       }
     }
+
   }
 
 }
