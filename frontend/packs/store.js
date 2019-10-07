@@ -15,7 +15,8 @@ const store =  new Vuex.Store({
     allRooms: null,
     roomList: [],
     pageStack: [GoogleMap],
-    trigger: 0
+    directionTrigger: 0,
+    
 
   },
 
@@ -36,8 +37,11 @@ const store =  new Vuex.Store({
     pageStack(state){
       return state.pageStack;
     },
-    trigger(state){
-      return state.trigger;
+    directionTrigger(state){
+      return state.directionTrigger;
+    },
+    guideTriger(state){
+      return state.guide
     }
 
   },
@@ -68,8 +72,8 @@ const store =  new Vuex.Store({
     resetPageStack(state) {
       state.pageStack = [GoogleMap];
     },
-    updateTrigger(state) {
-      ++state.trigger;
+    updateDirectionTrigger(state) {
+      ++state.directionTrigger;
     }
 
   },
@@ -124,8 +128,8 @@ const store =  new Vuex.Store({
       context.commit('resetPageStack');
     },
 
-    updateTrigger(context) {
-      context.commit('updateTrigger');
+    updateDirectionTrigger(context) {
+      context.commit('updateDirectionTrigger');
     }
 
   },

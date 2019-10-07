@@ -74,7 +74,7 @@ export default {
 
 .tabbar__item {
   &:active {
-    background-color: #f3f0ec;
+    background-color: #f0f0f0;
 
     .tabbar__button {
       color: #ff5a47;
