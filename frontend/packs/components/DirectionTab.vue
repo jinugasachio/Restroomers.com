@@ -14,6 +14,7 @@ export default {
   data: function() {
     return {
         id: null,
+        successId: null,
         count: 0,
         lastTime: 0,
         marker: null,
@@ -34,13 +35,13 @@ export default {
       return this.$store.state.room.powder_room;
     },
     label(){
-      if(this.existRoom && this.id !== null){
-        return 'Active！'
+      if(this.existRoom && this.successId !== null){
+        return 'Active'
       }
       else if(this.existRoom){
         return 'ルートを表示'
       }
-      else if(this.id !== null){
+      else if(this.successId !== null){
         return 'Active'
       }
     },
@@ -71,6 +72,7 @@ export default {
         if(window.confirm('GPS追跡を中止しますか？')){
           navigator.geolocation.clearWatch(this.id);
           this.id = null;
+          this.successId = null;
           this.resetRoute();
         }
       }
@@ -97,6 +99,7 @@ export default {
         const vm = this;
         //取得成功
         const geoSuccess = function(position){
+          vm.successId = vm.id; //gps-modeクラスと連動させるため
           const data = position.coords;
           const latlng = new google.maps.LatLng(data.latitude, data.longitude);
           const nowTime = ~~(new Date() / 1000); // UNIX Timestamp
@@ -194,9 +197,9 @@ export default {
   },
 
   watch:{
-    id: {
+    successId: {
       handler(){
-        if(this.id == null){
+        if(this.successId == null){
           this.removeClass('gps-mode');
           if(this.existRoom){
             this.addClass('direction');
@@ -210,7 +213,7 @@ export default {
 
     pageStack: {
       handler(){
-          if(this.existRoom && this.id == null){
+          if(this.existRoom && this.successId == null){
             this.addClass('direction');
           }
           else{
