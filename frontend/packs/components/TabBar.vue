@@ -64,6 +64,7 @@ export default {
     backToMap(){
       this.activeIndex = 0
       this.$store.dispatch('resetPageStack')
+      // this.$store.dispatch('guideTrigger')
     },
   }
 

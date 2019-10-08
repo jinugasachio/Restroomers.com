@@ -91,9 +91,12 @@ export default {
 
    //現在地を取得する
     getPosition(){
-      const vm = this;
+
       // Geolocation APIに対応してる場合
       if(navigator.geolocation){
+        const vm = this;
+        
+        // debugger;
         //取得成功
         const geoSuccess = function(position){
           // debugger;
@@ -146,10 +149,12 @@ export default {
           maximumAge: 5 * 60 * 1000, //位置情報の有効期限
           freaquency: 500 //一定間隔で位置情報を取得する際の間隔を指定
         };
-        vm.$emit('backToMap');
+
+        
         vm.changeClass('direction')
-      vm.count = 0;
-      vm.id = navigator.geolocation.watchPosition(geoSuccess, geoError, geoOptions);
+        vm.count = 0;
+        vm.id = navigator.geolocation.watchPosition(geoSuccess, geoError, geoOptions);
+        vm.$emit('backToMap');
       }
       // Geolocation APIに対応していない場合
       else {
@@ -160,11 +165,13 @@ export default {
 
   //行きたい部屋まで案内する
     guide(){
+      this.$store.dispatch('guideTrigger') //falseに変える
+
       const service = new google.maps.DirectionsService();
       const renderer = new google.maps.DirectionsRenderer({
                          suppressMarkers: true
                        });
-      renderer.setMap(this.map);
+
 
       const start = this.latlng 
       const end = new google.maps.LatLng(this.room.lat, this.room.lng);
@@ -174,6 +181,7 @@ export default {
         travelMode: 'WALKING'
       };
 
+      renderer.setMap(this.map);
       service.route(request, function(result, status){
         if (status === 'OK') {
           renderer.setDirections(result); //取得したルート（結果：result）をセット
@@ -196,6 +204,7 @@ export default {
       handler() {
         if(this.existRoom){
           if(window.confirm('ルートを表示してもよろしいですか？')){
+            this.$store.dispatch('guideTrigger')
             this.getPosition();
           }
         }

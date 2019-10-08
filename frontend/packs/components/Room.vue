@@ -81,9 +81,13 @@ export default {
     }
   },
 
-  mounted(){
-    this.$store.dispatch('updateGuideTrigger')
-  },
+  // mounted(){
+  //   this.$store.dispatch('guideTrigger')
+  // },
+
+  // destroyed(){
+  //   this.$store.dispatch('guideTrigger')
+  // },
 
   watch: {
 

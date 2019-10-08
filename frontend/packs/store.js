@@ -75,7 +75,7 @@ const store =  new Vuex.Store({
     updateDirectionTrigger(state) {
       ++state.directionTrigger;
     },
-    updateGuideTrigger(state) {
+    guideTrigger(state) {
       state.guideTrigger = !state.guideTrigger
     }
 
@@ -135,8 +135,8 @@ const store =  new Vuex.Store({
       context.commit('updateDirectionTrigger');
     },
 
-    updateGuideTrigger(context) {
-      context.commit('updateGuideTrigger');
+    guideTrigger(context) {
+      context.commit('guideTrigger');
     },
 
   },
