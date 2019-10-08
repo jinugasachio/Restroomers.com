@@ -35,7 +35,7 @@ export default {
     ToolBar,
     Facility,
     Detail,
-    Review 
+    Review,
   },
 
   data() {
