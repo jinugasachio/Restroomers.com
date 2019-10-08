@@ -18,6 +18,7 @@ export default {
         lastTime: 0,
         marker: null,
         latlng: null,
+        renderer: null,
         icon: {
           url: "packs/images/position.png",
           scaledSize: new google.maps.Size(22, 22)
@@ -70,6 +71,7 @@ export default {
         if(window.confirm('GPS追跡を中止しますか？')){
           navigator.geolocation.clearWatch(this.id);
           this.id = null;
+          this.resetRoute();
           this.changeClass('direction');
         }
       }
@@ -99,7 +101,7 @@ export default {
         const vm = this;
         //取得成功
         const geoSuccess = function(position){
-          // debugger;
+
           const data = position.coords;
           const latlng = new google.maps.LatLng(data.latitude, data.longitude);
           const nowTime = ~~(new Date() / 1000); // UNIX Timestamp
@@ -112,10 +114,10 @@ export default {
 
           if(vm.marker == null){
             vm.marker = new google.maps.Marker({
-                            map: vm.map,
-                            position: latlng,
-                            clickable: true,
-                            icon: vm.icon
+                          map: vm.map,
+                          position: latlng,
+                          clickable: true,
+                          icon: vm.icon
                         });
           };
 
@@ -150,7 +152,6 @@ export default {
           freaquency: 500 //一定間隔で位置情報を取得する際の間隔を指定
         };
 
-        
         vm.changeClass('direction')
         vm.count = 0;
         vm.id = navigator.geolocation.watchPosition(geoSuccess, geoError, geoOptions);
@@ -165,32 +166,36 @@ export default {
 
   //行きたい部屋まで案内する
     guide(){
-      this.$store.dispatch('guideTrigger') //falseに変える
-
-      const service = new google.maps.DirectionsService();
-      const renderer = new google.maps.DirectionsRenderer({
+      const vm = this;
+      
+      vm.$store.dispatch('guideTrigger') //falseに変える
+      vm.renderer = new google.maps.DirectionsRenderer({
                          suppressMarkers: true
                        });
-      const start = this.latlng 
-      const goal = new google.maps.LatLng(this.room.lat, this.room.lng);
+      vm.renderer.setMap(this.map);
+
+      const start = vm.latlng 
+      const goal = new google.maps.LatLng(vm.room.lat, vm.room.lng);
+      const service = new google.maps.DirectionsService(); 
       const request = {
         origin:      start,   // 出発地点の緯度経度
         destination: goal,   // 到着地点の緯度経度
         travelMode: 'WALKING'
       };
 
-      this.renderer = renderer
-      this.rederer.setMap(this.map);
       service.route(request, function(result, status){
         if (status === 'OK') {
-          renderer.setDirections(result); //取得したルート（結果：result）をセット
+          vm.renderer.setDirections(result); //取得したルート（結果：result）をセット
         }
         else{
           alert("取得できませんでした：" + status);
         }
       });
-
     },
+
+    resetRoute(){
+      this.renderer.setMap(null);
+    }
   },
 
   watch: {
