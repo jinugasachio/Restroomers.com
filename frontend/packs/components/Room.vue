@@ -1,7 +1,6 @@
 <template>
   <v-ons-page>
     <ToolBar/>
-    <!-- <GuideButton/> -->
     <v-ons-card>
       <img v-if="roomImage" :src=activeImage class="top_image">
       <img v-else src="packs/images/no_image.png" class="top_image">
@@ -25,7 +24,6 @@ import Images from './Images.vue'
 import Facility from './RoomFacility.vue'
 import Detail from './RoomDetail.vue'
 import Review from './Review.vue'
-import GuideButton from './GuideButton.vue'
 
 export default {
 
@@ -80,14 +78,6 @@ export default {
       this.activeImage = this.imageUrls[0].url
     }
   },
-
-  // mounted(){
-  //   this.$store.dispatch('guideTrigger')
-  // },
-
-  // destroyed(){
-  //   this.$store.dispatch('guideTrigger')
-  // },
 
   watch: {
 

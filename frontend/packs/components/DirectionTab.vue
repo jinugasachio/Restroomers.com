@@ -2,7 +2,7 @@
   <v-ons-tab id="direction"
     icon="ion-ios-navigate"
     :label="label"
-    @click.prevent="updateDirectionTrigger"
+    @click.prevent="direct"
   />
 </template>
 
@@ -33,7 +33,10 @@ export default {
       return this.$store.state.room.powder_room;
     },
     label(){
-      if(this.existRoom){
+      if(this.existRoom && this.id !== null){
+        return 'GPS起動中！'
+      }
+      else if(this.existRoom){
         return 'ルートを表示！'
       }
       else if(this.id !== null){
@@ -62,9 +65,8 @@ export default {
 
   methods: {
 
-    updateDirectionTrigger(){
+    direct(){
       if(this.id !== null){
-        console.log('stop')
         if(window.confirm('GPS追跡を中止しますか？')){
           navigator.geolocation.clearWatch(this.id);
           this.id = null;
@@ -72,7 +74,7 @@ export default {
         }
       }
       else{
-        this.$store.dispatch('updateDirectionTrigger')
+        this.$store.dispatch('directionTrigger')
       }
     },
 
@@ -95,8 +97,6 @@ export default {
       // Geolocation APIに対応してる場合
       if(navigator.geolocation){
         const vm = this;
-        
-        // debugger;
         //取得成功
         const geoSuccess = function(position){
           // debugger;
@@ -171,8 +171,6 @@ export default {
       const renderer = new google.maps.DirectionsRenderer({
                          suppressMarkers: true
                        });
-
-
       const start = this.latlng 
       const end = new google.maps.LatLng(this.room.lat, this.room.lng);
       const request = {
