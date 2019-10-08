@@ -92,7 +92,6 @@ export default {
    //現在地を取得する
     getPosition(){
       const vm = this;
-
       // Geolocation APIに対応してる場合
       if(navigator.geolocation){
         //取得成功
@@ -210,7 +209,7 @@ export default {
 
     latlng: {
       handler() {
-        if(this.count == 1){
+        if(this.count == 1 && this.guideTrigger){
           this.guide();
         }
       }

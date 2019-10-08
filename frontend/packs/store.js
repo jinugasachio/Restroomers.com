@@ -76,7 +76,7 @@ const store =  new Vuex.Store({
       ++state.directionTrigger;
     },
     updateGuideTrigger(state) {
-      ++state.guideTrigger;
+      state.guideTrigger = !state.guideTrigger
     }
 
   },
