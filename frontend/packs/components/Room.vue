@@ -36,7 +36,6 @@ export default {
     Facility,
     Detail,
     Review,
-    GuideButton
   },
 
   data() {

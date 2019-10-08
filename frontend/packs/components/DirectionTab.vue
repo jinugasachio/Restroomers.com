@@ -172,14 +172,15 @@ export default {
                          suppressMarkers: true
                        });
       const start = this.latlng 
-      const end = new google.maps.LatLng(this.room.lat, this.room.lng);
+      const goal = new google.maps.LatLng(this.room.lat, this.room.lng);
       const request = {
-        origin: start,      // 出発地点の緯度経度
-        destination: end,   // 到着地点の緯度経度
+        origin:      start,   // 出発地点の緯度経度
+        destination: goal,   // 到着地点の緯度経度
         travelMode: 'WALKING'
       };
 
-      renderer.setMap(this.map);
+      this.renderer = renderer
+      this.rederer.setMap(this.map);
       service.route(request, function(result, status){
         if (status === 'OK') {
           renderer.setDirections(result); //取得したルート（結果：result）をセット
