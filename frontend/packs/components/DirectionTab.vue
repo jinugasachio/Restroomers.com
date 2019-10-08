@@ -1,7 +1,8 @@
 <template>
   <v-ons-tab id="direction"
+  class="gpsMode"
     icon="ion-ios-navigate"
-    :label="label"
+    label="Active"
     @click.prevent="direct"
   />
 </template>
@@ -96,16 +97,14 @@ export default {
    //現在地を取得する
     getPosition(){
 
-      // Geolocation APIに対応してる場合
+      // 端末がGeolocation APIに対応してる場合
       if(navigator.geolocation){
         const vm = this;
         //取得成功
         const geoSuccess = function(position){
-
           const data = position.coords;
           const latlng = new google.maps.LatLng(data.latitude, data.longitude);
           const nowTime = ~~(new Date() / 1000); // UNIX Timestamp
-
           // 前回の書き出しから3秒以上経過していたら描写
           // 毎回HTMLに書き出していると、ブラウザがフリーズするため
           if( (vm.lastTime + 3) > nowTime){
@@ -152,14 +151,14 @@ export default {
           freaquency: 500 //一定間隔で位置情報を取得する際の間隔を指定
         };
 
-        vm.changeClass('direction')
         vm.count = 0;
         vm.id = navigator.geolocation.watchPosition(geoSuccess, geoError, geoOptions);
+
         vm.$emit('backToMap');
       }
       // Geolocation APIに対応していない場合
       else {
-        alert( "お使いの端末では、現在位置を取得できません。" ) ;
+        alert( "お使いの端末では、現在位置を取得できません。" );
       }
     },
 
@@ -167,14 +166,14 @@ export default {
   //行きたい部屋まで案内する
     guide(){
       const vm = this;
-      
+
       vm.$store.dispatch('guideTrigger') //falseに変える
       vm.renderer = new google.maps.DirectionsRenderer({
                          suppressMarkers: true
                        });
       vm.renderer.setMap(this.map);
 
-      const start = vm.latlng 
+      const start = vm.latlng;
       const goal = new google.maps.LatLng(vm.room.lat, vm.room.lng);
       const service = new google.maps.DirectionsService(); 
       const request = {
@@ -194,21 +193,30 @@ export default {
     },
 
     resetRoute(){
-      this.renderer.setMap(null);
+      if (this.renderer !== null){
+        this.renderer.setMap(null);
+      }
     }
   },
 
-  watch: {
+  watch:{
 
     pageStack: {
-      handler(){ this.changeClass('direction')}
+      handler(){
+        if(this.id !== null){
+          this.changeClass('gpsMode');
+        }
+        else{
+          this.changeClass('direction');
+        }
+      }
     },
 
-    directionTrigger: {
-      handler() {
+    directionTrigger:{
+      handler(){
         if(this.existRoom){
           if(window.confirm('ルートを表示してもよろしいですか？')){
-            this.$store.dispatch('guideTrigger')
+            this.$store.dispatch('guideTrigger');
             this.getPosition();
           }
         }
@@ -221,7 +229,7 @@ export default {
     },
 
     latlng: {
-      handler() {
+      handler(){
         if(this.count == 1 && this.guideTrigger){
           this.guide();
         }
@@ -245,4 +253,49 @@ export default {
   }
 }
 
+.gpsMode {
+  .tabbar__button {
+    color: #ff5757;
+
+    .ons-icon {
+      border-radius: 50%;
+      animation: pulse 1.3s infinite;
+    }
+
+    .tabbar__label {
+      color: #5c5c5c;
+    }
+  }
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba(247, 163, 7, 0.4);
+  }
+
+  70% {
+    -webkit-box-shadow: 0 0 0 15px rgba(247, 163, 44, 0);
+  }
+
+  100% {
+    -webkit-box-shadow: 0 0 0 0 rgba(204, 163, 44, 0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    -moz-box-shadow: 0 0 0 0 rgba(247, 163, 7, 0.4);
+    box-shadow: 0 0 0 0 rgba(247, 163, 7, 0.4);
+  }
+
+  70% {
+    -moz-box-shadow: 0 0 0 15px rgba(204, 163, 44, 0);
+    box-shadow: 0 0 0 15px rgba(204, 163, 44, 0);
+  }
+
+  100% {
+    -moz-box-shadow: 0 0 0 0 rgba(204, 163, 44, 0);
+    box-shadow: 0 0 0 0 rgba(204, 163, 44, 0);
+  }
+}
 </style>
