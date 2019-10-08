@@ -21,7 +21,7 @@ export default {
   methods: {
 
     searchRoom(){
-      // this.$emit('backToMap')
+      this.$emit('backToMap')
       console.log('helllo')
     },
 
