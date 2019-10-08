@@ -1,8 +1,7 @@
 <template>
   <v-ons-tab id="direction"
-  class="gpsMode"
     icon="ion-ios-navigate"
-    label="Active"
+    :label="label"
     @click.prevent="direct"
   />
 </template>
@@ -36,13 +35,13 @@ export default {
     },
     label(){
       if(this.existRoom && this.id !== null){
-        return 'GPS起動中！'
+        return 'Active！'
       }
       else if(this.existRoom){
-        return 'ルートを表示！'
+        return 'ルートを表示'
       }
       else if(this.id !== null){
-        return 'GPS起動中！'
+        return 'Active'
       }
     },
     pageStack(){
@@ -73,7 +72,6 @@ export default {
           navigator.geolocation.clearWatch(this.id);
           this.id = null;
           this.resetRoute();
-          this.changeClass('direction');
         }
       }
       else{
@@ -81,17 +79,14 @@ export default {
       }
     },
 
-    changeClass(className){
+    addClass(className){
       const button = document.getElementById('direction');
-      if (this.pageStack.length > 1 && this.existRoom){
-        button.classList.add(className)
-      }
-      else if(this.id !== null){
-        button.classList.add(className)
-      }
-      else{
-        button.classList.remove(className)
-      }
+      button.classList.add(className)
+
+    },
+    removeClass(className){
+      const button = document.getElementById('direction');
+      button.classList.remove(className)
     },
 
    //現在地を取得する
@@ -153,7 +148,6 @@ export default {
 
         vm.count = 0;
         vm.id = navigator.geolocation.watchPosition(geoSuccess, geoError, geoOptions);
-
         vm.$emit('backToMap');
       }
       // Geolocation APIに対応していない場合
@@ -200,15 +194,28 @@ export default {
   },
 
   watch:{
+    id: {
+      handler(){
+        if(this.id == null){
+          this.removeClass('gps-mode');
+          if(this.existRoom){
+            this.addClass('direction');
+          }
+        }
+        else{
+          this.addClass('gps-mode');
+        }
+      }
+    },
 
     pageStack: {
       handler(){
-        if(this.id !== null){
-          this.changeClass('gpsMode');
-        }
-        else{
-          this.changeClass('direction');
-        }
+          if(this.existRoom && this.id == null){
+            this.addClass('direction');
+          }
+          else{
+            this.removeClass('direction');
+          }
       }
     },
 
@@ -250,10 +257,14 @@ export default {
 
   .tabbar__button {
     color: #fff;
+
+    .tabbar__label {
+      font-weight: 900;
+    }
   }
 }
 
-.gpsMode {
+.gps-mode {
   .tabbar__button {
     color: #ff5757;
 
