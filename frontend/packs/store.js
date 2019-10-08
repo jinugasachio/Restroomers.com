@@ -83,7 +83,7 @@ const store =  new Vuex.Store({
       state.guideTrigger = !state.guideTrigger
     },
     showSearchBox(state) {
-      state.guideTrigger = !state.showSearchBox
+      state.showSearchBox = !state.showSearchBox
     }
 
   },

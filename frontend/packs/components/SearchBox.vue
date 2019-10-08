@@ -1,6 +1,6 @@
 <template>
   <div class="search__box"
-  :show="showSearchBox"
+  v-show="showSearchBox"
   >
     <input type="text" placeholder="Type to search">
   </div>

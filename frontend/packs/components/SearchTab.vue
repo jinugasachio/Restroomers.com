@@ -1,5 +1,6 @@
 <template>
-  <v-ons-tab 
+  <v-ons-tab
+    id="search"
     icon="ion-ios-search"
     @click.prevent="searchRoom"
   />
@@ -15,6 +16,9 @@ export default {
   computed: {
     map(){
       return this.$store.state.map;
+    },
+    showSearchBox(){
+      return this.$store.getters.showSearchBox
     }
   },
 
@@ -22,9 +26,28 @@ export default {
 
     searchRoom(){
       this.$emit('backToMap')
-      console.log('helllo')
+      this.$store.dispatch('showSearchBox')
     },
 
   },
+
+  watch:{
+    showSearchBox:{
+      handler(){
+        if(this.showSearchBox == true){
+          const button = document.getElementById('search');
+          button.classList.add('active__search')}
+      }
+    }
+  }
 }
 </script>
+
+<style lang="scss">
+.active__search {
+  .tabbar__button {
+    color: #ff5a47;
+  }
+}
+
+</style>
