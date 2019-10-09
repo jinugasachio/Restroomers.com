@@ -12,7 +12,6 @@ import './images/ladyicon.png'
 import './images/no_image.png'
 import './images/position.png'
 import './images/search1.png'
-import './images/search2.png'
 
 
 Vue.use(VueOnsen);

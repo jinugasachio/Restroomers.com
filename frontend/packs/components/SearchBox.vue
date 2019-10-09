@@ -9,11 +9,10 @@
           @click="search"
         >
       </div>
-
       <input 
         type="text"
         class="search__box__innner__input"
-        placeholder="Search something"
+        placeholder="Type to Search"
         v-model="inputWords"
         @keyup.enter="search"
       >
@@ -92,7 +91,7 @@ export default {
       position: relative;
       display: inline-block;
       width: 3rem;
-      height: 70%;
+      height: 80%;
       color: white;
       cursor: pointer;
       background-color: #ff8b85;
