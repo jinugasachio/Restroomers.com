@@ -19,7 +19,7 @@ export default {
   name: "SeatrchBox",
   data(){
     return{
-      inputWords: ''
+      inputWords: null
     }
   },
 
@@ -29,25 +29,26 @@ export default {
     },
     showSearchBox(){
       return this.$store.getters.showSearchBox
-    }
+    },
   },
 
   methods: {
     search(){
-      const vm = this;
+      if(typeof this.inputWords == 'string'){ //細くバリデーションするならここ、一旦応急処置的にこれ。
+        const vm = this;
+        const request ={
+          query: vm.inputWords,
+          fields: ['geometry']
+        };
+        const service = new google.maps.places.PlacesService(this.map);
 
-      const request ={
-        query: this.inputWords,
-        fields: [ 'name', 'geometry']
-      };
-
-      const service = new google.maps.places.PlacesService(this.map);
-
-      service.findPlaceFromQuery( request, function(results, status) {
-        if ( status === google.maps.places.PlacesServiceStatus.OK ) {
-          vm.map.setCenter( results[0].geometry.location)
-        }
-      })
+        service.findPlaceFromQuery( request, function(results, status) {
+          if ( status === google.maps.places.PlacesServiceStatus.OK ) {
+            vm.map.panTo( results[0].geometry.location)
+            vm.map.setZoom(16)
+          }
+        })
+      }
     }
   }
 }
