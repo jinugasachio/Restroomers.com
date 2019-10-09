@@ -46,6 +46,8 @@ export default {
           if ( status === google.maps.places.PlacesServiceStatus.OK ) {
             vm.map.panTo( results[0].geometry.location)
             vm.map.setZoom(16)
+            vm.inputWords = null
+            vm.$store.dispatch('showSearchBox')
           }
         })
       }
