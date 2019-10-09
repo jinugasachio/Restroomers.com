@@ -1,5 +1,7 @@
 <template>
-    <v-ons-modal :visible="showSearchBox">
+    <v-ons-modal
+      :visible="showSearchBox"
+    >
       <SearchBox/>
     </v-ons-modal>
 </template>
@@ -8,16 +10,19 @@
 import SearchBox from './SearchBox.vue'
 
 export default {
+
   name: 'Modal',
 
   components: {
     SearchBox
   },
+
   computed: {
     showSearchBox(){
       return this.$store.getters.showSearchBox
     },
   },
+
 }
 </script>
 

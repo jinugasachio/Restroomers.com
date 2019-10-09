@@ -44,7 +44,7 @@ export default {
 
   data() {
     return {
-      activeIndex: 0,
+      // activeIndex: 0,
       tabs: [
         {
           icon: 'ion-ios-home',
@@ -59,6 +59,12 @@ export default {
         }
       ]
     };
+  },
+
+  computed: {
+    activeIndex(){
+      return this.$store.getters.activeIndex
+    }
   },
 
   methods: {
