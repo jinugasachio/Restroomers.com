@@ -81,16 +81,6 @@ export default {
       }
     },
 
-    addClass(className){
-      const button = document.getElementById('direction');
-      button.classList.add(className)
-
-    },
-    removeClass(className){
-      const button = document.getElementById('direction');
-      button.classList.remove(className)
-    },
-
    //現在地を取得する
     getPosition(){
 
@@ -200,13 +190,13 @@ export default {
     successId: {
       handler(){
         if(this.successId == null){
-          this.removeClass('gps-mode');
+          this.$emit('removeClass','direction','gps-mode');
           if(this.existRoom){
-            this.addClass('direction');
+            this.$emit('addClass','direction','direct-mode');
           }
         }
         else{
-          this.addClass('gps-mode');
+          this.$emit('addClass','direction','gps-mode');
         }
       }
     },
@@ -214,10 +204,10 @@ export default {
     pageStack: {
       handler(){
           if(this.existRoom && this.successId == null){
-            this.addClass('direction');
+            this.$emit('addClass','direction','direct-mode');
           }
           else{
-            this.removeClass('direction');
+            this.$emit('removeClass','direction', 'direct-mode');
           }
       }
     },
@@ -255,7 +245,7 @@ export default {
 
 <style lang="scss">
 
-.direction {
+.direct-mode {
   background-color: #ff5757;
 
   .tabbar__button {

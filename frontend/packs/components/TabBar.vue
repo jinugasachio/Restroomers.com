@@ -11,8 +11,16 @@
         :key= i
       >
       </v-ons-tab>
-      <SearchTab @backToMap="backToMap"/>
-      <DirectionTab @backToMap="backToMap"/>
+      <SearchTab 
+        @backToMap="backToMap"
+        @addClass="addClass"
+        @removeClass="removeClass"
+      />
+      <DirectionTab 
+        @backToMap="backToMap"
+        @addClass="addClass"
+        @removeClass="removeClass"
+      />
     </v-ons-tabbar>
 </template>
 
@@ -42,10 +50,6 @@ export default {
           icon: 'ion-ios-home',
           label: '',
           page: Navigator,
-          props: {
-            myProp: 'This is a page prop!'
-          },
-          // key: ""
         },
         {
           // icon: 'packs/images/lipstick.png',
@@ -54,7 +58,6 @@ export default {
           label: '',
           page: UserPage,
           badge: '',
-          // key: ""
         }
       ]
     };
@@ -64,8 +67,17 @@ export default {
     backToMap(){
       this.activeIndex = 0
       this.$store.dispatch('resetPageStack')
-      // this.$store.dispatch('guideTrigger')
     },
+    addClass(idName, className){
+      const button = document.getElementById(idName);
+      button.classList.add(className)
+
+    },
+    removeClass(idName, className){
+      const button = document.getElementById(idName);
+      button.classList.remove(className)
+    },
+
   }
 
 }
