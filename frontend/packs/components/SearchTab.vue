@@ -17,6 +17,9 @@ export default {
     map(){
       return this.$store.state.map;
     },
+    activeIndex(){
+      return this.$store.state.activeIndex
+    },
     showSearchBox(){
       return this.$store.getters.showSearchBox
     }
@@ -39,6 +42,13 @@ export default {
         }
         else{
           this.$emit('removeClass','search','search-mode')
+        }
+      }
+    },
+    activeIndex:{
+      handler(){
+        if(this.activeIndex == 1 && this.showSearchBox == true){
+          this.$store.dispatch('showSearchBox')
         }
       }
     }

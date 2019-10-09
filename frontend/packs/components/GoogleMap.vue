@@ -2,7 +2,6 @@
   <v-ons-page>
     <div id="map">
     </div>
-
     <Modal/>
   </v-ons-page>
 </template>

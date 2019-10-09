@@ -44,27 +44,22 @@ export default {
 
   data() {
     return {
-      // activeIndex: 0,
+      activeIndex: 0,
       tabs: [
         {
           icon: 'ion-ios-home',
           label: '',
           page: Navigator,
+          index: 0,
         },
         {
           icon: 'ion-ios-heart',
           label: '',
           page: UserPage,
-          badge: '',
+          index: 1
         }
       ]
     };
-  },
-
-  computed: {
-    activeIndex(){
-      return this.$store.getters.activeIndex
-    }
   },
 
   methods: {
@@ -83,6 +78,14 @@ export default {
       button.classList.remove(className)
     },
 
+
+  },
+  watch: {
+    activeIndex:{
+      handler(newIndex){
+        this.$store.dispatch('activeIndex', newIndex)
+      }
+    }
   }
 
 }
