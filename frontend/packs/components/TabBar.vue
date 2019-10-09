@@ -64,6 +64,7 @@ export default {
   },
 
   methods: {
+    
     backToMap(){
       this.activeIndex = 0
       this.$store.dispatch('resetPageStack')

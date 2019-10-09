@@ -35,8 +35,11 @@ export default {
     showSearchBox:{
       handler(){
         if(this.showSearchBox == true){
-          const button = document.getElementById('search');
-          button.classList.add('active__search')}
+          this.$emit('addClass','search','search-mode')
+        }
+        else{
+          this.$emit('removeClass','search','search-mode')
+        }
       }
     }
   }
@@ -44,7 +47,8 @@ export default {
 </script>
 
 <style lang="scss">
-.active__search {
+
+.search-mode {
   .tabbar__button {
     color: #ff5a47;
   }
