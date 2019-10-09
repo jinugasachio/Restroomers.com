@@ -42,7 +42,7 @@ export default {
     DirectionTab
   },
 
-  data: function() {
+  data() {
     return {
       activeIndex: 0,
       tabs: [
@@ -52,8 +52,6 @@ export default {
           page: Navigator,
         },
         {
-          // icon: 'packs/images/lipstick.png',
-          // 上の形では指定できないっぽい
           icon: 'ion-ios-heart',
           label: '',
           page: UserPage,
@@ -64,7 +62,7 @@ export default {
   },
 
   methods: {
-    
+
     backToMap(){
       this.activeIndex = 0
       this.$store.dispatch('resetPageStack')

@@ -2,7 +2,7 @@
   <v-ons-tab
     id="search"
     icon="ion-ios-search"
-    @click.prevent="searchRoom"
+    @click.prevent="activeSearchBox"
   />
 </template>
 
@@ -24,7 +24,7 @@ export default {
 
   methods: {
 
-    searchRoom(){
+    activeSearchBox(){
       this.$emit('backToMap')
       this.$store.dispatch('showSearchBox')
     },

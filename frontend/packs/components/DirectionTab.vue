@@ -11,7 +11,7 @@ export default {
 
   name: "DirectionTab",
 
-  data: function() {
+  data() {
     return {
         id: null,
         successId: null,
