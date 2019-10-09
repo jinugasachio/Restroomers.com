@@ -2,6 +2,7 @@
   <v-ons-page>
     <div id="map">
     </div>
+    <Modal/>
   </v-ons-page>
 </template>
 
@@ -11,6 +12,8 @@ import Room from './Room.vue'
 import RoomList from './RoomList.vue'
 import Navigator from './Navigator.vue'
 
+import Modal from './Modal.vue'
+
 export default {
 
   name: "GoogleMap",
@@ -18,7 +21,9 @@ export default {
   components: {
     Room,
     RoomList,
-    Navigator
+    Navigator,
+
+    Modal
   },
 
   data() {

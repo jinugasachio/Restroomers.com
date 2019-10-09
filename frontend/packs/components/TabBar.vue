@@ -11,8 +11,16 @@
         :key= i
       >
       </v-ons-tab>
-      <SearchTab @backToMap="backToMap"/>
-      <DirectionTab @backToMap="backToMap"/>
+      <SearchTab 
+        @backToMap="backToMap"
+        @addClass="addClass"
+        @removeClass="removeClass"
+      />
+      <DirectionTab 
+        @backToMap="backToMap"
+        @addClass="addClass"
+        @removeClass="removeClass"
+      />
     </v-ons-tabbar>
 </template>
 
@@ -34,7 +42,7 @@ export default {
     DirectionTab
   },
 
-  data: function() {
+  data() {
     return {
       activeIndex: 0,
       tabs: [
@@ -42,30 +50,42 @@ export default {
           icon: 'ion-ios-home',
           label: '',
           page: Navigator,
-          props: {
-            myProp: 'This is a page prop!'
-          },
-          // key: ""
+          index: 0,
         },
         {
-          // icon: 'packs/images/lipstick.png',
-          // 上の形では指定できないっぽい
           icon: 'ion-ios-heart',
           label: '',
           page: UserPage,
-          badge: '',
-          // key: ""
+          index: 1
         }
       ]
     };
   },
 
   methods: {
+
     backToMap(){
       this.activeIndex = 0
       this.$store.dispatch('resetPageStack')
-      // this.$store.dispatch('guideTrigger')
     },
+    addClass(idName, className){
+      const button = document.getElementById(idName);
+      button.classList.add(className)
+
+    },
+    removeClass(idName, className){
+      const button = document.getElementById(idName);
+      button.classList.remove(className)
+    },
+
+
+  },
+  watch: {
+    activeIndex:{
+      handler(newIndex){
+        this.$store.dispatch('activeIndex', newIndex)
+      }
+    }
   }
 
 }

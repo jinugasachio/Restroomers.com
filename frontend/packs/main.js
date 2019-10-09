@@ -1,7 +1,7 @@
 // webpackエントリーポイントファイル
 
 import Vue from 'vue'
-import VueOnsen from 'vue-onsenui';
+import VueOnsen from 'vue-onsenui'
 import App from './App.vue'
 import store from './store.js'
 import router from './router.js'
@@ -11,6 +11,8 @@ import './images/lipstick.png'
 import './images/ladyicon.png'
 import './images/no_image.png'
 import './images/position.png'
+import './images/search1.png'
+
 
 Vue.use(VueOnsen);
 Vue.component('star-rating', VueStarRating.default);

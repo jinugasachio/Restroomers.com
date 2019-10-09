@@ -16,7 +16,9 @@ const store =  new Vuex.Store({
     roomList: [],
     pageStack: [GoogleMap],
     directionTrigger: false,
-    guideTrigger: false
+    guideTrigger: false,
+    showSearchBox: false,
+    activeIndex: 0,
 
   },
 
@@ -42,6 +44,12 @@ const store =  new Vuex.Store({
     },
     guideTrigger(state){
       return state.guideTrigger;
+    },
+    showSearchBox(state){
+      return state.showSearchBox;
+    },
+    activeIndex(state){
+      return state.activeIndex
     }
 
   },
@@ -77,6 +85,12 @@ const store =  new Vuex.Store({
     },
     guideTrigger(state) {
       state.guideTrigger = !state.guideTrigger
+    },
+    showSearchBox(state) {
+      state.showSearchBox = !state.showSearchBox
+    },
+    activeIndex(state, payload) {
+      state.activeIndex = payload
     }
 
   },
@@ -138,6 +152,14 @@ const store =  new Vuex.Store({
     guideTrigger(context) {
       context.commit('guideTrigger');
     },
+
+    showSearchBox(context){
+      context.commit('showSearchBox');
+    },
+
+    activeIndex(context, newIndex){
+      context.commit('activeIndex', newIndex);
+    }
 
   },
 
