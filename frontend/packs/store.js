@@ -17,7 +17,7 @@ const store =  new Vuex.Store({
     pageStack: [GoogleMap],
     directionTrigger: false,
     guideTrigger: false,
-    showSearchBox: true,
+    showSearchBox: false,
 
   },
 
