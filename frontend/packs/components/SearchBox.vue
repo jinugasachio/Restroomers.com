@@ -2,13 +2,22 @@
   <div class="search__box"
     v-show="showSearchBox"
   >
-    <v-ons-search-input
-      class="search__box__inner"
-      placeholder="Search something"
-      v-model="inputWords"
-      @keyup.enter="search"
-    >
-    </v-ons-search-input>
+    <div class="search__box__inner">
+      <div class="search__box__inner__box">
+        <img src="packs/images/search1.png" 
+          class="search__box__innner__box__image" 
+          @click="search"
+        >
+      </div>
+
+      <input 
+        type="text"
+        class="search__box__innner__input"
+        placeholder="Search something"
+        v-model="inputWords"
+        @keyup.enter="search"
+      >
+    </div>
   </div>
 </template>
 
@@ -67,19 +76,45 @@ export default {
   bottom: 0;
   left: 0;
   width: 80%;
-  height: 50px;
+  height: 7%;
   margin: auto;
+  background-color: #fff;
+  border-radius: 40px;
 
   .search__box__inner {
-    width: 100%;
+    display: flex;
+    align-items: center;
+    width: 90%;
     height: 100%;
-    background-color: white;
+    margin: 0 auto;
 
-    .search-input {
-      height: 100%;
-      font-size: 1rem;
+    .search__box__inner__box {
+      position: relative;
+      display: inline-block;
+      width: 3rem;
+      height: 70%;
+      color: white;
+      cursor: pointer;
+      background-color: #ff8b85;
+      border-radius: 50%;
+
+      .search__box__innner__box__image {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 1.6rem;
+        margin: auto;
+        background-color: #ff8b85;
+      }
+    }
+
+    .search__box__innner__input {
+      width: 90%;
+      padding: 0.9rem;
+      border: none;
     }
   }
 }
-
 </style>
