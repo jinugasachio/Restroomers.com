@@ -3,6 +3,7 @@
     v-show="showSearchBox"
   >
     <v-ons-search-input
+      class="search__box__inner"
       placeholder="Search something"
       v-model="inputWords"
       @keyup.enter="search"
@@ -46,8 +47,9 @@ export default {
           if ( status === google.maps.places.PlacesServiceStatus.OK ) {
             vm.map.panTo( results[0].geometry.location)
             vm.map.setZoom(16)
-            vm.inputWords = null
             vm.$store.dispatch('showSearchBox')
+            vm.inputWords = null
+            
           }
         })
       }
@@ -56,7 +58,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 
 .search__box {
   position: absolute;
@@ -68,9 +70,15 @@ export default {
   height: 50px;
   margin: auto;
 
-  input {
+  .search__box__inner {
     width: 100%;
     height: 100%;
+    background-color: white;
+
+    .search-input {
+      height: 100%;
+      font-size: 1rem;
+    }
   }
 }
 
