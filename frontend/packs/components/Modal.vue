@@ -5,7 +5,6 @@
 </template>
 
 <script>
-
 import SearchBox from './SearchBox.vue'
 
 export default {

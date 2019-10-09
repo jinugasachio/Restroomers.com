@@ -14,7 +14,8 @@
         class="search__box__innner__input"
         placeholder="Type to Search"
         v-model="inputWords"
-        @keyup.enter="search"
+        @keyup.enter="searchTrigger"
+        @keypress="search"
       >
     </div>
   </div>
@@ -28,7 +29,8 @@ export default {
   name: "SeatrchBox",
   data(){
     return{
-      inputWords: null
+      inputWords: null,
+      canSearch: false
     }
   },
 
@@ -42,6 +44,13 @@ export default {
   },
 
   methods: {
+    searchTrigger() {
+      if (!this.canSearch) {
+        return
+      }
+      this.canSearch = false
+    },
+
     search(){
       if(typeof this.inputWords == 'string'){ //細くバリデーションするならここ、一旦応急処置的にこれ。
         const vm = this;
@@ -62,6 +71,7 @@ export default {
         })
       }
     }
+
   }
 }
 </script>
