@@ -2,6 +2,7 @@ import 'babel-polyfill'
 import Vue from 'vue'
 import Vuex from 'vuex'
 import GoogleMap from './components/GoogleMap.vue'
+import Sign from './components/Sign.vue'
 import defaultData from './modules/default_data.json'
 
 Vue.use(Vuex)
@@ -15,7 +16,7 @@ const store =  new Vuex.Store({
     allRooms: null,
     roomList: [],
     pageStack1: [GoogleMap],
-    pageStack2: [],
+    pageStack2: [Sign],
     directionTrigger: false,
     guideTrigger: false,
     showSearchBox: false,

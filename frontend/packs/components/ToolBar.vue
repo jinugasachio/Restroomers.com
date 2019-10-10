@@ -7,9 +7,14 @@
       </v-ons-back-button>
     </div>
     <div class="center"
-      v-show="activeIndex"
+      v-show="activeIndex0"
     >
       {{ roomName }}
+    </div>
+    <div class="center"
+      v-show="activeIndex1"
+    >
+      {{ pageName }}
     </div>
   </v-ons-toolbar>
 </template>
@@ -32,11 +37,22 @@ export default {
         return this.$store.getters.room.powder_room.name
       }
     },
+    pageName(){
+      return "新規登録 / ログイン"
+    },
     pageStack1(){
       return this.$store.state.pageStack1
     },
-    activeIndex(){
+    activeIndex0(){
       if(this.$store.state.activeIndex == 0){
+        return true
+      }
+      else{
+        return false
+      }
+    },
+    activeIndex1(){
+      if(this.$store.state.activeIndex == 1){
         return true
       }
       else{
