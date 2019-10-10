@@ -77,16 +77,8 @@ export default {
       const button = document.getElementById(idName);
       button.classList.remove(className)
     },
-
-
   },
-  watch: {
-    activeIndex:{
-      handler(newIndex){
-        this.$store.dispatch('activeIndex', newIndex)
-      }
-    }
-  }
+
 
 }
 </script>
