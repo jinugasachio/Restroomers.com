@@ -17,9 +17,6 @@ export default {
     map(){
       return this.$store.state.map;
     },
-    activeIndex(){
-      return this.$store.state.activeIndex
-    },
     showSearchBox(){
       return this.$store.getters.showSearchBox
     }

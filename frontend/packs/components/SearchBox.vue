@@ -70,9 +70,9 @@ export default {
             vm.inputWords = null
             
           }
-        })
+        });
       }
-    }
+    },
 
   }
 }
@@ -87,7 +87,8 @@ export default {
   bottom: 0;
   left: 0;
   width: 80%;
-  height: 7%;
+  max-width: 310px;
+  height: 68px;
   margin: auto;
   background-color: #fff;
   border-radius: 40px;
@@ -96,14 +97,16 @@ export default {
     display: flex;
     align-items: center;
     width: 90%;
+    max-width: 267px;
     height: 100%;
+    min-height: 53px;
     margin: 0 auto;
 
     .search__box__inner__box {
       position: relative;
       display: inline-block;
-      width: 3rem;
-      height: 80%;
+      width: 75px;
+      min-height: 54px;
       color: white;
       cursor: pointer;
       background-color: #ff8b85;
@@ -115,7 +118,7 @@ export default {
         right: 0;
         bottom: 0;
         left: 0;
-        width: 1.6rem;
+        width: 1.5rem;
         margin: auto;
         background-color: #ff8b85;
       }
