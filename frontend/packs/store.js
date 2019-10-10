@@ -15,6 +15,7 @@ const store =  new Vuex.Store({
     allRooms: null,
     roomList: [],
     pageStack1: [GoogleMap],
+    pageStack2: [],
     directionTrigger: false,
     guideTrigger: false,
     showSearchBox: false,
@@ -37,6 +38,9 @@ const store =  new Vuex.Store({
     },
     pageStack1(state){
       return state.pageStack1;
+    },
+    pageStack2(state){
+      return state.pageStack2;
     },
     directionTrigger(state){
       return state.directionTrigger;
@@ -74,7 +78,7 @@ const store =  new Vuex.Store({
       state.pageStack1.pop();
     },
     resetPageStack(state) {
-      state.pageStack = [GoogleMap];
+      state.pageStack1 = [GoogleMap];
     },
     directionTrigger(state) {
       state.directionTrigger = !state.directionTrigger

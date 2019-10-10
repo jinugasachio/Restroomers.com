@@ -1,7 +1,6 @@
 <template>
     <v-ons-navigator
     :page-stack="pageStack1"
-    @push-page="push($event)"
   ></v-ons-navigator>
 </template>
 
@@ -15,13 +14,6 @@ export default {
   computed: {
     pageStack1(){
       return this.$store.getters.pageStack1
-    }
-  },
-
-  methods: {
-    push(page){
-      debugger;
-      this.$store.dispatch('pushPage', page)
     }
   },
 

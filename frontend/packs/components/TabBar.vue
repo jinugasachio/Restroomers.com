@@ -26,8 +26,8 @@
 
 
 <script>
-import UserPage from './UserPage.vue'
 import Navigator1 from './Navigator1.vue'
+import Navigator2 from './Navigator2.vue'
 import SearchTab from './SearchTab.vue'
 import DirectionTab from './DirectionTab.vue'
 
@@ -36,8 +36,8 @@ export default {
   name: "TabBar",
 
   components: {
-    UserPage,
     Navigator1,
+    Navigator2,
     SearchTab,
     DirectionTab
   },
@@ -55,7 +55,7 @@ export default {
         {
           icon: 'ion-ios-heart',
           label: '',
-          page: UserPage,
+          page: Navigator2,
           index: 1
         }
       ]

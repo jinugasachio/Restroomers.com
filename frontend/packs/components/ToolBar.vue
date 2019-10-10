@@ -19,16 +19,17 @@ export default {
   computed: {
 
     roomName(){
-      if (this.pageStack.length == 2 && this.pageStack[1].name == "RoomList"){
+      if (this.pageStack1.length == 2 && this.pageStack1[1].name == "RoomList"){
         const num = this.$store.getters.roomList[0].ancestry
         const parent = this.$store.state.allRooms[num - 1]
         return parent.name
-      } else {
+      } 
+      else {
         return this.$store.getters.room.powder_room.name
       }
     },
-    pageStack(){
-      return this.$store.state.pageStack
+    pageStack1(){
+      return this.$store.state.pageStack1
     },
 
   },
