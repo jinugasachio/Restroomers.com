@@ -45,8 +45,8 @@ export default {
         return 'Active'
       }
     },
-    pageStack(){
-      return this.$store.state.pageStack
+    pageStack1(){
+      return this.$store.state.pageStack1
     },
     directionTrigger(){
       return this.$store.state.directionTrigger
@@ -55,7 +55,7 @@ export default {
       return this.$store.state.guideTrigger
     },
     existRoom(){
-      if(this.pageStack.filter(function(page){
+      if(this.pageStack1.filter(function(page){
         return page.name == "Room"}).length >0){
           return true
       }
@@ -201,7 +201,7 @@ export default {
       }
     },
 
-    pageStack: {
+    pageStack1: {
       handler(){
           if(this.existRoom && this.successId == null){
             this.$emit('addClass','direction','direct-mode');

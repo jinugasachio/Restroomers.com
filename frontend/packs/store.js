@@ -14,7 +14,7 @@ const store =  new Vuex.Store({
     room: defaultData, //コンソールエラー防止のため | リレーションしてるモデルデータも合わせて格納している
     allRooms: null,
     roomList: [],
-    pageStack: [GoogleMap],
+    pageStack1: [GoogleMap],
     directionTrigger: false,
     guideTrigger: false,
     showSearchBox: false,
@@ -35,8 +35,8 @@ const store =  new Vuex.Store({
     roomList(state) {
       return state.roomList;
     },
-    pageStack(state){
-      return state.pageStack;
+    pageStack1(state){
+      return state.pageStack1;
     },
     directionTrigger(state){
       return state.directionTrigger;
@@ -68,10 +68,10 @@ const store =  new Vuex.Store({
       state.roomList = [];
     },
     pushPage(state, payload) {
-      state.pageStack.push(payload);
+      state.pageStack1.push(payload);
     },
     popPage(state) {
-      state.pageStack.pop();
+      state.pageStack1.pop();
     },
     resetPageStack(state) {
       state.pageStack = [GoogleMap];
