@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   mount_devise_token_auth_for 'User', at: 'auth'
-  devise_for :users
   root 'static_pages#top'
 
   # router.jsで指定してるパスはずべて下記のようにルートにリダイレクトさせることで
