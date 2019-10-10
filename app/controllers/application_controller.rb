@@ -1,7 +1,4 @@
 class ApplicationController < ActionController::Base
-    include DeviseTokenAuth::Concerns::SetUserByToken
-  def name
-
-
-  end
+  include DeviseTokenAuth::Concerns::SetUserByToken
+  protect_from_forgery unless: -> { request.format.json? }
 end
