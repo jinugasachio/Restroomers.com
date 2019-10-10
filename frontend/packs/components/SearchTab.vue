@@ -45,18 +45,12 @@ export default {
         }
       }
     },
-    activeIndex:{
-      handler(){
-        if(this.activeIndex == 1 && this.showSearchBox == true){
-          this.$store.dispatch('showSearchBox')
-        }
-      }
-    }
   }
+
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" >
 
 .search-mode {
   .tabbar__button {

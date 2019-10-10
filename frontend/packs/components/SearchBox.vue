@@ -1,22 +1,24 @@
 <template>
-  <div class="search__box"
+  <div class="modal" 
     v-show="showSearchBox"
   >
-    <div class="search__box__inner">
-      <div class="search__box__inner__box">
-        <img src="packs/images/search1.png" 
-          class="search__box__innner__box__image" 
-          @click="search"
+    <div class="search__box">
+      <div class="search__box__inner">
+        <div class="search__box__inner__box">
+          <img src="packs/images/search1.png" 
+            class="search__box__innner__box__image" 
+            @click="search"
+          >
+        </div>
+        <input 
+          type="text"
+          class="search__box__innner__input"
+          placeholder="Type to Search"
+          v-model="inputWords"
+          @keyup.enter="searchTrigger"
+          @keypress="search"
         >
       </div>
-      <input 
-        type="text"
-        class="search__box__innner__input"
-        placeholder="Type to Search"
-        v-model="inputWords"
-        @keyup.enter="searchTrigger"
-        @keypress="search"
-      >
     </div>
   </div>
 </template>

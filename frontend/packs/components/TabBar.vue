@@ -80,13 +80,13 @@ export default {
 
 
   },
-  watch: {
-    activeIndex:{
-      handler(newIndex){
-        this.$store.dispatch('activeIndex', newIndex)
-      }
-    }
-  }
+  // watch: {
+  //   activeIndex:{
+  //     handler(newIndex){
+  //       this.$store.dispatch('activeIndex', newIndex)
+  //     }
+  //   }
+  // }
 
 }
 </script>

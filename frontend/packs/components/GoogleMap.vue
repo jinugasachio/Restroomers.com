@@ -2,7 +2,8 @@
   <v-ons-page>
     <div id="map">
     </div>
-    <Modal/>
+    <!-- <Modal/> -->
+    <SearchBox/>
   </v-ons-page>
 </template>
 
@@ -11,8 +12,8 @@ import GmapStyle from "../modules/gmap_style.json"
 import Room from './Room.vue'
 import RoomList from './RoomList.vue'
 import Navigator from './Navigator.vue'
-
-import Modal from './Modal.vue'
+import SearchBox from './SearchBox.vue'
+// import Modal from './Modal.vue'
 
 export default {
 
@@ -22,8 +23,8 @@ export default {
     Room,
     RoomList,
     Navigator,
-
-    Modal
+    SearchBox
+    // Modal
   },
 
   data() {
