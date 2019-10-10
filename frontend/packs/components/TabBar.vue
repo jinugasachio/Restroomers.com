@@ -27,7 +27,7 @@
 
 <script>
 import UserPage from './UserPage.vue'
-import Navigator from './Navigator.vue'
+import Navigator1 from './Navigator1.vue'
 import SearchTab from './SearchTab.vue'
 import DirectionTab from './DirectionTab.vue'
 
@@ -37,7 +37,7 @@ export default {
 
   components: {
     UserPage,
-    Navigator,
+    Navigator1,
     SearchTab,
     DirectionTab
   },
@@ -49,7 +49,7 @@ export default {
         {
           icon: 'ion-ios-home',
           label: '',
-          page: Navigator,
+          page: Navigator1,
           index: 0,
         },
         {

@@ -6,11 +6,11 @@
 </template>
 
 <script>
-import GoogleMap from './GoogleMap.vue'
+
 
 export default {
 
-  name: "Navigator",
+  name: "Navigator1",
 
   computed: {
     pageStack(){
