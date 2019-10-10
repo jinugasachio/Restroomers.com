@@ -50,13 +50,11 @@ export default {
           icon: 'ion-ios-home',
           label: '',
           page: Navigator1,
-          index: 0,
         },
         {
           icon: 'ion-ios-heart',
           label: '',
           page: Navigator2,
-          index: 1
         }
       ]
     };
@@ -78,6 +76,14 @@ export default {
       button.classList.remove(className)
     },
   },
+
+  watch: {
+    activeIndex: {
+      handler(newVal){
+        this.$store.dispatch('activeIndex', newVal)
+      }
+    }
+  }
 
 
 }
