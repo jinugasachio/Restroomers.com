@@ -19,6 +19,7 @@ const store =  new Vuex.Store({
     directionTrigger: false,
     guideTrigger: false,
     showSearchBox: false,
+    activeIndex: 0
 
   },
 
@@ -51,6 +52,9 @@ const store =  new Vuex.Store({
     showSearchBox(state){
       return state.showSearchBox;
     },
+    activeIndex(state){
+      return state.activeIndex;
+    }
 
   },
 
@@ -89,6 +93,9 @@ const store =  new Vuex.Store({
     showSearchBox(state) {
       state.showSearchBox = !state.showSearchBox
     },
+    activeIndex(state, payload){
+      state.activeIndex = payload
+    }
 
   },
 
@@ -153,6 +160,10 @@ const store =  new Vuex.Store({
     showSearchBox(context){
       context.commit('showSearchBox');
     },
+
+    activeIndex(context, newVal){
+      context.commit('activeIndex', newVal);
+    }
 
   },
 

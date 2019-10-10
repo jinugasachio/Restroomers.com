@@ -6,7 +6,11 @@
       >
       </v-ons-back-button>
     </div>
-    <div class="center">{{ roomName }}</div>
+    <div class="center"
+      v-show="activeIndex"
+    >
+      {{ roomName }}
+    </div>
   </v-ons-toolbar>
 </template>
 
@@ -31,7 +35,14 @@ export default {
     pageStack1(){
       return this.$store.state.pageStack1
     },
-
+    activeIndex(){
+      if(this.$store.state.activeIndex == 0){
+        return true
+      }
+      else{
+        return false
+      }
+    }
   },
 
   methods: {
