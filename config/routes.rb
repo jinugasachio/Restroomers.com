@@ -1,5 +1,5 @@
+# require 'devise_token_auth'
 Rails.application.routes.draw do
-  devise_for :users
   root 'static_pages#top'
 
   # router.jsで指定してるパスはずべて下記のようにルートにリダイレクトさせることで
@@ -11,5 +11,8 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :powder_rooms, defaults: { format: 'json' }
+    mount_devise_token_auth_for 'User', at: 'auth', controllers: {
+      registrations: 'api/auth/registrations'
+    }
   end
 end

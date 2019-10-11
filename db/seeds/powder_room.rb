@@ -5,6 +5,13 @@ user = User.create!(
   password_confirmation: '123456'
 )
 
+User.create(
+  nickname: 'テストユーザー',
+  email: 'test@gmail.com',
+  password: '123456',
+  password_confirmation: '123456'
+)
+
 shibuya_parent = [{
   name: '西武渋谷店 A館 2F',
   rate: 0,

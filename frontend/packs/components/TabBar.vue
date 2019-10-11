@@ -26,8 +26,8 @@
 
 
 <script>
-import UserPage from './UserPage.vue'
-import Navigator from './Navigator.vue'
+import Navigator1 from './Navigator1.vue'
+import Navigator2 from './Navigator2.vue'
 import SearchTab from './SearchTab.vue'
 import DirectionTab from './DirectionTab.vue'
 
@@ -36,8 +36,8 @@ export default {
   name: "TabBar",
 
   components: {
-    UserPage,
-    Navigator,
+    Navigator1,
+    Navigator2,
     SearchTab,
     DirectionTab
   },
@@ -49,14 +49,12 @@ export default {
         {
           icon: 'ion-ios-home',
           label: '',
-          page: Navigator,
-          index: 0,
+          page: Navigator1,
         },
         {
           icon: 'ion-ios-heart',
           label: '',
-          page: UserPage,
-          index: 1
+          page: Navigator2,
         }
       ]
     };
@@ -78,6 +76,14 @@ export default {
       button.classList.remove(className)
     },
   },
+
+  watch: {
+    activeIndex: {
+      handler(newVal){
+        this.$store.dispatch('activeIndex', newVal)
+      }
+    }
+  }
 
 
 }

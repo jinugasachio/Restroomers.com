@@ -2,6 +2,9 @@ import 'babel-polyfill'
 import Vue from 'vue'
 import Vuex from 'vuex'
 import GoogleMap from './components/GoogleMap.vue'
+import Sign from './components/Sign.vue'
+import SignUp from './components/SignUp.vue'
+import SignIn from './components/SignIn.vue'
 import defaultData from './modules/default_data.json'
 
 Vue.use(Vuex)
@@ -14,10 +17,13 @@ const store =  new Vuex.Store({
     room: defaultData, //コンソールエラー防止のため | リレーションしてるモデルデータも合わせて格納している
     allRooms: null,
     roomList: [],
-    pageStack: [GoogleMap],
+    pageStack1: [GoogleMap],
+    pageStack2: [Sign],
     directionTrigger: false,
     guideTrigger: false,
     showSearchBox: false,
+    activeIndex: 0,
+    currentUser: null
 
   },
 
@@ -35,8 +41,11 @@ const store =  new Vuex.Store({
     roomList(state) {
       return state.roomList;
     },
-    pageStack(state){
-      return state.pageStack;
+    pageStack1(state){
+      return state.pageStack1;
+    },
+    pageStack2(state){
+      return state.pageStack2;
     },
     directionTrigger(state){
       return state.directionTrigger;
@@ -47,6 +56,12 @@ const store =  new Vuex.Store({
     showSearchBox(state){
       return state.showSearchBox;
     },
+    activeIndex(state){
+      return state.activeIndex;
+    },
+    currentUser(state){
+      return state.currentUser;
+    }
 
   },
 
@@ -68,13 +83,29 @@ const store =  new Vuex.Store({
       state.roomList = [];
     },
     pushPage(state, payload) {
-      state.pageStack.push(payload);
+      if(state.activeIndex == 0){
+        state.pageStack1.push(payload);
+      }
+      else if(state.activeIndex == 1){
+        state.pageStack2.push(payload);
+      }
     },
     popPage(state) {
-      state.pageStack.pop();
+      if(state.activeIndex == 0){
+        state.pageStack1.pop();
+      }
+      else if(state.activeIndex == 1){
+        state.pageStack2.pop();
+      }
     },
     resetPageStack(state) {
-      state.pageStack = [GoogleMap];
+      if(state.activeIndex == 0){
+        state.pageStack1 = [GoogleMap];
+      }
+      else if(state.activeIndex == 1){
+        debugger;
+        state.pageStack2 = [Sign];
+      }
     },
     directionTrigger(state) {
       state.directionTrigger = !state.directionTrigger
@@ -85,6 +116,12 @@ const store =  new Vuex.Store({
     showSearchBox(state) {
       state.showSearchBox = !state.showSearchBox
     },
+    activeIndex(state, payload){
+      state.activeIndex = payload
+    },
+    currentUser(state, payload){
+      state.currentUser = payload.user
+    }
 
   },
 
@@ -148,6 +185,33 @@ const store =  new Vuex.Store({
 
     showSearchBox(context){
       context.commit('showSearchBox');
+    },
+
+    activeIndex(context, newVal){
+      context.commit('activeIndex', newVal);
+    },
+
+    signIn(context, userParams){
+      axios.post('/api/auth/sign_in', userParams)
+      .then(function(response){
+        context.commit('currentUser', {user: response.data})
+      })
+      .catch(function (error) {
+        alert(error);
+        alert('ログインできませんでした。')
+      })
+    },
+
+    signUp(context, userParams){
+      debugger;
+      axios.post('/api/auth', userParams)
+      .then(function(response){
+        context.commit('currentUser', {user: response.data})
+      })
+      .catch(function (error) {
+        alert(error);
+        alert('登録できませんでした。')
+      })
     },
 
   },
