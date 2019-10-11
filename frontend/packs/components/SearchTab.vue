@@ -15,7 +15,7 @@ export default {
 
   computed: {
     map(){
-      return this.$store.state.map;
+      return this.$store.getters.map;
     },
     showSearchBox(){
       return this.$store.getters.showSearchBox

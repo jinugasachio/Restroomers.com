@@ -22,7 +22,8 @@ const store =  new Vuex.Store({
     directionTrigger: false,
     guideTrigger: false,
     showSearchBox: false,
-    activeIndex: 0
+    activeIndex: 0,
+    currentUser: null
 
   },
 
@@ -57,6 +58,9 @@ const store =  new Vuex.Store({
     },
     activeIndex(state){
       return state.activeIndex;
+    },
+    currentUser(state){
+      return state.currentUser;
     }
 
   },
@@ -108,6 +112,9 @@ const store =  new Vuex.Store({
     },
     activeIndex(state, payload){
       state.activeIndex = payload
+    },
+    signIn(state, payload){
+      state.currentUser = payload.currentUser
     }
 
   },
@@ -176,6 +183,18 @@ const store =  new Vuex.Store({
 
     activeIndex(context, newVal){
       context.commit('activeIndex', newVal);
+    },
+
+    signIn(context, testUser){
+      debugger;
+      axios.post('/api/auth/sign_in', testUser)
+      .then(function(response){
+        context.commit('signIn', {currentUser: response.data})
+      })
+      .catch(function (error) {
+        alert(error);
+        alert('ログインできませんでした。')
+      })
     }
 
   },

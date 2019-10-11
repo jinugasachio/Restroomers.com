@@ -46,13 +46,13 @@ export default {
       }
     },
     pageStack1(){
-      return this.$store.state.pageStack1
+      return this.$store.getters.pageStack1
     },
     directionTrigger(){
-      return this.$store.state.directionTrigger
+      return this.$store.getters.directionTrigger
     },
     guideTrigger(){
-      return this.$store.state.guideTrigger
+      return this.$store.getters.guideTrigger
     },
     existRoom(){
       if(this.pageStack1.filter(function(page){

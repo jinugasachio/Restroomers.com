@@ -38,7 +38,7 @@ export default {
     },
     parentName(){
       const num = this.$store.getters.roomList[0].ancestry
-      const parent = this.$store.state.allRooms[num - 1]
+      const parent = this.$store.getters.allRooms[num - 1]
       return parent.name
     },
   },

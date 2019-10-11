@@ -24,7 +24,6 @@
 
 
 <script>
-import TestUser from "../modules/test_user.json"
 import ToolBar from './ToolBar.vue'
 import SignUp from './SignUp.vue'
 import SignIn from './SignIn.vue'
@@ -42,9 +41,17 @@ export default {
       buttons:[
         { id: 1, text: '新規登録',    name: "sign_up", event: this.push },
         { id: 2, text: 'ログイン',    name: "sign_in", event: this.push }, 
-        { id: 3, text: '簡単ログイン', name: "sign_in-easy", event: this.easyLogin }
+        { id: 3, text: '簡単ログイン', name: "sign_in-easy", event: this.easySignIn }
       ],
-      testUser: TestUser
+      testUser: {
+        "email": "test@gmail.com",
+        "password": "123456"
+      }
+    }
+  },
+  computed:{
+    currentUser(){
+      return this.$store.getters.currentUser
     }
   },
   methods: {
@@ -57,8 +64,16 @@ export default {
       }
     },
 
-    easyLogin(){
-      this.$store.dispatch('login', this.testUser)
+    easySignIn(){
+      this.$store.dispatch('signIn', this.testUser)
+    }
+  },
+  watch:{
+    currentUser:{
+      handler(){
+        debugger;
+        alert('ログインしました！')
+      }
     }
   }
 

@@ -24,7 +24,7 @@ export default {
       if(this.activeIndex0){
         if (this.pageStack1.length == 2 && this.pageStack1[1].name == "RoomList"){
           const num = this.$store.getters.roomList[0].ancestry
-          const parent = this.$store.state.allRooms[num - 1]
+          const parent = this.$store.getters.allRooms[num - 1]
           return parent.name
         } 
         else {
@@ -36,10 +36,10 @@ export default {
       }
     },
     pageStack1(){
-      return this.$store.state.pageStack1
+      return this.$store.getters.pageStack1
     },
     activeIndex0(){
-      if(this.$store.state.activeIndex == 0){
+      if(this.$store.getters.activeIndex == 0){
         return true
       }
       else{
@@ -47,7 +47,7 @@ export default {
       }
     },
     activeIndex1(){
-      if(this.$store.state.activeIndex == 1){
+      if(this.$store.getters.activeIndex == 1){
         return true
       }
       else{
