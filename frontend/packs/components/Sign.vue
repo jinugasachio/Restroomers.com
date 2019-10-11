@@ -13,6 +13,7 @@
             :key="button.id"
             modifier="large"
             :id="button.name"
+            @click="button.event"
           >
             {{button.text}}
           </v-ons-button>
@@ -38,11 +39,23 @@ export default {
   data(){
     return{
       buttons:[
-        {id: 1, text: '新規登録',    name: "sign_up"},
-        {id: 2, text: 'ログイン',    name: "sign_in"}, 
-        {id: 3, text: '簡単ログイン', name: "sign_in-easy"}
+        { id: 1, text: '新規登録',    name: "sign_up", event: this.push },
+        { id: 2, text: 'ログイン',    name: "sign_in", event: this.push }, 
+        { id: 3, text: '簡単ログイン', name: "sign_in-easy", event: this.easyLogin }
       ],
     }
+  },
+  methods: {
+    push(event){
+      if(event.target.id == 'sign_up'){
+        this.$store.dispatch('pushPage', SignUp)
+      }
+      else if(event.target.id == 'sign_in'){
+        this.$store.dispatch('pushPage', SignIn)
+      }
+    },
+
+    easyLogin
   }
 
 
