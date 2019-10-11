@@ -32,11 +32,22 @@ export default {
         }
       }
       else if(this. activeIndex1){
-        return "新規登録 / ログイン"
+        if(this.pageStack2.length == 1){
+          return '新規登録 / ログイン'
+        }
+        else if(this.pageStack2[1].name == "SignUp"){
+          return '新規登録'
+        }
+        else if(this.pageStack2[1].name == "SignIn"){
+          return 'ログイン'
+        }
       }
     },
     pageStack1(){
       return this.$store.getters.pageStack1
+    },
+    pageStack2(){
+      return this.$store.getters.pageStack2
     },
     activeIndex0(){
       if(this.$store.getters.activeIndex == 0){
