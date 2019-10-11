@@ -24,6 +24,7 @@
 
 
 <script>
+import TestUser from "../modules/test_user.json"
 import ToolBar from './ToolBar.vue'
 import SignUp from './SignUp.vue'
 import SignIn from './SignIn.vue'
@@ -43,6 +44,7 @@ export default {
         { id: 2, text: 'ログイン',    name: "sign_in", event: this.push }, 
         { id: 3, text: '簡単ログイン', name: "sign_in-easy", event: this.easyLogin }
       ],
+      testUser: TestUser
     }
   },
   methods: {
@@ -55,7 +57,9 @@ export default {
       }
     },
 
-    easyLogin
+    easyLogin(){
+      this.$store.dispatch('login', this.testUser)
+    }
   }
 
 
