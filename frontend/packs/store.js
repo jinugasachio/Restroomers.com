@@ -99,7 +99,13 @@ const store =  new Vuex.Store({
       }
     },
     resetPageStack(state) {
-      state.pageStack1 = [GoogleMap];
+      if(state.activeIndex == 0){
+        state.pageStack1 = [GoogleMap];
+      }
+      else if(state.activeIndex == 1){
+        debugger;
+        state.pageStack2 = [Sign];
+      }
     },
     directionTrigger(state) {
       state.directionTrigger = !state.directionTrigger

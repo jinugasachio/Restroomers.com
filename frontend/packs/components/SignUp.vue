@@ -72,7 +72,8 @@ export default {
   watch:{
     currentUser:{
       handler(){
-        alert('登録できました！')
+        this.$ons.notification.alert({message: '登録完了しました！', title: ''});
+        this.$store.dispatch('resetPageStack')
       }
     }
   }

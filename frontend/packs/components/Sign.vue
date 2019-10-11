@@ -68,16 +68,20 @@ export default {
     },
 
     easySignIn(){
-      if(window.confirm('ログインしてもよろしいですか？')){
-        this.$store.dispatch('signIn', this.testUser)
-      }
+      const vm = this;
+      vm.$ons.notification.confirm({message: 'ログインしてもよろしいですか?', title: ''})
+        .then(function(response){
+          if(response == 1){
+            vm.$store.dispatch('signIn', vm.testUser)
+          }
+        })
     }
   },
   watch:{
     currentUser:{
       handler(){
         if(this.pageStack2.length == 1){
-          alert('ログインしました！')
+          this.$ons.notification.alert({message: 'ログインしました！', title: ''});
         }
       }
     }

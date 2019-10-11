@@ -50,11 +50,16 @@ export default {
       ],
     }
   },
+
   computed:{
     currentUser(){
-      return this.$store.getters.currentUser
+      return this.$store.getters.currentUser;
+    },
+    pageStack2(){
+      return this.$store.getters.pageStack2;
     }
   },
+
   methods:{
     signIn(){
       const userParams = {
@@ -62,18 +67,17 @@ export default {
         "password": this.list[1].model
       }
       this.$store.dispatch('signIn', userParams)
-    }
+    },
   },
+
   watch:{
     currentUser:{
       handler(){
-        debugger;
-        alert('ログインしました！')
+        this.$ons.notification.alert({message: 'ログインしました！', title: ''});
+        this.$store.dispatch('resetPageStack')
       }
     }
   }
-
-
 
 }
 </script>
