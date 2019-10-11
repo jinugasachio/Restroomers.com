@@ -68,25 +68,28 @@ export default {
   methods: {
 
     direct(){
-      if(this.successId !== null){
-        if(window.confirm('GPS追跡を中止しますか？')){
-          navigator.geolocation.clearWatch(this.id);
-          this.id = null;
-          this.successId = null;
-          this.resetRoute();
-        }
+      const vm = this;
+      if(vm.successId !== null){
+        vm.$ons.notification.confirm({message: 'GPS追跡を中止しますか？', title: ''})
+          .then(function(response){
+            if(response == 1){
+              navigator.geolocation.clearWatch(vm.id);
+              vm.id = null;
+              vm.successId = null;
+              vm.resetRoute();
+            }
+          });
       }
       else{
-        this.$store.dispatch('directionTrigger')
+        vm.$store.dispatch('directionTrigger')
       }
     },
 
    //現在地を取得する
     getPosition(){
-
+      const vm = this;
       // 端末がGeolocation APIに対応してる場合
       if(navigator.geolocation){
-        const vm = this;
         //取得成功
         const geoSuccess = function(position){
           vm.successId = vm.id; //gps-modeクラスと連動させるため
@@ -117,7 +120,6 @@ export default {
           if (vm.count == 1){ //guide();のstart用で最初の一回だけ更新
             vm.latlng = latlng; //位置を更新
           }
-          console.log(vm.count+"回目の書き出し");
         };
 
         //取得失敗
@@ -128,7 +130,8 @@ export default {
             2: "電波状況などで位置情報が取得できませんでした。" ,
             3: "位置情報の取得に時間がかかり過ぎてタイムアウトしました。" ,
           };
-          alert( errorMessage[error.code]);
+          // alert( errorMessage[error.code]);
+          vm.$ons.notification.alert({message: errorMessage[error.code], title: ''});
         };
 
         //オプション
@@ -145,7 +148,10 @@ export default {
       }
       // Geolocation APIに対応していない場合
       else {
-        alert( "お使いの端末では、現在位置を取得できません。" );
+        vm.$ons.notification.alert({
+          message: 'お使いの端末では、現在位置を取得できません。',
+          title: ''
+        });
       }
     },
 
@@ -174,7 +180,10 @@ export default {
           vm.renderer.setDirections(result); //取得したルート（結果：result）をセット
         }
         else{
-          alert("取得できませんでした：" + status);
+          vm.$ons.notification.alert({
+            message: '取得できませんでした：' + status,
+            title: ''
+          });
         }
       });
     },
@@ -214,16 +223,23 @@ export default {
 
     directionTrigger:{
       handler(){
-        if(this.existRoom){
-          if(window.confirm('ルートを表示してもよろしいですか？')){
-            this.$store.dispatch('guideTrigger');
-            this.getPosition();
-          }
+        const vm = this; 
+        if(vm.existRoom){
+          vm.$ons.notification.confirm({message: 'ルートを表示してもよろしいですか？', title: ''})
+            .then(function(response){
+              if(response == 1){
+                vm.$store.dispatch('guideTrigger');
+                vm.getPosition();
+              }
+            });
         }
         else {
-            if(window.confirm('現在地を取得してもよろしいですか？')){
-              this.getPosition();
-            }
+          vm.$ons.notification.confirm({message: '現在地を取得してもよろしいですか？', title: ''})
+            .then(function(response){
+              if(response == 1){
+                vm.getPosition();
+              }
+            });
         }
       }
     },
