@@ -34,6 +34,10 @@ export default {
 
 <style lang="scss" scoped>
 
+.center {
+  width: 100%;
+}
+
 .wrapper {
   display: flex;
   width: 100%;
@@ -69,6 +73,7 @@ export default {
     .button--large {
       width: 65%;
       margin: 0 auto 2rem;
+      cursor: pointer;
     }
 
     #sign_up {
@@ -81,6 +86,10 @@ export default {
 
     #sign_in-easy {
       background-color: #ff554d;
+
+      &:active {
+        background-color: #c9423a !important;
+      }
     }
   }
 }

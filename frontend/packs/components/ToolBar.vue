@@ -6,14 +6,7 @@
       >
       </v-ons-back-button>
     </div>
-    <div class="center"
-      v-show="activeIndex0"
-    >
-      {{ roomName }}
-    </div>
-    <div class="center"
-      v-show="activeIndex1"
-    >
+    <div class="center">
       {{ pageName }}
     </div>
   </v-ons-toolbar>
@@ -27,18 +20,20 @@ export default {
 
   computed: {
 
-    roomName(){
-      if (this.pageStack1.length == 2 && this.pageStack1[1].name == "RoomList"){
-        const num = this.$store.getters.roomList[0].ancestry
-        const parent = this.$store.state.allRooms[num - 1]
-        return parent.name
-      } 
-      else {
-        return this.$store.getters.room.powder_room.name
-      }
-    },
     pageName(){
-      return "新規登録 / ログイン"
+      if(this.activeIndex0){
+        if (this.pageStack1.length == 2 && this.pageStack1[1].name == "RoomList"){
+          const num = this.$store.getters.roomList[0].ancestry
+          const parent = this.$store.state.allRooms[num - 1]
+          return parent.name
+        } 
+        else {
+          return this.$store.getters.room.powder_room.name
+        }
+      }
+      else if(this. activeIndex1){
+        return "新規登録 / ログイン"
+      }
     },
     pageStack1(){
       return this.$store.state.pageStack1
@@ -58,7 +53,8 @@ export default {
       else{
         return false
       }
-    }
+    },
+
   },
 
   methods: {
@@ -68,6 +64,7 @@ export default {
     }
     
   },
+
 }
 </script>
 
@@ -75,4 +72,5 @@ export default {
 .back-button__icon {
   fill: #ff7070;
 }
+
 </style>
