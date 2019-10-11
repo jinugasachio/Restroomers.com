@@ -113,8 +113,8 @@ const store =  new Vuex.Store({
     activeIndex(state, payload){
       state.activeIndex = payload
     },
-    signIn(state, payload){
-      state.currentUser = payload.currentUser
+    currentUser(state, payload){
+      state.currentUser = payload.user
     }
 
   },
@@ -188,13 +188,25 @@ const store =  new Vuex.Store({
     signIn(context, userParams){
       axios.post('/api/auth/sign_in', userParams)
       .then(function(response){
-        context.commit('signIn', {currentUser: response.data})
+        context.commit('currentUser', {user: response.data})
       })
       .catch(function (error) {
         alert(error);
         alert('ログインできませんでした。')
       })
-    }
+    },
+
+    signUp(context, userParams){
+      debugger;
+      axios.post('/api/auth', userParams)
+      .then(function(response){
+        context.commit('currentUser', {user: response.data})
+      })
+      .catch(function (error) {
+        alert(error);
+        alert('登録できませんでした。')
+      })
+    },
 
   },
 

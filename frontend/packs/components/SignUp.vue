@@ -19,7 +19,13 @@
               </div>
             </v-ons-list-item>
           </v-ons-list>
-          <v-ons-button modifier="large" id="signup-button" >登録する</v-ons-button>
+          <v-ons-button
+            modifier="large"
+            id="signup-button"
+            @click="signUp"
+          >
+            登録する
+          </v-ons-button>
         </v-ons-card>
       </div>
     </v-ons-page>
@@ -45,6 +51,29 @@ export default {
         {id: 3, header: 'パスワード',       text: '6文字以上',           model: '' },
         {id: 4, header: 'パスワード (確認)', text: '6文字以上',           model: '' },
       ],
+    }
+  },
+  computed:{
+    currentUser(){
+      return this.$store.getters.currentUser
+    }
+  },
+  methods:{
+    signUp(){
+      const userParams = {
+        "nickname": this.list[0].model,
+        "email":    this.list[1].model,
+        "password": this.list[2].model,
+        "password_confirmation": this.list[3].model
+      }
+      this.$store.dispatch('signUp', userParams)
+    }
+  },
+  watch:{
+    currentUser:{
+      handler(){
+        alert('登録できました！')
+      }
     }
   }
 

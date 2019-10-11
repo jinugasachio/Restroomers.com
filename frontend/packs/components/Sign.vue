@@ -52,6 +52,9 @@ export default {
   computed:{
     currentUser(){
       return this.$store.getters.currentUser
+    },
+    pageStack2(){
+      return this.$store.getters.pageStack2
     }
   },
   methods: {
@@ -73,8 +76,9 @@ export default {
   watch:{
     currentUser:{
       handler(){
-        debugger;
-        alert('ログインしました！')
+        if(this.pageStack2.length == 1){
+          alert('ログインしました！')
+        }
       }
     }
   }
