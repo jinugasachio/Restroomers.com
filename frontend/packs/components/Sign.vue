@@ -2,13 +2,16 @@
     <v-ons-page>
       <ToolBar/>
       <div class="wrapper">
-      <v-ons-card>
-        <h1 class="title">Restroomers.com</h1>
-        <p class="title-text">近くのレストルームを見つけよう！</p>
-        <v-ons-button modifier="large" id="sign_up" >新規登録</v-ons-button>
-        <v-ons-button modifier="large" id="sign_in">ログイン</v-ons-button>
-        <v-ons-button modifier="large" id="sign_in-easy" >簡単ログイン</v-ons-button>
-      </v-ons-card>
+        <v-ons-card>
+          <h1 class="title">
+            Restroomers.com
+            <img src='packs/images/lipstick.png' alt='口紅の写真' class='lip_image'>
+          </h1>
+          <p class="title-text">近くのレストルームを見つけよう！</p>
+          <v-ons-button modifier="large" id="sign_up" >新規登録</v-ons-button>
+          <v-ons-button modifier="large" id="sign_in">ログイン</v-ons-button>
+          <v-ons-button modifier="large" id="sign_in-easy" >簡単ログイン</v-ons-button>
+        </v-ons-card>
       </div>
     </v-ons-page>
 </template>
@@ -43,7 +46,16 @@ export default {
     margin: auto;
 
     .title {
+      position: relative;
+      max-width: 305px;
+      margin: 12px auto;
       text-align: center;
+    }
+
+    img {
+      position: absolute;
+      top: 10px;
+      right: 25px;
     }
 
     .title-text {
@@ -55,7 +67,7 @@ export default {
     }
 
     .button--large {
-      width: 80%;
+      width: 65%;
       margin: 0 auto 2rem;
     }
 
@@ -68,7 +80,7 @@ export default {
     }
 
     #sign_in-easy {
-      background-color: #ff554D;
+      background-color: #ff554d;
     }
   }
 }
