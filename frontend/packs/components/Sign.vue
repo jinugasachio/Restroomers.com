@@ -47,6 +47,8 @@ export default {
     display: inline-block;
     width: 90%;
     max-width: 560px;
+    height: 450px;
+    padding: 50px 16px 20px;
     margin: auto;
 
     .title {
@@ -78,19 +80,15 @@ export default {
     }
 
     #sign_up {
-      background-color: #ff8b85;
+      background-color: #fd9d98;
     }
 
     #sign_in {
-      background-color: #ff8b85;
+      background-color: #fd9d98;
     }
 
     #sign_in-easy {
-      background-color: #ff554d;
-
-      &:active {
-        background-color: #c9423a !important;
-      }
+      background-color: #ff645c;
     }
   }
 }

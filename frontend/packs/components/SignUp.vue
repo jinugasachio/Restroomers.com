@@ -54,13 +54,28 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.text-input {
-  width: 180%;
-}
 
-#signup-button {
-  width: 65%;
-  margin: 0 auto;
-  background-color: #ff8b85;
+.wrapper {
+  display: flex;
+  width: 100%;
+  height: 100%;
+
+  .card {
+    display: inline-block;
+    width: 90%;
+    max-width: 560px;
+    padding: 40px 20px 20px;
+    margin: auto;
+
+    .text-input {
+      width: 180%;
+    }
+
+    #signup-button {
+      width: 65%;
+      margin: 30px auto 0;
+      background-color: #ff8b85;
+    }
+  }
 }
 </style>
