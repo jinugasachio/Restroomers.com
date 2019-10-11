@@ -68,7 +68,7 @@ export default {
   methods: {
 
     direct(){
-      if(this.id !== null){
+      if(this.successId !== null){
         if(window.confirm('GPS追跡を中止しますか？')){
           navigator.geolocation.clearWatch(this.id);
           this.id = null;

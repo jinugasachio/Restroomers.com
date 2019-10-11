@@ -3,10 +3,10 @@
       <ToolBar/>
       <div class="wrapper">
         <v-ons-card>
-          <h1 class="title">
+          <h2 class="title">
             Restroomers.com
             <img src='packs/images/lipstick.png' alt='口紅の写真' class='lip_image'>
-          </h1>
+          </h2>
           <p class="title-text">近くのレストルームを見つけよう！</p>
           <v-ons-button modifier="large" id="sign_up" >新規登録</v-ons-button>
           <v-ons-button modifier="large" id="sign_in">ログイン</v-ons-button>
@@ -51,15 +51,16 @@ export default {
 
     .title {
       position: relative;
-      max-width: 305px;
+      max-width: 256px;
       margin: 12px auto;
+      font-weight: 900;
       text-align: center;
     }
 
     img {
       position: absolute;
-      top: 10px;
-      right: 25px;
+      top: 13px;
+      right: 1px;
     }
 
     .title-text {

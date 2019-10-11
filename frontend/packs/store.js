@@ -3,6 +3,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import GoogleMap from './components/GoogleMap.vue'
 import Sign from './components/Sign.vue'
+import SignUp from './components/SignUp.vue'
 import defaultData from './modules/default_data.json'
 
 Vue.use(Vuex)
@@ -15,8 +16,8 @@ const store =  new Vuex.Store({
     room: defaultData, //コンソールエラー防止のため | リレーションしてるモデルデータも合わせて格納している
     allRooms: null,
     roomList: [],
-    pageStack1: [GoogleMap],
-    pageStack2: [Sign],
+    pageStack1: [Sign],
+    pageStack2: [SignUp],
     directionTrigger: false,
     guideTrigger: false,
     showSearchBox: false,

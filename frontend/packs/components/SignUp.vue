@@ -1,0 +1,66 @@
+<template>
+    <v-ons-page>
+      <ToolBar/>
+      <div class="wrapper">
+        <v-ons-card>
+
+          <v-ons-list
+            v-for="item in list"
+            :key="item.id"
+          >
+            <v-ons-list-header>{{ item.header }}</v-ons-list-header>
+            <v-ons-list-item>
+              <div class="center">
+                <v-ons-input
+                  :placeholder="item.text"
+                  v-model="item.model"
+                >
+                </v-ons-input>
+              </div>
+            </v-ons-list-item>
+          </v-ons-list>
+          <v-ons-button modifier="large" id="signup-button" >登録する</v-ons-button>
+        </v-ons-card>
+      </div>
+    </v-ons-page>
+</template>
+
+
+<script>
+import ToolBar from './ToolBar.vue'
+
+export default {
+
+  name: "SignUp",
+
+  components: {
+    ToolBar
+  },
+
+  data(){
+    return {
+      list:[
+        {id: 1, header: 'ニックネーム',      text: '例)  jinuga太郎',    model: '' },
+        {id: 2, header: 'メールアドレス',    text: 'PC・携帯どちらでも可', model: '' },
+        {id: 3, header: 'パスワード',       text: '6文字以上',           model: '' },
+        {id: 4, header: 'パスワード (確認)', text: '6文字以上',           model: '' },
+      ],
+    }
+  }
+
+
+
+}
+</script>
+
+<style lang="scss" scoped>
+.text-input {
+  width: 180%;
+}
+
+#signup-button {
+  width: 65%;
+  margin: 0 auto;
+  background-color: #ff8b85;
+}
+</style>
