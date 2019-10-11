@@ -18,7 +18,13 @@
               </div>
             </v-ons-list-item>
           </v-ons-list>
-          <v-ons-button modifier="large" id="signup-button" >ログインする</v-ons-button>
+          <v-ons-button
+            modifier="large"
+            id="signup-button" 
+            @click="signIn"
+          >
+            ログインする
+          </v-ons-button>
         </v-ons-card>
       </div>
     </v-ons-page>
@@ -42,6 +48,28 @@ export default {
         {id: 1, header: 'メールアドレス',    text: 'PC・携帯どちらでも可', model: '' },
         {id: 2, header: 'パスワード',       text: '6文字以上',           model: '' },
       ],
+    }
+  },
+  computed:{
+    currentUser(){
+      return this.$store.getters.currentUser
+    }
+  },
+  methods:{
+    signIn(){
+      const userParams = {
+        "email":    this.list[0].model,
+        "password": this.list[1].model
+      }
+      this.$store.dispatch('signIn', userParams)
+    }
+  },
+  watch:{
+    currentUser:{
+      handler(){
+        debugger;
+        alert('ログインしました！')
+      }
     }
   }
 

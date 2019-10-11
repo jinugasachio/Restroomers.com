@@ -65,7 +65,9 @@ export default {
     },
 
     easySignIn(){
-      this.$store.dispatch('signIn', this.testUser)
+      if(window.confirm('ログインしてもよろしいですか？')){
+        this.$store.dispatch('signIn', this.testUser)
+      }
     }
   },
   watch:{

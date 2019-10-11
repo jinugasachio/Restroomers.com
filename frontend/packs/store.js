@@ -185,9 +185,8 @@ const store =  new Vuex.Store({
       context.commit('activeIndex', newVal);
     },
 
-    signIn(context, testUser){
-      debugger;
-      axios.post('/api/auth/sign_in', testUser)
+    signIn(context, userParams){
+      axios.post('/api/auth/sign_in', userParams)
       .then(function(response){
         context.commit('signIn', {currentUser: response.data})
       })
