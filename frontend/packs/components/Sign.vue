@@ -8,9 +8,14 @@
             <img src='packs/images/lipstick.png' alt='口紅の写真' class='lip_image'>
           </h2>
           <p class="title-text">近くのレストルームを見つけよう！</p>
-          <v-ons-button modifier="large" id="sign_up" >新規登録</v-ons-button>
-          <v-ons-button modifier="large" id="sign_in">ログイン</v-ons-button>
-          <v-ons-button modifier="large" id="sign_in-easy" >簡単ログイン</v-ons-button>
+          <v-ons-button
+            v-for="button in buttons"
+            :key="button.id"
+            modifier="large"
+            :id="button.name"
+          >
+            {{button.text}}
+          </v-ons-button>
         </v-ons-card>
       </div>
     </v-ons-page>
@@ -19,12 +24,25 @@
 
 <script>
 import ToolBar from './ToolBar.vue'
+import SignUp from './SignUp.vue'
+import SignIn from './SignIn.vue'
 
 export default {
 
   name: "Sign",
   components: {
-    ToolBar
+    ToolBar,
+    SignUp,
+    SignIn
+  },
+  data(){
+    return{
+      buttons:[
+        {id: 1, text: '新規登録',    name: "sign_up"},
+        {id: 2, text: 'ログイン',    name: "sign_in"}, 
+        {id: 3, text: '簡単ログイン', name: "sign_in-easy"}
+      ],
+    }
   }
 
 
@@ -61,8 +79,8 @@ export default {
 
     img {
       position: absolute;
-      top: 13px;
-      right: 1px;
+      top: 9px;
+      right: 15px;
     }
 
     .title-text {
