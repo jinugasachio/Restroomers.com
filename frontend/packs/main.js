@@ -1,10 +1,10 @@
 // webpackエントリーポイントファイル
 
 import Vue from 'vue'
-import VueOnsen from 'vue-onsenui'
 import App from './App.vue'
 import store from './store.js'
 import router from './router.js'
+import './library.js'
 
 import './images/woman.png'
 import './images/lipstick.png'
@@ -12,10 +12,6 @@ import './images/ladyicon.png'
 import './images/no_image.png'
 import './images/position.png'
 import './images/search1.png'
-
-
-Vue.use(VueOnsen);
-Vue.component('star-rating', VueStarRating.default);
 
 // 最初に仮の<root></root>要素を入れてそれをrenderで差し替えるっていうこと.
 // このVueインスタンスではこのテンプレートを使いますという意味。
