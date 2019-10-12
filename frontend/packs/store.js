@@ -21,7 +21,8 @@ const store =  new Vuex.Store({
     guideTrigger: false,
     showSearchBox: false,
     activeIndex: 0,
-    currentUser: null
+    currentUser: null,
+    signFromData: []
 
   },
 
@@ -59,6 +60,9 @@ const store =  new Vuex.Store({
     },
     currentUser(state){
       return state.currentUser;
+    },
+    signFromData(state){
+      return state.signFromData;
     }
 
   },
@@ -106,19 +110,22 @@ const store =  new Vuex.Store({
       }
     },
     directionTrigger(state) {
-      state.directionTrigger = !state.directionTrigger
+      state.directionTrigger = !state.directionTrigger;
     },
     guideTrigger(state) {
-      state.guideTrigger = !state.guideTrigger
+      state.guideTrigger = !state.guideTrigger;
     },
     showSearchBox(state) {
-      state.showSearchBox = !state.showSearchBox
+      state.showSearchBox = !state.showSearchBox;
     },
     activeIndex(state, payload){
-      state.activeIndex = payload
+      state.activeIndex = payload;
     },
     currentUser(state, payload){
-      state.currentUser = payload.user
+      state.currentUser = payload.user;
+    },
+    updateSignFormData(state, payload){
+      state.signFromData = payload;
     }
 
   },
@@ -192,25 +199,28 @@ const store =  new Vuex.Store({
     signIn(context, userParams){
       axios.post('/api/auth/sign_in', userParams)
       .then(function(response){
-        context.commit('currentUser', {user: response.data})
+        context.commit('currentUser', {user: response.data});
       })
       .catch(function (error) {
         alert(error);
-        alert('ログインできませんでした。')
+        alert('ログインできませんでした。');
       })
     },
 
     signUp(context, userParams){
-      debugger;
       axios.post('/api/auth', userParams)
       .then(function(response){
-        context.commit('currentUser', {user: response.data})
+        context.commit('currentUser', {user: response.data});
       })
       .catch(function (error) {
         alert(error);
         alert('登録できませんでした。')
       })
     },
+
+    updateSignFormData(context, signFormData){
+      context.commit('updateSignFormData', signFormData);
+    }
 
   },
 

@@ -60,7 +60,8 @@ export default {
   methods: {
     push(event){
       if(event.target.id == 'sign_up'){
-        this.$store.dispatch('pushPage', SignUp)
+        debugger;
+        this.$store.dispatch('pushPage', SignUp, testUser)
       }
       else if(event.target.id == 'sign_in'){
         this.$store.dispatch('pushPage', SignIn)
