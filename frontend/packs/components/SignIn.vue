@@ -32,7 +32,7 @@
           </v-ons-list>
           <v-ons-button
             modifier="large"
-            id="signup-button" 
+            id="sign-button" 
             :disabled="invalid"
             @click="signIn"
           >
@@ -68,15 +68,14 @@ export default {
           model: '',
           name: 'email',
           rules: 'required|email'
-        },
-        {
+        },{
           id: 2,
           header: 'パスワード',
           text: '6文字以上',
           model: '' ,
           name: 'password',
           rules: 'required|min:6'
-        },
+        }
       ],
     }
   },
@@ -154,7 +153,7 @@ export default {
       color: rgb(172, 44, 44);
     }
 
-    #signup-button {
+    #sign-button {
       width: 65%;
       margin: 30px auto 0;
       background-color: #ff8b85;
