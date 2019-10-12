@@ -22,7 +22,7 @@ const store =  new Vuex.Store({
     showSearchBox: false,
     activeIndex: 0,
     currentUser: null,
-    signFromData: []
+    signFormData: []
 
   },
 
@@ -61,8 +61,8 @@ const store =  new Vuex.Store({
     currentUser(state){
       return state.currentUser;
     },
-    signFromData(state){
-      return state.signFromData;
+    signFormData(state){
+      return state.signFormData;
     }
 
   },
@@ -125,7 +125,7 @@ const store =  new Vuex.Store({
       state.currentUser = payload.user;
     },
     updateSignFormData(state, payload){
-      state.signFromData = payload;
+      state.signFormData = payload;
     }
 
   },

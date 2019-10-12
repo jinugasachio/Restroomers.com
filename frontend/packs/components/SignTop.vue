@@ -27,14 +27,16 @@
 import ToolBar from './ToolBar.vue'
 import SignUp from './SignUp.vue'
 import SignIn from './SignIn.vue'
+import TestSign from './TestSign.vue'
 
 export default {
 
-  name: "Sign",
+  name: "SignTop",
   components: {
     ToolBar,
     SignUp,
-    SignIn
+    SignIn,
+    TestSign
   },
   data(){
     return{
@@ -46,7 +48,56 @@ export default {
       testUser: {
         "email": "test@gmail.com",
         "password": "123456"
-      }
+      },
+      signInForm:[
+        { 
+          id: 1,
+          header: 'メールアドレス',
+          text: 'PC・携帯どちらでも可',
+          model: '',
+          name: 'email',
+          rules: 'required|email'
+        },{
+          id: 2,
+          header: 'パスワード',
+          text: '6文字以上',
+          model: '' ,
+          name: 'password',
+          rules: 'required|min:6'
+        }
+      ],
+      signUpForm:[
+        {
+          id: 1,
+          header: 'ニックネーム',
+          text: '例)  jinuga太郎',
+          model: '',
+          name: 'nickname',
+          rules: 'required|max:20',
+        },{
+          id: 2,
+          header: 'メールアドレス',
+          text: 'PC・携帯どちらでも可',
+          model: '',
+          name: 'email',
+          rules: 'required|email',
+        },{
+          id: 3,
+          header: 'パスワード',
+          text: '6文字以上',
+          model: '',
+          name: 'password',
+          rules: 'required|min:6',
+          vid: 'list[2].model'
+        },{
+          id: 4,
+          header: 'パスワード (確認)',
+          text: '6文字以上',
+          model: '',
+          name: 'password_confirmation',
+          rules: 'required|min:6|confirmed:list[2].model',        
+        }
+      ],
     }
   },
   computed:{
@@ -55,16 +106,21 @@ export default {
     },
     pageStack2(){
       return this.$store.getters.pageStack2
+    },
+    formDataLength(){
+      return this.$store.getters.signFormData.length
     }
   },
+
   methods: {
     push(event){
       if(event.target.id == 'sign_up'){
-        debugger;
-        this.$store.dispatch('pushPage', SignUp, testUser)
+        this.$store.dispatch('updateSignFormData', this.signUpForm)
+        this.$store.dispatch('pushPage', TestSign)
       }
       else if(event.target.id == 'sign_in'){
-        this.$store.dispatch('pushPage', SignIn)
+        this.$store.dispatch('updateSignFormData', this.signInForm)
+        this.$store.dispatch('pushPage', TestSign)
       }
     },
 
@@ -82,6 +138,12 @@ export default {
     currentUser:{
       handler(){
         if(this.pageStack2.length == 1){
+          this.$ons.notification.alert({message: 'ログインしました！', title: ''});
+        }
+        else if(this.formDataLength == 4){
+          this.$ons.notification.alert({message: '登録しました！', title: ''});
+        }
+        else if(this.formDataLength == 4){
           this.$ons.notification.alert({message: 'ログインしました！', title: ''});
         }
       }

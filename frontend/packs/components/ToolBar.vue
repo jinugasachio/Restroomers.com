@@ -35,10 +35,10 @@ export default {
         if(this.pageStack2.length == 1){
           return '新規登録 / ログイン'
         }
-        else if(this.pageStack2[1].name == "SignUp"){
+        else if(this.formDataLength == 4){
           return '新規登録'
         }
-        else if(this.pageStack2[1].name == "SignIn"){
+        else if(this.formDataLength == 2){
           return 'ログイン'
         }
       }
@@ -65,6 +65,9 @@ export default {
         return false
       }
     },
+    formDataLength(){
+      return this.$store.getters.signFormData.length
+    }
 
   },
 
