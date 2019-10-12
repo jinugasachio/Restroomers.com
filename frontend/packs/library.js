@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueOnsen from 'vue-onsenui'
 import { ValidationProvider, ValidationObserver, extend } from 'vee-validate';
-import { required, email, min, confirmed } from 'vee-validate/dist/rules';
+import { required, email, max, min, confirmed } from 'vee-validate/dist/rules';
 
 Vue.use(VueOnsen);
 Vue.component('ValidationProvider', ValidationProvider);
@@ -19,6 +19,12 @@ extend(
   'email', {
   ...email,
   message: '有効な形式で入力してください。'
+})
+
+extend(
+  'max', {
+  ...max,
+  message: '20文字以内で入力してください。'
 })
 
 extend(

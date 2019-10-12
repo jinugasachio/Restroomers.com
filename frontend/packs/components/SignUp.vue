@@ -1,34 +1,4 @@
 <template>
-    <!-- <v-ons-page>
-      <ToolBar/>
-      <div class="wrapper">
-        <v-ons-card>
-
-          <v-ons-list
-            v-for="item in list"
-            :key="item.id"
-          >
-            <v-ons-list-header>{{ item.header }}</v-ons-list-header>
-            <v-ons-list-item>
-              <div class="center">
-                <v-ons-input
-                  :placeholder="item.text"
-                  v-model="item.model"
-                >
-                </v-ons-input>
-              </div>
-            </v-ons-list-item>
-          </v-ons-list>
-          <v-ons-button
-            modifier="large"
-            id="signup-button"
-            @click="signUp"
-          >
-            登録する
-          </v-ons-button>
-        </v-ons-card>
-      </div>
-    </v-ons-page> -->
     <v-ons-page>
       <ToolBar/>
       <div class="wrapper">
@@ -96,7 +66,7 @@ export default {
           text: '例)  jinuga太郎',
           model: '',
           name: 'nickname',
-          rules: 'required',
+          rules: 'required|max:20',
         },{
           id: 2,
           header: 'メールアドレス',
