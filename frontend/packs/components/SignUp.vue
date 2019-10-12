@@ -59,38 +59,38 @@ export default {
 
   data(){
     return {
-      // list:[
-      //   {
-      //     id: 1,
-      //     header: 'ニックネーム',
-      //     text: '例)  jinuga太郎',
-      //     model: '',
-      //     name: 'nickname',
-      //     rules: 'required|max:20',
-      //   },{
-      //     id: 2,
-      //     header: 'メールアドレス',
-      //     text: 'PC・携帯どちらでも可',
-      //     model: '',
-      //     name: 'email',
-      //     rules: 'required|email',
-      //   },{
-      //     id: 3,
-      //     header: 'パスワード',
-      //     text: '6文字以上',
-      //     model: '',
-      //     name: 'password',
-      //     rules: 'required|min:6',
-      //     vid: 'list[2].model'
-      //   },{
-      //     id: 4,
-      //     header: 'パスワード (確認)',
-      //     text: '6文字以上',
-      //     model: '',
-      //     name: 'password_confirmation',
-      //     rules: 'required|min:6|confirmed:list[2].model',        
-      //   }
-      // ],
+      list:[
+        {
+          id: 1,
+          header: 'ニックネーム',
+          text: '例)  jinuga太郎',
+          model: '',
+          name: 'nickname',
+          rules: 'required|max:20',
+        },{
+          id: 2,
+          header: 'メールアドレス',
+          text: 'PC・携帯どちらでも可',
+          model: '',
+          name: 'email',
+          rules: 'required|email',
+        },{
+          id: 3,
+          header: 'パスワード',
+          text: '6文字以上',
+          model: '',
+          name: 'password',
+          rules: 'required|min:6',
+          vid: 'this.list[2].model'
+        },{
+          id: 4,
+          header: 'パスワード (確認)',
+          text: '6文字以上',
+          model: '',
+          name: 'password_confirmation',
+          rules: 'required|min:6|confirmed:this.list[2].model',        
+        }
+      ],
     }
   },
   computed:{

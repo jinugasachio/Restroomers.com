@@ -88,14 +88,14 @@ export default {
           model: '',
           name: 'password',
           rules: 'required|min:6',
-          vid: 'list[2].model'
+          vid: ''
         },{
           id: 4,
           header: 'パスワード (確認)',
           text: '6文字以上',
           model: '',
           name: 'password_confirmation',
-          rules: 'required|min:6|confirmed:list[2].model',        
+          rules: 'required|min:6|confirmed:',        
         }
       ],
     }
@@ -137,13 +137,16 @@ export default {
   watch:{
     currentUser:{
       handler(){
+        debugger;
         if(this.pageStack2.length == 1){
           this.$ons.notification.alert({message: 'ログインしました！', title: ''});
         }
         else if(this.formDataLength == 4){
+          this.$store.dispatch('resetPageStack')
           this.$ons.notification.alert({message: '登録しました！', title: ''});
         }
-        else if(this.formDataLength == 4){
+        else if(this.formDataLength == 2){
+          this.$store.dispatch('resetPageStack')
           this.$ons.notification.alert({message: 'ログインしました！', title: ''});
         }
       }

@@ -105,7 +105,6 @@ const store =  new Vuex.Store({
         state.pageStack1 = [GoogleMap];
       }
       else if(state.activeIndex == 1){
-        debugger;
         state.pageStack2 = [SignTop];
       }
     },

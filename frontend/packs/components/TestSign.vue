@@ -57,6 +57,10 @@ export default {
     ToolBar
   },
 
+  data(){
+    return{password: ''}
+  },
+
   computed:{
     currentUser(){
       return this.$store.getters.currentUser;
@@ -79,6 +83,7 @@ export default {
 
   methods:{
     signIn(){
+      debugger
       const userParams = {
         "email":    this.signFormData[0].model,
         "password": this.signFormData[1].model
@@ -96,20 +101,25 @@ export default {
     },
     sign(){
       if(this.buttonName == '登録する'){
-        this.signUp();
+        debugger;
+        this.signUp
       }
       else if (this.buttonName == 'ログインする'){
+        debugger;
         this.signIn();
       }
 
     }
   },
+  mounted(){
+    debugger;
+  }
 
   // watch:{
   //   currentUser:{
   //     handler(){
   //       this.$ons.notification.alert({message: 'ログインしました！', title: ''});
-  //       this.$store.dispatch('resetPageStack')
+  //       // this.$store.dispatch('resetPageStack')
   //     }
   //   }
   // }
