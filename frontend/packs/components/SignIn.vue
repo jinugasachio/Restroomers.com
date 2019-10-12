@@ -29,9 +29,9 @@
             </v-ons-list-item>
           </v-ons-list> -->
 
-<validation-provider rules="required" v-slot="{ errors }">
+<validation-provider :rules="'required|email'" v-slot="{ errors }">
   <input v-model="email" name="email" type="text" />
-  <span>{{ errors[0] }}</span>
+  <p>{{ errors[0] }}</p>
 </validation-provider>
           <v-ons-button
             modifier="large"

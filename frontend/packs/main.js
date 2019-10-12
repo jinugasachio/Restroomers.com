@@ -1,11 +1,9 @@
 // webpackエントリーポイントファイル
-
 import Vue from 'vue'
 import App from './App.vue'
 import store from './store.js'
 import router from './router.js'
 import './library.js'
-
 import './images/woman.png'
 import './images/lipstick.png'
 import './images/ladyicon.png'
