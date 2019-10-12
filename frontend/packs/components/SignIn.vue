@@ -19,6 +19,7 @@
                 >
                 <v-ons-input
                   type="text"
+                  class="ons-input"
                   :name="item.name"
                   :placeholder="item.text"
                   v-model="item.model"
@@ -107,10 +108,6 @@ export default {
         alert('Hello, ' + this.email)
       })
     },
-    vali(){
-      debugger;
-      this.$validator.validate();
-    }
   },
 
   watch:{
@@ -144,6 +141,10 @@ export default {
 
       .list-item__center {
         padding-left: 6px;
+
+        .ons-input {
+          width: 14rem;
+        }
       }
     }
 
@@ -151,10 +152,6 @@ export default {
       font-size: 0.85rem;
       line-height: 22px;
       color: rgb(172, 44, 44);
-    }
-
-    .text-input {
-      width: 180%;
     }
 
     #signup-button {
