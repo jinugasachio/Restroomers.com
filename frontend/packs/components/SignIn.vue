@@ -3,43 +3,41 @@
       <ToolBar/>
       <div class="wrapper">
         <v-ons-card>
-          <!-- <v-ons-list
+          <ValidationObserver v-slot="{ invalid }">
+          <v-ons-list
             v-for="item in list"
             :key="item.id"
           >
             <v-ons-list-header>{{ item.header }}</v-ons-list-header>
             <v-ons-list-item>
               <div class="center">
-
+                <validation-provider
+                  mode="eager"
+                  :rules="item.rules"
+                  :ref="item.id"
+                  v-slot="{ errors }"
+                >
                 <v-ons-input
-                  class="form-control"
+                  type="text"
                   :name="item.name"
-                  :v-validate="item.validate"
-                  :data-vv-as="item.data"
                   :placeholder="item.text"
                   v-model="item.model"
                 >
                 </v-ons-input>
-                <div class="form-control-feedback"
-                  v-show="errors.has(item.name)"
-                >
-                  <p class="alert alert-danger">{{ errors.first(item.name) }}</p>
-                </div>
+                <p class="error-text"><span>{{ errors[0] }}</span></p>
+                </validation-provider>
               </div>
             </v-ons-list-item>
-          </v-ons-list> -->
-
-<validation-provider :rules="'required|email'" v-slot="{ errors }">
-  <input v-model="email" name="email" type="text" />
-  <p>{{ errors[0] }}</p>
-</validation-provider>
+          </v-ons-list>
           <v-ons-button
             modifier="large"
             id="signup-button" 
-            @click="register"
+            :disabled="invalid"
+            @click="signIn"
           >
             ログインする
           </v-ons-button>
+          </ValidationObserver>
         </v-ons-card>
       </div>
     </v-ons-page>
@@ -48,6 +46,7 @@
 
 <script>
 import ToolBar from './ToolBar.vue'
+import { validate } from 'vee-validate';
 
 
 export default {
@@ -60,26 +59,24 @@ export default {
 
   data(){
     return {
-      email:'',
-      name: 'name',
-      // list:[
-      //   { 
-      //     id: 1,
-      //     header: 'メールアドレス',
-      //     text: 'PC・携帯どちらでも可',
-      //     model: '',
-      //     name: 'email',
-      //     validate: 'required|email',
-      //     data: 'メールアドレス'
-      //   },
-        // {
-        //   id: 2,
-        //   header: 'パスワード',
-        //   text: '6文字以上',
-        //   model: '' 
-        // },
-      // ],
-      errors: []
+      list:[
+        { 
+          id: 1,
+          header: 'メールアドレス',
+          text: 'PC・携帯どちらでも可',
+          model: '',
+          name: 'email',
+          rules: 'required|email'
+        },
+        {
+          id: 2,
+          header: 'パスワード',
+          text: '6文字以上',
+          model: '' ,
+          name: 'password',
+          rules: 'required|min:6'
+        },
+      ],
     }
   },
 
@@ -101,6 +98,7 @@ export default {
       this.$store.dispatch('signIn', userParams)
     },
     register () {
+      debugger;
       this.$validator.validateAll().then((result) => {
         if (!result) {
           alert(this.errors.all())
@@ -108,6 +106,10 @@ export default {
         }
         alert('Hello, ' + this.email)
       })
+    },
+    vali(){
+      debugger;
+      this.$validator.validate();
     }
   },
 
@@ -136,6 +138,20 @@ export default {
     max-width: 560px;
     padding: 40px 20px 20px;
     margin: auto;
+
+    .list-item {
+      padding: 0;
+
+      .list-item__center {
+        padding-left: 6px;
+      }
+    }
+
+    .error-text {
+      font-size: 0.85rem;
+      line-height: 22px;
+      color: rgb(172, 44, 44);
+    }
 
     .text-input {
       width: 180%;
