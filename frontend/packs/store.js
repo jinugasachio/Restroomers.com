@@ -3,6 +3,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import GoogleMap from './components/GoogleMap.vue'
 import SignTop from './components/SignTop.vue'
+import UserPage from './components/UserPage.vue'
 import defaultData from './modules/default_data.json'
 
 Vue.use(Vuex)
@@ -125,6 +126,9 @@ const store =  new Vuex.Store({
     },
     updateSignFormData(state, payload){
       state.signFormData = payload;
+    },
+    showUserPage(state){
+      state.pageStack2 = [UserPage];
     }
 
   },
@@ -216,6 +220,10 @@ const store =  new Vuex.Store({
 
     updateSignFormData(context, signFormData){
       context.commit('updateSignFormData', signFormData);
+    },
+
+    showUserPage(context){
+      context.commit('showUserPage')
     }
 
   },

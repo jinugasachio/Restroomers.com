@@ -2,7 +2,6 @@
     <v-ons-page>
       <ToolBar/>
       <div class="wrapper">
-
         <v-ons-card v-if="logIn == false">
           <h2 class="title">
             Restroomers.com
@@ -19,7 +18,6 @@
             {{button.text}}
           </v-ons-button>
         </v-ons-card>
-
       </div>
     </v-ons-page>
 </template>
@@ -100,6 +98,11 @@ export default {
             vm.$store.dispatch('signIn', vm.testUser)
           }
         })
+    },
+
+    showUserPage(){
+      this.$store.dispatch('resetPageStack')
+      this.$store.dispatch('showUserPage')
     }
   },
 
@@ -115,12 +118,12 @@ export default {
           }
         }
         else if(this.pageStack2.length == 1 || this.formData.length == 2){
-          this.$store.dispatch('resetPageStack')
-          this.notice('ログインしました！', '')
+          this.showUserPage();
+          this.notice('ログインしました！', '');
         }
         else if(this.formData.length == 4){
-          this.$store.dispatch('resetPageStack')
-          this.notice('新規登録が完了しました！', '')
+          this.showUserPage();
+          this.notice('新規登録が完了しました！', '');
         }
       }
     }
