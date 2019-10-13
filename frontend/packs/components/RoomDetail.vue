@@ -26,11 +26,13 @@
 
 <script>
 export default {
+
   computed: {
     detail(){
       return this.$store.getters.room.detail
     },
   },
+  
 }
 </script>
 
