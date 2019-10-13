@@ -36,5 +36,5 @@ extend(
 extend(
   'confirmed', {
   ...confirmed,
-  message: '同じ値を入力してください。'
+  message: '上記と同じ値を入力してください。'
 })

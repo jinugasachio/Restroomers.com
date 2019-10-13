@@ -25,18 +25,14 @@
 
 <script>
 import ToolBar from './ToolBar.vue'
-import SignUp from './SignUp.vue'
-import SignIn from './SignIn.vue'
-import TestSign from './TestSign.vue'
+import Sign from './Sign.vue'
 
 export default {
 
   name: "SignTop",
   components: {
     ToolBar,
-    SignUp,
-    SignIn,
-    TestSign
+    Sign,
   },
   data(){
     return{
@@ -116,11 +112,11 @@ export default {
     push(event){
       if(event.target.id == 'sign_up'){
         this.$store.dispatch('updateSignFormData', this.signUpForm)
-        this.$store.dispatch('pushPage', TestSign)
+        this.$store.dispatch('pushPage', Sign)
       }
       else if(event.target.id == 'sign_in'){
         this.$store.dispatch('updateSignFormData', this.signInForm)
-        this.$store.dispatch('pushPage', TestSign)
+        this.$store.dispatch('pushPage', Sign)
       }
     },
 
@@ -135,9 +131,6 @@ export default {
     }
   },
 
-  mounted(){
-    debugger;
-  },
   watch:{
     currentUser:{
       handler(){
@@ -147,7 +140,7 @@ export default {
         }
         else if(this.formDataLength == 4){
           this.$store.dispatch('resetPageStack')
-          this.$ons.notification.alert({message: '登録しました！', title: ''});
+          this.$ons.notification.alert({message: '新規登録が完了しました！', title: ''});
         }
         else if(this.formDataLength == 2){
           this.$store.dispatch('resetPageStack')

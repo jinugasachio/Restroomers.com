@@ -5,7 +5,7 @@
         <v-ons-card>
           <ValidationObserver v-slot="{ invalid }">
           <v-ons-list
-            v-for="item in list"
+            v-for="item in signFormData"
             :key="item.id"
           >
             <v-ons-list-header>{{ item.header }}</v-ons-list-header>
@@ -35,9 +35,9 @@
             modifier="large"
             id="sign-button" 
             :disabled="invalid"
-            @click="signUp"
+            @click="sign"
           >
-            登録する
+            {{ buttonName }}
           </v-ons-button>
           </ValidationObserver>
         </v-ons-card>
@@ -49,79 +49,62 @@
 <script>
 import ToolBar from './ToolBar.vue'
 
+
 export default {
 
-  name: "SignUp",
+  name: "SignPage",
 
   components: {
     ToolBar
   },
 
-  data(){
-    return {
-      list:[
-        {
-          id: 1,
-          header: 'ニックネーム',
-          text: '例)  jinuga太郎',
-          model: '',
-          name: 'nickname',
-          rules: 'required|max:20',
-        },{
-          id: 2,
-          header: 'メールアドレス',
-          text: 'PC・携帯どちらでも可',
-          model: '',
-          name: 'email',
-          rules: 'required|email',
-        },{
-          id: 3,
-          header: 'パスワード',
-          text: '6文字以上',
-          model: '',
-          name: 'password',
-          rules: 'required|min:6',
-          vid: 'this.list[2].model'
-        },{
-          id: 4,
-          header: 'パスワード (確認)',
-          text: '6文字以上',
-          model: 'this.list[2].model',
-          name: 'password_confirmation',
-          rules: 'required|min:6|confirmed:this.list[2].model',        
-        }
-      ],
-    }
-  },
   computed:{
     currentUser(){
-      return this.$store.getters.currentUser
+      return this.$store.getters.currentUser;
+    },
+    pageStack2(){
+      return this.$store.getters.pageStack2;
+    },
+    signFormData(){
+      return this.$store.getters.signFormData;
+    },
+    buttonName(){
+      if(this.signFormData.length == 4){
+        return '登録する'
+      }
+      else if(this.signFormData.length == 2){
+        return 'ログインする'
+      }
     }
   },
+
   methods:{
+    sign(){
+      if(this.buttonName == '登録する'){
+        this.signUp();
+      }
+      else if (this.buttonName == 'ログインする'){
+        this.signIn();
+      }
+    },
     signUp(){
       const userParams = {
-        "nickname": this.list[0].model,
-        "email":    this.list[1].model,
-        "password": this.list[2].model,
-        "password_confirmation": this.list[3].model
+        "nickname":              this.signFormData[0].model,
+        "email":                 this.signFormData[1].model,
+        "password":              this.signFormData[2].model,
+        "password_confirmation": this.signFormData[3].model
       }
       this.$store.dispatch('signUp', userParams)
-    }
-  },
-  mounted(){
-    debugger;
-  },
-  watch:{
-    currentUser:{
-      handler(){
-        this.$ons.notification.alert({message: '登録完了しました！', title: ''});
-        this.$store.dispatch('resetPageStack')
+    },
+    signIn(){
+      debugger
+      const userParams = {
+        "email":    this.signFormData[0].model,
+        "password": this.signFormData[1].model
       }
-    }
-  }
-
-
+      this.$store.dispatch('signIn', userParams)
+    },
+  },
 
 }
 </script>
