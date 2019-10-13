@@ -2,7 +2,8 @@
     <v-ons-page>
       <ToolBar/>
       <div class="wrapper">
-        <v-ons-card>
+
+        <v-ons-card v-if="logIn == false">
           <h2 class="title">
             Restroomers.com
             <img src='packs/images/lipstick.png' alt='口紅の写真' class='lip_image'>
@@ -18,23 +19,23 @@
             {{button.text}}
           </v-ons-button>
         </v-ons-card>
+
       </div>
     </v-ons-page>
 </template>
 
 
 <script>
+import signFormData from "../modules/sign_form.json"
 import ToolBar from './ToolBar.vue'
-import SignUp from './SignUp.vue'
-import SignIn from './SignIn.vue'
+import SignForm from './SignForm.vue'
 
 export default {
 
-  name: "Sign",
+  name: "SignTop",
   components: {
     ToolBar,
-    SignUp,
-    SignIn
+    SignForm,
   },
   data(){
     return{
@@ -46,24 +47,48 @@ export default {
       testUser: {
         "email": "test@gmail.com",
         "password": "123456"
-      }
+      },
+      signInForm: signFormData[0],
+      signUpForm: signFormData[1],
     }
   },
   computed:{
+
     currentUser(){
       return this.$store.getters.currentUser
     },
-    pageStack2(){
-      return this.$store.getters.pageStack2
-    }
+    logIn(){
+      if(this.currentUser !== null && this.currentUser.name !== 'Error'){
+        return true
+      }
+      else{
+        return false
+      }
+    },
+    pageStack2:{
+      get()    { return this.$store.getters.pageStack2 },
+      set(page){ this.$store.dispatch('pushPage', page) }
+    },
+    formData:{
+      get()       { return this.$store.getters.signFormData },
+      set(newData){ this.$store.dispatch('updateSignFormData', newData) }
+    },
   },
+
   methods: {
+
+    notice(message, title){
+      return this.$ons.notification.alert({message: message, title: title});
+    },
+
     push(event){
       if(event.target.id == 'sign_up'){
-        this.$store.dispatch('pushPage', SignUp)
+        this.formData   = this.signUpForm
+        this.pageStack2 = SignForm
       }
       else if(event.target.id == 'sign_in'){
-        this.$store.dispatch('pushPage', SignIn)
+        this.formData   = this.signInForm
+        this.pageStack2 = SignForm
       }
     },
 
@@ -77,11 +102,25 @@ export default {
         })
     }
   },
+
   watch:{
     currentUser:{
       handler(){
-        if(this.pageStack2.length == 1){
-          this.$ons.notification.alert({message: 'ログインしました！', title: ''});
+        if(this.currentUser.name == "Error"){
+          if(this.currentUser.config.url == "/api/auth"){
+            this.notice('メールアドレスが既に登録されています。', '登録できません。');
+          }
+          else{
+            this.notice('メールアドレスもしくはパスワードが間違っています。', 'ログインできません。');
+          }
+        }
+        else if(this.pageStack2.length == 1 || this.formData.length == 2){
+          this.$store.dispatch('resetPageStack')
+          this.notice('ログインしました！', '')
+        }
+        else if(this.formData.length == 4){
+          this.$store.dispatch('resetPageStack')
+          this.notice('新規登録が完了しました！', '')
         }
       }
     }

@@ -2,9 +2,7 @@ import 'babel-polyfill'
 import Vue from 'vue'
 import Vuex from 'vuex'
 import GoogleMap from './components/GoogleMap.vue'
-import Sign from './components/Sign.vue'
-import SignUp from './components/SignUp.vue'
-import SignIn from './components/SignIn.vue'
+import SignTop from './components/SignTop.vue'
 import defaultData from './modules/default_data.json'
 
 Vue.use(Vuex)
@@ -18,12 +16,13 @@ const store =  new Vuex.Store({
     allRooms: null,
     roomList: [],
     pageStack1: [GoogleMap],
-    pageStack2: [Sign],
+    pageStack2: [SignTop],
     directionTrigger: false,
     guideTrigger: false,
     showSearchBox: false,
     activeIndex: 0,
-    currentUser: null
+    currentUser: null,
+    signFormData: []
 
   },
 
@@ -61,6 +60,9 @@ const store =  new Vuex.Store({
     },
     currentUser(state){
       return state.currentUser;
+    },
+    signFormData(state){
+      return state.signFormData;
     }
 
   },
@@ -103,24 +105,26 @@ const store =  new Vuex.Store({
         state.pageStack1 = [GoogleMap];
       }
       else if(state.activeIndex == 1){
-        debugger;
-        state.pageStack2 = [Sign];
+        state.pageStack2 = [SignTop];
       }
     },
     directionTrigger(state) {
-      state.directionTrigger = !state.directionTrigger
+      state.directionTrigger = !state.directionTrigger;
     },
     guideTrigger(state) {
-      state.guideTrigger = !state.guideTrigger
+      state.guideTrigger = !state.guideTrigger;
     },
     showSearchBox(state) {
-      state.showSearchBox = !state.showSearchBox
+      state.showSearchBox = !state.showSearchBox;
     },
     activeIndex(state, payload){
-      state.activeIndex = payload
+      state.activeIndex = payload;
     },
     currentUser(state, payload){
-      state.currentUser = payload.user
+      state.currentUser = payload.user;
+    },
+    updateSignFormData(state, payload){
+      state.signFormData = payload;
     }
 
   },
@@ -158,7 +162,6 @@ const store =  new Vuex.Store({
       })
     },
 
-    // Navigatorの挙動が変わるのでリセット
     resetRoomList(context){
       context.commit('resetRoomList');
     },
@@ -194,25 +197,26 @@ const store =  new Vuex.Store({
     signIn(context, userParams){
       axios.post('/api/auth/sign_in', userParams)
       .then(function(response){
-        context.commit('currentUser', {user: response.data})
+        context.commit('currentUser', {user: response.data});
       })
       .catch(function (error) {
-        alert(error);
-        alert('ログインできませんでした。')
+        context.commit('currentUser', {user: error});
       })
     },
 
     signUp(context, userParams){
-      debugger;
       axios.post('/api/auth', userParams)
       .then(function(response){
-        context.commit('currentUser', {user: response.data})
+        context.commit('currentUser', {user: response.data});
       })
       .catch(function (error) {
-        alert(error);
-        alert('登録できませんでした。')
+        context.commit('currentUser', {user: error});
       })
     },
+
+    updateSignFormData(context, signFormData){
+      context.commit('updateSignFormData', signFormData);
+    }
 
   },
 

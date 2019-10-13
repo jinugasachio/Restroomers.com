@@ -42,6 +42,7 @@
         <p class="f-item-name">ゴミ箱</p>
         <div><p>{{ facility.dust_box }}</p></div>
       </div>
+      
       <div class="f-item">
         <p class="f-item-name">利用条件</p>
         <div><p class="letter">{{ facility.membership }}</p></div>
