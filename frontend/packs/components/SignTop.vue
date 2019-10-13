@@ -26,14 +26,14 @@
 <script>
 import signFormData from "../modules/sign_form.json"
 import ToolBar from './ToolBar.vue'
-import Sign from './Sign.vue'
+import SignForm from './SignForm.vue'
 
 export default {
 
   name: "SignTop",
   components: {
     ToolBar,
-    Sign,
+    SignForm,
   },
   data(){
     return{
@@ -65,24 +65,24 @@ export default {
 
   methods: {
 
-    notification(message, title){
-      return this.$ons.notification.alert({message: message, title: title});
+    notice(message, title){
+      return this.$ons.notice.alert({message: message, title: title});
     },
 
     push(event){
       if(event.target.id == 'sign_up'){
         this.$store.dispatch('updateSignFormData', this.signUpForm)
-        this.$store.dispatch('pushPage', Sign)
+        this.$store.dispatch('pushPage', SignForm)
       }
       else if(event.target.id == 'sign_in'){
         this.$store.dispatch('updateSignFormData', this.signInForm)
-        this.$store.dispatch('pushPage', Sign)
+        this.$store.dispatch('pushPage', SignForm)
       }
     },
 
     easySignIn(){
       const vm = this;
-      vm.$ons.notification.confirm({message: 'ログインしてもよろしいですか?', title: ''})
+      vm.$ons.notice.confirm({message: 'ログインしてもよろしいですか?', title: ''})
         .then(function(response){
           if(response == 1){
             vm.$store.dispatch('signIn', vm.testUser)
@@ -96,19 +96,19 @@ export default {
       handler(){
         if(this.currentUser.name == "Error"){
           if(this.currentUser.config.url == "/api/auth"){
-            this.notification('メールアドレスが既に登録されています。', '登録できません。')
+            this.notice('メールアドレスが既に登録されています。', '登録できません。')
           }
           else{
-            this.notification('メールアドレスもしくはパスワードが間違っています。', 'ログインできません。')
+            this.notice('メールアドレスもしくはパスワードが間違っています。', 'ログインできません。')
           }
         }
         else if(this.pageStack2.length == 1 || this.formData.length == 2){
           this.$store.dispatch('resetPageStack')
-          this.notification('ログインしました！', '')
+          this.notice('ログインしました！', '')
         }
         else if(this.formData.length == 4){
           this.$store.dispatch('resetPageStack')
-          this.notification('新規登録が完了しました！', '')
+          this.notice('新規登録が完了しました！', '')
         }
       }
     }
