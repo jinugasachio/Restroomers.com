@@ -2,7 +2,7 @@
     <v-ons-page>
       <ToolBar/>
       <div class="wrapper">
-        <v-ons-card v-if="logIn == false">
+        <v-ons-card v-if="!logIn">
           <h2 class="title">
             Restroomers.com
             <img src='packs/images/lipstick.png' alt='口紅の写真' class='lip_image'>

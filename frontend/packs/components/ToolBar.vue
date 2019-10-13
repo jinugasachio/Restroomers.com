@@ -33,7 +33,12 @@ export default {
       }
       else if(this. activeIndex1){
         if(this.pageStack2.length == 1){
-          return '新規登録 / ログイン'
+          if(this.currentUser !== null && this.currentUser.name !== 'Error'){
+            return  this.currentUser.data.nickname
+          }
+          else{
+            return '新規登録 / ログイン'
+          }
         }
         else if(this.formDataLength == 4){
           return '新規登録'
@@ -67,7 +72,10 @@ export default {
     },
     formDataLength(){
       return this.$store.getters.signFormData.length
-    }
+    },
+    currentUser(){
+      return this.$store.getters.currentUser
+    },
 
   },
 

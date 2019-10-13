@@ -97,9 +97,11 @@ export default {
 <style>
 
 .top_image {
+  display: block;
   width: 100%;
+  max-width: 450px;
   height: 20rem;
-  margin-bottom: 0.4rem;
+  margin: 0 auto 0.4rem;
 }
 
 </style>
