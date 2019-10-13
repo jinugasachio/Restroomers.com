@@ -265,7 +265,7 @@ export default {
   background-color: #ff5757;
 
   .tabbar__button {
-    color: #fff;
+    color: #fff9f9;
 
     .tabbar__label {
       font-weight: 900;

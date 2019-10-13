@@ -51,7 +51,7 @@ export default {
 
 .search-mode {
   .tabbar__button {
-    color: #ff5a47;
+    color: #fa8686;
   }
 }
 

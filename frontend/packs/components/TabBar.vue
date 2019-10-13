@@ -52,7 +52,7 @@ export default {
           page: Navigator1,
         },
         {
-          icon: 'ion-ios-heart',
+          icon: 'ion-ios-happy',
           label: '',
           page: Navigator2,
         }
@@ -93,15 +93,15 @@ export default {
 
 .tabbar__item {
   &:active {
-    background-color: #f0f0f0;
+    background-color: #e7e7e7;
 
     .tabbar__button {
-      color: #ff5a47;
+      color: #fa8686;
     }
   }
 
   :checked + .tabbar__button {
-    color: #ff5a47;
+    color: #fa8686;
   }
 }
 

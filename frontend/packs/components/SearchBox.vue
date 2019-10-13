@@ -15,8 +15,7 @@
           class="search__box__innner__input"
           placeholder="Type to Search"
           v-model="inputWords"
-          @keyup.enter="searchTrigger"
-          @keypress="search"
+
         >
       </div>
     </div>
@@ -27,6 +26,9 @@
 <script>
 
 export default {
+
+          // @keyup.enter="searchTrigger"
+          // @keypress="search"
 
   name: "SeatrchBox",
   data(){
@@ -46,12 +48,12 @@ export default {
   },
 
   methods: {
-    searchTrigger() {
-      if (!this.canSearch) {
-        return
-      }
-      this.canSearch = false
-    },
+    // searchTrigger() {
+    //   if (!this.canSearch) {
+    //     return
+    //   }
+    //   this.canSearch = false
+    // },
 
     search(){
       if(typeof this.inputWords == 'string'){ //細くバリデーションするならここ、一旦応急処置的にこれ。
@@ -67,6 +69,9 @@ export default {
             vm.map.setZoom(16)
             vm.$store.dispatch('showSearchBox')
             vm.inputWords = null
+          }
+          else{
+            vm.$ons.notification.alert({message: 'お探しの場所が見つかりませんでした。', title: ''});
           }
         });
       }
