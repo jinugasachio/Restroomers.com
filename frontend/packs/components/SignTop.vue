@@ -88,14 +88,14 @@ export default {
           model: '',
           name: 'password',
           rules: 'required|min:6',
-          vid: ''
+          vid: 'signFormData[2].model'
         },{
           id: 4,
           header: 'パスワード (確認)',
           text: '6文字以上',
           model: '',
           name: 'password_confirmation',
-          rules: 'required|min:6|confirmed:',        
+          rules: "required|min:6|confirmed:signFormData[2].model",        
         }
       ],
     }
@@ -109,7 +109,7 @@ export default {
     },
     formDataLength(){
       return this.$store.getters.signFormData.length
-    }
+    },
   },
 
   methods: {
@@ -133,6 +133,10 @@ export default {
           }
         })
     }
+  },
+
+  mounted(){
+    debugger;
   },
   watch:{
     currentUser:{

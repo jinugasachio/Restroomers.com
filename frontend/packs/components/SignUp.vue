@@ -86,7 +86,7 @@ export default {
           id: 4,
           header: 'パスワード (確認)',
           text: '6文字以上',
-          model: '',
+          model: 'this.list[2].model',
           name: 'password_confirmation',
           rules: 'required|min:6|confirmed:this.list[2].model',        
         }
@@ -108,6 +108,9 @@ export default {
       }
       this.$store.dispatch('signUp', userParams)
     }
+  },
+  mounted(){
+    debugger;
   },
   watch:{
     currentUser:{

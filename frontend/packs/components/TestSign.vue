@@ -15,6 +15,7 @@
                   mode="eager"
                   :rules="item.rules"
                   :ref="item.id"
+                  :vid="item.vid"
                   v-slot="{ errors }"
                 >
                 <v-ons-input
@@ -58,7 +59,9 @@ export default {
   },
 
   data(){
-    return{password: ''}
+    return{
+
+    }
   },
 
   computed:{
