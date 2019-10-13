@@ -51,18 +51,24 @@ export default {
     }
   },
   computed:{
+
     currentUser(){
       return this.$store.getters.currentUser
     },
     pageStack2(){
       return this.$store.getters.pageStack2
     },
-    formDataLength(){
-      return this.$store.getters.signFormData.length
+    formData(){
+      return this.$store.getters.signFormData
     },
   },
 
   methods: {
+
+    notification(message, title){
+      return this.$ons.notification.alert({message: message, title: title});
+    },
+
     push(event){
       if(event.target.id == 'sign_up'){
         this.$store.dispatch('updateSignFormData', this.signUpForm)
@@ -88,17 +94,21 @@ export default {
   watch:{
     currentUser:{
       handler(){
-        debugger;
-        if(this.pageStack2.length == 1){
-          this.$ons.notification.alert({message: 'ログインしました！', title: ''});
+        if(this.currentUser.name == "Error"){
+          if(this.currentUser.config.url == "/api/auth"){
+            this.notification('メールアドレスが既に登録されています。', '登録できません。')
+          }
+          else{
+            this.notification('メールアドレスもしくはパスワードが間違っています。', 'ログインできません。')
+          }
         }
-        else if(this.formDataLength == 4){
+        else if(this.pageStack2.length == 1 || this.formData.length == 2){
           this.$store.dispatch('resetPageStack')
-          this.$ons.notification.alert({message: '新規登録が完了しました！', title: ''});
+          this.notification('ログインしました！', '')
         }
-        else if(this.formDataLength == 2){
+        else if(this.formData.length == 4){
           this.$store.dispatch('resetPageStack')
-          this.$ons.notification.alert({message: 'ログインしました！', title: ''});
+          this.notification('新規登録が完了しました！', '')
         }
       }
     }

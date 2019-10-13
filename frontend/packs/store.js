@@ -121,6 +121,7 @@ const store =  new Vuex.Store({
       state.activeIndex = payload;
     },
     currentUser(state, payload){
+      debugger;
       state.currentUser = payload.user;
     },
     updateSignFormData(state, payload){
@@ -162,7 +163,6 @@ const store =  new Vuex.Store({
       })
     },
 
-    // Navigatorの挙動が変わるのでリセット
     resetRoomList(context){
       context.commit('resetRoomList');
     },
@@ -201,8 +201,7 @@ const store =  new Vuex.Store({
         context.commit('currentUser', {user: response.data});
       })
       .catch(function (error) {
-        alert(error);
-        alert('ログインできませんでした。');
+        context.commit('currentUser', {user: error});
       })
     },
 
@@ -212,8 +211,7 @@ const store =  new Vuex.Store({
         context.commit('currentUser', {user: response.data});
       })
       .catch(function (error) {
-        alert(error);
-        alert('登録できませんでした。')
+        context.commit('currentUser', {user: error});
       })
     },
 

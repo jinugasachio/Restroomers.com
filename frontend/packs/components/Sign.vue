@@ -97,7 +97,6 @@ export default {
       this.$store.dispatch('signUp', userParams)
     },
     signIn(){
-      debugger
       const userParams = {
         "email":    this.signFormData[0].model,
         "password": this.signFormData[1].model
