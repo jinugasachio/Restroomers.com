@@ -24,6 +24,7 @@
 
 
 <script>
+import signFormData from "../modules/sign_form.json"
 import ToolBar from './ToolBar.vue'
 import Sign from './Sign.vue'
 
@@ -45,55 +46,8 @@ export default {
         "email": "test@gmail.com",
         "password": "123456"
       },
-      signInForm:[
-        { 
-          id: 1,
-          header: 'メールアドレス',
-          text: 'PC・携帯どちらでも可',
-          model: '',
-          name: 'email',
-          rules: 'required|email'
-        },{
-          id: 2,
-          header: 'パスワード',
-          text: '6文字以上',
-          model: '' ,
-          name: 'password',
-          rules: 'required|min:6'
-        }
-      ],
-      signUpForm:[
-        {
-          id: 1,
-          header: 'ニックネーム',
-          text: '例)  jinuga太郎',
-          model: '',
-          name: 'nickname',
-          rules: 'required|max:20',
-        },{
-          id: 2,
-          header: 'メールアドレス',
-          text: 'PC・携帯どちらでも可',
-          model: '',
-          name: 'email',
-          rules: 'required|email',
-        },{
-          id: 3,
-          header: 'パスワード',
-          text: '6文字以上',
-          model: '',
-          name: 'password',
-          rules: 'required|min:6',
-          vid: 'signFormData[2].model'
-        },{
-          id: 4,
-          header: 'パスワード (確認)',
-          text: '6文字以上',
-          model: '',
-          name: 'password_confirmation',
-          rules: "required|min:6|confirmed:signFormData[2].model",        
-        }
-      ],
+      signInForm: signFormData[0],
+      signUpForm: signFormData[1],
     }
   },
   computed:{
