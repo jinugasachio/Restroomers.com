@@ -4,12 +4,12 @@
   >
     <div class="search__box">
       <div class="search__box__inner">
-          <button @click="search" class="search__box__inner__box">
+        <button @click="search" class="search__box__inner__box">
           <img src="packs/images/search1.png" 
             class="search__box__innner__box__image" 
             
           >
-          </button>
+        </button>
         <input 
           type="text"
           class="search__box__innner__input"
