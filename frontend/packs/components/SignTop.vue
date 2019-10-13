@@ -2,7 +2,8 @@
     <v-ons-page>
       <ToolBar/>
       <div class="wrapper">
-        <v-ons-card>
+
+        <v-ons-card v-if="logIn == false">
           <h2 class="title">
             Restroomers.com
             <img src='packs/images/lipstick.png' alt='口紅の写真' class='lip_image'>
@@ -18,6 +19,7 @@
             {{button.text}}
           </v-ons-button>
         </v-ons-card>
+
       </div>
     </v-ons-page>
 </template>
@@ -55,34 +57,44 @@ export default {
     currentUser(){
       return this.$store.getters.currentUser
     },
-    pageStack2(){
-      return this.$store.getters.pageStack2
+    logIn(){
+      if(this.currentUser !== null && this.currentUser.name !== 'Error'){
+        return true
+      }
+      else{
+        return false
+      }
     },
-    formData(){
-      return this.$store.getters.signFormData
+    pageStack2:{
+      get()    { return this.$store.getters.pageStack2 },
+      set(page){ this.$store.dispatch('pushPage', page) }
+    },
+    formData:{
+      get()       { return this.$store.getters.signFormData },
+      set(newData){ this.$store.dispatch('updateSignFormData', newData) }
     },
   },
 
   methods: {
 
     notice(message, title){
-      return this.$ons.notice.alert({message: message, title: title});
+      return this.$ons.notification.alert({message: message, title: title});
     },
 
     push(event){
       if(event.target.id == 'sign_up'){
-        this.$store.dispatch('updateSignFormData', this.signUpForm)
-        this.$store.dispatch('pushPage', SignForm)
+        this.formData   = this.signUpForm
+        this.pageStack2 = SignForm
       }
       else if(event.target.id == 'sign_in'){
-        this.$store.dispatch('updateSignFormData', this.signInForm)
-        this.$store.dispatch('pushPage', SignForm)
+        this.formData   = this.signInForm
+        this.pageStack2 = SignForm
       }
     },
 
     easySignIn(){
       const vm = this;
-      vm.$ons.notice.confirm({message: 'ログインしてもよろしいですか?', title: ''})
+      vm.$ons.notification.confirm({message: 'ログインしてもよろしいですか?', title: ''})
         .then(function(response){
           if(response == 1){
             vm.$store.dispatch('signIn', vm.testUser)
@@ -96,10 +108,10 @@ export default {
       handler(){
         if(this.currentUser.name == "Error"){
           if(this.currentUser.config.url == "/api/auth"){
-            this.notice('メールアドレスが既に登録されています。', '登録できません。')
+            this.notice('メールアドレスが既に登録されています。', '登録できません。');
           }
           else{
-            this.notice('メールアドレスもしくはパスワードが間違っています。', 'ログインできません。')
+            this.notice('メールアドレスもしくはパスワードが間違っています。', 'ログインできません。');
           }
         }
         else if(this.pageStack2.length == 1 || this.formData.length == 2){

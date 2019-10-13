@@ -121,7 +121,6 @@ const store =  new Vuex.Store({
       state.activeIndex = payload;
     },
     currentUser(state, payload){
-      debugger;
       state.currentUser = payload.user;
     },
     updateSignFormData(state, payload){
