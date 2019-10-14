@@ -5,6 +5,7 @@ class User < ApplicationRecord
           # :confirmable, :omniauthable, :trackable,
   include DeviseTokenAuth::Concerns::User
 
+  # Associations
   has_many :powder_rooms, dependent: :destroy
   has_many :likes, dependent: :destroy
 end
