@@ -4,7 +4,7 @@
     <v-ons-card>
       <img v-if="roomImage" :src=activeImage class="top_image">
       <img v-else src="packs/images/no_image.png" class="top_image">
-      <StarRating/>
+      <UnderBox/>
       <div class="content">
         <Images v-if="roomImage" 
                 :imageUrls="imageUrls"
@@ -19,7 +19,8 @@
 
 <script>
 import ToolBar from './ToolBar.vue'
-import StarRating from './StarRating.vue'
+import UnderBox from './UnderBox.vue'
+import HeartButton from './HeartButton.vue'
 import Images from './Images.vue'
 import Facility from './RoomFacility.vue'
 import Detail from './RoomDetail.vue'
@@ -30,7 +31,8 @@ export default {
   name: "Room",
   
   components: {
-    StarRating,
+    UnderBox,
+    HeartButton,
     Images,
     ToolBar,
     Facility,
@@ -69,7 +71,7 @@ export default {
     addActive(event){
       const url = event.target.getAttribute('src')
       this.activeImage = url
-    }
+    },
   },
 
   created(){
