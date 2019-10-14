@@ -12,6 +12,8 @@ export default {
     changeClass(){
       const button = document.getElementById('heart');
       button.classList.toggle('isAnimating')
+
+      this.$store.dispatch('like')
     }
   },
 }

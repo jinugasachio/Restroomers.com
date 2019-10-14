@@ -201,6 +201,7 @@ const store =  new Vuex.Store({
     signIn(context, userParams){
       axios.post('/api/auth/sign_in', userParams)
       .then(function(response){
+        debugger
         context.commit('currentUser', {user: response.data});
       })
       .catch(function (error) {
@@ -224,6 +225,18 @@ const store =  new Vuex.Store({
 
     showUserPage(context){
       context.commit('showUserPage')
+    },
+
+    like(){
+      axios.post('/api/likes', {"powder_room_id": "1"})
+      .then(function(response){
+       debugger
+       console.log(response)
+      })
+      .catch(function (error) {
+        debugger
+        console.log(error)
+      })
     }
 
   },
