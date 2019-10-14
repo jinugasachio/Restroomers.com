@@ -38,7 +38,6 @@ export default {
 
 .vue-star-rating {
   height: 35px;
-  // margin-bottom: 0.5rem;
 }
 
 </style>
