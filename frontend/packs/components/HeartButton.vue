@@ -1,6 +1,6 @@
 <template>
   <div id="heart" @click="changeClass">
-    <span>34</span>
+    <span>{{ allLikes }}</span>
   </div>
 </template>
 
@@ -8,13 +8,39 @@
 
 export default {
   name: 'HeartButton',
-  methods: {
-    changeClass(){
-      const button = document.getElementById('heart');
-      button.classList.toggle('isAnimating')
 
-      this.$store.dispatch('like')
+  computed:{
+    room(){
+      return this.$store.getters.room.powder_room
+    },
+    headers(){
+      return this.$store.getters.headers
+    },
+    allLikes:{
+      get(){ return this.$store.getters.roomLikes },
+      set(id){
+        const likeParams = { "powder_room_id": id }
+        this.$store.dispatch('like', likeParams, this.headers)
+      }
+    },
+  },
+  methods:{
+    changeClass(){
+      if(this.headers !== null){
+        const button = document.getElementById('heart');
+        button.classList.toggle('isAnimating')
+        this.like();
+      }
+      else{
+        this.$ons.notification.alert({ message: 'ログインしてください。', title: '' })
+      }
+    },
+    like(){
+      this.allLikes = this.room.id
     }
+  },
+  mounted(){
+    // debugger;
   },
 }
 </script>

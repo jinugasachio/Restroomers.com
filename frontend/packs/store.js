@@ -14,6 +14,7 @@ const store =  new Vuex.Store({
 
     map: null,
     room: defaultData, //コンソールエラー防止のため | リレーションしてるモデルデータも合わせて格納している
+    roomLikes: 0,
     allRooms: null,
     roomList: [],
     pageStack1: [GoogleMap],
@@ -23,6 +24,7 @@ const store =  new Vuex.Store({
     showSearchBox: false,
     activeIndex: 0,
     currentUser: null,
+    headers: null,
     signFormData: []
 
   },
@@ -34,6 +36,9 @@ const store =  new Vuex.Store({
     },
     room(state) {
       return state.room;
+    },
+    roomLikes(state){
+      return state.roomLikes;
     },
     allRooms(state) {
       return state.allRooms;
@@ -62,6 +67,9 @@ const store =  new Vuex.Store({
     currentUser(state){
       return state.currentUser;
     },
+    headers(state){
+      return state.headers;
+    },
     signFormData(state){
       return state.signFormData;
     }
@@ -75,6 +83,9 @@ const store =  new Vuex.Store({
     },
     updateRoom(state, payload) {
       state.room = payload.room;
+    },
+    roomLikes(state, payload){
+      state.roomLikes = payload;
     },
     updateAllRooms(state, payload) {
       state.allRooms = payload.allRooms;
@@ -124,6 +135,14 @@ const store =  new Vuex.Store({
     currentUser(state, payload){
       state.currentUser = payload.user;
     },
+    updateHeaders(state, payload){
+      state.headers = {
+        "access-token" : payload["access-token"],
+        "client"       : payload["client"],
+        "content-type" : payload["content-type"],
+        "uid"          : payload["uid"],
+      };
+    },
     updateSignFormData(state, payload){
       state.signFormData = payload;
     },
@@ -159,6 +178,8 @@ const store =  new Vuex.Store({
           context.commit('updateRoomList', { roomList: response.data })
         } else {
           context.commit('updateRoom', { room: response.data })
+          context.commit('roomLikes', response.data.likes.length)
+
         }
       })
       .catch(function (error) {
@@ -201,21 +222,22 @@ const store =  new Vuex.Store({
     signIn(context, userParams){
       axios.post('/api/auth/sign_in', userParams)
       .then(function(response){
-        debugger
-        context.commit('currentUser', {user: response.data});
+        context.commit('currentUser', { user: response.data });
+        context.commit('updateHeaders', response.headers )
       })
       .catch(function (error) {
-        context.commit('currentUser', {user: error});
+        context.commit('currentUser', { user: error });
       })
     },
 
     signUp(context, userParams){
       axios.post('/api/auth', userParams)
       .then(function(response){
-        context.commit('currentUser', {user: response.data});
+        context.commit('currentUser', { user: response.data });
+        context.commit('updateHeaders', response.headers);
       })
       .catch(function (error) {
-        context.commit('currentUser', {user: error});
+        context.commit('currentUser', { user: error });
       })
     },
 
@@ -224,18 +246,16 @@ const store =  new Vuex.Store({
     },
 
     showUserPage(context){
-      context.commit('showUserPage')
+      context.commit('showUserPage');
     },
 
-    like(){
-      axios.post('/api/likes', {"powder_room_id": "1"})
-      .then(function(response){
-       debugger
-       console.log(response)
+    like(context, likeParams){
+      axios.post('/api/likes', likeParams, { headers: context.state.headers })
+      .then(function(){
+        ++context.state.roomLikes
       })
-      .catch(function (error) {
-        debugger
-        console.log(error)
+      .catch(function () {
+        alert('予期しないエラーが発生しました。');
       })
     }
 
