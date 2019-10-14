@@ -1,6 +1,6 @@
 <template>
-  <div id="heart" @click="changeClass">
-    <span>{{ allLikes }}</span>
+  <div id="heart" @click="like">
+    <span>{{ allLikesCount }}</span>
   </div>
 </template>
 
@@ -16,31 +16,44 @@ export default {
     headers(){
       return this.$store.getters.headers
     },
-    allLikes:{
-      get(){ return this.$store.getters.roomLikes },
-      set(id){
-        const likeParams = { "powder_room_id": id }
-        this.$store.dispatch('like', likeParams, this.headers)
-      }
+    currentUser(){
+      return this.$store.getters.currentUser.data
     },
+    allLikes(){
+      return this.$store.getters.room.likes
+    },
+    allLikesCount(){
+       return this.$store.getters.roomLikes
+    },
+    isLiked(){
+      const vm = this;
+      const liked = this.allLikes.filter(function(like){
+        return like.user_id == vm.currentUser.id
+      })
+      return liked
+    }
   },
   methods:{
     changeClass(){
-      if(this.headers !== null){
         const button = document.getElementById('heart');
         button.classList.toggle('isAnimating')
-        this.like();
+    },
+    like(){
+      if(this.headers !== null){
+        this.changeClass();
+        const likeParams = { "powder_room_id": this.room.id }
+        this.$store.dispatch('like', likeParams, this.headers)
       }
       else{
         this.$ons.notification.alert({ message: 'ログインしてください。', title: '' })
       }
     },
-    like(){
-      this.allLikes = this.room.id
-    }
   },
   mounted(){
-    // debugger;
+    debugger;
+    if(this.headers !== null && this.isLiked.length > 0){
+      this.changeClass();
+    }
   },
 }
 </script>
