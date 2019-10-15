@@ -24,6 +24,7 @@ const store =  new Vuex.Store({
     showSearchBox: false,
     activeIndex: 0,
     currentUser: null,
+    favoriteRooms: [],
     headers: null,
     signFormData: []
 
@@ -45,6 +46,9 @@ const store =  new Vuex.Store({
     },
     roomList(state) {
       return state.roomList;
+    },
+    favoriteRooms(state){
+      return state.favoriteRooms;
     },
     pageStack1(state){
       return state.pageStack1;
@@ -93,6 +97,17 @@ const store =  new Vuex.Store({
     deleteLike(state, payload){
       state.roomLikes = state.roomLikes.filter(function(like){
         return like.id !== payload.like.id
+      })
+    },
+    favoriteRooms(state, payload){
+      state.favoriteRooms = payload.favoriteRooms;
+    },
+    addFavorite(state, payload){
+      state.favoriteRooms.push(payload)
+    },
+    deleteFavorite(state, payload){
+      state.favoriteRooms = state.favoriteRooms.filter(function(room){
+        return room.id !== payload.id
       })
     },
     updateAllRooms(state, payload) {
@@ -270,7 +285,10 @@ const store =  new Vuex.Store({
     like(context, likeParams){
       axios.post('/api/likes', likeParams, { headers: context.state.headers })
       .then(function(response){
+        debugger;
         context.commit('addLike', { newLike: response.data })
+        const favoriteRoom = context.getters.room.powder_room
+        context.commit('addFavorite', favoriteRoom)
       })
       .catch(function () {
         alert('予期しないエラーが発生しました。');
@@ -281,6 +299,18 @@ const store =  new Vuex.Store({
       axios.delete('/api/likes/' + params.id,  { headers: context.state.headers })
       .then(function(response){
         context.commit('deleteLike', { like: response.data })
+        const favoriteRoom = context.getters.room.powder_room
+        context.commit('deleteFavorite', favoriteRoom)
+      })
+      .catch(function (error) {
+        alert('予期しないエラーが発生しました。');
+      })
+    },
+
+    favoriteRooms(context){
+      axios.get('/api/likes/favorite_rooms', { headers: context.state.headers })
+      .then(function(response){
+        context.commit('favoriteRooms', { favoriteRooms: response.data })
       })
       .catch(function (error) {
         alert('予期しないエラーが発生しました。');

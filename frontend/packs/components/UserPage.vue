@@ -3,17 +3,15 @@
     <ToolBar/>
     <v-ons-list>
       <v-ons-list-header>お気に入りリスト</v-ons-list-header>
+
       <v-ons-list-item modifier="chevron longdivider" tappable
-        @click="getRoom"
-        v-for="room in roomList" 
+
+        v-for="room in favoriteRooms" 
         :key=room.id
         :data-id=room.id
       >
       {{ room.name }}
       </v-ons-list-item>
-
-      <v-ons-list-item modifier="chevron longdivider" tappable>部屋名</v-ons-list-item>
-      <v-ons-list-item modifier="chevron longdivider" tappable>部屋名</v-ons-list-item>
 
     </v-ons-list>
   </v-ons-page>
@@ -29,7 +27,17 @@ export default {
   components:{
     ToolBar,
   },
-
+  computed:{
+    favoriteRooms(){
+      return this.$store.getters.favoriteRooms
+    }
+  },
+  created(){
+    this.$store.dispatch('favoriteRooms')
+  },
+  mounted(){
+    debugger
+  }
 
 }
 </script>
