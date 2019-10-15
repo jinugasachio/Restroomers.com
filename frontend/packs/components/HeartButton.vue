@@ -1,6 +1,6 @@
 <template>
   <div id="heart" @click="like">
-    <span>{{ allLikesCount }}</span>
+    <span>{{ roomLikes.length }}</span>
   </div>
 </template>
 
@@ -8,6 +8,12 @@
 
 export default {
   name: 'HeartButton',
+
+  data(){
+    return{
+      // allLikes: []
+    }
+  },
 
   computed:{
     room(){
@@ -19,12 +25,13 @@ export default {
     currentUser(){
       return this.$store.getters.currentUser.data
     },
-    allLikes(){
-      return this.$store.getters.room.likes
+    roomLikes:{
+      get(){ return this.$store.getters.roomLikes },
+      // set(roomId){ this.$store.dispatch('roomLikes', { "id": roomId })}
     },
-    allLikesCount(){
-       return this.$store.getters.roomLikes
-    },
+    // allLikesCount(){
+    //    return this.$store.getters.allLikes.length
+    // },
     // isLiked(){
     //   const vm = this;
     //   const liked = this.allLikes.filter(function(like){
@@ -35,7 +42,7 @@ export default {
     isLiked:{
       get(){
         const vm = this;
-        const liked = this.allLikes.filter(function(like){
+        const liked = this.roomLikes.filter(function(like){
           return like.user_id == vm.currentUser.id
         })
         return liked
@@ -69,15 +76,28 @@ export default {
       // this.$store.dispatch('unlike', params)
     },
     changeClass(){
-        const button = document.getElementById('heart');
-        button.classList.toggle('isAnimating')
+      const button = document.getElementById('heart');
+      button.classList.toggle('isAnimating')
     },
+  },
+  beforeCreate(){
+    // debugger
+    // // this.roomLikes = this.room.id
+    // this.$store.dispatch('roomLikes', { "id": this.room.id })
   },
   mounted(){
     if(this.headers !== null && this.isLiked.length > 0){
       this.changeClass();
     }
+    // debugger;
   },
+  watch:{
+    roomlikes:{
+      handler(){
+        debugger;
+      }
+    }
+  }
 }
 </script>
 

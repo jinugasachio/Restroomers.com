@@ -14,7 +14,7 @@ const store =  new Vuex.Store({
 
     map: null,
     room: defaultData, //コンソールエラー防止のため | リレーションしてるモデルデータも合わせて格納している
-    roomLikes: 0,
+    roomLikes:[],
     allRooms: null,
     roomList: [],
     pageStack1: [GoogleMap],
@@ -85,7 +85,15 @@ const store =  new Vuex.Store({
       state.room = payload.room;
     },
     roomLikes(state, payload){
-      state.roomLikes = payload;
+      state.roomLikes = payload.roomLikes;
+    },
+    addLike(state, payload){
+      state.roomLikes.push(payload.newLike);
+    },
+    deleteLike(state, payload){
+      state.roomLikes = state.roomLikes.filter(function(like){
+        return like.id !== payload.like.id
+      })
     },
     updateAllRooms(state, payload) {
       state.allRooms = payload.allRooms;
@@ -178,7 +186,7 @@ const store =  new Vuex.Store({
           context.commit('updateRoomList', { roomList: response.data })
         } else {
           context.commit('updateRoom', { room: response.data })
-          context.commit('roomLikes', response.data.likes.length)
+          context.commit('roomLikes',  { roomLikes: response.data.likes })
 
         }
       })
@@ -249,10 +257,22 @@ const store =  new Vuex.Store({
       context.commit('showUserPage');
     },
 
+    roomLikes(context, params){
+      // debugger;
+      axios.get(`/api/likes/?id=${params.id}`)
+      .then(function(response){
+        // debugger;
+        context.commit('roomLikes', { roomLikes: response.data });
+      })
+      .catch(function () {
+        alert('予期しないエラーが発生しました。');
+      })
+    },
+
     like(context, likeParams){
       axios.post('/api/likes', likeParams, { headers: context.state.headers })
-      .then(function(){
-        ++context.state.roomLikes
+      .then(function(response){
+        context.commit('addLike', { newLike: response.data })
       })
       .catch(function () {
         alert('予期しないエラーが発生しました。');
@@ -260,14 +280,12 @@ const store =  new Vuex.Store({
     },
 
     unlike(context, params){
-      debugger;
-      axios.delete('/api/likes/' + params["id"],  { headers: context.state.headers })
+      axios.delete('/api/likes/' + params.id,  { headers: context.state.headers })
       .then(function(response){
         debugger;
-        --context.state.roomLikes
+        context.commit('deleteLike', { like: response.data })
       })
       .catch(function (error) {
-        debugger;
         alert('予期しないエラーが発生しました。');
       })
     }

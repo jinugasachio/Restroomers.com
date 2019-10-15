@@ -1,14 +1,19 @@
 class Api::LikesController < ApplicationController
-  before_action :authenticate_api_user!
+  before_action :authenticate_api_user!, except: :index
+
+  def index
+    render json: Like.where(powder_room_id: params[:id])
+  end
 
   def create
-    current_api_user.likes.create!(likes_params)
-    head :created
+    like = current_api_user.likes.create!(likes_params)
+    render json: like
   end
 
   def destroy
-    current_api_user.likes.find(params[:id]).destroy!
-    head :ok
+    like = current_api_user.likes.find(params[:id])
+    like.destroy!
+    render json: like
   end
 
   private
