@@ -33,12 +33,15 @@ export default {
       }
       else if(this. activeIndex1){
         if(this.pageStack2.length == 1){
-          if(this.currentUser !== null && this.currentUser.name !== 'Error'){
+          if(this.headers !== null){
             return  this.currentUser.data.nickname
           }
           else{
             return '新規登録 / ログイン'
           }
+        }
+        else if(this.pageStack2.length == 2){
+          return this.$store.getters.room.powder_room.name
         }
         else if(this.formDataLength == 4){
           return '新規登録'
@@ -75,6 +78,9 @@ export default {
     },
     currentUser(){
       return this.$store.getters.currentUser
+    },
+    headers(){
+      return this.$store.getters.headers
     },
 
   },
