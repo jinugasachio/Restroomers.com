@@ -258,10 +258,8 @@ const store =  new Vuex.Store({
     },
 
     roomLikes(context, params){
-      // debugger;
       axios.get(`/api/likes/?id=${params.id}`)
       .then(function(response){
-        // debugger;
         context.commit('roomLikes', { roomLikes: response.data });
       })
       .catch(function () {
@@ -282,7 +280,6 @@ const store =  new Vuex.Store({
     unlike(context, params){
       axios.delete('/api/likes/' + params.id,  { headers: context.state.headers })
       .then(function(response){
-        debugger;
         context.commit('deleteLike', { like: response.data })
       })
       .catch(function (error) {

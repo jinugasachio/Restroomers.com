@@ -7,13 +7,8 @@
 <script>
 
 export default {
-  name: 'HeartButton',
 
-  data(){
-    return{
-      // allLikes: []
-    }
-  },
+  name: 'HeartButton',
 
   computed:{
     room(){
@@ -25,35 +20,18 @@ export default {
     currentUser(){
       return this.$store.getters.currentUser.data
     },
-    roomLikes:{
-      get(){ return this.$store.getters.roomLikes },
-      // set(roomId){ this.$store.dispatch('roomLikes', { "id": roomId })}
+    roomLikes(){
+      return this.$store.getters.roomLikes 
     },
-    // allLikesCount(){
-    //    return this.$store.getters.allLikes.length
-    // },
-    // isLiked(){
-    //   const vm = this;
-    //   const liked = this.allLikes.filter(function(like){
-    //     return like.user_id == vm.currentUser.id
-    //   })
-    //   return liked
-    // }
-    isLiked:{
-      get(){
-        const vm = this;
-        const liked = this.roomLikes.filter(function(like){
-          return like.user_id == vm.currentUser.id
-        })
-        return liked
-      },
-      set(params){
-        // const params = { "id": this.isLiked[0].id }
-        this.$store.dispatch('unlike', params)
-      }
-
+    isLiked(){
+      const vm = this;
+      const liked = this.roomLikes.filter(function(like){
+        return like.user_id == vm.currentUser.id
+      })
+      return liked
     }
   },
+  
   methods:{
     like(){
       if(this.headers !== null){
@@ -72,32 +50,20 @@ export default {
     },
     unLike(){
       const params = { "id": this.isLiked[0].id }
-      this.isLiked = params
-      // this.$store.dispatch('unlike', params)
+      this.$store.dispatch('unlike', params)
     },
     changeClass(){
       const button = document.getElementById('heart');
       button.classList.toggle('isAnimating')
     },
   },
-  beforeCreate(){
-    // debugger
-    // // this.roomLikes = this.room.id
-    // this.$store.dispatch('roomLikes', { "id": this.room.id })
-  },
+
   mounted(){
     if(this.headers !== null && this.isLiked.length > 0){
       this.changeClass();
     }
-    // debugger;
-  },
-  watch:{
-    roomlikes:{
-      handler(){
-        debugger;
-      }
-    }
   }
+
 }
 </script>
 
