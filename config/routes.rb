@@ -8,11 +8,15 @@ Rails.application.routes.draw do
   # get 'post', to: 'static_pages#top'
   # get 'room/:id', to: 'static_pages#top'
 
-  namespace :api, {format: 'json'} do
-    resources :powder_rooms
-    resources :likes, only: [:index, :create, :destroy]
+  namespace :api, { format: 'json' } do
     mount_devise_token_auth_for 'User', at: 'auth', controllers: {
       registrations: 'api/auth/registrations'
     }
+    resources :powder_rooms
+    resources :likes, only: [:index, :create, :destroy] do
+      collection do
+        get 'favorite_rooms'
+      end
+    end
   end
 end

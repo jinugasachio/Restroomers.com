@@ -16,6 +16,18 @@ class Api::LikesController < ApplicationController
     render json: like
   end
 
+  def favorite_rooms
+    favorite_rooms = []
+    user_likes = current_api_user.likes
+
+    user_likes.each do |like|
+      id = like.powder_room.id
+      room = PowderRoom.find(id)
+      favorite_rooms.push(room)
+    end
+    render json: favorite_rooms
+  end
+
   private
 
     def likes_params

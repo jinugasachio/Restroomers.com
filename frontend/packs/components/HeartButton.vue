@@ -11,6 +11,7 @@ export default {
   name: 'HeartButton',
 
   computed:{
+
     room(){
       return this.$store.getters.room.powder_room
     },
@@ -30,9 +31,11 @@ export default {
       })
       return liked
     }
+    
   },
-  
+
   methods:{
+
     like(){
       if(this.headers !== null){
         this.changeClass();
@@ -56,6 +59,7 @@ export default {
       const button = document.getElementById('heart');
       button.classList.toggle('isAnimating')
     },
+
   },
 
   mounted(){
