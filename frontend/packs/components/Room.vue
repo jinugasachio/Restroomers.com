@@ -2,7 +2,9 @@
   <v-ons-page>
     <ToolBar/>
     <v-ons-card>
+
       <img v-if="roomImage" :src=activeImage class="top_image">
+
       <img v-else src="packs/images/no_image.png" class="top_image">
       <UnderBox/>
       <div class="content">
@@ -74,7 +76,13 @@ export default {
     },
   },
 
-  created(){
+  // created(){
+  //   if (this.images.length != 0){
+  //     this.roomImage = true
+  //   }
+  // },
+
+  mounted(){
     if(this.images.length > 0){
       this.activeImage = this.imageUrls[0].url
     }
@@ -90,6 +98,15 @@ export default {
       },
       immediate: true
     },
+    // activeImage:{
+    //   handler(){
+    //     debugger;
+    //     console.log(this.activeImage)
+    //     this.activeImage = this.imageUrls[0].url
+    //     console.log(this.activeImage)
+    //   },
+    //   immediate: true
+    // }
 
   }
 

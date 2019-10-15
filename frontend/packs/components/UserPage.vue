@@ -42,6 +42,8 @@ export default {
       const roomItem = event.currentTarget
       this.$store.dispatch('getRoom', roomItem.dataset.id)
     },
+
+    
   },
   created(){
     this.$store.dispatch('favoriteRooms')

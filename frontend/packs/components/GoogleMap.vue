@@ -10,6 +10,7 @@
 import GmapStyle from "../modules/gmap_style.json"
 import Room from './Room.vue'
 import RoomList from './RoomList.vue'
+import RoomList2 from './RoomList2.vue'
 import Navigator1 from './Navigator1.vue'
 import SearchBox from './SearchBox.vue'
 
@@ -19,7 +20,7 @@ export default {
 
   components: {
     Room,
-    RoomList,
+    RoomList2,
     Navigator1,
     SearchBox
   },
@@ -54,7 +55,7 @@ export default {
     // Navigator用メソッド
     push(){
       if (this.$store.state.roomList.length > 1){
-        this.$store.dispatch('pushPage', RoomList)
+        this.$store.dispatch('pushPage', RoomList2)
       } else {
         this.$store.dispatch('pushPage', Room)
       }
