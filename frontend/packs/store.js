@@ -257,6 +257,19 @@ const store =  new Vuex.Store({
       .catch(function () {
         alert('予期しないエラーが発生しました。');
       })
+    },
+
+    unlike(context, params){
+      debugger;
+      axios.delete('/api/likes/' + params["id"],  { headers: context.state.headers })
+      .then(function(response){
+        debugger;
+        --context.state.roomLikes
+      })
+      .catch(function (error) {
+        debugger;
+        alert('予期しないエラーが発生しました。');
+      })
     }
 
   },

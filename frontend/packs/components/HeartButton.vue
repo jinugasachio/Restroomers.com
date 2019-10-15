@@ -25,32 +25,55 @@ export default {
     allLikesCount(){
        return this.$store.getters.roomLikes
     },
-    isLiked(){
-      const vm = this;
-      const liked = this.allLikes.filter(function(like){
-        return like.user_id == vm.currentUser.id
-      })
-      return liked
+    // isLiked(){
+    //   const vm = this;
+    //   const liked = this.allLikes.filter(function(like){
+    //     return like.user_id == vm.currentUser.id
+    //   })
+    //   return liked
+    // }
+    isLiked:{
+      get(){
+        const vm = this;
+        const liked = this.allLikes.filter(function(like){
+          return like.user_id == vm.currentUser.id
+        })
+        return liked
+      },
+      set(params){
+        // const params = { "id": this.isLiked[0].id }
+        this.$store.dispatch('unlike', params)
+      }
+
     }
   },
   methods:{
+    like(){
+      if(this.headers !== null){
+        this.changeClass();
+        if(this.isLiked.length == 0){
+          const likeParams = { "powder_room_id": this.room.id }
+          this.$store.dispatch('like', likeParams);
+        }
+        else{
+          this.unLike();
+        }
+      }
+      else{
+        this.$ons.notification.alert({ message: 'ログインしてください。', title: '' });
+      }
+    },
+    unLike(){
+      const params = { "id": this.isLiked[0].id }
+      this.isLiked = params
+      // this.$store.dispatch('unlike', params)
+    },
     changeClass(){
         const button = document.getElementById('heart');
         button.classList.toggle('isAnimating')
     },
-    like(){
-      if(this.headers !== null){
-        this.changeClass();
-        const likeParams = { "powder_room_id": this.room.id }
-        this.$store.dispatch('like', likeParams, this.headers)
-      }
-      else{
-        this.$ons.notification.alert({ message: 'ログインしてください。', title: '' })
-      }
-    },
   },
   mounted(){
-    debugger;
     if(this.headers !== null && this.isLiked.length > 0){
       this.changeClass();
     }
