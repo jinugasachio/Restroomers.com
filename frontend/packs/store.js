@@ -16,6 +16,7 @@ const store =  new Vuex.Store({
     room: defaultData, //コンソールエラー防止のため | リレーションしてるモデルデータも合わせて格納している
     room_1: defaultData,
     roomLikes:[],
+    roomLikes_1:[],
     allRooms: null,
     roomList: [],
     pageStack1: [GoogleMap],
@@ -45,7 +46,12 @@ const store =  new Vuex.Store({
       }
     },
     roomLikes(state){
-      return state.roomLikes;
+      if (state.activeIndex == 0){
+        return state.roomLikes;
+      }
+      else if (state.activeIndex == 1){
+        return state.roomLikes_1;
+      }
     },
     allRooms(state) {
       return state.allRooms;
@@ -103,15 +109,37 @@ const store =  new Vuex.Store({
       }
     },
     roomLikes(state, payload){
-      state.roomLikes = payload.roomLikes;
+      // state.roomLikes = payload.roomLikes;
+      if(state.activeIndex == 0){
+        state.roomLikes = payload.roomLikes;
+      }
+      else if(state.activeIndex == 1){
+        state.roomLikes_1 = payload.roomLikes;
+      }
     },
     addLike(state, payload){
-      state.roomLikes.push(payload.newLike);
+      // state.roomLikes.push(payload.newLike);
+      if(state.activeIndex == 0){
+        state.roomLikes.push(payload.newLike);
+      }
+      else if(state.activeIndex == 1){
+        state.roomLikes_1.push(payload.newLike);
+      }
     },
     deleteLike(state, payload){
-      state.roomLikes = state.roomLikes.filter(function(like){
-        return like.id !== payload.like.id
-      })
+      // state.roomLikes = state.roomLikes.filter(function(like){
+      //   return like.id !== payload.like.id
+      // })
+      if(state.activeIndex == 0){
+        state.roomLikes = state.roomLikes.filter(function(like){
+          return like.id !== payload.like.id
+        })
+      }
+      else if(state.activeIndex == 1){
+        state.roomLikes_1 = state.roomLikes_1.filter(function(like){
+          return like.id !== payload.like.id
+        })
+      }
     },
     favoriteRooms(state, payload){
       state.favoriteRooms = payload.favoriteRooms;

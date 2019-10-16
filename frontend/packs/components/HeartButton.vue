@@ -24,6 +24,9 @@ export default {
     roomLikes(){
       return this.$store.getters.roomLikes 
     },
+    activeIndex(){
+      return this.$store.getters.activeIndex
+    },
     isLiked(){
       const vm = this;
       const liked = this.roomLikes.filter(function(like){
@@ -38,8 +41,8 @@ export default {
 
     like(){
       if(this.headers !== null){
-        this.addClass();
         if(this.isLiked.length == 0){
+          this.changeClass();
           const likeParams = { "powder_room_id": this.room.id }
           this.$store.dispatch('like', likeParams);
         }
@@ -52,36 +55,32 @@ export default {
       }
     },
     unLike(){
-      this.removeClass();
+      this.changeClass();
       const params = { "id": this.isLiked[0].id }
       this.$store.dispatch('unlike', params)
     },
-    addClass(){
+    changeClass(){
+      const vm = this;
       const buttons = document.querySelectorAll('.heart');
-      buttons.forEach(function(button){
-        button.classList.add('isAnimating')
-      })
-
+      if(buttons.length > 1){
+        buttons[vm.activeIndex].classList.toggle('isAnimating')
+      }
+      else{
+        buttons[0].classList.toggle('isAnimating')
+      }
     },
-    removeClass(){
-      const buttons = document.querySelectorAll('.heart');
-      buttons.forEach(function(button){
-        button.classList.remove('isAnimating')
-      })
-    },
-
   },
 
   mounted(){
     if(this.headers !== null && this.isLiked.length > 0){
-      this.addClass();
+      this.changeClass();
     }
-  }
+  },
 
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
 .heart {
   position: absolute;
