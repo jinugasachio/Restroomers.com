@@ -32,7 +32,12 @@ export default {
       return this.$store.state.map;
     },
     room(){
-      return this.$store.state.room.powder_room;
+      if(this.activeIndex == 0){
+        return this.$store.state.room.powder_room;
+      }
+      else if(this.activeIndex == 1){
+        return this.$store.state.room_1.powder_room;
+      }
     },
     label(){
       if(this.atRoomPage && this.successId !== null){
@@ -60,14 +65,6 @@ export default {
     activeIndex(){
       return this.$store.getters.activeIndex
     },
-    // activeStack(){
-    //   if(this.activeIndex == 0){
-    //     return this.pageStack1
-    //   }
-    //   else if(this.activeIndex == 1){
-    //     return this.pageStack2
-    //   }
-    // }
     atRoomPage(){
       if(this.activeIndex == 0){
         const page = this.pageStack1[this.pageStack1.length - 1]
@@ -175,7 +172,16 @@ export default {
 
         vm.count = 0;
         vm.id = navigator.geolocation.watchPosition(geoSuccess, geoError, geoOptions);
-        vm.$emit('backToMap');
+
+        
+
+
+        vm.$emit('backToMap');//これはガイドトリガーがtrue担っている時、つまりガイドするときは呼ばないようにする！！！
+
+
+
+
+
       }
       // Geolocation APIに対応していない場合
       else {
@@ -231,7 +237,7 @@ export default {
       handler(){
         if(this.successId == null){
           this.$emit('removeClass','direction','gps-mode');
-          if(this.existRoom){
+          if(this.atRoomPage){
             this.$emit('addClass','direction','direct-mode');
           }
         }
@@ -255,7 +261,7 @@ export default {
     directionTrigger:{
       handler(){
         const vm = this; 
-        if(vm.existRoom){
+        if(vm.atRoomPage){
           vm.$ons.notification.confirm({message: 'ルートを表示してもよろしいですか？', title: ''})
             .then(function(response){
               if(response == 1){

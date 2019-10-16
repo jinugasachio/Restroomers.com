@@ -80,6 +80,7 @@ export default {
   },
 
   mounted(){
+    debugger;
     if(this.images.length > 0){
       this.activeImage = this.imageUrls[0].url
     }
