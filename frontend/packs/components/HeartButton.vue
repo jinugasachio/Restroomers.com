@@ -1,6 +1,6 @@
 <template>
   <div id="heart" @click="like">
-    <span>{{ roomLikes.length }}</span>
+    <span v-text="roomLikes.length"></span>
   </div>
 </template>
 
@@ -63,6 +63,7 @@ export default {
   },
 
   mounted(){
+    debugger;
     if(this.headers !== null && this.isLiked.length > 0){
       this.changeClass();
     }

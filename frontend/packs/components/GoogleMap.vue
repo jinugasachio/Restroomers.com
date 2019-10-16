@@ -9,7 +9,6 @@
 <script>
 import GmapStyle from "../modules/gmap_style.json"
 import Room from './Room.vue'
-import RoomList from './RoomList.vue'
 import RoomList2 from './RoomList2.vue'
 import Navigator1 from './Navigator1.vue'
 import SearchBox from './SearchBox.vue'

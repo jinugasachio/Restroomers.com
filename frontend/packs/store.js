@@ -140,7 +140,9 @@ const store =  new Vuex.Store({
         state.pageStack1 = [GoogleMap];
       }
       else if(state.activeIndex == 1){
-        state.pageStack2 = [SignTop];
+        if(state.headers == null){
+          state.pageStack2 = [SignTop];
+        }
       }
     },
     directionTrigger(state) {
