@@ -56,6 +56,9 @@ const store =  new Vuex.Store({
     pageStack2(state){
       return state.pageStack2;
     },
+    pageStacks(state){
+      return [state.pageStack1, state.pageStack2]
+    },
     directionTrigger(state){
       return state.directionTrigger;
     },

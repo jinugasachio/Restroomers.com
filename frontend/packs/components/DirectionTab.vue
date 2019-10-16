@@ -48,6 +48,12 @@ export default {
     pageStack1(){
       return this.$store.getters.pageStack1
     },
+    pageStack2(){
+      return this.$store.getters.pageStack2
+    },
+    // pageStacks(){
+    //   return this.$store.getters.pageStacks
+    // },
     directionTrigger(){
       return this.$store.getters.directionTrigger
     },
@@ -56,6 +62,10 @@ export default {
     },
     existRoom(){
       if(this.pageStack1.filter(function(page){
+        return page.name == "Room"}).length >0){
+          return true
+      }
+      else if(this.pageStack2.filter(function(page){
         return page.name == "Room"}).length >0){
           return true
       }
@@ -211,6 +221,16 @@ export default {
     },
 
     pageStack1: {
+      handler(){
+          if(this.existRoom && this.successId == null){
+            this.$emit('addClass','direction','direct-mode');
+          }
+          else{
+            this.$emit('removeClass','direction', 'direct-mode');
+          }
+      }
+    },
+    pageStack2: {
       handler(){
           if(this.existRoom && this.successId == null){
             this.$emit('addClass','direction','direct-mode');

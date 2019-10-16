@@ -73,12 +73,6 @@ export default {
       this.$store.dispatch('favoriteRooms')
     }
   },
-  mounted(){
-      const unwatch = this.$watch('this.room', function(){
-        this.$store.dispatch('pushPage', Room)
-        unwatch()
-      })
-  },
  
 }
 </script>

@@ -63,7 +63,6 @@ export default {
   },
 
   mounted(){
-    debugger;
     if(this.headers !== null && this.isLiked.length > 0){
       this.changeClass();
     }

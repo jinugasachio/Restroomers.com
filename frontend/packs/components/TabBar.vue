@@ -8,7 +8,7 @@
         :icon="tabs[i].icon"
         :label="tabs[i].label"
         :badge="tabs[i].badge"
-        :key= i
+        :key="tabs[i].icon"
       >
       </v-ons-tab>
       <SearchTab 
