@@ -2,7 +2,7 @@
     <v-ons-page>
       <ToolBar/>
       <div class="wrapper">
-        <v-ons-card v-if="!logIn">
+        <v-ons-card>
           <h2 class="title">
             Restroomers.com
             <img src='packs/images/lipstick.png' alt='口紅の写真' class='lip_image'>
@@ -54,14 +54,6 @@ export default {
 
     currentUser(){
       return this.$store.getters.currentUser
-    },
-    logIn(){
-      if(this.currentUser !== null && this.currentUser.name !== 'Error'){
-        return true
-      }
-      else{
-        return false
-      }
     },
     pageStack2:{
       get()    { return this.$store.getters.pageStack2 },
