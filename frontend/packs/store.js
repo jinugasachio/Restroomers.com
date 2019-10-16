@@ -143,9 +143,7 @@ const store =  new Vuex.Store({
         state.pageStack1 = [GoogleMap];
       }
       else if(state.activeIndex == 1){
-        debugger;
         if(state.headers == null){
-          debugger;
           state.pageStack2 = [SignTop];
         }
       }
@@ -188,12 +186,10 @@ const store =  new Vuex.Store({
 
   actions: {
 
-    //mapを生成または更新
     updateMap(context, map){
       context.commit('updateMap', map)
     },
 
-    // 全てのpowder_roomデータの取り出し
     getAllRooms(context){
       axios.get("/api/powder_rooms")
       .then(function(response){
@@ -204,7 +200,6 @@ const store =  new Vuex.Store({
       })
     },
 
-    // 特定の一つのpowder_room もしくは、その'子'の取り出し
     getRoom(context, url){
       axios.get('/api/powder_rooms/' + url)
       .then(function(response){

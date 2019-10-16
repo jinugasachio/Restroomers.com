@@ -7,11 +7,14 @@
     <img src="packs/images/sign_out.png"  class="sign-out__image">
   </button>
 </template>
+
 <script>
 export default {
 
   name: "SignOutButton",
+
   computed: {
+    
     activeIndex(){
       return this.$store.getters.activeIndex
     },
@@ -24,6 +27,7 @@ export default {
       }
     }
   },
+
   methods:{
     signOut(){
       const vm = this;

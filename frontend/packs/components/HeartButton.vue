@@ -1,5 +1,5 @@
 <template>
-  <div id="heart" @click="like">
+  <div class="heart" @click="like">
     <span v-text="roomLikes.length"></span>
   </div>
 </template>
@@ -30,7 +30,7 @@ export default {
         return like.user_id == vm.currentUser.id
       })
       return liked
-    }
+    },
     
   },
 
@@ -38,7 +38,7 @@ export default {
 
     like(){
       if(this.headers !== null){
-        this.changeClass();
+        this.addClass();
         if(this.isLiked.length == 0){
           const likeParams = { "powder_room_id": this.room.id }
           this.$store.dispatch('like', likeParams);
@@ -52,28 +52,38 @@ export default {
       }
     },
     unLike(){
+      this.removeClass();
       const params = { "id": this.isLiked[0].id }
       this.$store.dispatch('unlike', params)
     },
-    changeClass(){
-      const button = document.getElementById('heart');
-      button.classList.toggle('isAnimating')
+    addClass(){
+      const buttons = document.querySelectorAll('.heart');
+      buttons.forEach(function(button){
+        button.classList.add('isAnimating')
+      })
+
+    },
+    removeClass(){
+      const buttons = document.querySelectorAll('.heart');
+      buttons.forEach(function(button){
+        button.classList.remove('isAnimating')
+      })
     },
 
   },
 
   mounted(){
     if(this.headers !== null && this.isLiked.length > 0){
-      this.changeClass();
+      this.addClass();
     }
   }
 
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 
-#heart {
+.heart {
   position: absolute;
   top: -0.16rem;
   right: 1rem;

@@ -66,6 +66,9 @@ export default {
       })
       return urlsArray
     },
+    activeIndex(){
+      return this.$store.getters.activeIndex
+    }
 
   },
 
@@ -92,6 +95,11 @@ export default {
       },
       immediate: true
     },
+    activeIndex: {
+      handler(){
+        // debugger;
+      }
+    }
 
   }
 
