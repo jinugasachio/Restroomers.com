@@ -12,6 +12,9 @@
       {{ room.name }}
       </v-ons-list-item>
     </v-ons-list>
+    <button>
+          <img src="packs/images/sign_out.png" >
+    </button>
   </v-ons-page>
 </template>
 
