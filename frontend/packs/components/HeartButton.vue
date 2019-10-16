@@ -40,22 +40,20 @@ export default {
   methods:{
 
     like(){
-      if(this.headers !== null){
-        if(this.isLiked.length == 0){
-          this.changeClass();
-          const likeParams = { "powder_room_id": this.room.id }
-          this.$store.dispatch('like', likeParams);
-        }
-        else{
-          this.unLike();
-        }
+      if(this.headers !== null && this.isLiked.length == 0){
+        this.changeClass();
+        const likeParams = { "powder_room_id": this.room.id }
+        this.$store.dispatch('like', likeParams);
+      }
+      else if(this.isLiked.length > 0){
+        this.changeClass();
+        this.unLike();
       }
       else{
         this.$ons.notification.alert({ message: 'ログインしてください。', title: '' });
       }
     },
     unLike(){
-      this.changeClass();
       const params = { "id": this.isLiked[0].id }
       this.$store.dispatch('unlike', params)
     },
