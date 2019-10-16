@@ -9,7 +9,7 @@
 <script>
 import GmapStyle from "../modules/gmap_style.json"
 import Room from './Room.vue'
-import RoomList2 from './RoomList2.vue'
+import RoomList from './RoomList.vue'
 import Navigator1 from './Navigator1.vue'
 import SearchBox from './SearchBox.vue'
 
@@ -19,7 +19,7 @@ export default {
 
   components: {
     Room,
-    RoomList2,
+    RoomList,
     Navigator1,
     SearchBox
   },

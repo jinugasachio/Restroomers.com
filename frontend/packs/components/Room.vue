@@ -92,15 +92,6 @@ export default {
       },
       immediate: true
     },
-    // activeImage:{
-    //   handler(){
-    //     debugger;
-    //     console.log(this.activeImage)
-    //     this.activeImage = this.imageUrls[0].url
-    //     console.log(this.activeImage)
-    //   },
-    //   immediate: true
-    // }
 
   }
 

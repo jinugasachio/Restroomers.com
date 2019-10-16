@@ -3,7 +3,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import GoogleMap from './components/GoogleMap.vue'
 import SignTop from './components/SignTop.vue'
-import RoomList2 from './components/RoomList2.vue'
+import RoomList from './components/RoomList.vue'
 import defaultData from './modules/default_data.json'
 
 Vue.use(Vuex)
@@ -172,7 +172,7 @@ const store =  new Vuex.Store({
       state.signFormData = payload;
     },
     showUserPage(state){
-      state.pageStack2 = [RoomList2];
+      state.pageStack2 = [RoomList];
     }
 
   },

@@ -21,7 +21,7 @@ import Room from './Room.vue'
 
 export default {
 
-  name: "RoomList2",
+  name: "RoomList",
   
   components: {
     ToolBar,
@@ -55,21 +55,12 @@ export default {
 
   methods: {
 
-    // getRoom(event){
-    //   this.room = event.currentTarget
-    //   const unwatch = this.$watch('room', function(){
-    //     this.$store.dispatch('pushPage', Room)
-    //     unwatch()
-    //   })
-    //   // this.room = event.currentTarget
-    // },
-
     pushPage(event){
-      this.room = event.currentTarget
       const unwatch = this.$watch('room', function(){
         this.$store.dispatch('pushPage', Room)
         unwatch()
       })
+      this.room = event.currentTarget
     },
 
     popPage(){
@@ -89,11 +80,6 @@ export default {
       })
   },
  
-  // watch: {
-  //   room(){
-  //     this.$store.dispatch('pushPage', Room)
-  //   }
-  // }
 }
 </script>
 
