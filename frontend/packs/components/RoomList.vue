@@ -12,15 +12,15 @@
       {{ room.name }}
       </v-ons-list-item>
     </v-ons-list>
-    <button>
-          <img src="packs/images/sign_out.png" >
-    </button>
+    <SignOutButton/>
   </v-ons-page>
 </template>
 
 <script>
 import ToolBar from './ToolBar.vue'
 import Room from './Room.vue'
+import SignOutButton from './SignOutButton.vue'
+
 
 export default {
 
@@ -28,7 +28,8 @@ export default {
   
   components: {
     ToolBar,
-    Room
+    Room,
+    SignOutButton
   },
 
   computed: {

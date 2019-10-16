@@ -31,6 +31,7 @@ import Navigator2 from './Navigator2.vue'
 import SearchTab from './SearchTab.vue'
 import DirectionTab from './DirectionTab.vue'
 
+
 export default {
 
   name: "TabBar",
@@ -39,7 +40,7 @@ export default {
     Navigator1,
     Navigator2,
     SearchTab,
-    DirectionTab
+    DirectionTab,
   },
 
   data() {

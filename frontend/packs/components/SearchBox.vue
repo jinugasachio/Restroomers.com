@@ -7,7 +7,6 @@
         <button @click="search" class="search__box__inner__box">
           <img src="packs/images/search1.png" 
             class="search__box__innner__box__image" 
-            
           >
         </button>
         <input 
@@ -15,7 +14,6 @@
           class="search__box__innner__input"
           placeholder="Type to Search"
           v-model="inputWords"
-
         >
       </div>
     </div>
