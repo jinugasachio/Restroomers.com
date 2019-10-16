@@ -143,7 +143,9 @@ const store =  new Vuex.Store({
         state.pageStack1 = [GoogleMap];
       }
       else if(state.activeIndex == 1){
+        debugger;
         if(state.headers == null){
+          debugger;
           state.pageStack2 = [SignTop];
         }
       }
@@ -163,13 +165,17 @@ const store =  new Vuex.Store({
     currentUser(state, payload){
       state.currentUser = payload.user;
     },
-    updateHeaders(state, payload){
+    signIn(state, payload){
       state.headers = {
         "access-token" : payload["access-token"],
         "client"       : payload["client"],
         "content-type" : payload["content-type"],
         "uid"          : payload["uid"],
       };
+    },
+    signOut(state){
+      state.headers = null;
+      state.currentUser = null;
     },
     updateSignFormData(state, payload){
       state.signFormData = payload;
@@ -251,7 +257,7 @@ const store =  new Vuex.Store({
       axios.post('/api/auth/sign_in', userParams)
       .then(function(response){
         context.commit('currentUser', { user: response.data });
-        context.commit('updateHeaders', response.headers )
+        context.commit('signIn', response.headers )
       })
       .catch(function (error) {
         context.commit('currentUser', { user: error });
@@ -262,10 +268,22 @@ const store =  new Vuex.Store({
       axios.post('/api/auth', userParams)
       .then(function(response){
         context.commit('currentUser', { user: response.data });
-        context.commit('updateHeaders', response.headers);
+        context.commit('signIn', response.headers);
       })
       .catch(function (error) {
         context.commit('currentUser', { user: error });
+      })
+    },
+
+    signOut(context){
+      axios.delete('/api/auth/sign_out', { headers: context.state.headers })
+      .then(function(response){
+        debugger;
+        context.commit('signOut')
+      })
+      .catch(function (error) {
+        debugger;
+        alert('予期しないエラーが発生しました。');
       })
     },
 

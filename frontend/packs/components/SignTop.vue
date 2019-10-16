@@ -87,6 +87,7 @@ export default {
       vm.$ons.notification.confirm({message: 'ログインしてもよろしいですか?', title: ''})
         .then(function(response){
           if(response == 1){
+
             vm.$store.dispatch('signIn', vm.testUser)
           }
         })

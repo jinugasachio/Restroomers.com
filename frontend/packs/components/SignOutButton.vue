@@ -1,10 +1,46 @@
 <template>
-  <button class="sign-out">
+  <button
+    class="sign-out"
+    v-show="userPage"
+    @click="signOut"
+  >
     <img src="packs/images/sign_out.png"  class="sign-out__image">
   </button>
 </template>
 <script>
 export default {
+
+  name: "SignOutButton",
+  computed: {
+    activeIndex(){
+      return this.$store.getters.activeIndex
+    },
+    headers(){
+      return this.$store.getters.headers
+    },
+    userPage(){
+      if(this.activeIndex == 1 && this.headers !== null){
+        return true
+      }
+    }
+  },
+  methods:{
+    signOut(){
+      const vm = this;
+      vm.$ons.notification.confirm({message: 'ログアウトしてもよろしいですか?', title: ''})
+        .then(function(response){
+          if(response == 1){
+            const unwatch = vm.$watch('headers', function(){
+                                vm.$ons.notification.alert({message: 'ログアウトしました。', title: ''})
+                                vm.$store.dispatch('resetPageStack');
+                                unwatch();
+                              }
+                            );
+            vm.$store.dispatch('signOut');
+          }
+        })
+    }
+  }
   
 }
 </script>
