@@ -95,11 +95,6 @@ export default {
       },
       immediate: true
     },
-    activeIndex: {
-      handler(){
-        // debugger;
-      }
-    }
 
   }
 

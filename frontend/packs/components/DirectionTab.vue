@@ -35,10 +35,10 @@ export default {
       return this.$store.state.room.powder_room;
     },
     label(){
-      if(this.existRoom && this.successId !== null){
+      if(this.atRoomPage && this.successId !== null){
         return 'Active'
       }
-      else if(this.existRoom){
+      else if(this.atRoomPage){
         return 'ルートを表示'
       }
       else if(this.successId !== null){
@@ -51,28 +51,49 @@ export default {
     pageStack2(){
       return this.$store.getters.pageStack2
     },
-    // pageStacks(){
-    //   return this.$store.getters.pageStacks
-    // },
     directionTrigger(){
       return this.$store.getters.directionTrigger
     },
     guideTrigger(){
       return this.$store.getters.guideTrigger
     },
-    existRoom(){
-      if(this.pageStack1.filter(function(page){
-        return page.name == "Room"}).length >0){
+    activeIndex(){
+      return this.$store.getters.activeIndex
+    },
+    // activeStack(){
+    //   if(this.activeIndex == 0){
+    //     return this.pageStack1
+    //   }
+    //   else if(this.activeIndex == 1){
+    //     return this.pageStack2
+    //   }
+    // }
+    atRoomPage(){
+      if(this.activeIndex == 0){
+        const page = this.pageStack1[this.pageStack1.length - 1]
+        if(page.name == "Room"){
           return true
+        }
       }
-      else if(this.pageStack2.filter(function(page){
-        return page.name == "Room"}).length >0){
+      else if(this.activeIndex == 1){
+        const page = this.pageStack2[this.pageStack2.length - 1]
+        if(page.name == "Room"){
           return true
-      }
-      else{
-        return false
+        }
       }
     },
+    targetForDirectMode(){
+      return [this.pageStack1, this.pageStack2, this.activeIndex]
+    }
+    // existRoom(){
+    //   if(this.pageStack1.filter(function(page){
+    //     return page.name == "Room"}).length >0){
+    //       return true
+    //   }
+    //   else{
+    //     return false
+    //   }
+    // },
   },
 
   methods: {
@@ -220,19 +241,9 @@ export default {
       }
     },
 
-    pageStack1: {
+    targetForDirectMode: {
       handler(){
-          if(this.existRoom && this.successId == null){
-            this.$emit('addClass','direction','direct-mode');
-          }
-          else{
-            this.$emit('removeClass','direction', 'direct-mode');
-          }
-      }
-    },
-    pageStack2: {
-      handler(){
-          if(this.existRoom && this.successId == null){
+          if(this.atRoomPage && this.successId == null){
             this.$emit('addClass','direction','direct-mode');
           }
           else{

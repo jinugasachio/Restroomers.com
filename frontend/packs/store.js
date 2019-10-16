@@ -109,7 +109,6 @@ const store =  new Vuex.Store({
       }
     },
     roomLikes(state, payload){
-      // state.roomLikes = payload.roomLikes;
       if(state.activeIndex == 0){
         state.roomLikes = payload.roomLikes;
       }
@@ -118,7 +117,6 @@ const store =  new Vuex.Store({
       }
     },
     addLike(state, payload){
-      // state.roomLikes.push(payload.newLike);
       if(state.activeIndex == 0){
         state.roomLikes.push(payload.newLike);
       }
@@ -127,9 +125,6 @@ const store =  new Vuex.Store({
       }
     },
     deleteLike(state, payload){
-      // state.roomLikes = state.roomLikes.filter(function(like){
-      //   return like.id !== payload.like.id
-      // })
       if(state.activeIndex == 0){
         state.roomLikes = state.roomLikes.filter(function(like){
           return like.id !== payload.like.id
