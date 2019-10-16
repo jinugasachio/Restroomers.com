@@ -14,6 +14,7 @@ const store =  new Vuex.Store({
 
     map: null,
     room: defaultData, //コンソールエラー防止のため | リレーションしてるモデルデータも合わせて格納している
+    room_1: defaultData,
     roomLikes:[],
     allRooms: null,
     roomList: [],
@@ -36,7 +37,12 @@ const store =  new Vuex.Store({
       return state.map;
     },
     room(state) {
-      return state.room;
+      if (state.activeIndex == 0){
+        return state.room
+      }
+      else if (state.activeIndex == 1){
+        return state.room_1
+      }
     },
     roomLikes(state){
       return state.roomLikes;
@@ -89,7 +95,12 @@ const store =  new Vuex.Store({
       state.map = payload
     },
     updateRoom(state, payload) {
-      state.room = payload.room;
+      if(state.activeIndex == 0){
+        state.room = payload.room;
+      }
+      else if(state.activeIndex == 1){
+        state.room_1 = payload.room;
+      }
     },
     roomLikes(state, payload){
       state.roomLikes = payload.roomLikes;
@@ -208,7 +219,6 @@ const store =  new Vuex.Store({
         } else {
           context.commit('updateRoom', { room: response.data })
           context.commit('roomLikes',  { roomLikes: response.data.likes })
-
         }
       })
       .catch(function (error) {
