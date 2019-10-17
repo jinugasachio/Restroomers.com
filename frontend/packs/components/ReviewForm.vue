@@ -14,9 +14,8 @@
                   rules="required"
                   v-slot="{ errors }"
                 >
-
                     <v-ons-select
-                      v-model="review"
+                      v-model="rate"
                     >
                       <option v-for="num in numbers" :value="num.value" :key='num.text'>
                         {{ num.text }}
@@ -30,43 +29,34 @@
                       v-model="review"
                       >
                     </star-rating>
-
                 <p class="error-text"><span>{{ errors[0] }}</span></p>
                 </validation-provider>
               </div>
             </v-ons-list-item>
 
-
-
             <v-ons-list-header>口コミ</v-ons-list-header>
             <v-ons-list-item>
               <div class="center">
-                <!-- <validation-provider
+                <validation-provider
                   mode="eager"
-                  :rules="item.rules"
-                  :ref="item.id"
-                  :vid="item.vid"
+                  rules="required"
                   v-slot="{ errors }"
-                > -->
-
-                <textarea class="review-text" placeholder="口コミを入力してください。"></textarea>
-                
-                <!-- <p class="error-text"><span>{{ errors[0] }}</span></p> -->
-                <!-- </validation-provider> -->
+                  class="validate-span"
+                >
+                <textarea class="review-text" placeholder="口コミを入力してください。" v-model="reviews"></textarea>
+                <p class="error-text"><span>{{ errors[0] }}</span></p>
+                </validation-provider>
               </div>
             </v-ons-list-item>
-
 
           </v-ons-list>
           <v-ons-button
             modifier="large"
             id="post-button" 
             :disabled="invalid"
-            
           >
             投稿する
           </v-ons-button>
-
           </ValidationObserver>
         </v-ons-card>
       </div>
@@ -84,7 +74,8 @@ export default {
 
   data(){
     return{
-      review: null,
+      rate: null,
+      reviews: null,
       numbers: [
         { text: '評価', value: null },
         { text: '1', value: 1 }, 
@@ -126,9 +117,12 @@ export default {
         position: relative;
         padding-left: 6px;
 
+        .validate-span {
+          display: block;
+          width: 100%;
+        }
+
         .select {
-          // position: absolute;
-          // left: 1rem;
           padding-left: 10px;
         }
 
@@ -139,7 +133,7 @@ export default {
         }
 
         .review-text {
-          width: 100%;
+          width: 95%;
           max-width: 510px;
           height: 7rem;
           padding: 0.5rem;
