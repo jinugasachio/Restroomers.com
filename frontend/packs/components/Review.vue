@@ -1,19 +1,17 @@
 <template>
-
   <v-ons-list-header>
     みんなの口コミ
-    <button
-      class="review-button"
-    >
+    <button class="review-button">
       投稿する
     </button>
   </v-ons-list-header>
-
 </template>
 
 <script>
 
 export default {
+
+  name: 'Review'
 
 }
 </script>

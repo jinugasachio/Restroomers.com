@@ -14,21 +14,16 @@
                   rules="required"
                   v-slot="{ errors }"
                 >
-                    <v-ons-select
-                      v-model="rate"
-                    >
-                      <option v-for="num in numbers" :value="num.value" :key='num.text'>
+                    <v-ons-select v-model="rate">
+                      <option 
+                        v-for="num in numbers"
+                        :value="num.value" 
+                        :key='num.text'
+                      >
                         {{ num.text }}
                       </option>
                     </v-ons-select>
-                    <star-rating  
-                      :star-size="18"
-                      :increment="0.5"
-                      :show-rating="false"
-                      :read-only="true"
-                      v-model="review"
-                      >
-                    </star-rating>
+                    <Star :rate="rate"/>
                 <p class="error-text"><span>{{ errors[0] }}</span></p>
                 </validation-provider>
               </div>
@@ -43,7 +38,11 @@
                   v-slot="{ errors }"
                   class="validate-span"
                 >
-                <textarea class="review-text" placeholder="口コミを入力してください。" v-model="reviews"></textarea>
+                <textarea
+                  class="review-text"
+                  placeholder="口コミを入力してください。"
+                  v-model="reviews"
+                ></textarea>
                 <p class="error-text"><span>{{ errors[0] }}</span></p>
                 </validation-provider>
               </div>
@@ -66,6 +65,7 @@
 
 <script>
 import ToolBar from './ToolBar.vue'
+import Star from './StarRating.vue'
 
 
 export default {
@@ -88,7 +88,8 @@ export default {
   },
 
   components: {
-    ToolBar
+    ToolBar,
+    Star 
   },
 
   

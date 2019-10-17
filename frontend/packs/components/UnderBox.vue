@@ -1,12 +1,6 @@
 <template>
   <div class="under_box">
-    <star-rating  
-      :star-size="18"
-      :increment="0.1"
-      :read-only="true"
-      :show-rating="false"
-      >
-    </star-rating>
+    <Star/>
     <span class="rating_number">3.9</span>
     <HeartButton/>
   </div>
@@ -14,11 +8,13 @@
 
 <script>
 import HeartButton from './HeartButton.vue'
+import Star from './StarRating.vue'
 
 export default {
   name: 'UnderBox',
   components:{
     HeartButton,
+    Star
   },
 }
 </script>
@@ -34,10 +30,6 @@ export default {
   top: 0.45rem;
   left: 6rem;
   color: #1f1f21;
-}
-
-.vue-star-rating {
-  height: 35px;
 }
 
 </style>
