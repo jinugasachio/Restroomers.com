@@ -2,7 +2,7 @@
     <v-ons-tabbar  position="auto" animation="none"
       :tabs="tabs"
       :visible="true"
-      :index.sync="activeIndex"
+      :index.sync="activeTab"
     >
       <v-ons-tab v-for="(tab, i) in tabs"
         :icon="tabs[i].icon"
@@ -60,20 +60,20 @@ export default {
   },
 
   computed: {
-    activeIndex: {
-      get()        { return this.$store.getters.activeIndex },
-      set(newIndex){ this.$store.dispatch('activeIndex', newIndex) }
+    activeTab: {
+      get()        { return this.$store.getters.activeTab },
+      set(newIndex){ this.$store.dispatch('activeTab', newIndex) }
     }
   },
 
   methods: {
 
     active(){
-      this.activeIndex = event.currentTarget.index;
+      this.activeTab = event.currentTarget.index;
     },
 
     backToMap(){
-      this.activeIndex = 0
+      this.activeTab = 0
       this.$store.dispatch('resetPageStack')
     },
     addClass(idName, className){

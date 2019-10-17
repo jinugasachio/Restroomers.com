@@ -24,8 +24,8 @@ export default {
     roomLikes(){
       return this.$store.getters.roomLikes 
     },
-    activeIndex(){
-      return this.$store.getters.activeIndex
+    activeTab(){
+      return this.$store.getters.activeTab
     },
     isLiked(){
       const vm = this;
@@ -61,7 +61,7 @@ export default {
       const vm = this;
       const buttons = document.querySelectorAll('.heart');
       if(buttons.length > 1){
-        buttons[vm.activeIndex].classList.toggle('isAnimating')
+        buttons[vm.activeTab].classList.toggle('isAnimating')
       }
       else{
         buttons[0].classList.toggle('isAnimating')

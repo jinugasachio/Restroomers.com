@@ -24,7 +24,7 @@ const store =  new Vuex.Store({
     directionTrigger: false,
     guideTrigger: false,
     showSearchBox: false,
-    activeIndex: 0,
+    activeTab: 0,
     currentUser: null,
     favoriteRooms: [],
     headers: null,
@@ -38,18 +38,18 @@ const store =  new Vuex.Store({
       return state.map;
     },
     room(state) {
-      if (state.activeIndex == 0){
+      if (state.activeTab == 0){
         return state.room
       }
-      else if (state.activeIndex == 1){
+      else if (state.activeTab == 1){
         return state.room_1
       }
     },
     roomLikes(state){
-      if (state.activeIndex == 0){
+      if (state.activeTab == 0){
         return state.roomLikes;
       }
-      else if (state.activeIndex == 1){
+      else if (state.activeTab == 1){
         return state.roomLikes_1;
       }
     },
@@ -62,17 +62,11 @@ const store =  new Vuex.Store({
     favoriteRooms(state){
       return state.favoriteRooms;
     },
-    // pageStack1(state){
-    //   return state.pageStack1;
-    // },
-    // pageStack2(state){
-    //   return state.pageStack2;
-    // },
     pageStack(state){
-      if(state.activeIndex == 0){
+      if(state.activeTab == 0){
         return state.pageStack1
       }
-      else if(state.activeIndex == 1){
+      else if(state.activeTab == 1){
         return state.pageStack2
       }
     },
@@ -85,8 +79,8 @@ const store =  new Vuex.Store({
     showSearchBox(state){
       return state.showSearchBox;
     },
-    activeIndex(state){
-      return state.activeIndex;
+    activeTab(state){
+      return state.activeTab;
     },
     currentUser(state){
       return state.currentUser;
@@ -106,36 +100,36 @@ const store =  new Vuex.Store({
       state.map = payload
     },
     updateRoom(state, payload) {
-      if(state.activeIndex == 0){
+      if(state.activeTab == 0){
         state.room = payload.room;
       }
-      else if(state.activeIndex == 1){
+      else if(state.activeTab == 1){
         state.room_1 = payload.room;
       }
     },
     roomLikes(state, payload){
-      if(state.activeIndex == 0){
+      if(state.activeTab == 0){
         state.roomLikes = payload.roomLikes;
       }
-      else if(state.activeIndex == 1){
+      else if(state.activeTab == 1){
         state.roomLikes_1 = payload.roomLikes;
       }
     },
     addLike(state, payload){
-      if(state.activeIndex == 0){
+      if(state.activeTab == 0){
         state.roomLikes.push(payload.newLike);
       }
-      else if(state.activeIndex == 1){
+      else if(state.activeTab == 1){
         state.roomLikes_1.push(payload.newLike);
       }
     },
     deleteLike(state, payload){
-      if(state.activeIndex == 0){
+      if(state.activeTab == 0){
         state.roomLikes = state.roomLikes.filter(function(like){
           return like.id !== payload.like.id
         })
       }
-      else if(state.activeIndex == 1){
+      else if(state.activeTab == 1){
         state.roomLikes_1 = state.roomLikes_1.filter(function(like){
           return like.id !== payload.like.id
         })
@@ -162,26 +156,26 @@ const store =  new Vuex.Store({
       state.roomList = [];
     },
     pushPage(state, payload) {
-      if(state.activeIndex == 0){
+      if(state.activeTab == 0){
         state.pageStack1.push(payload);
       }
-      else if(state.activeIndex == 1){
+      else if(state.activeTab == 1){
         state.pageStack2.push(payload);
       }
     },
     popPage(state) {
-      if(state.activeIndex == 0){
+      if(state.activeTab == 0){
         state.pageStack1.pop();
       }
-      else if(state.activeIndex == 1){
+      else if(state.activeTab == 1){
         state.pageStack2.pop();
       }
     },
     resetPageStack(state) {
-      if(state.activeIndex == 0){
+      if(state.activeTab == 0){
         state.pageStack1 = [GoogleMap];
       }
-      else if(state.activeIndex == 1){
+      else if(state.activeTab == 1){
         if(state.headers == null){
           state.pageStack2 = [SignTop];
         }
@@ -196,8 +190,8 @@ const store =  new Vuex.Store({
     showSearchBox(state) {
       state.showSearchBox = !state.showSearchBox;
     },
-    activeIndex(state, payload){
-      state.activeIndex = payload;
+    activeTab(state, payload){
+      state.activeTab = payload;
     },
     currentUser(state, payload){
       state.currentUser = payload.user;
@@ -282,8 +276,8 @@ const store =  new Vuex.Store({
       context.commit('showSearchBox');
     },
 
-    activeIndex(context, newVal){
-      context.commit('activeIndex', newVal);
+    activeTab(context, newVal){
+      context.commit('activeTab', newVal);
     },
 
     signIn(context, userParams){

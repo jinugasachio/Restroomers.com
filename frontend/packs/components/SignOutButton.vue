@@ -15,14 +15,14 @@ export default {
 
   computed: {
     
-    activeIndex(){
-      return this.$store.getters.activeIndex
+    activeTab(){
+      return this.$store.getters.activeTab
     },
     headers(){
       return this.$store.getters.headers
     },
     userPage(){
-      if(this.activeIndex == 1 && this.headers !== null){
+      if(this.activeTab == 1 && this.headers !== null){
         return true
       }
     }

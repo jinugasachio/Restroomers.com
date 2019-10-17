@@ -1,7 +1,8 @@
 <template>
     <v-ons-navigator
     :page-stack="pageStack2"
-  ></v-ons-navigator>
+    >
+    </v-ons-navigator>
 </template>
 
 <script>

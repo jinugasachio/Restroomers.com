@@ -39,20 +39,20 @@ export default {
       set(roomBox){ this.$store.dispatch('getRoom', roomBox.dataset.id) }
     },
     headerName(){
-      if(this.activeIndex == 1){
+      if(this.activeTab == 1){
         return "お気に入りリスト"
       }
     },
     roomList(){
-      if(this.activeIndex == 1){
+      if(this.activeTab == 1){
         return this.$store.getters.favoriteRooms
       }
       else{
         return this.$store.getters.roomList
       }
     },
-    activeIndex(){
-      return this.$store.getters.activeIndex
+    activeTab(){
+      return this.$store.getters.activeTab
     },
 
   },
@@ -73,7 +73,7 @@ export default {
   },
 
   created(){
-    if(this.activeIndex == 1){
+    if(this.activeTab == 1){
       this.$store.dispatch('favoriteRooms')
     }
   },

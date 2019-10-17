@@ -21,7 +21,7 @@ export default {
   computed: {
 
     pageName(){
-      if(this.activeIndex == 0){
+      if(this.activeTab == 0){
         if (this.pageStack.length == 2 && this.pageStack[1].name == "RoomList"){
           const num = this.$store.getters.roomList[0].ancestry
           const parent = this.$store.getters.allRooms[num - 1]
@@ -31,7 +31,7 @@ export default {
           return this.$store.getters.room.powder_room.name
         }
       }
-      else if(this.activeIndex == 1 && this.headers !== null){
+      else if(this.activeTab == 1 && this.headers !== null){
         if(this.pageStack.length == 1){
           return  this.currentUser.data.nickname
         }
@@ -52,8 +52,8 @@ export default {
     pageStack(){
       return this.$store.getters.pageStack
     },
-    activeIndex(){
-      return this.$store.getters.activeIndex
+    activeTab(){
+      return this.$store.getters.activeTab
     },
     formDataLength(){
       return this.$store.getters.signFormData.length

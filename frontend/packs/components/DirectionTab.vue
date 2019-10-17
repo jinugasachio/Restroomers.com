@@ -32,10 +32,10 @@ export default {
       return this.$store.state.map;
     },
     room(){
-      if(this.activeIndex == 0){
+      if(this.activeTab == 0){
         return this.$store.state.room.powder_room;
       }
-      else if(this.activeIndex == 1){
+      else if(this.activeTab == 1){
         return this.$store.state.room_1.powder_room;
       }
     },
@@ -50,12 +50,6 @@ export default {
         return 'Active'
       }
     },
-    // pageStack1(){
-    //   return this.$store.getters.pageStack1
-    // },
-    // pageStack2(){
-    //   return this.$store.getters.pageStack2
-    // },
     pageStack(){
       return this.$store.getters.pageStack
     },
@@ -65,17 +59,17 @@ export default {
     guideTrigger(){
       return this.$store.getters.guideTrigger
     },
-    activeIndex(){
-      return this.$store.getters.activeIndex
+    activeTab(){
+      return this.$store.getters.activeTab
     },
     atRoomPage(){
-      // if(this.activeIndex == 0){
+      // if(this.activeTab == 0){
       //   const page = this.pageStack[this.pageStack.length - 1]
       //   if(page.name == "Room"){
       //     return true
       //   }
       // }
-      // else if(this.activeIndex == 1){
+      // else if(this.activeTab == 1){
       //   const page = this.pageStack[this.pageStack.length - 1]
       //   if(page.name == "Room"){
       //     return true
@@ -89,7 +83,7 @@ export default {
     targetForDirectMode(){
       return [
         this.pageStack,
-        this.activeIndex,
+        this.activeTab,
         this.guideTrigger,
       ]
     }

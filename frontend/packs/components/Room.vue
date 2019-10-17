@@ -66,8 +66,8 @@ export default {
       })
       return urlsArray
     },
-    activeIndex(){
-      return this.$store.getters.activeIndex
+    activeTab(){
+      return this.$store.getters.activeTab
     }
 
   },
