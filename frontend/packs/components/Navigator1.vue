@@ -13,7 +13,7 @@ export default {
 
   computed: {
     pageStack1(){
-      return this.$store.getters.pageStack1
+      return this.$store.state.pageStack1
     }
   },
 

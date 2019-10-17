@@ -46,10 +46,6 @@ export default {
 
   methods: {
 
-    // reload: function(){
-    //   location.reload();
-    // },
-
     // Navigator用メソッド
     push(){
       if (this.$store.state.roomList.length > 1){

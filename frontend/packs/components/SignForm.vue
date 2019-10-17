@@ -62,9 +62,6 @@ export default {
     currentUser(){
       return this.$store.getters.currentUser;
     },
-    pageStack2(){
-      return this.$store.getters.pageStack2;
-    },
     signFormData(){
       return this.$store.getters.signFormData;
     },

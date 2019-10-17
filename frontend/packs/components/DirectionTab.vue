@@ -50,11 +50,14 @@ export default {
         return 'Active'
       }
     },
-    pageStack1(){
-      return this.$store.getters.pageStack1
-    },
-    pageStack2(){
-      return this.$store.getters.pageStack2
+    // pageStack1(){
+    //   return this.$store.getters.pageStack1
+    // },
+    // pageStack2(){
+    //   return this.$store.getters.pageStack2
+    // },
+    pageStack(){
+      return this.$store.getters.pageStack
     },
     directionTrigger(){
       return this.$store.getters.directionTrigger
@@ -66,23 +69,26 @@ export default {
       return this.$store.getters.activeIndex
     },
     atRoomPage(){
-      if(this.activeIndex == 0){
-        const page = this.pageStack1[this.pageStack1.length - 1]
-        if(page.name == "Room"){
-          return true
-        }
-      }
-      else if(this.activeIndex == 1){
-        const page = this.pageStack2[this.pageStack2.length - 1]
-        if(page.name == "Room"){
-          return true
-        }
+      // if(this.activeIndex == 0){
+      //   const page = this.pageStack[this.pageStack.length - 1]
+      //   if(page.name == "Room"){
+      //     return true
+      //   }
+      // }
+      // else if(this.activeIndex == 1){
+      //   const page = this.pageStack[this.pageStack.length - 1]
+      //   if(page.name == "Room"){
+      //     return true
+      //   }
+      // }
+      const page = this.pageStack[this.pageStack.length - 1]
+      if(page.name == "Room"){
+        return true
       }
     },
     targetForDirectMode(){
       return [
-        this.pageStack1,
-        this.pageStack2,
+        this.pageStack,
         this.activeIndex,
         this.guideTrigger,
       ]

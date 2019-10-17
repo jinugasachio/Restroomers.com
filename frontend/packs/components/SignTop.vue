@@ -55,8 +55,8 @@ export default {
     currentUser(){
       return this.$store.getters.currentUser
     },
-    pageStack2:{
-      get()    { return this.$store.getters.pageStack2 },
+    pageStack:{
+      get()    { return this.$store.getters.pageStack },
       set(page){ this.$store.dispatch('pushPage', page) }
     },
     formData:{
@@ -74,11 +74,11 @@ export default {
     push(event){
       if(event.target.id == 'sign_up'){
         this.formData   = this.signUpForm
-        this.pageStack2 = SignForm
+        this.pageStack = SignForm
       }
       else if(event.target.id == 'sign_in'){
         this.formData   = this.signInForm
-        this.pageStack2 = SignForm
+        this.pageStack = SignForm
       }
     },
 
@@ -110,7 +110,7 @@ export default {
             this.notice('メールアドレスもしくはパスワードが間違っています。', 'ログインできません。');
           }
         }
-        else if(this.pageStack2.length == 1 || this.formData.length == 2){
+        else if(this.pageStack.length == 1 || this.formData.length == 2){
           this.showUserPage();
           this.notice('ログインしました！', '');
         }

@@ -22,7 +22,7 @@ export default {
 
     pageName(){
       if(this.activeIndex == 0){
-        if (this.pageStack1.length == 2 && this.pageStack1[1].name == "RoomList"){
+        if (this.pageStack.length == 2 && this.pageStack[1].name == "RoomList"){
           const num = this.$store.getters.roomList[0].ancestry
           const parent = this.$store.getters.allRooms[num - 1]
           return parent.name
@@ -32,14 +32,14 @@ export default {
         }
       }
       else if(this.activeIndex == 1 && this.headers !== null){
-        if(this.pageStack2.length == 1){
+        if(this.pageStack.length == 1){
           return  this.currentUser.data.nickname
         }
         else{
           return this.$store.getters.room.powder_room.name
         }
       }
-      else if(this.pageStack2.length == 1){
+      else if(this.pageStack.length == 1){
         return '新規登録 / ログイン'
       }
       else if(this.formDataLength == 4){
@@ -49,32 +49,8 @@ export default {
         return 'ログイン'
       }
     },
-
-      // else if(this. activeIndex == 1){
-      //   if(this.pageStack2.length == 1){
-      //     if(this.headers !== null){
-      //       return  this.currentUser.data.nickname
-      //     }
-      //     else{
-      //       return '新規登録 / ログイン'
-      //     }
-      //   }
-      //   else if(this.pageStack2.length == 2){
-      //     return this.$store.getters.room.powder_room.name
-      //   }
-        // else if(this.formDataLength == 4){
-        //   return '新規登録'
-        // }
-        // else if(this.formDataLength == 2){
-        //   return 'ログイン'
-        // }
-      // }
-    // },
-    pageStack1(){
-      return this.$store.getters.pageStack1
-    },
-    pageStack2(){
-      return this.$store.getters.pageStack2
+    pageStack(){
+      return this.$store.getters.pageStack
     },
     activeIndex(){
       return this.$store.getters.activeIndex

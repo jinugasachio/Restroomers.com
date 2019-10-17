@@ -57,7 +57,7 @@ export default {
 
   },
 
-  methods: {
+  methods:{
 
     pushPage(event){
       const unwatch = this.$watch('room', function(){

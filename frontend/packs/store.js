@@ -62,14 +62,19 @@ const store =  new Vuex.Store({
     favoriteRooms(state){
       return state.favoriteRooms;
     },
-    pageStack1(state){
-      return state.pageStack1;
-    },
-    pageStack2(state){
-      return state.pageStack2;
-    },
-    pageStacks(state){
-      return [state.pageStack1, state.pageStack2]
+    // pageStack1(state){
+    //   return state.pageStack1;
+    // },
+    // pageStack2(state){
+    //   return state.pageStack2;
+    // },
+    pageStack(state){
+      if(state.activeIndex == 0){
+        return state.pageStack1
+      }
+      else if(state.activeIndex == 1){
+        return state.pageStack2
+      }
     },
     directionTrigger(state){
       return state.directionTrigger;
