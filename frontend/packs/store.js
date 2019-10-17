@@ -5,6 +5,7 @@ import GoogleMap from './components/GoogleMap.vue'
 import SignTop from './components/SignTop.vue'
 import RoomList from './components/RoomList.vue'
 import defaultData from './modules/default_data.json'
+import ReviewForm from './components/ReviewForm.vue'
 
 Vue.use(Vuex)
 
@@ -19,7 +20,7 @@ const store =  new Vuex.Store({
     roomLikes_1:[],
     allRooms: null,
     roomList: [],
-    pageStack1: [GoogleMap],
+    pageStack1: [ReviewForm],
     pageStack2: [SignTop],
     directionTrigger: false,
     guideTrigger: false,

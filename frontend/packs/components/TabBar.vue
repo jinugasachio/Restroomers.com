@@ -35,6 +35,7 @@ import DirectionTab from './DirectionTab.vue'
 import SignOutButton from './SignOutButton.vue'
 
 
+
 export default {
 
   name: "TabBar",
@@ -44,7 +45,7 @@ export default {
     Navigator2,
     SearchTab,
     DirectionTab,
-    SignOutButton
+    SignOutButton,
   },
 
   data() {
