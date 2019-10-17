@@ -174,9 +174,11 @@ const store =  new Vuex.Store({
     },
     resetPageStack(state) {
       if(state.activeIndex == 0){
+        debugger
         state.pageStack1 = [GoogleMap];
       }
       else if(state.activeIndex == 1){
+        debugger
         if(state.headers == null){
           state.pageStack2 = [SignTop];
         }

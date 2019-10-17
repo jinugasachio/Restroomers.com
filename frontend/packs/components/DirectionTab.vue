@@ -80,7 +80,12 @@ export default {
       }
     },
     targetForDirectMode(){
-      return [this.pageStack1, this.pageStack2, this.activeIndex]
+      return [
+        this.pageStack1,
+        this.pageStack2,
+        this.activeIndex,
+        this.guideTrigger,
+      ]
     }
     // existRoom(){
     //   if(this.pageStack1.filter(function(page){
@@ -173,11 +178,9 @@ export default {
         vm.count = 0;
         vm.id = navigator.geolocation.watchPosition(geoSuccess, geoError, geoOptions);
 
-        
-
-
-        vm.$emit('backToMap');//これはガイドトリガーがtrue担っている時、つまりガイドするときは呼ばないようにする！！！
-
+        if(vm.guideTrigger == false){
+          vm.$emit('backToMap');//これはガイドトリガーがtrue担っている時、つまりガイドするときは呼ばないようにする！！！
+        }
 
 
 
@@ -204,6 +207,7 @@ export default {
       vm.renderer.setMap(this.map);
 
       const start = vm.latlng;
+      debugger;
       const goal = new google.maps.LatLng(vm.room.lat, vm.room.lng);
       const service = new google.maps.DirectionsService(); 
       const request = {
@@ -214,6 +218,9 @@ export default {
 
       service.route(request, function(result, status){
         if (status === 'OK') {
+          debugger;
+          vm.$emit('backToMap');
+          debugger;
           vm.renderer.setDirections(result); //取得したルート（結果：result）をセット
         }
         else{
