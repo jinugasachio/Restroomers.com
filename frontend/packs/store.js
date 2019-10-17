@@ -174,11 +174,9 @@ const store =  new Vuex.Store({
     },
     resetPageStack(state) {
       if(state.activeIndex == 0){
-        debugger
         state.pageStack1 = [GoogleMap];
       }
       else if(state.activeIndex == 1){
-        debugger
         if(state.headers == null){
           state.pageStack2 = [SignTop];
         }
@@ -308,11 +306,9 @@ const store =  new Vuex.Store({
     signOut(context){
       axios.delete('/api/auth/sign_out', { headers: context.state.headers })
       .then(function(response){
-        debugger;
         context.commit('signOut')
       })
       .catch(function (error) {
-        debugger;
         alert('予期しないエラーが発生しました。');
       })
     },

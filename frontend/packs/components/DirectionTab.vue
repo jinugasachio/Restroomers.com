@@ -87,15 +87,6 @@ export default {
         this.guideTrigger,
       ]
     }
-    // existRoom(){
-    //   if(this.pageStack1.filter(function(page){
-    //     return page.name == "Room"}).length >0){
-    //       return true
-    //   }
-    //   else{
-    //     return false
-    //   }
-    // },
   },
 
   methods: {
@@ -177,13 +168,9 @@ export default {
 
         vm.count = 0;
         vm.id = navigator.geolocation.watchPosition(geoSuccess, geoError, geoOptions);
-
         if(vm.guideTrigger == false){
-          vm.$emit('backToMap');//これはガイドトリガーがtrue担っている時、つまりガイドするときは呼ばないようにする！！！
+          vm.$emit('backToMap');
         }
-
-
-
 
       }
       // Geolocation APIに対応していない場合
@@ -199,15 +186,13 @@ export default {
   //行きたい部屋まで案内する
     guide(){
       const vm = this;
-
       vm.$store.dispatch('guideTrigger') //falseに変える
       vm.renderer = new google.maps.DirectionsRenderer({
-                         suppressMarkers: true
-                       });
+                      suppressMarkers: true
+                    });
       vm.renderer.setMap(this.map);
 
       const start = vm.latlng;
-      debugger;
       const goal = new google.maps.LatLng(vm.room.lat, vm.room.lng);
       const service = new google.maps.DirectionsService(); 
       const request = {
@@ -218,9 +203,7 @@ export default {
 
       service.route(request, function(result, status){
         if (status === 'OK') {
-          debugger;
           vm.$emit('backToMap');
-          debugger;
           vm.renderer.setDirections(result); //取得したルート（結果：result）をセット
         }
         else{

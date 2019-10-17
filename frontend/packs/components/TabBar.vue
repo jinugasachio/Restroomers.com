@@ -9,6 +9,7 @@
         :label="tabs[i].label"
         :badge="tabs[i].badge"
         :key="tabs[i].icon"
+        @click.prevent="active"
       >
       </v-ons-tab>
       <SearchTab 
@@ -45,23 +46,31 @@ export default {
 
   data() {
     return {
-      activeIndex: 0,
       tabs: [
         {
           icon: 'ion-ios-home',
-          label: '',
           page: Navigator1,
         },
         {
           icon: 'ion-ios-happy',
-          label: '',
           page: Navigator2,
         }
       ]
     };
   },
 
+  computed: {
+    activeIndex: {
+      get()        { return this.$store.getters.activeIndex },
+      set(newIndex){ this.$store.dispatch('activeIndex', newIndex) }
+    }
+  },
+
   methods: {
+
+    active(){
+      this.activeIndex = event.currentTarget.index;
+    },
 
     backToMap(){
       this.activeIndex = 0
@@ -77,15 +86,6 @@ export default {
       button.classList.remove(className)
     },
   },
-
-  watch: {
-    activeIndex: {
-      handler(newVal){
-        this.$store.dispatch('activeIndex', newVal)
-      }
-    }
-  }
-
 
 }
 </script>
