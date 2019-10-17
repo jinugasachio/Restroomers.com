@@ -22,6 +22,7 @@
         @addClass="addClass"
         @removeClass="removeClass"
       />
+      <SignOutButton/>
     </v-ons-tabbar>
 </template>
 
@@ -31,6 +32,7 @@ import Navigator1 from './Navigator1.vue'
 import Navigator2 from './Navigator2.vue'
 import SearchTab from './SearchTab.vue'
 import DirectionTab from './DirectionTab.vue'
+import SignOutButton from './SignOutButton.vue'
 
 
 export default {
@@ -42,6 +44,7 @@ export default {
     Navigator2,
     SearchTab,
     DirectionTab,
+    SignOutButton
   },
 
   data() {

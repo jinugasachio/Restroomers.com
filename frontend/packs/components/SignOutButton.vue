@@ -1,7 +1,7 @@
 <template>
   <button
     class="sign-out"
-    v-show="userPage"
+    v-show="atUserPage"
     @click="signOut"
   >
     <img src="packs/images/sign_out.png"  class="sign-out__image">
@@ -21,8 +21,17 @@ export default {
     headers(){
       return this.$store.getters.headers
     },
+    pageStack(){
+      return this.$store.getters.pageStack
+    },
+    atUserPage(){
+      if(this.activeTab == 1 && this.userPage){
+        return true
+      }
+    },
     userPage(){
-      if(this.activeTab == 1 && this.headers !== null){
+      const page = this.pageStack[this.pageStack.length - 1]
+      if(page.name == "RoomList"){
         return true
       }
     }
@@ -54,7 +63,7 @@ export default {
 .sign-out {
   position: absolute;
   right: 1rem;
-  bottom: 1rem;
+  bottom: 4rem;
   z-index: 10;
   width: 4rem;
   min-height: 4rem;
@@ -65,7 +74,7 @@ export default {
   border-radius: 50%;
 
   &:active {
-    background-color: #e67f7a;
+    background-color: #d8726d;
   }
 
   &:focus {
