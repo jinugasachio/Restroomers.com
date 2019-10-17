@@ -62,9 +62,6 @@ export default {
     currentUser(){
       return this.$store.getters.currentUser;
     },
-    pageStack2(){
-      return this.$store.getters.pageStack2;
-    },
     signFormData(){
       return this.$store.getters.signFormData;
     },
@@ -144,6 +141,8 @@ export default {
       width: 65%;
       margin: 30px auto 0;
       background-color: #ff8b85;
+      border-bottom: solid 2px #b5b5b5;
+      box-shadow: inset 0 2px 0 #ffffff80, 0 2px 2px #00000030;
     }
   }
 }

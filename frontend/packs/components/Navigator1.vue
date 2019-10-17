@@ -1,7 +1,8 @@
 <template>
     <v-ons-navigator
-    :page-stack="pageStack1"
-  ></v-ons-navigator>
+      :page-stack="pageStack1"
+    >
+    </v-ons-navigator>
 </template>
 
 <script>
@@ -13,7 +14,7 @@ export default {
 
   computed: {
     pageStack1(){
-      return this.$store.getters.pageStack1
+      return this.$store.state.pageStack1
     }
   },
 

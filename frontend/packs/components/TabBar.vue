@@ -2,13 +2,14 @@
     <v-ons-tabbar  position="auto" animation="none"
       :tabs="tabs"
       :visible="true"
-      :index.sync="activeIndex"
+      :index.sync="activeTab"
     >
       <v-ons-tab v-for="(tab, i) in tabs"
         :icon="tabs[i].icon"
         :label="tabs[i].label"
         :badge="tabs[i].badge"
-        :key= i
+        :key="tabs[i].icon"
+        @click.prevent="active"
       >
       </v-ons-tab>
       <SearchTab 
@@ -31,6 +32,7 @@ import Navigator2 from './Navigator2.vue'
 import SearchTab from './SearchTab.vue'
 import DirectionTab from './DirectionTab.vue'
 
+
 export default {
 
   name: "TabBar",
@@ -39,31 +41,39 @@ export default {
     Navigator1,
     Navigator2,
     SearchTab,
-    DirectionTab
+    DirectionTab,
   },
 
   data() {
     return {
-      activeIndex: 0,
       tabs: [
         {
           icon: 'ion-ios-home',
-          label: '',
           page: Navigator1,
         },
         {
-          icon: 'ion-ios-heart',
-          label: '',
+          icon: 'ion-ios-happy',
           page: Navigator2,
         }
       ]
     };
   },
 
+  computed: {
+    activeTab: {
+      get()        { return this.$store.getters.activeTab },
+      set(newIndex){ this.$store.dispatch('activeTab', newIndex) }
+    }
+  },
+
   methods: {
 
+    active(){
+      this.activeTab = event.currentTarget.index;
+    },
+
     backToMap(){
-      this.activeIndex = 0
+      this.activeTab = 0
       this.$store.dispatch('resetPageStack')
     },
     addClass(idName, className){
@@ -77,15 +87,6 @@ export default {
     },
   },
 
-  watch: {
-    activeIndex: {
-      handler(newVal){
-        this.$store.dispatch('activeIndex', newVal)
-      }
-    }
-  }
-
-
 }
 </script>
 
@@ -93,15 +94,15 @@ export default {
 
 .tabbar__item {
   &:active {
-    background-color: #f0f0f0;
+    background-color: #e7e7e7;
 
     .tabbar__button {
-      color: #ff5a47;
+      color: #fa8686;
     }
   }
 
   :checked + .tabbar__button {
-    color: #ff5a47;
+    color: #fa8686;
   }
 }
 

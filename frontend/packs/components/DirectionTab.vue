@@ -32,21 +32,26 @@ export default {
       return this.$store.state.map;
     },
     room(){
-      return this.$store.state.room.powder_room;
+      if(this.activeTab == 0){
+        return this.$store.state.room.powder_room;
+      }
+      else if(this.activeTab == 1){
+        return this.$store.state.room_1.powder_room;
+      }
     },
     label(){
-      if(this.existRoom && this.successId !== null){
+      if(this.atRoomPage && this.successId !== null){
         return 'Active'
       }
-      else if(this.existRoom){
+      else if(this.atRoomPage){
         return 'ルートを表示'
       }
       else if(this.successId !== null){
         return 'Active'
       }
     },
-    pageStack1(){
-      return this.$store.getters.pageStack1
+    pageStack(){
+      return this.$store.getters.pageStack
     },
     directionTrigger(){
       return this.$store.getters.directionTrigger
@@ -54,15 +59,34 @@ export default {
     guideTrigger(){
       return this.$store.getters.guideTrigger
     },
-    existRoom(){
-      if(this.pageStack1.filter(function(page){
-        return page.name == "Room"}).length >0){
-          return true
-      }
-      else{
-        return false
+    activeTab(){
+      return this.$store.getters.activeTab
+    },
+    atRoomPage(){
+      // if(this.activeTab == 0){
+      //   const page = this.pageStack[this.pageStack.length - 1]
+      //   if(page.name == "Room"){
+      //     return true
+      //   }
+      // }
+      // else if(this.activeTab == 1){
+      //   const page = this.pageStack[this.pageStack.length - 1]
+      //   if(page.name == "Room"){
+      //     return true
+      //   }
+      // }
+      const page = this.pageStack[this.pageStack.length - 1]
+      if(page.name == "Room"){
+        return true
       }
     },
+    targetForDirectMode(){
+      return [
+        this.pageStack,
+        this.activeTab,
+        this.guideTrigger,
+      ]
+    }
   },
 
   methods: {
@@ -144,7 +168,10 @@ export default {
 
         vm.count = 0;
         vm.id = navigator.geolocation.watchPosition(geoSuccess, geoError, geoOptions);
-        vm.$emit('backToMap');
+        if(vm.guideTrigger == false){
+          vm.$emit('backToMap');
+        }
+
       }
       // Geolocation APIに対応していない場合
       else {
@@ -159,11 +186,10 @@ export default {
   //行きたい部屋まで案内する
     guide(){
       const vm = this;
-
       vm.$store.dispatch('guideTrigger') //falseに変える
       vm.renderer = new google.maps.DirectionsRenderer({
-                         suppressMarkers: true
-                       });
+                      suppressMarkers: true
+                    });
       vm.renderer.setMap(this.map);
 
       const start = vm.latlng;
@@ -177,6 +203,7 @@ export default {
 
       service.route(request, function(result, status){
         if (status === 'OK') {
+          vm.$emit('backToMap');
           vm.renderer.setDirections(result); //取得したルート（結果：result）をセット
         }
         else{
@@ -200,7 +227,7 @@ export default {
       handler(){
         if(this.successId == null){
           this.$emit('removeClass','direction','gps-mode');
-          if(this.existRoom){
+          if(this.atRoomPage){
             this.$emit('addClass','direction','direct-mode');
           }
         }
@@ -210,9 +237,9 @@ export default {
       }
     },
 
-    pageStack1: {
+    targetForDirectMode: {
       handler(){
-          if(this.existRoom && this.successId == null){
+          if(this.atRoomPage && this.successId == null){
             this.$emit('addClass','direction','direct-mode');
           }
           else{
@@ -224,7 +251,7 @@ export default {
     directionTrigger:{
       handler(){
         const vm = this; 
-        if(vm.existRoom){
+        if(vm.atRoomPage){
           vm.$ons.notification.confirm({message: 'ルートを表示してもよろしいですか？', title: ''})
             .then(function(response){
               if(response == 1){
@@ -265,7 +292,7 @@ export default {
   background-color: #ff5757;
 
   .tabbar__button {
-    color: #fff;
+    color: #fff9f9;
 
     .tabbar__label {
       font-weight: 900;

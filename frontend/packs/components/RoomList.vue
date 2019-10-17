@@ -2,9 +2,9 @@
   <v-ons-page>
     <ToolBar/>
     <v-ons-list>
-      <v-ons-list-header></v-ons-list-header>
+      <v-ons-list-header>{{ headerName }}</v-ons-list-header>
       <v-ons-list-item modifier="chevron longdivider" tappable
-        @click="getRoom"
+        @click="pushPage"
         v-for="room in roomList" 
         :key=room.id
         :data-id=room.id
@@ -12,12 +12,15 @@
       {{ room.name }}
       </v-ons-list-item>
     </v-ons-list>
+    <SignOutButton/>
   </v-ons-page>
 </template>
 
 <script>
 import ToolBar from './ToolBar.vue'
 import Room from './Room.vue'
+import SignOutButton from './SignOutButton.vue'
+
 
 export default {
 
@@ -25,29 +28,43 @@ export default {
   
   components: {
     ToolBar,
-    Room
+    Room,
+    SignOutButton
   },
 
   computed: {
 
-    room(){
-      return this.$store.getters.room
+    room:{
+      get()       { return this.$store.getters.room },
+      set(roomBox){ this.$store.dispatch('getRoom', roomBox.dataset.id) }
+    },
+    headerName(){
+      if(this.activeTab == 1){
+        return "お気に入りリスト"
+      }
     },
     roomList(){
-      return this.$store.getters.roomList
+      if(this.activeTab == 1){
+        return this.$store.getters.favoriteRooms
+      }
+      else{
+        return this.$store.getters.roomList
+      }
     },
-    parentName(){
-      const num = this.$store.getters.roomList[0].ancestry
-      const parent = this.$store.getters.allRooms[num - 1]
-      return parent.name
+    activeTab(){
+      return this.$store.getters.activeTab
     },
+
   },
 
-  methods: {
+  methods:{
 
-    getRoom(event){
-      const roomItem = event.currentTarget
-      this.$store.dispatch('getRoom', roomItem.dataset.id)
+    pushPage(event){
+      const unwatch = this.$watch('room', function(){
+        this.$store.dispatch('pushPage', Room)
+        unwatch()
+      })
+      this.room = event.currentTarget
     },
 
     popPage(){
@@ -55,16 +72,12 @@ export default {
     }
   },
 
-  updated(){ //Navigatorで取った時に前のstore情報をリセットするという意味
-    this.$store.dispatch('resetRoomList')
+  created(){
+    if(this.activeTab == 1){
+      this.$store.dispatch('favoriteRooms')
+    }
   },
  
-  watch: {
-
-    room(){
-      this.$store.dispatch('pushPage', Room)
-    }
-  }
 }
 </script>
 

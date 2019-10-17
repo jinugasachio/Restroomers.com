@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_10_092558) do
+ActiveRecord::Schema.define(version: 2019_10_14_063212) do
 
   create_table "details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "open"
@@ -52,6 +52,15 @@ ActiveRecord::Schema.define(version: 2019_10_10_092558) do
     t.index ["powder_room_id"], name: "index_images_on_powder_room_id"
   end
 
+  create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "powder_room_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["powder_room_id"], name: "index_likes_on_powder_room_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
   create_table "powder_rooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.integer "rate", null: false
@@ -87,4 +96,6 @@ ActiveRecord::Schema.define(version: 2019_10_10_092558) do
   add_foreign_key "details", "powder_rooms"
   add_foreign_key "facilities", "powder_rooms"
   add_foreign_key "images", "powder_rooms"
+  add_foreign_key "likes", "powder_rooms"
+  add_foreign_key "likes", "users"
 end

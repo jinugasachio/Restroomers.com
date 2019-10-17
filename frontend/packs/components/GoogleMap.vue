@@ -26,7 +26,6 @@ export default {
 
   data() {
     return {
-      // mapName: "map",
       map: null,
       center: { lat: 35.658230, lng: 139.701642 }, //渋谷駅スタート
       styles: GmapStyle,
@@ -46,10 +45,6 @@ export default {
   },
 
   methods: {
-
-    // reload: function(){
-    //   location.reload();
-    // },
 
     // Navigator用メソッド
     push(){
@@ -151,7 +146,6 @@ export default {
     }
 
   }
-
 }
 </script>
 

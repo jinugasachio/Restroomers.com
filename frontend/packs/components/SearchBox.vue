@@ -4,19 +4,16 @@
   >
     <div class="search__box">
       <div class="search__box__inner">
-        <div class="search__box__inner__box">
+        <button @click="search" class="search__box__inner__box">
           <img src="packs/images/search1.png" 
             class="search__box__innner__box__image" 
-            @click="search"
           >
-        </div>
+        </button>
         <input 
           type="text"
           class="search__box__innner__input"
           placeholder="Type to Search"
           v-model="inputWords"
-          @keyup.enter="searchTrigger"
-          @keypress="search"
         >
       </div>
     </div>
@@ -27,6 +24,9 @@
 <script>
 
 export default {
+
+          // @keyup.enter="searchTrigger"
+          // @keypress="search"
 
   name: "SeatrchBox",
   data(){
@@ -46,12 +46,12 @@ export default {
   },
 
   methods: {
-    searchTrigger() {
-      if (!this.canSearch) {
-        return
-      }
-      this.canSearch = false
-    },
+    // searchTrigger() {
+    //   if (!this.canSearch) {
+    //     return
+    //   }
+    //   this.canSearch = false
+    // },
 
     search(){
       if(typeof this.inputWords == 'string'){ //細くバリデーションするならここ、一旦応急処置的にこれ。
@@ -67,6 +67,9 @@ export default {
             vm.map.setZoom(16)
             vm.$store.dispatch('showSearchBox')
             vm.inputWords = null
+          }
+          else{
+            vm.$ons.notification.alert({message: 'お探しの場所が見つかりませんでした。', title: ''});
           }
         });
       }
@@ -105,10 +108,22 @@ export default {
       display: inline-block;
       width: 75px;
       min-height: 54px;
+      padding: 0;
       color: white;
       cursor: pointer;
       background-color: #ff8b85;
       border-radius: 50%;
+      box-shadow: inset 0 2px 0 #ffffff80, 0 2px 2px #00000030;
+
+      &:active {
+        background-color: #e67f7a;
+        border: none;
+        box-shadow: inset 0 1px 0 #ffffff80, 0 2px 2px #00000030;
+      }
+
+      &:focus {
+        outline: 0;
+      }
 
       .search__box__innner__box__image {
         position: absolute;
@@ -119,6 +134,10 @@ export default {
         width: 1.5rem;
         margin: auto;
         background-color: #ff8b85;
+
+        &:active {
+          background-color: #e67f7a;
+        }
       }
     }
 

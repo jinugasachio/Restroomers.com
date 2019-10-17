@@ -2,8 +2,7 @@
     <v-ons-page>
       <ToolBar/>
       <div class="wrapper">
-
-        <v-ons-card v-if="logIn == false">
+        <v-ons-card>
           <h2 class="title">
             Restroomers.com
             <img src='packs/images/lipstick.png' alt='口紅の写真' class='lip_image'>
@@ -19,7 +18,6 @@
             {{button.text}}
           </v-ons-button>
         </v-ons-card>
-
       </div>
     </v-ons-page>
 </template>
@@ -57,16 +55,8 @@ export default {
     currentUser(){
       return this.$store.getters.currentUser
     },
-    logIn(){
-      if(this.currentUser !== null && this.currentUser.name !== 'Error'){
-        return true
-      }
-      else{
-        return false
-      }
-    },
-    pageStack2:{
-      get()    { return this.$store.getters.pageStack2 },
+    pageStack:{
+      get()    { return this.$store.getters.pageStack },
       set(page){ this.$store.dispatch('pushPage', page) }
     },
     formData:{
@@ -84,11 +74,11 @@ export default {
     push(event){
       if(event.target.id == 'sign_up'){
         this.formData   = this.signUpForm
-        this.pageStack2 = SignForm
+        this.pageStack = SignForm
       }
       else if(event.target.id == 'sign_in'){
         this.formData   = this.signInForm
-        this.pageStack2 = SignForm
+        this.pageStack = SignForm
       }
     },
 
@@ -97,9 +87,15 @@ export default {
       vm.$ons.notification.confirm({message: 'ログインしてもよろしいですか?', title: ''})
         .then(function(response){
           if(response == 1){
+
             vm.$store.dispatch('signIn', vm.testUser)
           }
         })
+    },
+
+    showUserPage(){
+      this.$store.dispatch('resetPageStack')
+      this.$store.dispatch('showUserPage')
     }
   },
 
@@ -114,13 +110,13 @@ export default {
             this.notice('メールアドレスもしくはパスワードが間違っています。', 'ログインできません。');
           }
         }
-        else if(this.pageStack2.length == 1 || this.formData.length == 2){
-          this.$store.dispatch('resetPageStack')
-          this.notice('ログインしました！', '')
+        else if(this.pageStack.length == 1 || this.formData.length == 2){
+          this.showUserPage();
+          this.notice('ログインしました！', '');
         }
         else if(this.formData.length == 4){
-          this.$store.dispatch('resetPageStack')
-          this.notice('新規登録が完了しました！', '')
+          this.showUserPage();
+          this.notice('新規登録が完了しました！', '');
         }
       }
     }
@@ -176,6 +172,8 @@ export default {
       width: 65%;
       margin: 0 auto 2rem;
       cursor: pointer;
+      border-bottom: solid 2px #b5b5b5;
+      box-shadow: inset 0 2px 0 #ffffff80, 0 2px 2px #00000030;
     }
 
     #sign_up {
