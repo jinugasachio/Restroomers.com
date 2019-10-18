@@ -41,7 +41,7 @@
                 <textarea
                   class="review-text"
                   placeholder="口コミを入力してください。"
-                  v-model="reviews"
+                  v-model="review"
                 ></textarea>
                 <p class="error-text"><span>{{ errors[0] }}</span></p>
                 </validation-provider>
@@ -53,6 +53,7 @@
             modifier="large"
             id="post-button" 
             :disabled="invalid"
+            @click="postReview"
           >
             投稿する
           </v-ons-button>
@@ -75,7 +76,7 @@ export default {
   data(){
     return{
       rate: null,
-      reviews: null,
+      review: null,
       numbers: [
         { text: '評価', value: null },
         { text: '1', value: 1 }, 
@@ -87,10 +88,46 @@ export default {
     }
   },
 
-  components: {
+  components:{
     ToolBar,
     Star 
   },
+
+  computed:{
+    room(){
+      return this.$store.getters.room.powder_room
+    },
+    roomReviews: {
+      get()         { return this.$store.getters.roomReviews },
+      set(newReview){ this.$store.dispatch('postReview', newReview) }
+    }
+  },
+
+  methods:{
+    postReview(){
+      const vm = this;
+      vm.$ons.notification.confirm({ message: '投稿してもよろしいですか?', title: '' })
+        .then(function(response){
+          if(response == 1){
+            const reviewParams = {
+              "rate":           vm.rate,
+              "review":         vm.review,
+              "powder_room_id": vm.room.id
+            }
+            vm.roomReviews = reviewParams
+          }
+        })
+    },
+  },
+
+  watch:{
+    roomReviews:{
+      handler(){
+        this.$store.dispatch('popPage')
+        this.$ons.notification.alert({ message: '投稿が完了しました。', title: '' })
+      }
+    }
+  }
 
   
 

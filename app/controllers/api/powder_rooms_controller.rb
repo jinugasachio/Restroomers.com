@@ -11,7 +11,7 @@ class Api::PowderRoomsController < ApplicationController
       detail      = powder_room.detail
       facility    = powder_room.facility
       likes       = powder_room.likes
-      reviews     = powder_room.reviews
+      reviews     = powder_room.reviews.as_json(include: [:user])
 
       render json: {
         powder_room: powder_room,

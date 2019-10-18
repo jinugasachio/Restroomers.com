@@ -158,6 +158,7 @@ const store =  new Vuex.Store({
         state.roomReviews.push(payload.newReview);
       }
       else if(state.activeTab == 1){
+        debugger;
         state.roomReviews_1.push(payload.newReview);
       }
     },
@@ -404,11 +405,14 @@ const store =  new Vuex.Store({
     },
 
     postReview(context, reviewParams){
+      debugger
       axios.post('/api/reviews', reviewParams, { headers: context.state.headers })
       .then(function(response){
+        debugger
         context.commit('postReview', { newReview: response.data })
       })
-      .catch(function () {
+      .catch(function (error) {
+        debugger;
         alert('予期しないエラーが発生しました。');
       })
     },
