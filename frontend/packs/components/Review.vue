@@ -84,8 +84,4 @@ export default {
   }
 }
 
-.list-item {
-
-}
-
 </style>

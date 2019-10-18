@@ -14,7 +14,7 @@
                   rules="required"
                   v-slot="{ errors }"
                 >
-                    <v-ons-select v-model="formRate" @change="updaetFormRate">
+                    <v-ons-select v-model="formRate" @change="updateFormRate">
                       <option 
                         v-for="num in numbers"
                         :value="num.value" 
@@ -118,7 +118,7 @@ export default {
           }
         })
     },
-    updaetFormRate(){
+    updateFormRate(){
       this.$refs.formStar.bindRate = this.formRate;
     }
   },
