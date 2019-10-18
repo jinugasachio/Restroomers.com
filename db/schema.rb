@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_18_022009) do
+ActiveRecord::Schema.define(version: 2019_10_18_025357) do
 
   create_table "details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "open"
@@ -63,7 +63,6 @@ ActiveRecord::Schema.define(version: 2019_10_18_022009) do
 
   create_table "powder_rooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "rate", null: false
     t.float "lat", limit: 53, null: false
     t.float "lng", limit: 53, null: false
     t.bigint "user_id", null: false
