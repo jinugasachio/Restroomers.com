@@ -1,8 +1,5 @@
 # require 'devise_token_auth'
 Rails.application.routes.draw do
-  get 'reviews/index'
-  get 'reviews/create'
-  get 'reviews/destroy'
   root 'static_pages#top'
 
   # router.jsで指定してるパスはずべて下記のようにルートにリダイレクトさせることで
@@ -11,12 +8,13 @@ Rails.application.routes.draw do
   # get 'post', to: 'static_pages#top'
   # get 'room/:id', to: 'static_pages#top'
 
-  namespace :api, { format: 'json' } do
+  namespace :api, format: 'json' do
     mount_devise_token_auth_for 'User', at: 'auth', controllers: {
       registrations: 'api/auth/registrations'
     }
     resources :powder_rooms
-    resources :likes, only: [:index, :create, :destroy] do
+    resources :reviews, only: [:index, :create, :destroy]
+    resources :likes,   only: [:index, :create, :destroy] do
       collection do
         get 'favorite_rooms'
       end

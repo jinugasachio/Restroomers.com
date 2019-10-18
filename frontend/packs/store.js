@@ -15,7 +15,7 @@ const store =  new Vuex.Store({
     map: null,
     room: defaultData, //コンソールエラー防止のため | リレーションしてるモデルデータも合わせて格納している
     room_1: defaultData,
-    roomLikes:[],
+    roomLikes:[], //リアクティブにするにはroomと分ける必要がある
     roomLikes_1:[],
     allRooms: null,
     roomList: [],
