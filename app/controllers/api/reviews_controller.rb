@@ -6,7 +6,7 @@ class Api::ReviewsController < ApplicationController
   end
 
   def create
-    review = current_api_user.reviews.create!(review_params)
+    review = current_api_user.reviews.create!(reviews_params)
     render json: review
   end
 
@@ -17,6 +17,7 @@ class Api::ReviewsController < ApplicationController
   end
 
   private
+
     def reviews_params
       params.permit(:rate, :review, :powder_room_id)
     end
