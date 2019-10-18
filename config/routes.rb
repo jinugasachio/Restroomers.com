@@ -1,5 +1,8 @@
 # require 'devise_token_auth'
 Rails.application.routes.draw do
+  get 'reviews/index'
+  get 'reviews/create'
+  get 'reviews/destroy'
   root 'static_pages#top'
 
   # router.jsで指定してるパスはずべて下記のようにルートにリダイレクトさせることで

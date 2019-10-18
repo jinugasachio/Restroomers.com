@@ -7,4 +7,5 @@ class PowderRoom < ApplicationRecord
   has_one :facility
   has_many :images
   has_many :likes, dependent: :destroy
+  has_many :reviews, dependent: :destroy
 end
