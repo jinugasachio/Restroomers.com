@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_14_063212) do
+ActiveRecord::Schema.define(version: 2019_10_18_022009) do
 
   create_table "details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "open"
@@ -74,6 +74,17 @@ ActiveRecord::Schema.define(version: 2019_10_14_063212) do
     t.index ["user_id"], name: "index_powder_rooms_on_user_id"
   end
 
+  create_table "reviews", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "rate", null: false
+    t.text "review", null: false
+    t.bigint "user_id"
+    t.bigint "powder_room_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["powder_room_id"], name: "index_reviews_on_powder_room_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "provider", default: "email", null: false
     t.string "uid", default: "", null: false
@@ -98,4 +109,6 @@ ActiveRecord::Schema.define(version: 2019_10_14_063212) do
   add_foreign_key "images", "powder_rooms"
   add_foreign_key "likes", "powder_rooms"
   add_foreign_key "likes", "users"
+  add_foreign_key "reviews", "powder_rooms"
+  add_foreign_key "reviews", "users"
 end
