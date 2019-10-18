@@ -1,12 +1,11 @@
 <template>
     <star-rating  
       :star-size="18"
-      :increment="1"
+      :increment="0.1"
       :read-only="true"
       :show-rating="false"
-      :class="atRoomPage"
-      v-model="model"
-      >
+      v-model="bindRate"
+    >
     </star-rating>
 </template>
 
@@ -15,29 +14,26 @@
 export default {
   name: 'Star',
   props:{
-    rate: Number
+    averageRate: Number,
+    userRate: Number,
+  },
+  data(){
+    return{
+      bindRate: null
+    }
   },
   computed:{
-    model(){
-      return this.rate //RoomとReviewFormでここで条件分岐させる
-    },
     pageStack(){
       return this.$store.getters.pageStack
-    },
-    atRoomPage(){
-      const page = this.pageStack[this.pageStack.length - 1]
-      if(page.name == "Room"){
-        return 'at-room-page'
+    }
+  },
+  mounted(){
+      if(this.$el.classList[0] == "average-rate"){
+        this.bindRate = this.averageRate
       }
-    },
+      else if(this.$el.classList[0] == "user-review__star"){
+        this.bindRate = this.userRate
+      }
   }
 }
 </script>
-
-<style lang="scss" scoped>
-
-.at-room-page {
-  height: 35px;
-}
-
-</style>

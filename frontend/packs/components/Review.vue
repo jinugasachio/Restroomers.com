@@ -10,16 +10,18 @@
     </v-ons-list-header>
 
     <v-ons-list-item
+      class="review"
       v-for="review in roomReviews"
       :key="review.id"
     >
       <div class="user-name">
-
+        <p v-text="review.user.nickname"></p>
       </div>
       <div class="user-review">
-        <Star/>
+        <Star class="user-review__star" :userRate="review.rate"/>
+        <span v-text="review.rate"></span>
         <div class="user-review__text">
-
+          <p v-text="review.review"></p>
         </div>
       </div>
       
@@ -80,6 +82,10 @@ export default {
       background-color: #ddd;
     }
   }
+}
+
+.list-item {
+
 }
 
 </style>

@@ -14,7 +14,7 @@
                   rules="required"
                   v-slot="{ errors }"
                 >
-                    <v-ons-select v-model="rate">
+                    <v-ons-select v-model="formRate" @change="updaetFormRate">
                       <option 
                         v-for="num in numbers"
                         :value="num.value" 
@@ -23,7 +23,7 @@
                         {{ num.text }}
                       </option>
                     </v-ons-select>
-                    <Star :rate="rate"/>
+                    <Star ref="formStar"/>
                 <p class="error-text"><span>{{ errors[0] }}</span></p>
                 </validation-provider>
               </div>
@@ -75,7 +75,7 @@ export default {
 
   data(){
     return{
-      rate: null,
+      formRate: null,
       review: null,
       numbers: [
         { text: '評価', value: null },
@@ -110,7 +110,7 @@ export default {
         .then(function(response){
           if(response == 1){
             const reviewParams = {
-              "rate":           vm.rate,
+              "rate":           vm.formRate,
               "review":         vm.review,
               "powder_room_id": vm.room.id
             }
@@ -118,6 +118,9 @@ export default {
           }
         })
     },
+    updaetFormRate(){
+      this.$refs.formStar.bindRate = this.formRate;
+    }
   },
 
   watch:{

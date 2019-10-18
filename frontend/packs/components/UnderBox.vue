@@ -1,7 +1,14 @@
 <template>
   <div class="under_box">
-    <Star/>
-    <span class="rating_number">3.9</span>
+    <Star
+      class="average-rate"
+      :averageRate="averageRate"
+    />
+    <span
+      class="rating_number"
+      v-text="averageRate"
+      >
+      </span>
     <HeartButton/>
   </div>
 </template>
@@ -16,6 +23,23 @@ export default {
     HeartButton,
     Star
   },
+  computed:{
+    roomReviews(){
+      return this.$store.getters.roomReviews
+    },
+    averageRate(){
+      if(this.roomReviews.length > 0){
+        let totalRate = 0
+        this.roomReviews.forEach(function(review){
+          totalRate += review.rate
+        })
+        return totalRate / this.roomReviews.length
+      }
+      else{
+        return 0
+      }
+    }
+  }
 }
 </script>
 
@@ -23,6 +47,10 @@ export default {
 
 .under_box {
   position: relative;
+
+  .average-rate {
+    height: 35px;
+  }
 }
 
 .rating_number {

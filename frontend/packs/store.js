@@ -155,7 +155,7 @@ const store =  new Vuex.Store({
     },
     postReview(state, payload){
       if(state.activeTab == 0){
-        state.roomReviews.push(payload.newReview);
+        state.roomReviews.push(payload.newReview);//ここに一時的なuser infoを入れる！
       }
       else if(state.activeTab == 1){
         debugger;
@@ -412,7 +412,6 @@ const store =  new Vuex.Store({
         context.commit('postReview', { newReview: response.data })
       })
       .catch(function (error) {
-        debugger;
         alert('予期しないエラーが発生しました。');
       })
     },
