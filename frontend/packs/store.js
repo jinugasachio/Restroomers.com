@@ -155,7 +155,7 @@ const store =  new Vuex.Store({
     },
     postReview(state, payload){
       if(state.activeTab == 0){
-        state.roomReviews.push(payload.newReview);//ここに一時的なuser infoを入れる！
+        state.roomReviews.push(payload.newReview);
       }
       else if(state.activeTab == 1){
         debugger;
@@ -385,6 +385,7 @@ const store =  new Vuex.Store({
     unlike(context, params){
       axios.delete('/api/likes/' + params.id,  { headers: context.state.headers })
       .then(function(response){
+        debugger;
         const favoriteRoom = context.getters.room.powder_room
         context.commit('deleteLike', { like: response.data })
         context.commit('deleteFavorite', favoriteRoom)
@@ -405,7 +406,6 @@ const store =  new Vuex.Store({
     },
 
     postReview(context, reviewParams){
-      debugger
       axios.post('/api/reviews', reviewParams, { headers: context.state.headers })
       .then(function(response){
         debugger

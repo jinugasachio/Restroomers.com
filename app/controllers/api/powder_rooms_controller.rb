@@ -11,7 +11,7 @@ class Api::PowderRoomsController < ApplicationController
       detail      = powder_room.detail
       facility    = powder_room.facility
       likes       = powder_room.likes
-      reviews     = powder_room.reviews.as_json(include: [:user])
+      reviews     = powder_room.reviews
 
       render json: {
         powder_room: powder_room,
@@ -19,7 +19,7 @@ class Api::PowderRoomsController < ApplicationController
         detail: detail,
         images: images,
         likes: likes,
-        reviews: reviews
+        reviews: reviews.as_json(include: [user: { only: :nickname }])
       }
     else
       children = powder_room.children

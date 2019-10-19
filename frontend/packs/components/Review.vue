@@ -2,13 +2,8 @@
   <v-ons-list>
     <v-ons-list-header>
       みんなの口コミ
-      <button class="review-button"
-        @click="pushPage"
-      >
-        投稿する
-      </button>
+      <button class="review-button" @click="pushPage">投稿する</button>
     </v-ons-list-header>
-
     <v-ons-list-item
       class="review"
       v-for="review in roomReviews"
@@ -24,8 +19,6 @@
           <p v-text="review.review"></p>
         </div>
       </div>
-      
-
     </v-ons-list-item>
   </v-ons-list>
 </template>

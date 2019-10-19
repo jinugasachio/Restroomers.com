@@ -7,7 +7,7 @@ class Api::ReviewsController < ApplicationController
 
   def create
     review = current_api_user.reviews.create!(reviews_params)
-    render json: review
+    render json: review.as_json(include: [user: { only: :nickname }])
   end
 
   def destroy
