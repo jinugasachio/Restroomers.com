@@ -2,10 +2,10 @@
   <v-ons-list>
     <v-ons-list-header>
       みんなの口コミ
-      <button class="review-button" @click="pushPage"><span>投稿する</span></button>
+      <button class="review-button" @click="pushPage">
+        <span>投稿する</span>
+      </button>
     </v-ons-list-header>
-
-
     <v-ons-list-item
       class="review"
       v-for="review in roomReviews"

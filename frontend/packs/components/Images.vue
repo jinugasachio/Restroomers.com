@@ -5,7 +5,8 @@
           class="image_box">
       <img :src=url.url
             @click="addActive"
-            class="image">
+            class="image"
+      >
     </div>
   </div>
 </template>
@@ -27,7 +28,7 @@ export default {
  }
 </script>
 
-<style>
+<style lang="scss">
 
 .images_box {
   display: flex;
@@ -35,11 +36,11 @@ export default {
   justify-content: flex-start;
   width: 100%;
   margin-left: 0.2rem;
-}
 
-.image {
-  width: 3.5rem;
-  height: 3.5rem;
-  margin: 0 0.3rem 0 0;
+  .image {
+    width: 3.5rem;
+    height: 3.5rem;
+    margin: 0 0.3rem 0 0;
+  }
 }
 </style>

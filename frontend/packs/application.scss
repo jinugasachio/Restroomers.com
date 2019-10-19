@@ -20,29 +20,36 @@ body {
   display: none !important;
 }
 
-// 下記のよおうに直接当てるとoverflowの要素が働くときに
-// スクロールの箇所だけ染まらなくなる。ので一旦保留。
 .gm-style-iw,
 .gm-style-iw-c {
-  // &:hover {
-  //   background: black;
-  // }
-  max-width: 400px !important;
-  max-height: 400px !important;
+  max-width: 300px !important;
+  min-height: 30px !important;
+  max-height: 50px !important;
+  padding: 0 !important;
+}
+
+.gm-style-iw-d {
+  min-width: 300px;
+  overflow: auto !important;
+
+  &:active {
+    background-color: #e4e4e4;
+  }
 }
 
 #room_name {
-  padding-left: 9px;
-  font-size: 1.2rem;
+  padding: 12px 0;
+  font-size: 1.1rem;
   color: #3b3b3b;
+  text-align: center;
   text-decoration: none;
-  cursor: pointer; //ほんとはinfowindow全体にしたい
+  cursor: pointer;
 
   .lip_image {
     position: relative;
-    top: 0.36rem;
-    width: 1.5rem;
-    height: 1.5rem;
+    top: 0.3rem;
+    width: 1.3rem;
+    height: 1.3rem;
     padding-left: 0.2rem;
   }
 }
