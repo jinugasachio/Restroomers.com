@@ -75,16 +75,18 @@ export default {
     height: 1.3rem;
     cursor: pointer;
     background-color: #fff;
+    border-style: solid;
+    border-width: 1px;
     border-radius: 4px;
     outline: 0;
 
     span {
+      font-size: 12px;
       line-height: 0;
     }
 
     &:active {
       background-color: #ddd;
-      border-radius: 4px;
     }
   }
 }

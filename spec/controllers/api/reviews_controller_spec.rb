@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ReviewsController, type: :controller do
+RSpec.describe Api::ReviewsController, type: :controller do
 
   describe "GET #index" do
     it "returns http success" do
