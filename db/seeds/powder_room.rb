@@ -14,6 +14,7 @@ user = User.create(
   )
 end
 
+
 shibuya_parent = [{
   name: '西武渋谷店 A館 2F',
   lat: 35.66019636,
