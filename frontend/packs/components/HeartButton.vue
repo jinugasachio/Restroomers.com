@@ -99,6 +99,7 @@ export default {
     top: 9px;
     right: -11px;
     display: inline-block;
+    color: #1f1f21e0;
   }
 }
 

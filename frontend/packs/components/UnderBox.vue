@@ -33,7 +33,8 @@ export default {
         this.roomReviews.forEach(function(review){
           totalRate += review.rate
         })
-        return totalRate / this.roomReviews.length
+        const average = totalRate / this.roomReviews.length
+        return Math.round(average * 100) / 100
       }
       else{
         return 0
@@ -57,7 +58,7 @@ export default {
   position: absolute;
   top: 0.45rem;
   left: 6rem;
-  color: #1f1f21;
+  color: #1f1f21e0;
 }
 
 </style>
