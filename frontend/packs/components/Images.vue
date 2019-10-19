@@ -28,7 +28,7 @@ export default {
  }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
 .images_box {
   display: flex;
@@ -37,10 +37,18 @@ export default {
   width: 100%;
   margin-left: 0.2rem;
 
-  .image {
-    width: 3.5rem;
-    height: 3.5rem;
-    margin: 0 0.3rem 0 0;
+  .image_box {
+    cursor: pointer;
+
+    .image {
+      width: 3.5rem;
+      height: 3.5rem;
+      margin: 0 0.3rem 0 0;
+
+      &:active {
+        opacity: 0.5;
+      }
+    }
   }
 }
 </style>
