@@ -1,6 +1,6 @@
 <template>
     <star-rating  
-      :star-size="18"
+      :star-size="starSize"
       :increment="0.1"
       :read-only="true"
       :show-rating="false"
@@ -22,6 +22,7 @@ export default {
 
   data(){
     return{
+      starSize: 18,
       bindRate: null
     }
   },
@@ -29,6 +30,10 @@ export default {
   computed:{
     pageStack(){
       return this.$store.getters.pageStack
+    },
+    size:{
+      get(){ return this.starSize },
+      set(newSize){ this.starSize = newSize }
     }
   },
 
@@ -37,8 +42,9 @@ export default {
       if(this.$el.classList[0] == "average-rate"){
         this.bindRate = this.averageRate
       }
-      else if(this.$el.classList[0] == "user-review__star"){
+      else if(this.$el.classList[0] == "user-review__inner__star"){
         this.bindRate = this.userRate
+        this.size = 14
       }
     },
   },

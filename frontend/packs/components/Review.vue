@@ -2,24 +2,32 @@
   <v-ons-list>
     <v-ons-list-header>
       みんなの口コミ
-      <button class="review-button" @click="pushPage">投稿する</button>
+      <button class="review-button" @click="pushPage"><span>投稿する</span></button>
     </v-ons-list-header>
+
+
     <v-ons-list-item
       class="review"
       v-for="review in roomReviews"
       :key="review.id"
     >
-      <div class="user-name">
-        <p v-text="review.user.nickname"></p>
-      </div>
-      <div class="user-review">
-        <Star class="user-review__star" :userRate="review.rate"/>
-        <span v-text="review.rate"></span>
-        <div class="user-review__text">
-          <p v-text="review.review"></p>
-        </div>
+      <div class="review-box">
+          <div class="user-name">
+            <p v-text="review.user.nickname"></p>
+          </div>
+          <div class="user-review">
+            <div class="user-review__inner">
+              <Star class="user-review__inner__star" :userRate="review.rate"/>
+              <span v-text="review.rate"></span>
+            </div>
+            <div class="user-review__text">
+              <p v-text="review.review"></p>
+            </div>
+          </div>
       </div>
     </v-ons-list-item>
+
+
   </v-ons-list>
 </template>
 
@@ -59,21 +67,53 @@ export default {
 <style lang="scss" scoped>
 
 .list-header {
-  margin-top: 1rem;
-
   .review-button {
     position: absolute;
     top: 2px;
     right: 10px;
     display: inline-block;
     height: 1.3rem;
+    cursor: pointer;
     background-color: #fff;
     border-radius: 4px;
     outline: 0;
 
+    span {
+      line-height: 0;
+    }
+
     &:active {
       background-color: #ddd;
+      border-radius: 4px;
     }
+  }
+}
+
+.user-name {
+  margin-bottom: 4px;
+
+  p {
+    font-size: 12px;
+  }
+}
+
+.user-review {
+  margin-bottom: 5px;
+
+  .user-review__inner {
+    position: relative;
+    width: 153px;
+    margin-bottom: 10px;
+
+    span {
+      position: absolute;
+      top: 0;
+      right: 72px;
+    }
+  }
+
+  .user-review__text {
+    white-space: pre-wrap;
   }
 }
 

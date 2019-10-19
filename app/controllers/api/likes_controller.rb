@@ -9,7 +9,7 @@ class Api::LikesController < ApplicationController
   def destroy
     like = current_api_user.likes.find(params[:id])
     like.destroy!
-    render json: like.as_json(only: [:id])
+    render json: like.as_json(only: :id)
   end
 
   def favorite_rooms
