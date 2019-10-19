@@ -63,18 +63,6 @@ export default {
       return this.$store.getters.activeTab
     },
     atRoomPage(){
-      // if(this.activeTab == 0){
-      //   const page = this.pageStack[this.pageStack.length - 1]
-      //   if(page.name == "Room"){
-      //     return true
-      //   }
-      // }
-      // else if(this.activeTab == 1){
-      //   const page = this.pageStack[this.pageStack.length - 1]
-      //   if(page.name == "Room"){
-      //     return true
-      //   }
-      // }
       const page = this.pageStack[this.pageStack.length - 1]
       if(page.name == "Room"){
         return true

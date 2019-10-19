@@ -1,25 +1,46 @@
 <template>
   <div class="under_box">
-    <star-rating  
-      :star-size="18"
-      :increment="0.1"
-      :read-only="true"
-      :show-rating="false"
+    <Star
+      class="average-rate"
+      :averageRate="averageRate"
+    />
+    <span
+      class="rating_number"
+      v-text="averageRate"
       >
-    </star-rating>
-    <span class="rating_number">3.9</span>
+      </span>
     <HeartButton/>
   </div>
 </template>
 
 <script>
 import HeartButton from './HeartButton.vue'
+import Star from './StarRating.vue'
 
 export default {
   name: 'UnderBox',
   components:{
     HeartButton,
+    Star
   },
+  computed:{
+    roomReviews(){
+      return this.$store.getters.roomReviews
+    },
+    averageRate(){
+      if(this.roomReviews.length > 0){
+        let totalRate = 0
+        this.roomReviews.forEach(function(review){
+          totalRate += review.rate
+        })
+        const average = totalRate / this.roomReviews.length
+        return Math.round(average * 100) / 100
+      }
+      else{
+        return 0
+      }
+    }
+  }
 }
 </script>
 
@@ -27,17 +48,17 @@ export default {
 
 .under_box {
   position: relative;
+
+  .average-rate {
+    height: 35px;
+  }
 }
 
 .rating_number {
   position: absolute;
   top: 0.45rem;
   left: 6rem;
-  color: #1f1f21;
-}
-
-.vue-star-rating {
-  height: 35px;
+  color: #1f1f21e0;
 }
 
 </style>

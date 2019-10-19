@@ -25,9 +25,6 @@
 
 export default {
 
-          // @keyup.enter="searchTrigger"
-          // @keypress="search"
-
   name: "SeatrchBox",
   data(){
     return{
@@ -46,12 +43,6 @@ export default {
   },
 
   methods: {
-    // searchTrigger() {
-    //   if (!this.canSearch) {
-    //     return
-    //   }
-    //   this.canSearch = false
-    // },
 
     search(){
       if(typeof this.inputWords == 'string'){ //細くバリデーションするならここ、一旦応急処置的にこれ。
@@ -79,7 +70,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
 .search__box {
   position: absolute;
@@ -112,12 +103,12 @@ export default {
       color: white;
       cursor: pointer;
       background-color: #ff8b85;
+      border: none;
       border-radius: 50%;
       box-shadow: inset 0 2px 0 #ffffff80, 0 2px 2px #00000030;
 
       &:active {
-        background-color: #e67f7a;
-        border: none;
+        background-color: #d8726d;
         box-shadow: inset 0 1px 0 #ffffff80, 0 2px 2px #00000030;
       }
 
@@ -136,7 +127,7 @@ export default {
         background-color: #ff8b85;
 
         &:active {
-          background-color: #e67f7a;
+          background-color: #d8726d;
         }
       }
     }

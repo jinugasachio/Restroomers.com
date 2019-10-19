@@ -1,16 +1,18 @@
-user = User.create!(
-  nickname: '管理人',
-  email: 'aaa@gmail.com',
-  password: '123456',
-  password_confirmation: '123456'
-)
-
-User.create(
+user = User.create(
   nickname: 'テストユーザー',
   email: 'test@gmail.com',
   password: '123456',
   password_confirmation: '123456'
 )
+
+20.times do
+  User.create(
+    nickname: Faker::Japanese::Name.name,
+    email:    Faker::Internet.email,
+    password: 'password',
+    password_confirmation: 'password'
+  )
+end
 
 shibuya_parent = [{
   name: '西武渋谷店 A館 2F',

@@ -40,14 +40,16 @@ export default {
   methods:{
 
     like(){
-      if(this.headers !== null && this.isLiked.length == 0){
-        this.changeClass();
-        const likeParams = { "powder_room_id": this.room.id }
-        this.$store.dispatch('like', likeParams);
-      }
-      else if(this.isLiked.length > 0){
-        this.changeClass();
-        this.unLike();
+      if(this.headers !== null){
+        if(this.isLiked.length == 0){
+          this.changeClass();
+          const likeParams = { "powder_room_id": this.room.id }
+          this.$store.dispatch('like', likeParams);
+        }
+        else if(this.isLiked.length > 0){
+          this.changeClass();
+          this.unLike();
+        }
       }
       else{
         this.$ons.notification.alert({ message: 'ログインしてください。', title: '' });
@@ -97,6 +99,7 @@ export default {
     top: 9px;
     right: -11px;
     display: inline-block;
+    color: #1f1f21e0;
   }
 }
 

@@ -8,4 +8,5 @@ class User < ApplicationRecord
   # Associations
   has_many :powder_rooms, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :reviews, dependent: :destroy
 end

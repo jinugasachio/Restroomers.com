@@ -124,6 +124,7 @@ GEM
       railties (>= 4.2.0)
     faker (2.3.0)
       i18n (~> 1.6.0)
+    faker-japanese (0.0.1)
     ffi (1.11.1)
     fog-aws (3.5.2)
       fog-core (~> 2.1)
@@ -344,6 +345,7 @@ DEPENDENCIES
   devise_token_auth
   factory_bot_rails
   faker
+  faker-japanese
   fog-aws
   foreman
   jbuilder (~> 2.5)

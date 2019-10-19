@@ -15,8 +15,10 @@ const store =  new Vuex.Store({
     map: null,
     room: defaultData, //コンソールエラー防止のため | リレーションしてるモデルデータも合わせて格納している
     room_1: defaultData,
-    roomLikes:[],
+    roomLikes:[], //リアクティブにするにはroomと分ける必要がある
     roomLikes_1:[],
+    roomReviews:[], //リアクティブにするにはroomと分ける必要がある
+    roomReviews_1:[],
     allRooms: null,
     roomList: [],
     pageStack1: [GoogleMap],
@@ -51,6 +53,14 @@ const store =  new Vuex.Store({
       }
       else if (state.activeTab == 1){
         return state.roomLikes_1;
+      }
+    },
+    roomReviews(state){
+      if (state.activeTab == 0){
+        return state.roomReviews;
+      }
+      else if (state.activeTab == 1){
+        return state.roomReviews_1;
       }
     },
     allRooms(state) {
@@ -132,6 +142,35 @@ const store =  new Vuex.Store({
       else if(state.activeTab == 1){
         state.roomLikes_1 = state.roomLikes_1.filter(function(like){
           return like.id !== payload.like.id
+        })
+      }
+    },
+    roomReviews(state, payload){
+      if(state.activeTab == 0){
+        state.roomReviews = payload.roomReviews;
+      }
+      else if(state.activeTab == 1){
+        state.roomReviews_1 = payload.roomReviews;
+      }
+    },
+    postReview(state, payload){
+      if(state.activeTab == 0){
+        state.roomReviews.push(payload.newReview);
+      }
+      else if(state.activeTab == 1){
+        debugger;
+        state.roomReviews_1.push(payload.newReview);
+      }
+    },
+    deleteReview(state, payload){
+      if(state.activeTab == 0){
+        state.roomReviews = state.roomReviews.filter(function(review){
+          return review.id !== payload.review.id
+        })
+      }
+      else if(state.activeTab == 1){
+        state.roomReviews_1 = state.roomReviews_1.filter(function(review){
+          return review.id !== payload.review.id
         })
       }
     },
@@ -241,6 +280,7 @@ const store =  new Vuex.Store({
         } else {
           context.commit('updateRoom', { room: response.data })
           context.commit('roomLikes',  { roomLikes: response.data.likes })
+          context.commit('roomReviews',  { roomReviews: response.data.reviews })
         }
       })
       .catch(function (error) {
@@ -304,7 +344,7 @@ const store =  new Vuex.Store({
 
     signOut(context){
       axios.delete('/api/auth/sign_out', { headers: context.state.headers })
-      .then(function(response){
+      .then(function(){
         context.commit('signOut')
       })
       .catch(function (error) {
@@ -320,15 +360,15 @@ const store =  new Vuex.Store({
       context.commit('showUserPage');
     },
 
-    roomLikes(context, params){
-      axios.get(`/api/likes/?id=${params.id}`)
-      .then(function(response){
-        context.commit('roomLikes', { roomLikes: response.data });
-      })
-      .catch(function () {
-        alert('予期しないエラーが発生しました。');
-      })
-    },
+    // roomLikes(context, params){
+    //   axios.get(`/api/likes/?id=${params.id}`)
+    //   .then(function(response){
+    //     context.commit('roomLikes', { roomLikes: response.data });
+    //   })
+    //   .catch(function () {
+    //     alert('予期しないエラーが発生しました。');
+    //   })
+    // },
 
     like(context, likeParams){
       axios.post('/api/likes', likeParams, { headers: context.state.headers })
@@ -345,6 +385,7 @@ const store =  new Vuex.Store({
     unlike(context, params){
       axios.delete('/api/likes/' + params.id,  { headers: context.state.headers })
       .then(function(response){
+        debugger;
         const favoriteRoom = context.getters.room.powder_room
         context.commit('deleteLike', { like: response.data })
         context.commit('deleteFavorite', favoriteRoom)
@@ -362,7 +403,28 @@ const store =  new Vuex.Store({
       .catch(function (error) {
         alert('予期しないエラーが発生しました。');
       })
-    }
+    },
+
+    postReview(context, reviewParams){
+      axios.post('/api/reviews', reviewParams, { headers: context.state.headers })
+      .then(function(response){
+        debugger
+        context.commit('postReview', { newReview: response.data })
+      })
+      .catch(function (error) {
+        alert('予期しないエラーが発生しました。');
+      })
+    },
+
+    deleteReview(context, params){
+      axios.delete('/api/reviews/' + params.id,  { headers: context.state.headers })
+      .then(function(response){
+        context.commit('deleteReview', { review: response.data })
+      })
+      .catch(function (error) {
+        alert('予期しないエラーが発生しました。');
+      })
+    },
 
   },
 
