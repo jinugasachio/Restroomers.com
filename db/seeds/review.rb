@@ -15,7 +15,7 @@ reviews = [
   '内装が可愛いのでテンション上がります'
 ]
 
-50.times do
+70.times do
   Review.create(
     rate: rand(2..5),
     review: reviews.sample,
