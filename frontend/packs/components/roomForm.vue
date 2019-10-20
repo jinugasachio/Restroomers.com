@@ -2,7 +2,7 @@
     <v-ons-page>
       <ToolBar/>
       <div class="wrapper">
-        <PictureForm/>
+        <ImageForm/>
         <FacilityForm/>
         <DetailForm/>
         <v-ons-button
@@ -16,7 +16,7 @@
 
 <script>
 import ToolBar from './ToolBar.vue'
-import PictureForm from './PictureForm.vue'
+import ImageForm from './ImageForm.vue'
 import FacilityForm from './FacilityForm.vue'
 import DetailForm from './DetailForm.vue'
 
@@ -25,7 +25,7 @@ export default {
   name: 'RoomForm',
   components: {
     ToolBar,
-    PictureForm,
+    ImageForm,
     FacilityForm,
     DetailForm
   },
