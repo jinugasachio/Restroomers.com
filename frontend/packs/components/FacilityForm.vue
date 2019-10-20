@@ -1,7 +1,7 @@
 <template>
 
 
-        <v-ons-card id="facility">
+        <v-ons-card class="facility">
           <v-ons-list>
            <v-ons-list-header>設備情報 (あるものをチェック)</v-ons-list-header>
 
@@ -192,7 +192,7 @@ export default {
 
 <style scoped lang="scss">
 
-#facility {
+.facility {
   .facility__list {
     font-size: 0.75rem;
 

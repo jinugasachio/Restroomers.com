@@ -1,9 +1,9 @@
 <template>
 
-        <v-ons-card>
+        <v-ons-card class="detail">
            <v-ons-list-header>詳細情報 (任意)</v-ons-list-header>
 
-            <v-ons-list-item class="facility__list">
+            <v-ons-list-item class="detail__list">
               <label class="center">
                 営業開始
               </label>              
@@ -14,7 +14,7 @@
               </label>
             </v-ons-list-item>
 
-            <v-ons-list-item class="facility__list">
+            <v-ons-list-item class="detail__list">
               <label class="center">
                 営業終了
               </label>              
@@ -25,7 +25,7 @@
               </label>
             </v-ons-list-item>
 
-            <v-ons-list-item class="facility__list">
+            <v-ons-list-item class="detail__list">
               <label class="center">
                 TEL
               </label>              
@@ -36,7 +36,7 @@
               </label>
             </v-ons-list-item>
 
-            <v-ons-list-item class="facility__list">
+            <v-ons-list-item class="detail__list">
               <label class="center">
                 住所
               </label>              
@@ -47,7 +47,7 @@
               </label>
             </v-ons-list-item>
 
-            <v-ons-list-item class="facility__list">
+            <v-ons-list-item class="detail__list">
               <label class="center">
                 公式HP
               </label>              
@@ -83,3 +83,12 @@ export default {
   
 }
 </script>
+
+<style lang="scss" scoped>
+
+.detail {
+  &__list {
+    font-size: 0.8rem;
+  }
+}
+</style>
