@@ -1,10 +1,11 @@
 <template>
   <button
     class="action-button"
-    v-show="atUserPage"
-    @click="signOut"
+    v-show="showButton"
+    @click="action"
   >
-    <img src="packs/images/sign_out.png"  class="action-button__image">
+    <img v-show="mapPage" src="packs/images/post.png" class="action-button__image-post">
+    <img :src="imageSrc"  class="action-button__image">
   </button>
 </template>
 
@@ -36,7 +37,7 @@ export default {
         return true
       }
     },
-    atUserPage(){
+    showButton(){
       if(this.activeTab == 1 && this.userPage){
         return true
       }
@@ -48,13 +49,21 @@ export default {
       if(this.userPage){
         return "packs/images/sign_out.png" 
       }
-      else if(){
-        return "packs/images/post.png" 
+      else if(this.mapPage){
+        return "packs/images/woman2.png" 
       }
     }
   },
 
   methods:{
+    action(){
+      if(this.userPage){
+        this.signOut();
+      }
+      else{
+        this.$ons.notification.confirm({message: '新しいレストルームを投稿しますか?', title: ''})
+      }
+    },
     signOut(){
       const vm = this;
       vm.$ons.notification.confirm({message: 'ログアウトしてもよろしいですか?', title: ''})
@@ -104,12 +113,27 @@ export default {
     right: 0;
     bottom: 0;
     left: 0;
-    width: 1.5rem;
+    width: 1.8rem;
     margin: auto;
     background-color: #ff8b85;
 
     &:active {
-      background-color: #e67f7a;
+      background-color: #d8726d;
+    }
+  }
+
+  .action-button__image-post {
+    position: absolute;
+    top: -20px;
+    right: 11px;
+    bottom: 0;
+    z-index: 2;
+    width: 1rem;
+    margin: auto;
+    background-color: #ff8b85;
+
+    &:active {
+      background-color: #d8726d;
     }
   }
 }
