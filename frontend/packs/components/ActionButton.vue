@@ -24,14 +24,6 @@ export default {
     pageStack(){
       return this.$store.getters.pageStack
     },
-    atUserPage(){
-      if(this.activeTab == 1 && this.userPage){
-        return true
-      }
-      if(this.activeTab == 0 && this.mapPage){
-        return true
-      }
-    },
     userPage(){
       const page = this.pageStack[this.pageStack.length - 1]
       if(page.name == "RoomList"){
@@ -42,6 +34,22 @@ export default {
       const page = this.pageStack[this.pageStack.length - 1]
       if(page.name == "GoogleMap"){
         return true
+      }
+    },
+    atUserPage(){
+      if(this.activeTab == 1 && this.userPage){
+        return true
+      }
+      if(this.activeTab == 0 && this.mapPage){
+        return true
+      }
+    },
+    imageSrc(){
+      if(this.userPage){
+        return "packs/images/sign_out.png" 
+      }
+      else if(){
+        return "packs/images/post.png" 
       }
     }
   },
