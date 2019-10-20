@@ -1,17 +1,17 @@
 <template>
   <button
-    class="sign-out"
+    class="action-button"
     v-show="atUserPage"
     @click="signOut"
   >
-    <img src="packs/images/sign_out.png"  class="sign-out__image">
+    <img src="packs/images/sign_out.png"  class="action-button__image">
   </button>
 </template>
 
 <script>
 export default {
 
-  name: "SignOutButton",
+  name: "ActionButton",
 
   computed: {
     
@@ -28,10 +28,19 @@ export default {
       if(this.activeTab == 1 && this.userPage){
         return true
       }
+      if(this.activeTab == 0 && this.mapPage){
+        return true
+      }
     },
     userPage(){
       const page = this.pageStack[this.pageStack.length - 1]
       if(page.name == "RoomList"){
+        return true
+      }
+    },
+    mapPage(){
+      const page = this.pageStack[this.pageStack.length - 1]
+      if(page.name == "GoogleMap"){
         return true
       }
     }
@@ -60,7 +69,7 @@ export default {
 
 <style lang="scss" scoped>
 
-.sign-out {
+.action-button {
   position: absolute;
   right: 1rem;
   bottom: 4rem;
@@ -81,7 +90,7 @@ export default {
     outline: 0;
   }
 
-  .sign-out__image {
+  .action-button__image {
     position: absolute;
     top: 0;
     right: 0;
