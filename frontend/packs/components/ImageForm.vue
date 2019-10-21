@@ -64,7 +64,6 @@ export default {
         reader.readAsDataURL(image);
       },
       remove(e){
-        debugger;
         const targetImage = e.currentTarget.nextElementSibling.src
         this.uploadedImages = this.uploadedImages.filter(function(image){
           return image !== targetImage;
