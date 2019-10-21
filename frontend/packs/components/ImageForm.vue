@@ -24,9 +24,10 @@
               v-for=" image in uploadedImages"
               :key="image.name"
             >
-              <img @click="remove" src="packs/images/cancel.png" class="preview-box__inner__cancel">
-              <img :data-id="image.name" :src="image" class="preview-box__inner__image">
-              
+              <button @click="remove" class="preview-box__inner__button">
+                <img  src="packs/images/cancel.png" class="preview-box__inner__cancel">
+              </button>
+              <img :src="image" class="preview-box__inner__image">
             </div>
           </div>
       </v-ons-list-item>
@@ -63,7 +64,8 @@ export default {
         reader.readAsDataURL(image);
       },
       remove(e){
-        const targetImage = e.target.nextElementSibling.src
+        debugger;
+        const targetImage = e.currentTarget.nextElementSibling.src
         this.uploadedImages = this.uploadedImages.filter(function(image){
           return image !== targetImage;
         });
@@ -85,21 +87,35 @@ export default {
   }
 
   .preview-box {
+    display: flex;
+    flex-wrap: wrap;
     margin-left: 20px;
 
     &__inner {
       position: relative;
-      display: inline-block;
+      display: flex;
+      align-items: flex-start;
       margin-right: 10px;
 
       &__image {
         width: 2rem;
       }
 
-      &__cancel {
+      &__button {
         position: absolute;
-        top: 0;
-        left: -8px;
+        top: -5px;
+        left: -10px;
+        width: 1rem;
+        padding: 0;
+        background-color: #f7f7f7;
+        border-radius: 50%;
+
+        &:focus {
+          outline: 0;
+        }
+      }
+
+      &__cancel {
         width: 0.6rem;
         cursor: pointer;
       }
