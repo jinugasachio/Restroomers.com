@@ -1,37 +1,13 @@
 <template>
-
-
         <v-ons-card class="facility">
           <v-ons-list>
            <v-ons-list-header>設備情報 (あるものをチェック)</v-ons-list-header>
 
-            <v-ons-list-item class="facility__list">
-              <label class="center">
-                ドレッサー
-              </label>              
-              <label class="right">
-                <v-ons-checkbox
-                >
-                </v-ons-checkbox>
-              </label>
-            </v-ons-list-item>
-            
-            <v-ons-list-item class="facility__list">
-              <label class="center">
-                 全身鏡
-              </label>              
-              <label class="right">
-                <v-ons-checkbox
-                >
-                </v-ons-checkbox>
-              </label>
-
-            </v-ons-list-item>
-
-            <v-ons-list-item class="facility__list">
-              <label class="center">
-                拡大鏡
-              </label>              
+            <v-ons-list-item class="facility__list"
+              v-for="list in checkBoxList"
+              :key="list.name"
+            >
+              <label v-text="list.name" class="center"></label>
               <label class="right">
                 <v-ons-checkbox
                 >
@@ -39,116 +15,27 @@
               </label>
             </v-ons-list-item>
 
-            <v-ons-list-item class="facility__list">
-              <label class="center">
-                無料Wi-Fi
-              </label>              
-              <label class="right">
-                <v-ons-checkbox
-                >
-                </v-ons-checkbox>
-              </label>
-            </v-ons-list-item>
 
-            <v-ons-list-item class="facility__list">
-              <label class="center">
-                フィッティングブース
-              </label>              
-              <label class="right">
-                <v-ons-checkbox
-                >
-                </v-ons-checkbox>
-              </label>
-            </v-ons-list-item>
 
-            <v-ons-list-item class="facility__list">
-              <label class="center">
-                手洗いボウル
-              </label>              
-              <label class="right">
-                <v-ons-checkbox
-                >
-                </v-ons-checkbox>
-              </label>
-            </v-ons-list-item>
-
-            <v-ons-list-item class="facility__list">
-              <label class="center">
-                荷物置き
-              </label>              
-              <label class="right">
-                <v-ons-checkbox
-                >
-                </v-ons-checkbox>
-              </label>
-            </v-ons-list-item>
-
-            <v-ons-list-item class="facility__list">
-              <label class="center">
-                コンセント
-              </label>              
-              <label class="right">
-                <v-ons-checkbox
-                >
-                </v-ons-checkbox>
-              </label>
-            </v-ons-list-item>
-
-            <v-ons-list-item class="facility__list">
-              <label class="center">
-                ウェイティングブース
-              </label>              
-              <label class="right">
-                <v-ons-checkbox
-                >
-                </v-ons-checkbox>
-              </label>
-            </v-ons-list-item>
-
-            <v-ons-list-item class="facility__list">
-              <label class="center">
-                ゴミ箱
-              </label>              
-              <label class="right">
-                <v-ons-checkbox
-                >
-                </v-ons-checkbox>
-              </label>
-            </v-ons-list-item>
-
-            <v-ons-list-item class="facility__list">
-              <label class="center">
-                利用条件
-              </label>
+            <v-ons-list-item class="facility__list"
+              v-for="list in selectList"
+              :key="list.name"
+            >
+              <label v-text="list.name" class="center"></label>
               <label class="right">
                 <v-ons-select>
                   <option 
-                    v-for="c in conditions"
-                    :value="c.value" 
-                    :key='c.text'
+                    v-for="o in list.options"
+                    :value="o.value" 
+                    :key='o.text'
                   >
-                    {{ c.text }}
+                    {{ o.text }}
                   </option>
                 </v-ons-select>
               </label>
             </v-ons-list-item>
 
-            <v-ons-list-item class="facility__list">
-              <label class="center">
-                料金プラン
-              </label>              
-              <label class="right">
-                <v-ons-select>
-                  <option 
-                    v-for="p in plans"
-                    :value="p.value" 
-                    :key='p.text'
-                  >
-                    {{ p.text }}
-                  </option>
-                </v-ons-select>
-              </label>
-            </v-ons-list-item>
+
 
             <v-ons-list-header>その他</v-ons-list-header>
             <v-ons-list-item class="facility__list">
@@ -160,12 +47,6 @@
 
           </v-ons-list>
         </v-ons-card>
-
-
-
-
-
- 
 </template>
 
 <script>
@@ -176,14 +57,38 @@ export default {
 
   data(){
     return{
-      conditions: [
+      checkBoxList: [
+        { name: "ドレッサー" },
+        { name: "全身鏡" },
+        { name: "拡大鏡" },
+        { name: "無料Wi-Fi" },
+        { name: "フィッティングブース" },
+        { name: "手洗いボウル" },
+        { name: "荷物置き" },
+        { name: "コンセント" },
+        { name: "ウェイティングブース" },
+        { name: "ゴミ箱" },
+      ],
+      selectList: [
+        { name: "利用条件", options: [
         { text: 'あり', value: 'あり' }, 
         { text: 'なし', value: '特になし' }, 
-      ],
-      plans: [
+      ]},
+        { name: "料金プラン", options: [
         { text: '無料', value: '無料' }, 
         { text: '有料', value: '有料' }, 
+      ]}
       ],
+
+
+      // conditions: [
+      //   { text: 'あり', value: 'あり' }, 
+      //   { text: 'なし', value: '特になし' }, 
+      // ],
+      // plans: [
+      //   { text: '無料', value: '無料' }, 
+      //   { text: '有料', value: '有料' }, 
+      // ],
     }
   }
   
@@ -193,11 +98,21 @@ export default {
 <style scoped lang="scss">
 
 .facility {
+  margin-bottom: 2rem;
+
   .facility__list {
     font-size: 0.75rem;
 
     .facility-text {
       padding: 0;
+
+      &__inner {
+        min-width: 100%;
+        max-width: 100%;
+        min-height: 75px;
+        font-size: 0.8rem;
+        resize: none;
+      }
     }
   }
 }

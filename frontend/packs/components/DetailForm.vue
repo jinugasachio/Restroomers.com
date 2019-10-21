@@ -55,6 +55,8 @@ export default {
 <style lang="scss" scoped>
 
 .detail {
+  margin-bottom: 2rem;
+
   &__list {
     font-size: 0.8rem;
   }
