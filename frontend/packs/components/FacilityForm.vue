@@ -1,52 +1,54 @@
 <template>
-        <v-ons-card class="facility">
-          <v-ons-list>
-           <v-ons-list-header>設備情報 (あるものをチェック)</v-ons-list-header>
+  <v-ons-card class="facility">
+    <v-ons-list>
+      <v-ons-list-header>設備情報 (あるものをチェック)</v-ons-list-header>
 
-            <v-ons-list-item class="facility__list"
-              v-for="list in checkBoxList"
-              :key="list.name"
+      <v-ons-list-item class="facility__list"  tappable
+        v-for="(list, $index) in checkBoxList"
+        :key="list.name"
+      >
+        <label class="center"
+          v-text="list.name"
+          :for="'list-' + $index"
+        ></label>
+        <label class="right">
+          <v-ons-checkbox
+            :input-id="'list-' + $index"
+            :value="list.name"
+            v-model="list.model"
+          >
+          </v-ons-checkbox>
+        </label>
+      </v-ons-list-item>
+
+      <v-ons-list-item class="facility__list"
+        v-for="list in selectList"
+        :key="list.name"
+      >
+        <label v-text="list.name" class="center"></label>
+        <label class="right">
+          <v-ons-select v-model="list.model">
+            <option 
+              v-for="o in list.options"
+              :value="o.value" 
+              :key='o.text'
             >
-              <label v-text="list.name" class="center"></label>
-              <label class="right">
-                <v-ons-checkbox
-                >
-                </v-ons-checkbox>
-              </label>
-            </v-ons-list-item>
+              {{ o.text }}
+            </option>
+          </v-ons-select>
+        </label>
+      </v-ons-list-item>
 
-
-
-            <v-ons-list-item class="facility__list"
-              v-for="list in selectList"
-              :key="list.name"
-            >
-              <label v-text="list.name" class="center"></label>
-              <label class="right">
-                <v-ons-select>
-                  <option 
-                    v-for="o in list.options"
-                    :value="o.value" 
-                    :key='o.text'
-                  >
-                    {{ o.text }}
-                  </option>
-                </v-ons-select>
-              </label>
-            </v-ons-list-item>
-
-
-
-            <v-ons-list-header>その他</v-ons-list-header>
-            <v-ons-list-item class="facility__list">
-                  <textarea
-                      class="facility-text__inner"
-                      placeholder="追記情報などを入力。"
-                  ></textarea>
-            </v-ons-list-item>
-
-          </v-ons-list>
-        </v-ons-card>
+      <v-ons-list-header>その他</v-ons-list-header>
+      <v-ons-list-item class="facility__list">
+            <textarea
+                class="facility-text__inner"
+                placeholder="追記情報などを入力。"
+                v-model="facilityText"
+            ></textarea>
+      </v-ons-list-item>
+    </v-ons-list>
+  </v-ons-card>
 </template>
 
 <script>
@@ -58,50 +60,59 @@ export default {
   data(){
     return{
       checkBoxList: [
-        { name: "ドレッサー" },
-        { name: "全身鏡" },
-        { name: "拡大鏡" },
-        { name: "無料Wi-Fi" },
-        { name: "フィッティングブース" },
-        { name: "手洗いボウル" },
-        { name: "荷物置き" },
-        { name: "コンセント" },
-        { name: "ウェイティングブース" },
-        { name: "ゴミ箱" },
+        { name: "ドレッサー",          model: false },
+        { name: "全身鏡",              model: false },
+        { name: "拡大鏡",              model:  false },
+        { name: "無料Wi-Fi",          model: false },
+        { name: "フィッティングブース",  model: false },
+        { name: "手洗いボウル",         model: false },
+        { name: "荷物置き",            model: false },
+        { name: "コンセント",          model:  false },
+        { name: "ウェイティングブース",  model:  false },
+        { name: "ゴミ箱",              model:  false },
       ],
       selectList: [
-        { name: "利用条件", options: [
-        { text: 'あり', value: 'あり' }, 
-        { text: 'なし', value: '特になし' }, 
-      ]},
-        { name: "料金プラン", options: [
-        { text: '無料', value: '無料' }, 
-        { text: '有料', value: '有料' }, 
-      ]}
+        { name: "利用条件", model: null,
+          options: [
+            { text: 'あり', value: 1 }, 
+            { text: 'なし', value: 0 }, 
+          ]
+        },
+        { name: "料金プラン", model: null,
+          options: [
+            { text: '無料', value: '無料' }, 
+            { text: '有料', value: '有料' }, 
+          ]
+        }
       ],
-
-
-      // conditions: [
-      //   { text: 'あり', value: 'あり' }, 
-      //   { text: 'なし', value: '特になし' }, 
-      // ],
-      // plans: [
-      //   { text: '無料', value: '無料' }, 
-      //   { text: '有料', value: '有料' }, 
-      // ],
+      facilityText: '',
     }
-  }
+  },
+    //   mounted(){
+    //   // debugger;
+    // },
+    // updated(){
+    //   debugger;
+    // },
+    // beforeDestroy(){
+    //   debugger;
+    // }
   
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 
 .facility {
   margin-bottom: 2rem;
 
   .facility__list {
     font-size: 0.75rem;
+
+    :checked + .checkbox__checkmark::before {
+      background: #8ad4ff;
+      border: none;
+    }
 
     .facility-text {
       padding: 0;
