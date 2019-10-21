@@ -2,7 +2,13 @@
     <v-ons-page>
       <ToolBar/>
       <div class="wrapper">
-        <ImageForm/>
+        <ImageForm
+          @inputName="inputRoomName"
+          @upload="uploadImage"
+          @remove="removeImage"
+          :roomName="roomName"
+          :uploadedImages="uploadedImages"
+        />
         <FacilityForm/>
         <DetailForm/>
         <v-ons-button id="post-button" modifier="large"
@@ -30,10 +36,31 @@ export default {
     DetailForm
   },
 
+  data(){
+    return{
+      roomName: null,
+      uploadedImages: []
+    }
+  },
+
   methods: {
     postRoom(){
       this.$ons.notification.confirm({ message: '投稿してもよろしいですか?', title: '' })
+    },
+    inputRoomName(name){
+      this.roomName = name;
+    },
+    uploadImage(image){
+      this.uploadedImages.push(image)
+    },
+    removeImage(targetImage){
+      this.uploadedImages = this.uploadedImages.filter(function(image){
+        return image !== targetImage;
+      });
     }
+  },
+  updated(){
+    // debugger;
   }
   
 }

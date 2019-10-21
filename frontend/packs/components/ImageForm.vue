@@ -1,15 +1,13 @@
 <template>
   <v-ons-card id="name-and-photo">
     <v-ons-list>
-
       <v-ons-list-header>名前</v-ons-list-header>
       <v-ons-list-item>
           <v-ons-input placeholder="例) 渋谷ストリーム 2F" type="text" class="name-input"
-            v-model="roomName"
+            @change="inputName"
           >
           </v-ons-input>
       </v-ons-list-item>
-
       <v-ons-list-header>写真 ( 複数可 )</v-ons-list-header>
       <v-ons-list-item>
           <label for="file_photo">
@@ -18,7 +16,6 @@
               @change="getImages"
             >
           </label>
-
           <div class="preview-box"  v-show="uploadedImages.length > 0">
             <div class="preview-box__inner"
               v-for=" image in uploadedImages"
@@ -31,7 +28,6 @@
             </div>
           </div>
       </v-ons-list-item>
-
     </v-ons-list>
   </v-ons-card>
 </template>
@@ -42,37 +38,34 @@
 export default {
 
   name: 'PictureForm',
-  data(){
-    return{
-      roomName: null,
-      uploadedImages: []
-    }
+  props: {
+    roomName: String,
+    uploadedImages: Array
   },
   methods:{
-      getImages(e) {
-        const vm = this;
-        const images = Array.from(e.target.files);
-        images.forEach(function(image){
-          vm.preview(image);
-        });
-      },
-      preview(image) {
-        const reader = new FileReader();
-        reader.onload = e => {
-          this.uploadedImages.push(e.target.result);
-        };
-        reader.readAsDataURL(image);
-      },
-      remove(e){
-        const targetImage = e.currentTarget.nextElementSibling.src
-        this.uploadedImages = this.uploadedImages.filter(function(image){
-          return image !== targetImage;
-        });
-      }
-  }
-
-
-  
+    inputName(e){
+      this.$emit('inputName', e.target.value);
+    },
+    getImages(e) {
+      const vm = this;
+      const images = Array.from(e.target.files);
+      images.forEach(function(image){
+        vm.preview(image);
+      });
+    },
+    preview(image) {
+      const vm = this;
+      const reader = new FileReader();
+      reader.onload = e => {
+        vm.$emit('upload', e.target.result)
+      };
+      reader.readAsDataURL(image);
+    },
+    remove(e){
+      const targetImage = e.currentTarget.nextElementSibling.src
+      this.$emit('remove', targetImage)
+    }
+  },
 }
 </script>
 
@@ -107,6 +100,7 @@ export default {
         width: 1rem;
         padding: 0;
         background-color: #f8f8f8;
+        border: none;
         border-radius: 50%;
 
         &:focus {

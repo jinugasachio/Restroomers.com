@@ -30,17 +30,18 @@ class Api::PowderRoomsController < ApplicationController
   end
 
   def create
-    room = current_api_user.powder_room.new(params[:room_params])
+    # binding.pry
+    room = current_api_user.powder_rooms.new(room_params[:room_params])
     room.build_images(params[:images_params])
     room.build_facility(params[:facility_params])
-    room.build_detail(params[:details_params])
+    room = room.build_detail(room_params[:detail_params])
     room.save
     render json: room
   end
 
   private
 
-    def params
+    def room_params
       params.require(:room).permit(
         room_params: [
           :name,
