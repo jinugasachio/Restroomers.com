@@ -9,8 +9,8 @@
           :roomName="roomName"
           :uploadedImages="uploadedImages"
         />
-        <FacilityForm/>
-        <DetailForm/>
+        <FacilityForm @check="checkFacility"/>
+        <DetailForm @inputDetail="inputDetail"/>
         <v-ons-button id="post-button" modifier="large"
           @click="postRoom"
         >
@@ -19,6 +19,7 @@
       </div>
     </v-ons-page>
 </template>
+
 
 <script>
 import ToolBar from './ToolBar.vue'
@@ -39,7 +40,29 @@ export default {
   data(){
     return{
       roomName: null,
-      uploadedImages: []
+      uploadedImages: [],
+      // imagesParams: {
+      //   "urls": []
+      // },
+      facilityParams: {
+        "ドレッサー":         null,
+        "全身鏡":            null,
+        "拡大鏡":            null,
+        "無料Wi-Fi":         null,
+        "フィッティングブース": null,
+        "手洗いボウル":        null,
+        "荷物置き":           null,
+        "コンセント":         null,
+        "ウェイティングブース": null,
+        "ゴミ箱":             null,
+      },
+      detailParams: {
+        "open":         null,
+        "close":        null,
+        "phone_number": null,
+        "address":      null,
+        "official_url": null
+      },
     }
   },
 
@@ -51,12 +74,20 @@ export default {
       this.roomName = name;
     },
     uploadImage(image){
-      this.uploadedImages.push(image)
+      this.imagesParams["urls"].push(image);
     },
     removeImage(targetImage){
       this.uploadedImages = this.uploadedImages.filter(function(image){
         return image !== targetImage;
       });
+    },
+    checkFacility(item){
+      debugger;
+      this.facilityParams[item.key] = item.value;
+    },
+    inputDetail(detail){
+      const key = detail.dataset.key;
+      this.detailParams[key] = detail.value;
     }
   },
   updated(){

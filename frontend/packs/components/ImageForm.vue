@@ -39,7 +39,6 @@ export default {
 
   name: 'PictureForm',
   props: {
-    roomName: String,
     uploadedImages: Array
   },
   methods:{

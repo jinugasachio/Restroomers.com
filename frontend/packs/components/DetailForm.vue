@@ -9,7 +9,8 @@
         </label>              
         <label class="right">
           <v-ons-input type="text"
-            v-model="d.model"
+            @change="inputDetail"
+            :data-key="d.key"
             :placeholder="d.holder"
           >
           </v-ons-input>
@@ -27,26 +28,18 @@ export default {
   data(){
     return{
       detailForm: [
-        { name: '営業開始', holder: '例) 10:00"',      model: ""},
-        { name: '営業終了', holder: '例) 21:00"',      model: ""},
-        { name: 'TEL',    holder: '例) 0312345678',  model: ""},
-        { name: '住所',    holder: '例) 東京都渋谷区~', model: ""},
-        { name: '公式HP',  holder: '例) https://~',   model: ""}
+        { name: '営業開始', holder: '例) 10:00"',      key: "open" },
+        { name: '営業終了', holder: '例) 21:00"',      key: "close" },
+        { name: 'TEL',    holder: '例) 0312345678',  key: "phone_number" },
+        { name: '住所',    holder: '例) 東京都渋谷区~', key: "address" },
+        { name: '公式HP',  holder: '例) https://~',   key: "official_url" }
       ],
-      // detailParams: {
-      //   "open":         this.detailForm[0].model,
-      //   "close":        this.detailForm[1].model,
-      //   "phone_number": this.detailForm[2].model,
-      //   "address":      this.detailForm[3].model,
-      //   "official_url": this.detailForm[4].model
-      // }
     }
   },
-  mounted(){
-    // debugger;
-  },
-  updated(){
-    
+  methods:{
+    inputDetail(e){
+      this.$emit('inputDetail', e.currentTarget)
+    }
   }
   
 }

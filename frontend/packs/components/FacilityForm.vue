@@ -3,23 +3,29 @@
     <v-ons-list>
       <v-ons-list-header>設備情報 (あるものをチェック)</v-ons-list-header>
 
+
       <v-ons-list-item class="facility__list"  tappable
         v-for="(list, $index) in checkBoxList"
         :key="list.name"
       >
         <label class="center"
           v-text="list.name"
-          :for="'list-' + $index"
+          :for="$index"
         ></label>
         <label class="right">
           <v-ons-checkbox
-            :input-id="'list-' + $index"
-            :value="list.name"
+            @change="check"
+            :input-id="$index"
+            :data-key="list.name"
             v-model="list.model"
           >
           </v-ons-checkbox>
         </label>
       </v-ons-list-item>
+
+
+
+
 
       <v-ons-list-item class="facility__list"
         v-for="list in selectList"
@@ -38,7 +44,6 @@
           </v-ons-select>
         </label>
       </v-ons-list-item>
-
       <v-ons-list-header>その他</v-ons-list-header>
       <v-ons-list-item class="facility__list">
             <textarea
@@ -88,12 +93,35 @@ export default {
       facilityText: '',
     }
   },
+  methods:{
+    check(e){
+      debugger;
+      const vm = this;
+      const index = e.target.id;
+
+      // const unwatch = this.$watch('checkBoxList[`${index}`].model', function(){
+        
+        const key = e.currentTarget.dataset.key
+        const checked = this.checkBoxList[index].model
+
+        if(checked){
+          this.$emit('check', { key: key, value: "○" })
+        }
+        else{
+          this.$emit('check',  { key: key, value: "×" })
+        }
+      //   unwatch()
+      // })
+
+
+    }
+  },
     //   mounted(){
     //   // debugger;
     // },
-    // updated(){
-    //   debugger;
-    // },
+    updated(){
+      debugger;
+    },
     // beforeDestroy(){
     //   debugger;
     // }
