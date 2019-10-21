@@ -107,7 +107,7 @@ export default {
         left: -10px;
         width: 1rem;
         padding: 0;
-        background-color: #f7f7f7;
+        background-color: #f8f8f8;
         border-radius: 50%;
 
         &:focus {
