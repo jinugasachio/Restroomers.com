@@ -20,7 +20,7 @@ const store =  new Vuex.Store({
     roomLikes_1:[],
     roomReviews:[], //リアクティブにするにはroomと分ける必要がある
     roomReviews_1:[],
-    allRooms: null,
+    allRooms: [],
     roomList: [],
     pageStack1: [GoogleMap],
     pageStack2: [RoomForm],
@@ -361,16 +361,6 @@ const store =  new Vuex.Store({
       context.commit('showUserPage');
     },
 
-    // roomLikes(context, params){
-    //   axios.get(`/api/likes/?id=${params.id}`)
-    //   .then(function(response){
-    //     context.commit('roomLikes', { roomLikes: response.data });
-    //   })
-    //   .catch(function () {
-    //     alert('予期しないエラーが発生しました。');
-    //   })
-    // },
-
     like(context, likeParams){
       axios.post('/api/likes', likeParams, { headers: context.state.headers })
       .then(function(response){
@@ -386,7 +376,6 @@ const store =  new Vuex.Store({
     unlike(context, params){
       axios.delete('/api/likes/' + params.id,  { headers: context.state.headers })
       .then(function(response){
-        debugger;
         const favoriteRoom = context.getters.room.powder_room
         context.commit('deleteLike', { like: response.data })
         context.commit('deleteFavorite', favoriteRoom)
@@ -409,7 +398,6 @@ const store =  new Vuex.Store({
     postReview(context, reviewParams){
       axios.post('/api/reviews', reviewParams, { headers: context.state.headers })
       .then(function(response){
-        debugger
         context.commit('postReview', { newReview: response.data })
       })
       .catch(function (error) {
@@ -426,6 +414,17 @@ const store =  new Vuex.Store({
         alert('予期しないエラーが発生しました。');
       })
     },
+
+    postRoom(context, roomParams){
+      axios.post('/api/powder_rooms', roomParams,  { headers: context.state.headers })
+      .then(function(response){
+        debugger;
+
+      })
+      .catch(function (error) {
+        alert('予期しないエラーが発生しました。');
+      })
+    }
 
   },
 

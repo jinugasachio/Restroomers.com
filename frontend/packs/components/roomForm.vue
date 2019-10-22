@@ -6,7 +6,6 @@
           @inputName="inputRoomName"
           @upload="uploadImage"
           @remove="removeImage"
-          :roomName="roomName"
           :uploadedImages="uploadedImages"
         />
         <FacilityForm
@@ -48,7 +47,7 @@ export default {
         "lat": 35.66019636,
         "lng": 139.70036142
       },
-      facilityParams: { //送るときにnullのやつは×にする
+      facilityParams: {
         "dresser":          '×',
         "body_mirror":      '×',
         "makeup_mirror":    '×',
@@ -74,9 +73,6 @@ export default {
   },
 
   methods: {
-    postRoom(){
-      this.$ons.notification.confirm({ message: '投稿してもよろしいですか?', title: '' })
-    },
     inputRoomName(name){
       this.roomParams["name"] = name;
     },
@@ -89,7 +85,6 @@ export default {
       });
     },
     inputFacility(item){
-      debugger;
       this.facilityParams[item.key] = item.value;
     },
     inputDetail(detail){
@@ -97,13 +92,19 @@ export default {
       this.detailParams[key] = detail.value;
     },
     postRoom(){
-      const allParams = { room: {
-        room_params:     this.roomParams,
-        images_params:   this.uploadedImages,
-        facility_params: this.facilityParams,
-        detail_params:   this.detailParams
-      }}
-      this.$store.dispatch('postRoom', allParams)
+      const vm = this;
+      vm.$ons.notification.confirm({ message: '投稿してもよろしいですか?', title: '' })
+        .then(function(response){
+          if(response == 1){
+            const params = { room: {
+              room_params:     vm.roomParams,
+              images_params:   vm.uploadedImages,
+              facility_params: vm.facilityParams,
+              detail_params:   vm.detailParams
+            }}
+            vm.$store.dispatch('postRoom', params)
+          }
+        })
     }
   },
   updated(){
