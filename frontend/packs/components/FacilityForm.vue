@@ -2,8 +2,6 @@
   <v-ons-card class="facility">
     <v-ons-list>
       <v-ons-list-header>設備情報 (あるものをチェック)</v-ons-list-header>
-
-
       <v-ons-list-item class="facility__list"  tappable
         v-for="(list, $index) in checkBoxList"
         :key="list.name"
@@ -22,11 +20,6 @@
           </v-ons-checkbox>
         </label>
       </v-ons-list-item>
-
-
-
-
-
       <v-ons-list-item class="facility__list"
         v-for="list in selectList"
         :key="list.name"

@@ -41,11 +41,13 @@ export default {
 
   data(){
     return{
-      roomName: null,
+      // roomName: null,
       uploadedImages: [],
-      // imagesParams: {
-      //   "urls": []
-      // },
+      roomParams: {
+        "name": null,
+        "lat": 35.66019636,
+        "lng": 139.70036142
+      },
       facilityParams: { //送るときにnullのやつは×にする
         "dresser":          '×',
         "body_mirror":      '×',
@@ -76,10 +78,10 @@ export default {
       this.$ons.notification.confirm({ message: '投稿してもよろしいですか?', title: '' })
     },
     inputRoomName(name){
-      this.roomName = name;
+      this.roomParams["name"] = name;
     },
     uploadImage(image){
-      this.imagesParams["urls"].push(image);
+      this.uploadedImages.push(image);
     },
     removeImage(targetImage){
       this.uploadedImages = this.uploadedImages.filter(function(image){
@@ -93,6 +95,15 @@ export default {
     inputDetail(detail){
       const key = detail.dataset.key;
       this.detailParams[key] = detail.value;
+    },
+    postRoom(){
+      const allParams = { room: {
+        room_params:     this.roomParams,
+        images_params:   this.uploadedImages,
+        facility_params: this.facilityParams,
+        detail_params:   this.detailParams
+      }}
+      this.$store.dispatch('postRoom', allParams)
     }
   },
   updated(){
