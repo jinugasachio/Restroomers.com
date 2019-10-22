@@ -3,19 +3,16 @@
       <ToolBar/>
       <div class="wrapper">
         <ImageForm
-          @inputName="inputRoomName"
-          @upload="uploadImage"
-          @remove="removeImage"
-          :uploadedImages="uploadedImages"
+          :previewImages="previewImages"
+          @inputRoomName="inputRoomName"
+          @previewImage="previewImage"
+          @removeImage="removeImage"
         />
-        <FacilityForm
-          @inputFacility="inputFacility"
-        />
-        <DetailForm @inputDetail="inputDetail"/>
+        <FacilityForm @inputFacility="inputFacility"/>
+        <DetailForm  @inputDetail="inputDetail"/>
         <v-ons-button id="post-button" modifier="large"
           @click="postRoom"
-        >
-          投稿する
+        >投稿する
         </v-ons-button>
       </div>
     </v-ons-page>
@@ -40,12 +37,14 @@ export default {
 
   data(){
     return{
-      // roomName: null,
-      uploadedImages: [],
+      previewImages: [],
       roomParams: {
         "name": null,
-        "lat": 35.66019636,
-        "lng": 139.70036142
+        "lat": 36.584886,
+        "lng": 139.3600144
+      },
+      imagesParams: {
+        "urls": []
       },
       facilityParams: {
         "dresser":          '×',
@@ -58,7 +57,7 @@ export default {
         "outlet":           '×',
         "waiting_space":    '×',
         "dust_box":         '×',
-        "membership":       0,
+        "membership":       'なし',
         "rate_plan":        '無料',
         "others":           '-'
       },
@@ -76,11 +75,12 @@ export default {
     inputRoomName(name){
       this.roomParams["name"] = name;
     },
-    uploadImage(image){
-      this.uploadedImages.push(image);
+    previewImage(image){
+      debugger;
+        this.previewImages.push(image);
     },
     removeImage(targetImage){
-      this.uploadedImages = this.uploadedImages.filter(function(image){
+      this.previewImages = this.previewImages.filter(function(image){
         return image !== targetImage;
       });
     },
@@ -96,6 +96,7 @@ export default {
       vm.$ons.notification.confirm({ message: '投稿してもよろしいですか?', title: '' })
         .then(function(response){
           if(response == 1){
+            debugger;
             const params = { room: {
               room_params:     vm.roomParams,
               images_params:   vm.uploadedImages,
@@ -105,11 +106,19 @@ export default {
             vm.$store.dispatch('postRoom', params)
           }
         })
-    }
+    },
+    // convertToFiles(){
+      // const targetImageUrl = e.currentTarget.nextElementSibling.src.split(',')
+      // let mime = targetImageUrl[0].match(/:(.*?);/)[1]
+      // let bstr = atob(targetImageUrl[1])
+      // let n = bstr.length
+      // let u8arr = new Uint8Array(n);
+      // while(n--){
+      //   u8arr[n] = bstr.charCodeAt(n);
+      // }
+      // let file = new File([u8arr], "名前");
+    // }
   },
-  updated(){
-    // debugger;
-  }
   
 }
 </script>

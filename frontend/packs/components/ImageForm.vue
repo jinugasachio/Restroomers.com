@@ -4,7 +4,7 @@
       <v-ons-list-header>名前</v-ons-list-header>
       <v-ons-list-item>
           <v-ons-input placeholder="例) 渋谷ストリーム 2F" type="text" class="name-input"
-            @change="inputName"
+            @change="inputRoomName"
           >
           </v-ons-input>
       </v-ons-list-item>
@@ -16,9 +16,9 @@
               @change="getImages"
             >
           </label>
-          <div class="preview-box"  v-show="uploadedImages.length > 0">
+          <div class="preview-box"  v-show="previewImages.length > 0">
             <div class="preview-box__inner"
-              v-for=" image in uploadedImages"
+              v-for=" image in previewImages"
               :key="image.name"
             >
               <button @click="remove" class="preview-box__inner__button">
@@ -38,12 +38,13 @@
 export default {
 
   name: 'PictureForm',
-  props: {
-    uploadedImages: Array
+  props:{
+    previewImages: Array
   },
+    
   methods:{
-    inputName(e){
-      this.$emit('inputName', e.target.value);
+    inputRoomName(e){
+      this.$emit('inputRoomName', e.target.value);
     },
     getImages(e) {
       const vm = this;
@@ -56,13 +57,13 @@ export default {
       const vm = this;
       const reader = new FileReader();
       reader.onload = e => {
-        vm.$emit('upload', e.target.result)
+        vm.$emit('previewImage', e.target.result)
       };
       reader.readAsDataURL(image);
     },
     remove(e){
-      const targetImage = e.currentTarget.nextElementSibling.src
-      this.$emit('remove', targetImage)
+      const targetImage = e.currentTarget.nextElementSibling.src;
+      this.$emit('removeImage', targetImage);
     }
   },
 }
@@ -98,7 +99,7 @@ export default {
         left: -10px;
         width: 1rem;
         padding: 0;
-        background-color: #f8f8f8;
+        background-color: #ececec;
         border: none;
         border-radius: 50%;
 

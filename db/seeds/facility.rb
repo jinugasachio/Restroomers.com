@@ -9,7 +9,7 @@ shibuya_facilities = [{
   outlet:          '×',
   dust_box:        '○',
   waiting_space:   '○',
-  membership:      0,
+  membership:      'なし',
   rate_plan:       '無料',
   others:          '-'
 }, {
@@ -23,7 +23,7 @@ shibuya_facilities = [{
   outlet:          '-',
   dust_box:        '○',
   waiting_space:   '-',
-  membership:      0,
+  membership:      'なし',
   rate_plan:       '無料',
   others:          '-'
 }, {
@@ -37,7 +37,7 @@ shibuya_facilities = [{
   outlet:          '-',
   dust_box:        '-',
   waiting_space:   '-',
-  membership:      0,
+  membership:      'なし',
   rate_plan:       '無料',
   others:          '-'
 }, {
@@ -51,7 +51,7 @@ shibuya_facilities = [{
   outlet:          '-',
   dust_box:        '-',
   waiting_space:   '-',
-  membership:      0,
+  membership:      'なし',
   rate_plan:       '無料',
   others:          '-'
 }, {
@@ -65,7 +65,7 @@ shibuya_facilities = [{
   outlet:          '-',
   dust_box:        '-',
   waiting_space:   '-',
-  membership:      0,
+  membership:      'なし',
   rate_plan:       '無料',
   others:          '-'
 }, {
@@ -79,7 +79,7 @@ shibuya_facilities = [{
   outlet:          '○',
   dust_box:        '○',
   waiting_space:   '×',
-  membership:      0,
+  membership:      'なし',
   rate_plan:       '無料',
   others:          'テスター、ドライヤー、コテなど有り'
 }, {
@@ -93,7 +93,7 @@ shibuya_facilities = [{
   outlet:          '-',
   dust_box:        '-',
   waiting_space:   '-',
-  membership:      0,
+  membership:      'なし',
   rate_plan:       '無料',
   others:          '-'
 }, {
@@ -107,7 +107,7 @@ shibuya_facilities = [{
   outlet:          '○',
   dust_box:        '○',
   waiting_space:   '○',
-  membership:      0,
+  membership:      'なし',
   rate_plan:       '無料',
   others:          '東急カードで入室可。カードが無い場合は名前を記入すれば入室できます。'
 }, {
@@ -121,7 +121,7 @@ shibuya_facilities = [{
   outlet:          '○',
   dust_box:        '○',
   waiting_space:   '×',
-  membership:      1,
+  membership:      'あり',
   rate_plan:       '無料',
   others:          '※ 女子大生限定 コテ、アイロン、ドライヤー、一部のDHC商品、パソコン、プリンタ、携帯充電器'
 }, {
@@ -135,7 +135,7 @@ shibuya_facilities = [{
   outlet:          '-',
   dust_box:        '-',
   waiting_space:   '×',
-  membership:      0,
+  membership:      'なし',
   rate_plan:       '無料',
   others:          'パウダールームと化粧室が分かれています'
 }, {
@@ -149,7 +149,7 @@ shibuya_facilities = [{
   outlet:          '×',
   dust_box:        '-',
   waiting_space:   '×',
-  membership:      0,
+  membership:      'なし',
   rate_plan:       '無料',
   others:          'ドレッサーはないが化粧ブースがあります'
 }, {
@@ -163,7 +163,7 @@ shibuya_facilities = [{
   outlet:          '○',
   dust_box:        '○',
   waiting_space:   '○',
-  membership:      1,
+  membership:      'あり',
   rate_plan:       '無料',
   others:          'TOP&ClubQカード女性会員専用、フットマッサージ、酸素バー(有料)、携帯充電器テーブル、ウォーターサーバー'
 }, {
@@ -177,7 +177,7 @@ shibuya_facilities = [{
   outlet:          '×',
   dust_box:        '×',
   waiting_space:   '×',
-  membership:      0,
+  membership:      'なし',
   rate_plan:       '無料',
   others:          '-'
 }, {
@@ -191,7 +191,7 @@ shibuya_facilities = [{
   outlet:          '×',
   dust_box:        '○',
   waiting_space:   '○',
-  membership:      0,
+  membership:      'なし',
   rate_plan:       '無料',
   others:          'エアシャワーブース、歯磨きボウル、羽根つきナプキン'
 }, {
@@ -205,7 +205,7 @@ shibuya_facilities = [{
   outlet:          '○',
   dust_box:        '○',
   waiting_space:   '-',
-  membership:      0,
+  membership:      'なし',
   rate_plan:       '無料',
   others:          '-'
 }, {
@@ -219,7 +219,7 @@ shibuya_facilities = [{
   outlet:          '○',
   dust_box:        '○',
   waiting_space:   '○',
-  membership:      0,
+  membership:      'なし',
   rate_plan:       '無料',
   others:          '授乳室、ベビーベッド、ベビー休憩室、電子レンジ、給湯器、キッズトイレ'
 }, {
@@ -233,7 +233,7 @@ shibuya_facilities = [{
   outlet:          '×',
   dust_box:        '○',
   waiting_space:   '○',
-  membership:      0,
+  membership:      'なし',
   rate_plan:       '無料',
   others:          '-'
 }, {
@@ -247,7 +247,7 @@ shibuya_facilities = [{
   outlet:          '×',
   dust_box:        '-',
   waiting_space:   '○',
-  membership:      0,
+  membership:      'なし',
   rate_plan:       '無料',
   others:          'ドレッサーはないが化粧ブースは有り'
 }, {
@@ -261,7 +261,7 @@ shibuya_facilities = [{
   outlet:          '×',
   dust_box:        '-',
   waiting_space:   '-',
-  membership:      0,
+  membership:      'なし',
   rate_plan:       '無料',
   others:          'ドレッサーはないが化粧ブースは有り'
 }, {
@@ -275,7 +275,7 @@ shibuya_facilities = [{
   outlet:          '×',
   dust_box:        '-',
   waiting_space:   '-',
-  membership:      0,
+  membership:      'なし',
   rate_plan:       '無料',
   others:          'ドレッサーはないが化粧ブースは有り'
 }, {
@@ -289,7 +289,7 @@ shibuya_facilities = [{
   outlet:          '×',
   dust_box:        '○',
   waiting_space:   '○',
-  membership:      0,
+  membership:      'なし',
   rate_plan:       '無料',
   others:          '-'
 }, {
@@ -303,7 +303,7 @@ shibuya_facilities = [{
   outlet:          '○',
   dust_box:        '○',
   waiting_space:   '○',
-  membership:      0,
+  membership:      'なし',
   rate_plan:       '無料',
   others:          '-'
 }, {
@@ -317,7 +317,7 @@ shibuya_facilities = [{
   outlet:          '×',
   dust_box:        '○',
   waiting_space:   '×',
-  membership:      0,
+  membership:      'なし',
   rate_plan:       '無料',
   others:          '-'
 }, {
@@ -331,7 +331,7 @@ shibuya_facilities = [{
   outlet:          '-',
   dust_box:        '○',
   waiting_space:   '-',
-  membership:      0,
+  membership:      'なし',
   rate_plan:       '無料',
   others:          '-'
 }, {
@@ -345,7 +345,7 @@ shibuya_facilities = [{
   outlet:          '×',
   dust_box:        '○',
   waiting_space:   '-',
-  membership:      0,
+  membership:      'なし',
   rate_plan:       '無料',
   others:          'ドレッサーはないが化粧ブースあり。近くに授乳室、ベビー休憩室あり'
 }]

@@ -14,8 +14,8 @@
   [
     { "name": "利用条件", "key": "membership", "model": null,
       "options": [
-        { "text": "あり", "value": 1 }, 
-        { "text": "なし", "value": 0 }
+        { "text": "あり", "value": "あり" }, 
+        { "text": "なし", "value": "なし" }
       ]
     },
     { "name": "料金プラン", "key": "rate_plan", "model": null,

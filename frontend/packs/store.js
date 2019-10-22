@@ -23,7 +23,7 @@ const store =  new Vuex.Store({
     allRooms: [],
     roomList: [],
     pageStack1: [GoogleMap],
-    pageStack2: [RoomForm],
+    pageStack2: [SignTop],
     directionTrigger: false,
     guideTrigger: false,
     showSearchBox: false,
@@ -252,7 +252,7 @@ const store =  new Vuex.Store({
       state.signFormData = payload;
     },
     showUserPage(state){
-      state.pageStack2 = [RoomList];
+      state.pageStack2 = [RoomForm];
     }
 
   },
@@ -422,6 +422,7 @@ const store =  new Vuex.Store({
 
       })
       .catch(function (error) {
+        debugger
         alert('予期しないエラーが発生しました。');
       })
     }

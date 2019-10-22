@@ -32,10 +32,13 @@ class Api::PowderRoomsController < ApplicationController
   def create
     # binding.pry
     room = current_api_user.powder_rooms.new(room_params[:room_params])
-    room.build_images(params[:images_params])
-    room.build_facility(params[:facility_params])
-    room = room.build_detail(room_params[:detail_params])
-    room.save
+    room.build_facility(room_params[:facility_params])
+    room.build_detail(room_params[:detail_params])
+    images = room.images.build(room_params[:images_params])
+    # binding.pry
+    if room.save
+      images.save
+    end
     render json: room
   end
 

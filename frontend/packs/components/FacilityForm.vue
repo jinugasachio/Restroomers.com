@@ -85,6 +85,7 @@ export default {
     selectOrText(e){
       const key = e.currentTarget.dataset.key;
       const value = e.target.value;
+      debugger;
       this.$emit('inputFacility',  { key: key, value: value })
     },
   },
@@ -108,9 +109,10 @@ export default {
       padding: 0;
 
       &__inner {
-        min-width: 100%;
-        max-width: 100%;
+        min-width: 90%;
+        max-width: 90%;
         min-height: 75px;
+        padding: 0.7rem;
         font-size: 0.8rem;
         resize: none;
       }
