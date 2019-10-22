@@ -16,7 +16,7 @@
           <v-ons-checkbox
             @change="check"
             :input-id="$index"
-            :data-key="list.name"
+            :data-key="list.key"
             v-model="list.model"
           >
           </v-ons-checkbox>
@@ -33,7 +33,11 @@
       >
         <label v-text="list.name" class="center"></label>
         <label class="right">
-          <v-ons-select v-model="list.model">
+          <v-ons-select
+            v-model="list.model"
+            :data-key="list.key"
+            @change="selectOrText"
+          >
             <option 
               v-for="o in list.options"
               :value="o.value" 
@@ -49,7 +53,8 @@
             <textarea
                 class="facility-text__inner"
                 placeholder="追記情報などを入力。"
-                v-model="facilityText"
+                data-key="others"
+                @change="selectOrText"
             ></textarea>
       </v-ons-list-item>
     </v-ons-list>
@@ -57,6 +62,7 @@
 </template>
 
 <script>
+import roomFormData from "../modules/room_form.json"
 
 export default {
 
@@ -64,68 +70,31 @@ export default {
 
   data(){
     return{
-      checkBoxList: [
-        { name: "ドレッサー",          model: false },
-        { name: "全身鏡",              model: false },
-        { name: "拡大鏡",              model:  false },
-        { name: "無料Wi-Fi",          model: false },
-        { name: "フィッティングブース",  model: false },
-        { name: "手洗いボウル",         model: false },
-        { name: "荷物置き",            model: false },
-        { name: "コンセント",          model:  false },
-        { name: "ウェイティングブース",  model:  false },
-        { name: "ゴミ箱",              model:  false },
-      ],
-      selectList: [
-        { name: "利用条件", model: null,
-          options: [
-            { text: 'あり', value: 1 }, 
-            { text: 'なし', value: 0 }, 
-          ]
-        },
-        { name: "料金プラン", model: null,
-          options: [
-            { text: '無料', value: '無料' }, 
-            { text: '有料', value: '有料' }, 
-          ]
-        }
-      ],
-      facilityText: '',
+      checkBoxList: roomFormData[0],
+      selectList:   roomFormData[1]
     }
   },
   methods:{
     check(e){
-      debugger;
-      const vm = this;
-      const index = e.target.id;
-
-      // const unwatch = this.$watch('checkBoxList[`${index}`].model', function(){
-        
+      const unwatch = this.$watch('checkBoxList', function(){
+        const index = e.target.id;
         const key = e.currentTarget.dataset.key
         const checked = this.checkBoxList[index].model
-
         if(checked){
-          this.$emit('check', { key: key, value: "○" })
+          this.$emit('inputFacility', { key: key, value: '○' })
         }
         else{
-          this.$emit('check',  { key: key, value: "×" })
+          this.$emit('inputFacility',  { key: key, value: '×' })
         }
-      //   unwatch()
-      // })
-
-
-    }
-  },
-    //   mounted(){
-    //   // debugger;
-    // },
-    updated(){
-      debugger;
+        unwatch()
+      }, { deep: true })
     },
-    // beforeDestroy(){
-    //   debugger;
-    // }
-  
+    selectOrText(e){
+      const key = e.currentTarget.dataset.key;
+      const value = e.target.value;
+      this.$emit('inputFacility',  { key: key, value: value })
+    },
+  },
 }
 </script>
 

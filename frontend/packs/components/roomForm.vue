@@ -9,7 +9,9 @@
           :roomName="roomName"
           :uploadedImages="uploadedImages"
         />
-        <FacilityForm @check="checkFacility"/>
+        <FacilityForm
+          @inputFacility="inputFacility"
+        />
         <DetailForm @inputDetail="inputDetail"/>
         <v-ons-button id="post-button" modifier="large"
           @click="postRoom"
@@ -44,17 +46,20 @@ export default {
       // imagesParams: {
       //   "urls": []
       // },
-      facilityParams: {
-        "ドレッサー":         null,
-        "全身鏡":            null,
-        "拡大鏡":            null,
-        "無料Wi-Fi":         null,
-        "フィッティングブース": null,
-        "手洗いボウル":        null,
-        "荷物置き":           null,
-        "コンセント":         null,
-        "ウェイティングブース": null,
-        "ゴミ箱":             null,
+      facilityParams: { //送るときにnullのやつは×にする
+        "dresser":          '×',
+        "body_mirror":      '×',
+        "makeup_mirror":    '×',
+        "wifi":             '×',
+        "fitting_booth":    '×',
+        "washstands":       '×',
+        "luggage_storage":  '×',
+        "outlet":           '×',
+        "waiting_space":    '×',
+        "dust_box":         '×',
+        "membership":       0,
+        "rate_plan":        '無料',
+        "others":           '-'
       },
       detailParams: {
         "open":         null,
@@ -81,7 +86,7 @@ export default {
         return image !== targetImage;
       });
     },
-    checkFacility(item){
+    inputFacility(item){
       debugger;
       this.facilityParams[item.key] = item.value;
     },

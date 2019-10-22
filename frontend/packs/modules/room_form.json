@@ -1,0 +1,35 @@
+[
+  [
+    { "name": "ドレッサー",          "key": "dresser",         "model": false },
+    { "name": "全身鏡",             "key": "body_mirror",     "model": false },
+    { "name": "拡大鏡",             "key": "makeup_mirror",   "model":  false },
+    { "name": "無料Wi-Fi",          "key": "wifi",            "model": false },
+    { "name": "フィッティングブース",  "key": "fitting_booth",   "model": false },
+    { "name": "手洗いボウル",         "key": "washstands",     "model": false },
+    { "name": "荷物置き",            "key": "luggage_storage", "model": false },
+    { "name": "コンセント",          "key": "outlet",          "model":  false },
+    { "name": "ウェイティングブース",  "key": "waiting_space",   "model":  false },
+    { "name": "ゴミ箱",              "key": "dust_box",        "model":  false }
+  ],
+  [
+    { "name": "利用条件", "key": "membership", "model": null,
+      "options": [
+        { "text": "あり", "value": 1 }, 
+        { "text": "なし", "value": 0 }
+      ]
+    },
+    { "name": "料金プラン", "key": "rate_plan", "model": null,
+      "options": [
+        { "text": "無料", "value": "無料" }, 
+        { "text": "有料", "value": "有料" }
+      ]
+    }
+  ],
+  [
+    { "name": "営業開始", "holder": "例) 10:00",      "key": "open" },
+    { "name": "営業終了", "holder": "例) 21:00",      "key": "close" },
+    { "name": "TEL",    "holder": "例) 0312345678",  "key": "phone_number" },
+    { "name": "住所",    "holder": "例) 東京都渋谷区~", "key": "address" },
+    { "name": "公式HP",  "holder": "例) https://~",   "key": "official_url" }
+  ]
+]
