@@ -76,8 +76,7 @@ export default {
       this.roomParams["name"] = name;
     },
     previewImage(image){
-      debugger;
-        this.previewImages.push(image);
+      this.previewImages.push(image);
     },
     removeImage(targetImage){
       this.previewImages = this.previewImages.filter(function(image){
@@ -96,10 +95,34 @@ export default {
       vm.$ons.notification.confirm({ message: '投稿してもよろしいですか?', title: '' })
         .then(function(response){
           if(response == 1){
-            debugger;
+            // vm.convertToFiles();
+
+            // vm.imagesParams["urls"].forEach(function(file, i, array){
+            //   // const newFile = {
+            //   //   'lastModified'     : file.lastModified,
+            //   //   'lastModifiedDate' : file.lastModifiedDate,
+            //   //   'name'             : file.name,
+            //   //   'size'             : file.size,
+            //   //   'type'             : 'image/png'
+            //   // }
+            //   // array[i] = newFile;
+            //   array[i] = JSON.stringify(file)
+            // })
+
+            // vm.previewImages.forEach(function(file, i, array){
+              // const newFile = {
+              //   'lastModified'     : file.lastModified,
+              //   'lastModifiedDate' : file.lastModifiedDate,
+              //   'name'             : file.name,
+              //   'size'             : file.size,
+              //   'type'             : 'image/png'
+              // }
+              // array[i] = newFile;
+            //   array[i] = JSON.stringify(file)
+            // })
             const params = { room: {
               room_params:     vm.roomParams,
-              images_params:   vm.uploadedImages,
+              images_params:   {"urls": vm.previewImages},
               facility_params: vm.facilityParams,
               detail_params:   vm.detailParams
             }}
@@ -107,17 +130,6 @@ export default {
           }
         })
     },
-    // convertToFiles(){
-      // const targetImageUrl = e.currentTarget.nextElementSibling.src.split(',')
-      // let mime = targetImageUrl[0].match(/:(.*?);/)[1]
-      // let bstr = atob(targetImageUrl[1])
-      // let n = bstr.length
-      // let u8arr = new Uint8Array(n);
-      // while(n--){
-      //   u8arr[n] = bstr.charCodeAt(n);
-      // }
-      // let file = new File([u8arr], "名前");
-    // }
   },
   
 }

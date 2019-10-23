@@ -2,7 +2,7 @@ class Api::PowderRoomsController < ApplicationController
   before_action :authenticate_api_user!, only: :create
 
   def index
-    powder_rooms = PowderRoom.where(ancestry: nil) # 親のみを取り出す
+    powder_rooms = PowderRoom.where(ancestry: nil)
     render json: powder_rooms
   end
 
@@ -30,28 +30,56 @@ class Api::PowderRoomsController < ApplicationController
   end
 
   def create
-    # binding.pry
     room = current_api_user.powder_rooms.new(room_params[:room_params])
     room.build_facility(room_params[:facility_params])
     room.build_detail(room_params[:detail_params])
-    images = room.images.build(room_params[:images_params])
-    # binding.pry
+
     if room.save
-      images.save
+      image_files = []
+      images_data = room_params[:images_params][:urls]
+      images_data.each do |data|
+        binding.pry
+        image_files.push(base64_conversion(data))
+      end
+      room.images.create(urls: image_files)
     end
     render json: room
   end
 
   private
 
+    def split_base64(uri_str)
+      if uri_str.match(/data:(.*?);(.*?),(.*)/)
+        uri = {}
+        uri[:type]      = Regexp.last_match(1)
+        uri[:encoder]   = Regexp.last_match(2)
+        uri[:data]      = Regexp.last_match(3)
+        uri[:extension] = Regexp.last_match(1).split('/')[1]
+        uri
+      end
+    end
+
+    def base64_conversion(uri_str)
+      timestamp         = DateTime.now.strftime('%Q')
+      image_data        = split_base64(uri_str)
+      image_data_string = image_data[:data]
+      image_data_binary = Base64.decode64(image_data_string)
+      temp_img_file     = Tempfile.create
+      temp_img_file.binmode
+      temp_img_file << image_data_binary
+      temp_img_file.rewind
+      img_params = { filename: "pic_#{timestamp}.#{image_data[:extension]}", type: image_data[:type], tempfile: temp_img_file }
+      ActionDispatch::Http::UploadedFile.new(img_params)
+    end
+
     def room_params
       params.require(:room).permit(
         room_params: [
           :name,
           :lat,
-          :lng,
+          :lng
         ],
-        images_params: [:urls],
+        images_params: [urls: []],
         facility_params: [
           :dresser,
           :body_mirror,

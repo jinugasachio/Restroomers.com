@@ -85,7 +85,6 @@ export default {
     selectOrText(e){
       const key = e.currentTarget.dataset.key;
       const value = e.target.value;
-      debugger;
       this.$emit('inputFacility',  { key: key, value: value })
     },
   },
