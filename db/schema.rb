@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_18_025357) do
+ActiveRecord::Schema.define(version: 2019_10_23_103144) do
 
   create_table "details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "open"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2019_10_18_025357) do
     t.bigint "powder_room_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "membership"
+    t.string "membership"
     t.string "rate_plan"
     t.index ["powder_room_id"], name: "index_facilities_on_powder_room_id"
   end
