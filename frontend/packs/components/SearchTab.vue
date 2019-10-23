@@ -34,7 +34,7 @@ export default {
   watch:{
     showSearchBox:{
       handler(){
-        if(this.showSearchBox == true){
+        if(this.showSearchBox){
           this.$emit('addClass','search','search-mode')
         }
         else{

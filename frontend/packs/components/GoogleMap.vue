@@ -121,8 +121,6 @@ export default {
                           </div>`
         
         const infoWindow = new google.maps.InfoWindow({
-          // pixelOffset: new google.maps.Size(10, 0), //位置を調整できるoption
-          // maxWidth: 600,
           content: roomName,
           noSuppress: true 
         });

@@ -52,6 +52,9 @@ export default {
       else if(this.mapPage){
         return "packs/images/woman2.png" 
       }
+    },
+    postTrriger(){
+      return this.$store.getters.postTrriger
     }
   },
 
@@ -81,12 +84,15 @@ export default {
     },
     showGetCenter(){
       const vm = this;
-      this.$ons.notification.confirm({message: '新しいレストルームを投稿しますか?', title: ''})
+      if(!this.postTrriger){
+        this.$ons.notification.confirm({message: '新しいレストルームを投稿しますか?', title: ''})
        .then(function(response){
           if(response == 1){
-            this.$store.dispatch('showGetCenter')
+            vm.$store.dispatch('postTrriger')
           }
         })
+      }
+
     }
 
   }

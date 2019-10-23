@@ -27,7 +27,7 @@ const store =  new Vuex.Store({
     directionTrigger: false,
     guideTrigger: false,
     showSearchBox: false,
-    showGetCenter: false,
+    postTrriger: false,
     activeTab: 0,
     currentUser: null,
     favoriteRooms: [],
@@ -91,8 +91,8 @@ const store =  new Vuex.Store({
     showSearchBox(state){
       return state.showSearchBox;
     },
-    showGetCenter(state){
-      return state.showGetCenter;
+    postTrriger(state){
+      return state.postTrriger;
     },
     activeTab(state){
       return state.activeTab;
@@ -234,8 +234,8 @@ const store =  new Vuex.Store({
     showSearchBox(state) {
       state.showSearchBox = !state.showSearchBox;
     },
-    showGetCenter(state) {
-      state.showGetCenter = !state.showGetCenter;
+    postTrriger(state) {
+      state.postTrriger = !state.postTrriger;
     },
     activeTab(state, payload){
       state.activeTab = payload;
@@ -324,8 +324,8 @@ const store =  new Vuex.Store({
       context.commit('showSearchBox');
     },
 
-    showGetCenter(context){
-      context.commit('showGetCenter');
+    postTrriger(context){
+      context.commit('postTrriger');
     },
 
     activeTab(context, newVal){

@@ -1,10 +1,10 @@
 <template>
-<div class="wrapper" v-show="showGetCenter">
+<div class="wrapper" v-show="postTrriger">
   <div class="top-message">投稿する場所を中心に合わせてください。</div>
   <img src="packs/images/center.png" id="target">
   <div class="button-box">
     <button class="button-box__done">決定</button>
-    <button class="button-box__cancel">キャンセル</button>
+    <button @click="close" class="button-box__cancel">キャンセル</button>
   </div>
 </div>
 </template>
@@ -15,8 +15,13 @@ export default {
 
   name: 'GetCenter',
   computed: {
-    showGetCenter(){
-      return this.$store.getters.showGetCenter
+    postTrriger(){
+      return this.$store.getters.postTrriger
+    }
+  },
+  methods:{
+    close(){
+      this.$store.dispatch('postTrriger')
     }
   }
 
