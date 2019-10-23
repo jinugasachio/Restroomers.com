@@ -28,7 +28,7 @@ export default {
           return parent.name
         } 
         else if(this.pageStack.length == 2 && this.pageStack[1].name == "RoomForm"){
-          return '新しい投稿'
+          return '新規投稿'
         }
         else {
           return this.$store.getters.room.powder_room.name

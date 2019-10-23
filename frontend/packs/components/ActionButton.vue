@@ -64,7 +64,13 @@ export default {
         this.signOut();
       }
       else{
-        this.showGetCenter();
+        if(this.headers !== null){
+          this.showGetCenter();
+        }
+        else{
+          this.$ons.notification.alert({ message: 'ログインしてください。', title: '' });
+        }
+       
       }
     },
     signOut(){
@@ -78,6 +84,7 @@ export default {
                                 unwatch();
                               }
                             );
+                                        debugger;
             vm.$store.dispatch('signOut');
           }
         })

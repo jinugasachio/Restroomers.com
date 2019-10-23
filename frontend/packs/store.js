@@ -259,7 +259,7 @@ const store =  new Vuex.Store({
       state.signFormData = payload;
     },
     showUserPage(state){
-      state.pageStack2 = [RoomForm];
+      state.pageStack2 = [RoomList];
     }
 
   },
