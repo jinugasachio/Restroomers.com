@@ -33,8 +33,9 @@ export default {
 
 
 
-            
+
             vm.$store.dispatch('pushPage', roomForm)
+            vm.$store.dispatch('postTrriger')
           }
         })
     },
