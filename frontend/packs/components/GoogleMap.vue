@@ -1,5 +1,6 @@
 <template>
   <v-ons-page>
+    <GetCenter/>
     <div id="map">
     </div>
     <SearchBox/>
@@ -11,6 +12,7 @@ import GmapStyle from "../modules/gmap_style.json"
 import Room from './Room.vue'
 import RoomList from './RoomList.vue'
 import Navigator1 from './Navigator1.vue'
+import GetCenter from './GetCenter.vue'
 import SearchBox from './SearchBox.vue'
 
 export default {
@@ -21,7 +23,8 @@ export default {
     Room,
     RoomList,
     Navigator1,
-    SearchBox
+    SearchBox,
+    GetCenter
   },
 
   data() {
