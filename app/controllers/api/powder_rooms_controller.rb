@@ -38,8 +38,7 @@ class Api::PowderRoomsController < ApplicationController
       image_files = []
       images_data = room_params[:images_params][:urls]
       images_data.each do |data|
-        binding.pry
-        image_files.push(base64_conversion(data))
+        image_files.push(base64_conversion(data, room))
       end
       room.images.create(urls: image_files)
     end
@@ -59,7 +58,7 @@ class Api::PowderRoomsController < ApplicationController
       end
     end
 
-    def base64_conversion(uri_str)
+    def base64_conversion(uri_str, room)
       timestamp         = DateTime.now.strftime('%Q')
       image_data        = split_base64(uri_str)
       image_data_string = image_data[:data]
@@ -68,7 +67,11 @@ class Api::PowderRoomsController < ApplicationController
       temp_img_file.binmode
       temp_img_file << image_data_binary
       temp_img_file.rewind
-      img_params = { filename: "pic_#{timestamp}.#{image_data[:extension]}", type: image_data[:type], tempfile: temp_img_file }
+      img_params = { 
+        filename: "room#{room.id}-#{timestamp}.#{image_data[:extension]}",
+        type: image_data[:type],
+        tempfile: temp_img_file 
+      }
       ActionDispatch::Http::UploadedFile.new(img_params)
     end
 

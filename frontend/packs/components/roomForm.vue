@@ -43,9 +43,6 @@ export default {
         "lat": 36.584886,
         "lng": 139.3600144
       },
-      imagesParams: {
-        "urls": []
-      },
       facilityParams: {
         "dresser":          '×',
         "body_mirror":      '×',
@@ -95,36 +92,11 @@ export default {
       vm.$ons.notification.confirm({ message: '投稿してもよろしいですか?', title: '' })
         .then(function(response){
           if(response == 1){
-            // vm.convertToFiles();
-
-            // vm.imagesParams["urls"].forEach(function(file, i, array){
-            //   // const newFile = {
-            //   //   'lastModified'     : file.lastModified,
-            //   //   'lastModifiedDate' : file.lastModifiedDate,
-            //   //   'name'             : file.name,
-            //   //   'size'             : file.size,
-            //   //   'type'             : 'image/png'
-            //   // }
-            //   // array[i] = newFile;
-            //   array[i] = JSON.stringify(file)
-            // })
-
-            // vm.previewImages.forEach(function(file, i, array){
-              // const newFile = {
-              //   'lastModified'     : file.lastModified,
-              //   'lastModifiedDate' : file.lastModifiedDate,
-              //   'name'             : file.name,
-              //   'size'             : file.size,
-              //   'type'             : 'image/png'
-              // }
-              // array[i] = newFile;
-            //   array[i] = JSON.stringify(file)
-            // })
             const params = { room: {
               room_params:     vm.roomParams,
-              images_params:   {"urls": vm.previewImages},
               facility_params: vm.facilityParams,
-              detail_params:   vm.detailParams
+              detail_params:   vm.detailParams,
+              images_params:   { "urls": vm.previewImages },
             }}
             vm.$store.dispatch('postRoom', params)
           }
