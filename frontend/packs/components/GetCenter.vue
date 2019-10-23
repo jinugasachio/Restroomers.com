@@ -3,23 +3,41 @@
   <div class="top-message">投稿する場所を中心に合わせてください。</div>
   <img src="packs/images/center.png" id="target">
   <div class="button-box">
-    <button class="button-box__done">決定</button>
+    <button @click="getCenter" class="button-box__done">決定</button>
     <button @click="close" class="button-box__cancel">キャンセル</button>
   </div>
 </div>
 </template>
 
 <script>
+import roomForm from './RoomForm.vue'
 
 export default {
 
   name: 'GetCenter',
+  components:{
+    roomForm
+  },
   computed: {
     postTrriger(){
       return this.$store.getters.postTrriger
     }
   },
   methods:{
+    getCenter(){
+      const vm = this;
+        this.$ons.notification.confirm({message: 'この場所に投稿しますか?', title: ''})
+       .then(function(response){
+          if(response == 1){
+
+
+
+
+            
+            vm.$store.dispatch('pushPage', roomForm)
+          }
+        })
+    },
     close(){
       this.$store.dispatch('postTrriger')
     }
