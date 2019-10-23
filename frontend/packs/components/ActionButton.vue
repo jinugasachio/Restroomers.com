@@ -61,7 +61,7 @@ export default {
         this.signOut();
       }
       else{
-        this.$ons.notification.confirm({message: '新しいレストルームを投稿しますか?', title: ''})
+        this.showGetCenter();
       }
     },
     signOut(){
@@ -78,7 +78,17 @@ export default {
             vm.$store.dispatch('signOut');
           }
         })
+    },
+    showGetCenter(){
+      const vm = this;
+      this.$ons.notification.confirm({message: '新しいレストルームを投稿しますか?', title: ''})
+       .then(function(response){
+          if(response == 1){
+            this.$store.dispatch('showGetCenter')
+          }
+        })
     }
+
   }
   
 }

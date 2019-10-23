@@ -1,5 +1,5 @@
 <template>
-<div class="wrapper" v-show="true">
+<div class="wrapper" v-show="showGetCenter">
   <div class="top-message">投稿する場所を中心に合わせてください。</div>
   <img src="packs/images/center.png" id="target">
   <div class="button-box">
@@ -14,6 +14,11 @@
 export default {
 
   name: 'GetCenter',
+  computed: {
+    showGetCenter(){
+      return this.$store.getters.showGetCenter
+    }
+  }
 
 }
 </script>
@@ -59,7 +64,6 @@ export default {
       line-height: 35px;
       color: #fcfcfc;
       background-color: #f57070;
-      // border: 0.5px solid #ececec;
       border: none;
       border-radius: 10px;
 

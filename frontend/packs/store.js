@@ -27,6 +27,7 @@ const store =  new Vuex.Store({
     directionTrigger: false,
     guideTrigger: false,
     showSearchBox: false,
+    showGetCenter: false,
     activeTab: 0,
     currentUser: null,
     favoriteRooms: [],
@@ -89,6 +90,9 @@ const store =  new Vuex.Store({
     },
     showSearchBox(state){
       return state.showSearchBox;
+    },
+    showGetCenter(state){
+      return state.showGetCenter;
     },
     activeTab(state){
       return state.activeTab;
@@ -230,6 +234,9 @@ const store =  new Vuex.Store({
     showSearchBox(state) {
       state.showSearchBox = !state.showSearchBox;
     },
+    showGetCenter(state) {
+      state.showGetCenter = !state.showGetCenter;
+    },
     activeTab(state, payload){
       state.activeTab = payload;
     },
@@ -315,6 +322,10 @@ const store =  new Vuex.Store({
 
     showSearchBox(context){
       context.commit('showSearchBox');
+    },
+
+    showGetCenter(context){
+      context.commit('showGetCenter');
     },
 
     activeTab(context, newVal){
@@ -422,7 +433,7 @@ const store =  new Vuex.Store({
 
       })
       .catch(function (error) {
-        debugger
+        debugger;
         alert('予期しないエラーが発生しました。');
       })
     }
