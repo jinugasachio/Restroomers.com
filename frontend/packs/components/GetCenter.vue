@@ -1,7 +1,11 @@
 <template>
-<div class="wrapper">
+<div class="wrapper" v-show="true">
   <div class="top-message">投稿する場所を中心に合わせてください。</div>
   <img src="packs/images/center.png" id="target">
+  <div class="button-box">
+    <button class="button-box__done">決定</button>
+    <button class="button-box__cancel">キャンセル</button>
+  </div>
 </div>
 </template>
 
@@ -40,6 +44,41 @@ export default {
     z-index: 2;
     width: 5rem;
     margin: auto;
+  }
+
+  .button-box {
+    position: absolute;
+    top: 58vh;
+    z-index: 2;
+    width: 100%;
+    text-align: center;
+
+    button {
+      width: 140px;
+      font-weight: 600;
+      line-height: 35px;
+      color: #fcfcfc;
+      background-color: #f57070;
+      // border: 0.5px solid #ececec;
+      border: none;
+      border-radius: 10px;
+
+      &:focus {
+        outline: 0;
+      }
+
+      &:active {
+        background-color: #cf6161;
+      }
+    }
+
+    &__done {
+      margin-right: 25px;
+    }
+
+    &__cancel {
+      margin-left: 25px;
+    }
   }
 }
 </style>
