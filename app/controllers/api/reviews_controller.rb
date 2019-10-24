@@ -7,9 +7,17 @@ class Api::ReviewsController < ApplicationController
 
   def create
     review = current_api_user.reviews.create(reviews_params)
-    binding.pry
-    Image.create(images_params)
     render json: review.as_json(include: [user: { only: :nickname }])
+
+    unless images_params[:urls].empty?
+      room = PowderRoom.find(reviews_params[:powder_room_id])
+      image_files = []
+      images_data = images_params[:urls]
+      images_data.each do |data|
+        image_files.push(decode_base64(data, room))
+      end
+      room.images.create(urls: image_files)
+    end
   end
 
   # def destroy
@@ -25,6 +33,6 @@ class Api::ReviewsController < ApplicationController
     end
 
     def images_params
-      params.permit(:powder_room_id, urls: [])
+      params.permit(urls: [])
     end
 end
