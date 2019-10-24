@@ -47,7 +47,7 @@ export default {
     },
     imageSrc(){
       if(this.userPage){
-        return "packs/images/sign_out.png" 
+        return "packs/images/sign_out2.png" 
       }
       else if(this.mapPage){
         return "packs/images/woman2.png" 
