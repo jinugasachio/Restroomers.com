@@ -20,8 +20,8 @@ export default {
   },
 
   methods: {
-    addActive(event){
-      this.$emit('addActive', event)
+    addActive(e){
+      this.$emit('addActive', e)
     }
   },
 

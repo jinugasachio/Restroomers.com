@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 import GoogleMap from './components/GoogleMap.vue'
 import SignTop from './components/SignTop.vue'
 import RoomList from './components/RoomList.vue'
+import RoomForm from './components/RoomForm.vue'
 import defaultData from './modules/default_data.json'
 
 Vue.use(Vuex)
@@ -13,19 +14,21 @@ const store =  new Vuex.Store({
   state: {
 
     map: null,
+    center: null,
     room: defaultData, //コンソールエラー防止のため | リレーションしてるモデルデータも合わせて格納している
     room_1: defaultData,
     roomLikes:[], //リアクティブにするにはroomと分ける必要がある
     roomLikes_1:[],
     roomReviews:[], //リアクティブにするにはroomと分ける必要がある
     roomReviews_1:[],
-    allRooms: null,
+    allRooms: [],
     roomList: [],
     pageStack1: [GoogleMap],
     pageStack2: [SignTop],
     directionTrigger: false,
     guideTrigger: false,
     showSearchBox: false,
+    postTrriger: false,
     activeTab: 0,
     currentUser: null,
     favoriteRooms: [],
@@ -89,6 +92,9 @@ const store =  new Vuex.Store({
     showSearchBox(state){
       return state.showSearchBox;
     },
+    postTrriger(state){
+      return state.postTrriger;
+    },
     activeTab(state){
       return state.activeTab;
     },
@@ -100,6 +106,9 @@ const store =  new Vuex.Store({
     },
     signFormData(state){
       return state.signFormData;
+    },
+    center(state){
+      return state.center;
     }
 
   },
@@ -158,7 +167,6 @@ const store =  new Vuex.Store({
         state.roomReviews.push(payload.newReview);
       }
       else if(state.activeTab == 1){
-        debugger;
         state.roomReviews_1.push(payload.newReview);
       }
     },
@@ -229,6 +237,9 @@ const store =  new Vuex.Store({
     showSearchBox(state) {
       state.showSearchBox = !state.showSearchBox;
     },
+    postTrriger(state) {
+      state.postTrriger = !state.postTrriger;
+    },
     activeTab(state, payload){
       state.activeTab = payload;
     },
@@ -252,6 +263,12 @@ const store =  new Vuex.Store({
     },
     showUserPage(state){
       state.pageStack2 = [RoomList];
+    },
+    updateCenter(state, payload){
+      state.center = payload;
+    },
+    postRoom(state, payload){
+      state.allRooms.push(payload);
     }
 
   },
@@ -316,6 +333,10 @@ const store =  new Vuex.Store({
       context.commit('showSearchBox');
     },
 
+    postTrriger(context){
+      context.commit('postTrriger');
+    },
+
     activeTab(context, newVal){
       context.commit('activeTab', newVal);
     },
@@ -360,16 +381,6 @@ const store =  new Vuex.Store({
       context.commit('showUserPage');
     },
 
-    // roomLikes(context, params){
-    //   axios.get(`/api/likes/?id=${params.id}`)
-    //   .then(function(response){
-    //     context.commit('roomLikes', { roomLikes: response.data });
-    //   })
-    //   .catch(function () {
-    //     alert('予期しないエラーが発生しました。');
-    //   })
-    // },
-
     like(context, likeParams){
       axios.post('/api/likes', likeParams, { headers: context.state.headers })
       .then(function(response){
@@ -385,7 +396,6 @@ const store =  new Vuex.Store({
     unlike(context, params){
       axios.delete('/api/likes/' + params.id,  { headers: context.state.headers })
       .then(function(response){
-        debugger;
         const favoriteRoom = context.getters.room.powder_room
         context.commit('deleteLike', { like: response.data })
         context.commit('deleteFavorite', favoriteRoom)
@@ -408,7 +418,6 @@ const store =  new Vuex.Store({
     postReview(context, reviewParams){
       axios.post('/api/reviews', reviewParams, { headers: context.state.headers })
       .then(function(response){
-        debugger
         context.commit('postReview', { newReview: response.data })
       })
       .catch(function (error) {
@@ -425,6 +434,20 @@ const store =  new Vuex.Store({
         alert('予期しないエラーが発生しました。');
       })
     },
+
+    postRoom(context, roomParams){
+      axios.post('/api/powder_rooms', roomParams,  { headers: context.state.headers })
+      .then(function(response){
+        context.commit ('postRoom', response.data)
+      })
+      .catch(function (error) {
+        alert('予期しないエラーが発生しました。');
+      })
+    },
+
+    updateCenter(context, latLng){
+      context.commit('updateCenter', latLng);
+    }
 
   },
 

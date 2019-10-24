@@ -1,20 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Myapp</title>
+    <title>Restroomers.com</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <link rel="stylesheet" href="https://unpkg.com/onsenui@2.10.10/css/onsenui.css">
     <link rel="stylesheet" href="https://unpkg.com/onsenui@2.10.10/css/onsen-css-components.min.css">
-    <%# <%# Railsとvueは以下の４つのヘルパーでつながっているということ、 %>
-    <%# その他はAPIを叩く or vue.routerを使って解決 %>
     <%= javascript_bundle_tag 'stylesheet' %>
     <%= stylesheet_bundle_tag 'javascript' %>
     <%= stylesheet_bundle_tag 'stylesheet' %>
     <%= javascript_bundle_tag 'javascript' %>
- 
   </head>
-
   <body>
     <div id="app">
       <%= yield %> 
