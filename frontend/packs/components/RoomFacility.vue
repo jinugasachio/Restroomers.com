@@ -60,21 +60,8 @@
 </template>
 
 <script>
-//後で下記参考にようリファクタリング
-// import facilityData from "../modules/facility.json"
 
 export default {
-  
-  data(){
-    return {
-      // names: [{"ドレッサー"}, {"全身鏡"}, {"拡大鏡"}, {"無料Wi-Fi"}, {"フィッティングスペース"}, 
-      //        {"手洗いボウル"}, {"荷物置き"}, {"コンセント"}, {"ウェイティングスペース"}, {"ゴミ箱"}],
-
-      // columns: ["dresser", "body_mirror", "makeup_mirror", "wifi", "fitting_booth", 
-      //          "washstands", "luggage_storage", "outlet", "waiting_space", "dust_box"]
-      // facilities: facilityData
-    }
-  },
 
   computed: {
     facility(){
