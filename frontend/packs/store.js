@@ -415,6 +415,7 @@ const store =  new Vuex.Store({
     },
 
     postReview(context, reviewParams){
+      debugger;
       axios.post('/api/reviews', reviewParams, { headers: context.state.headers })
       .then(function(response){
         context.commit('postReview', { newReview: response.data })

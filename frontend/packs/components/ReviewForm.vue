@@ -29,10 +29,6 @@
               </div>
             </v-ons-list-item>
 
-
-
-
-
             <v-ons-list-header>写真 ( 複数可 )</v-ons-list-header>
             <v-ons-list-item>
                 <label for="file_photo">
@@ -53,10 +49,6 @@
                   </div>
                 </div>
             </v-ons-list-item>
-
-
-
-
 
             <v-ons-list-header>口コミ</v-ons-list-header>
             <v-ons-list-item>
@@ -142,7 +134,8 @@ export default {
             const reviewParams = {
               "rate":           vm.formRate,
               "review":         vm.review,
-              "powder_room_id": vm.room.id
+              "powder_room_id": vm.room.id,
+              "urls":           vm.previewImages
             }
             vm.roomReviews = reviewParams
           }
