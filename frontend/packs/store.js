@@ -266,6 +266,9 @@ const store =  new Vuex.Store({
     },
     updateCenter(state, payload){
       state.center = payload;
+    },
+    postRoom(state, payload){
+      state.allRooms.push(payload);
     }
 
   },
@@ -435,11 +438,9 @@ const store =  new Vuex.Store({
     postRoom(context, roomParams){
       axios.post('/api/powder_rooms', roomParams,  { headers: context.state.headers })
       .then(function(response){
-        debugger;
-
+        context.commit ('postRoom', response.data)
       })
       .catch(function (error) {
-        debugger;
         alert('予期しないエラーが発生しました。');
       })
     },

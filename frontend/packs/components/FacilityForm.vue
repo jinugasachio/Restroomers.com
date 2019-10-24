@@ -55,7 +55,6 @@
 </template>
 
 <script>
-import roomFormData from "../modules/room_form.json"
 
 export default {
 
@@ -63,8 +62,32 @@ export default {
 
   data(){
     return{
-      checkBoxList: roomFormData[0],
-      selectList:   roomFormData[1]
+      checkBoxList: [
+        { name: "ドレッサー",          key: "dresser",         model: false },
+        { name: "全身鏡",             key: "body_mirror",     model: false },
+        { name: "拡大鏡",             key: "makeup_mirror",   model:  false },
+        { name: "無料Wi-Fi",          key: "wifi",            model: false },
+        { name: "フィッティングブース",  key: "fitting_booth",   model: false },
+        { name: "手洗いボウル",         key: "washstands",     model: false },
+        { name: "荷物置き",            key: "luggage_storage", model: false },
+        { name: "コンセント",          key: "outlet",          model:  false },
+        { name: "ウェイティングブース",  key: "waiting_space",   model:  false },
+        { name: "ゴミ箱",              key: "dust_box",        model:  false }
+      ],
+      selectList: [
+    { name: "利用条件", key: "membership", model: null,
+      options: [
+        { text: "あり", value: "あり" }, 
+        { text: "なし", value: "なし" }
+      ]
+    },
+    { name: "料金プラン", key: "rate_plan", model: null,
+      options: [
+        { text: "無料", value: "無料" }, 
+        { text: "有料", value: "有料" }
+      ]
+    }
+  ]
     }
   },
   methods:{
@@ -88,6 +111,9 @@ export default {
       this.$emit('inputFacility',  { key: key, value: value })
     },
   },
+  mounted(){
+    debugger;
+  }
 }
 </script>
 

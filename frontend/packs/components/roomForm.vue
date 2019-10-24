@@ -110,6 +110,7 @@ export default {
     },
   },
   mounted(){
+    debugger;
     this.roomParams["lat"] = this.center.lat;
     this.roomParams["lng"] = this.center.lng;
   }

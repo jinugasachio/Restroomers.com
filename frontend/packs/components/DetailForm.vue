@@ -20,7 +20,6 @@
 </template>
 
 <script>
-import roomFormData from "../modules/room_form.json"
 
 export default {
 
@@ -28,7 +27,13 @@ export default {
 
   data(){
     return{
-      detailForm: roomFormData[2]
+      detailForm: [
+    { name: "営業開始", holder: "例) 10:00",      key: "open" },
+    { name: "営業終了", holder: "例) 21:00",      key: "close" },
+    { name: "TEL",    holder: "例) 0312345678",  key: "phone_number" },
+    { name: "住所",    holder: "例) 東京都渋谷区~", key: "address" },
+    { name: "公式HP",  holder: "例) https://~",   key: "official_url" }
+  ]
     }
   },
   methods:{

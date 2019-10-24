@@ -2,16 +2,16 @@ class Api::PowderRoomsController < ApplicationController
   before_action :authenticate_api_user!, only: :create
 
   def index
-    powder_rooms = PowderRoom.where(ancestry: nil)
-    render json: powder_rooms
+    rooms = PowderRoom.where(ancestry: nil)
+    render json: rooms
   end
 
   def show
-    powder_room = PowderRoom.find(params[:id])
-    if powder_room.children == []
-      render json: convert_to_json(powder_room)
+    room = PowderRoom.find(params[:id])
+    if room.children == []
+      render json: convert_to_json(room)
     else
-      children = powder_room.children
+      children = room.children
       render json: children
     end
   end
@@ -29,7 +29,7 @@ class Api::PowderRoomsController < ApplicationController
       end
       room.images.create(urls: image_files)
     end
-    render json: convert_to_json(room)
+    render json: room
   end
 
   private

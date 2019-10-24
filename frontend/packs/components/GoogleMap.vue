@@ -48,17 +48,14 @@ export default {
 
   methods: {
 
-    // Navigator用メソッド
     push(){
       if (this.$store.state.roomList.length > 1){
-        debugger;
         this.$store.dispatch('pushPage', RoomList)
       } else {
         this.$store.dispatch('pushPage', Room)
       }
     },
 
-    // マップの生成
     createMap() {
       const mapArea = document.getElementById("map");
       const mapOptions = { 
@@ -70,7 +67,6 @@ export default {
       this.$store.dispatch('updateMap', this.map)
     },
 
-    // デフォルトのinfowindowを非表示にする
     fixInfoWindow(){
       const set = google.maps.InfoWindow.prototype.set
       google.maps.InfoWindow.prototype.set = function(key, val) {
@@ -85,10 +81,6 @@ export default {
 
   },
 
-  // created: function(){
-  //   this.reload(); これだと無限リロードループ
-  // },
-
   mounted() {
     this.createMap();
     this.fixInfoWindow();
@@ -100,8 +92,6 @@ export default {
     // 挙動なので、将来的には投稿されたもののみ取り出して表示するようにしたい
     // その時は全文の引き出しは下記のように最初だけは呼び出して、あとは監視の解除をすれば良いのかも
     // https://se-tomo.com/2018/10/25/vue-js%E3%81%AE%E7%9B%A3%E8%A6%96%E3%83%97%E3%83%AD%E3%83%91%E3%83%86%E3%82%A3%E3%82%A6%E3%82%A9%E3%83%83%E3%83%81%E3%83%A3/
-
-    // マーカーの生成
     markers(){
       const vm = this
       const allRooms = vm.markers
