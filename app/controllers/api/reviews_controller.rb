@@ -19,6 +19,6 @@ class Api::ReviewsController < ApplicationController
   private
 
     def reviews_params
-      params.permit(:rate, :review, :powder_room_id)
+      params.permit(:rate, :review, :powder_room_id, images_params: [urls: []])
     end
 end

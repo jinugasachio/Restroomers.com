@@ -29,6 +29,35 @@
               </div>
             </v-ons-list-item>
 
+
+
+
+
+            <v-ons-list-header>写真 ( 複数可 )</v-ons-list-header>
+            <v-ons-list-item>
+                <label for="file_photo">
+                  <img src="packs/images/camera.png" id="camera">
+                  <input type="file" multiple="multiple" id="file_photo" style="display: none;"
+                    @change="getImages"
+                  >
+                </label>
+                <div class="preview-box"  v-show="previewImages.length > 0">
+                  <div class="preview-box__inner"
+                    v-for=" image in previewImages"
+                    :key="image.name"
+                  >
+                    <button @click="removeImages" class="preview-box__inner__button">
+                      <img  src="packs/images/cancel.png" class="preview-box__inner__cancel">
+                    </button>
+                    <img :src="image" class="preview-box__inner__image">
+                  </div>
+                </div>
+            </v-ons-list-item>
+
+
+
+
+
             <v-ons-list-header>口コミ</v-ons-list-header>
             <v-ons-list-item>
               <div class="center">
@@ -76,6 +105,7 @@ export default {
   data(){
     return{
       formRate: null,
+      previewImages: [],
       review: null,
       numbers: [
         { text: '評価', value: null },
@@ -120,6 +150,27 @@ export default {
     },
     updateFormRate(){
       this.$refs.formStar.bindRate = this.formRate;
+    },
+    getImages(e){
+      const vm = this;
+      const images = Array.from(e.target.files);
+      images.forEach(function(image){
+        vm.preview(image);
+      });
+    },
+    preview(image) {
+      const vm = this;
+      const reader = new FileReader();
+      reader.onload = e => {
+        vm.previewImages.push(e.target.result);
+      };
+      reader.readAsDataURL(image);
+    },
+    removeImages(e){
+      const targetImage = e.currentTarget.nextElementSibling.src;
+      this.previewImages = this.previewImages.filter(function(image){
+        return image !== targetImage;
+      });
     }
   },
 
@@ -180,6 +231,48 @@ export default {
           padding: 0.5rem;
           resize: none;
         }
+      }
+
+      .preview-box {
+        display: flex;
+        flex-wrap: wrap;
+        margin-left: 20px;
+
+        &__inner {
+          position: relative;
+          display: flex;
+          align-items: flex-start;
+          margin-right: 10px;
+
+          &__image {
+            width: 2rem;
+          }
+
+          &__button {
+            position: absolute;
+            top: -5px;
+            left: -10px;
+            width: 1rem;
+            padding: 0;
+            background-color: #ececec;
+            border: none;
+            border-radius: 50%;
+
+            &:focus {
+              outline: 0;
+            }
+          }
+
+          &__cancel {
+            width: 0.6rem;
+            cursor: pointer;
+          }
+        }
+      }
+
+      #camera {
+        width: 1rem;
+        padding-left: 1rem;
       }
     }
 
