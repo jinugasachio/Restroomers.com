@@ -1,12 +1,12 @@
 <template>
-<div class="wrapper" v-show="postTrriger">
-  <div class="top-message">投稿する場所を中心に合わせてください。</div>
-  <img src="packs/images/center.png" id="target">
-  <div class="button-box">
-    <button @click="getCenter" class="button-box__done">決定</button>
-    <button @click="close" class="button-box__cancel">キャンセル</button>
+  <div class="wrapper" v-show="postTrriger">
+    <div class="top-message">投稿する場所をズームして中心に合わせてください。</div>
+    <img src="packs/images/center.png" id="target">
+    <div class="button-box">
+      <button @click="getCenter" class="button-box__done">決定</button>
+      <button @click="close" class="button-box__cancel">キャンセル</button>
+    </div>
   </div>
-</div>
 </template>
 
 <script>
@@ -86,7 +86,7 @@ export default {
       width: 140px;
       font-size: 0.9rem;
       font-weight: 600;
-      line-height: 35px;
+      line-height: 30px;
       color: #fcfcfc;
       background-color: #f57070;
       border: none;
