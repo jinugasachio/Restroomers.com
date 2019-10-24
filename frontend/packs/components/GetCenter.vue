@@ -33,13 +33,9 @@ export default {
        .then(function(response){
           if(response == 1){
             const center = vm.map.getCenter();
-
-
-
-
-
-            vm.$store.dispatch('pushPage', roomForm)
-            vm.$store.dispatch('postTrriger')
+            vm.$store.dispatch('updateCenter', center.toJSON());
+            vm.$store.dispatch('pushPage', roomForm);
+            vm.$store.dispatch('postTrriger');
           }
         })
     },

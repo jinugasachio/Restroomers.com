@@ -40,8 +40,8 @@ export default {
       previewImages: [],
       roomParams: {
         "name": null,
-        "lat": 36.584886,
-        "lng": 139.3600144
+        "lat":  null,
+        "lng":  null
       },
       facilityParams: {
         "dresser":          '×',
@@ -65,6 +65,12 @@ export default {
         "address":      null,
         "official_url": null
       },
+    }
+  },
+
+  computed: {
+    center(){
+      return this.$store.getters.center
     }
   },
 
@@ -103,6 +109,10 @@ export default {
         })
     },
   },
+  mounted(){
+    this.roomParams["lat"] = this.center.lat;
+    this.roomParams["lng"] = this.center.lng;
+  }
   
 }
 </script>
