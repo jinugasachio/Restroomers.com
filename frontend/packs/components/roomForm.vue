@@ -71,7 +71,10 @@ export default {
   computed: {
     center(){
       return this.$store.getters.center
-    }
+    },
+    markers(){
+      return this.$store.getters.allRooms
+    },
   },
 
   methods: {
@@ -110,9 +113,14 @@ export default {
     },
   },
   mounted(){
-    debugger;
     this.roomParams["lat"] = this.center.lat;
     this.roomParams["lng"] = this.center.lng;
+  },
+  watch:{
+    markers(){
+      this.$ons.notification.alert({ message: '投稿が完了しました。', title: '' })
+      this.$store.dispatch('resetPageStack')
+    }
   }
   
 }

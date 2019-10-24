@@ -75,19 +75,19 @@ export default {
         { name: "ゴミ箱",              key: "dust_box",        model:  false }
       ],
       selectList: [
-    { name: "利用条件", key: "membership", model: null,
-      options: [
-        { text: "あり", value: "あり" }, 
-        { text: "なし", value: "なし" }
+        { name: "利用条件", key: "membership", model: null,
+          options: [
+            { text: "あり", value: "あり" }, 
+            { text: "なし", value: "なし" }
+          ]
+        },
+        { name: "料金プラン", key: "rate_plan", model: null,
+          options: [
+            { text: "無料", value: "無料" }, 
+            { text: "有料", value: "有料" }
+          ]
+        }
       ]
-    },
-    { name: "料金プラン", key: "rate_plan", model: null,
-      options: [
-        { text: "無料", value: "無料" }, 
-        { text: "有料", value: "有料" }
-      ]
-    }
-  ]
     }
   },
   methods:{
@@ -111,9 +111,6 @@ export default {
       this.$emit('inputFacility',  { key: key, value: value })
     },
   },
-  mounted(){
-    debugger;
-  }
 }
 </script>
 
