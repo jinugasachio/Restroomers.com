@@ -10,13 +10,13 @@
 </template>
 
 <script>
-import roomForm from './RoomForm.vue'
+import RoomForm from './RoomForm.vue'
 
 export default {
 
   name: 'GetCenter',
   components:{
-    roomForm
+    RoomForm
   },
   computed: {
     map(){
@@ -34,7 +34,7 @@ export default {
           if(response == 1){
             const center = vm.map.getCenter();
             vm.$store.dispatch('updateCenter', center.toJSON());
-            vm.$store.dispatch('pushPage', roomForm);
+            vm.$store.dispatch('pushPage', RoomForm);
             vm.$store.dispatch('postTrriger');
           }
         })

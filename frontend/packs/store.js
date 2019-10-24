@@ -4,7 +4,6 @@ import Vuex from 'vuex'
 import GoogleMap from './components/GoogleMap.vue'
 import SignTop from './components/SignTop.vue'
 import RoomList from './components/RoomList.vue'
-import RoomForm from './components/RoomForm.vue'
 import defaultData from './modules/default_data.json'
 
 Vue.use(Vuex)
