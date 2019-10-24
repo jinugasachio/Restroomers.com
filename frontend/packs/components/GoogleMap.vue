@@ -22,7 +22,6 @@ export default {
   components: {
     Room,
     RoomList,
-    Navigator1,
     SearchBox,
     GetCenter
   },

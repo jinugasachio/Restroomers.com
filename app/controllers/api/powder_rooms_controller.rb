@@ -9,20 +9,7 @@ class Api::PowderRoomsController < ApplicationController
   def show
     powder_room = PowderRoom.find(params[:id])
     if powder_room.children == []
-      images      = powder_room.images
-      detail      = powder_room.detail
-      facility    = powder_room.facility
-      likes       = powder_room.likes
-      reviews     = powder_room.reviews
-
-      render json: {
-        powder_room: powder_room,
-        facility: facility,
-        detail: detail,
-        images: images,
-        likes: likes,
-        reviews: reviews.as_json(include: [user: { only: :nickname }])
-      }
+      render json: convert_to_json(powder_room)
     else
       children = powder_room.children
       render json: children
@@ -38,14 +25,31 @@ class Api::PowderRoomsController < ApplicationController
       image_files = []
       images_data = room_params[:images_params][:urls]
       images_data.each do |data|
-        image_files.push(base64_conversion(data, room))
+        image_files.push(decode_base64(data, room))
       end
       room.images.create(urls: image_files)
     end
-    render json: room
+    render json: convert_to_json(room)
   end
 
   private
+
+    def convert_to_json(room)
+      images      = room.images
+      detail      = room.detail
+      facility    = room.facility
+      likes       = room.likes
+      reviews     = room.reviews
+
+      {
+        powder_room: room,
+        facility:    facility,
+        detail:      detail,
+        images:      images,
+        likes:       likes,
+        reviews:     reviews.as_json(include: [user: { only: :nickname }])
+      }
+    end
 
     def split_base64(uri_str)
       if uri_str.match(/data:(.*?);(.*?),(.*)/)
@@ -58,7 +62,7 @@ class Api::PowderRoomsController < ApplicationController
       end
     end
 
-    def base64_conversion(uri_str, room)
+    def decode_base64(uri_str, room)
       timestamp         = DateTime.now.strftime('%Q')
       image_data        = split_base64(uri_str)
       image_data_string = image_data[:data]
@@ -67,10 +71,10 @@ class Api::PowderRoomsController < ApplicationController
       temp_img_file.binmode
       temp_img_file << image_data_binary
       temp_img_file.rewind
-      img_params = { 
+      img_params = {
         filename: "room#{room.id}-#{timestamp}.#{image_data[:extension]}",
-        type: image_data[:type],
-        tempfile: temp_img_file 
+        type:      image_data[:type],
+        tempfile:  temp_img_file 
       }
       ActionDispatch::Http::UploadedFile.new(img_params)
     end
