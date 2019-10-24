@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper" v-show="postTrriger">
-    <div class="top-message">投稿する場所をズームして中心に合わせてください。</div>
+    <div class="top-message">投稿する場所を中心に合わせてください。</div>
     <img src="packs/images/center.png" id="target">
     <div class="button-box">
       <button @click="getCenter" class="button-box__done">決定</button>
@@ -58,7 +58,7 @@ export default {
     position: absolute;
     z-index: 2;
     width: 100%;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 600;
     line-height: 50px;
     color: #fff;
@@ -68,7 +68,7 @@ export default {
 
   #target {
     position: absolute;
-    top: 44vh;
+    top: 41vh;
     right: 0;
     left: 0;
     z-index: 2;
@@ -78,16 +78,16 @@ export default {
 
   .button-box {
     position: absolute;
-    top: 58vh;
+    top: 55vh;
     z-index: 2;
     width: 100%;
     text-align: center;
 
     button {
-      width: 140px;
+      width: 120px;
       font-size: 0.9rem;
       font-weight: 600;
-      line-height: 30px;
+      line-height: 40px;
       color: #fcfcfc;
       background-color: #f57070;
       border: none;

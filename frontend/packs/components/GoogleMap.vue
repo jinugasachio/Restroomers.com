@@ -61,7 +61,8 @@ export default {
       const mapOptions = { 
         center: this.center, 
         styles: this.styles, 
-        zoom:   this.zoom 
+        zoom:   this.zoom,
+        gestureHandling: 'greedy',
       };
       this.map = new google.maps.Map(mapArea, mapOptions);
       this.$store.dispatch('updateMap', this.map)
