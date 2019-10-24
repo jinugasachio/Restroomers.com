@@ -19,6 +19,9 @@ export default {
     roomForm
   },
   computed: {
+    map(){
+      return this.$store.getters.map
+    },
     postTrriger(){
       return this.$store.getters.postTrriger
     }
@@ -29,6 +32,7 @@ export default {
         this.$ons.notification.confirm({message: 'この場所に投稿しますか?', title: ''})
        .then(function(response){
           if(response == 1){
+            const center = vm.map.getCenter();
 
 
 
@@ -84,6 +88,7 @@ export default {
 
     button {
       width: 140px;
+      font-size: 0.9rem;
       font-weight: 600;
       line-height: 35px;
       color: #fcfcfc;

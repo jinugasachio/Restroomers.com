@@ -14,6 +14,7 @@ const store =  new Vuex.Store({
   state: {
 
     map: null,
+    center: null,
     room: defaultData, //コンソールエラー防止のため | リレーションしてるモデルデータも合わせて格納している
     room_1: defaultData,
     roomLikes:[], //リアクティブにするにはroomと分ける必要がある
@@ -105,6 +106,9 @@ const store =  new Vuex.Store({
     },
     signFormData(state){
       return state.signFormData;
+    },
+    center(state){
+      return state.center;
     }
 
   },
@@ -163,7 +167,6 @@ const store =  new Vuex.Store({
         state.roomReviews.push(payload.newReview);
       }
       else if(state.activeTab == 1){
-        debugger;
         state.roomReviews_1.push(payload.newReview);
       }
     },
@@ -260,6 +263,9 @@ const store =  new Vuex.Store({
     },
     showUserPage(state){
       state.pageStack2 = [RoomList];
+    },
+    updateCenter(state, payload){
+      state.center = payload;
     }
 
   },
@@ -436,6 +442,10 @@ const store =  new Vuex.Store({
         debugger;
         alert('予期しないエラーが発生しました。');
       })
+    },
+
+    updateCenter(context, latLng){
+      context.commit('updateCenter', latLng);
     }
 
   },

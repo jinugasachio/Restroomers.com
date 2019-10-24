@@ -30,7 +30,7 @@ export default {
   data() {
     return {
       map: null,
-      center: { lat: 35.658230, lng: 139.701642 }, //渋谷駅スタート
+      center:  new google.maps.LatLng(35.658230, 139.701642),
       styles: GmapStyle,
       zoom: 16,
       icon: {
@@ -52,6 +52,7 @@ export default {
     // Navigator用メソッド
     push(){
       if (this.$store.state.roomList.length > 1){
+        debugger;
         this.$store.dispatch('pushPage', RoomList)
       } else {
         this.$store.dispatch('pushPage', Room)
@@ -75,7 +76,7 @@ export default {
       const set = google.maps.InfoWindow.prototype.set
       google.maps.InfoWindow.prototype.set = function(key, val) {
           if (key === "map") {
-              if (! this.get("noSuppress")) {
+              if (!this.get("noSuppress")) {
                   return;
               }
           }
