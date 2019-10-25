@@ -5,6 +5,7 @@ import GoogleMap from './components/others/GoogleMap.vue'
 import SignTop from './components/others/SignTop.vue'
 import RoomList from './components/room/RoomList.vue'
 import roomStore from './stores/room.js'
+import triggerStore from './stores/trigger.js'
 
 Vue.use(Vuex)
 
@@ -12,7 +13,8 @@ Vue.use(Vuex)
 const store =  new Vuex.Store({
 
   modules: {
-    roomStore
+    roomStore,
+    triggerStore
   },
 
   state: {
@@ -21,10 +23,10 @@ const store =  new Vuex.Store({
     center: null,
     pageStack1: [GoogleMap],
     pageStack2: [SignTop],
-    directionTrigger: false,
-    guideTrigger: false,
-    showSearchBox: false,
-    postTrriger: false,
+    // directionTrigger: false,
+    // guideTrigger: false,
+    // showSearchBox: false,
+    // postTrriger: false,
     activeTab: 0,
     currentUser: null,
     headers: null,
@@ -79,16 +81,16 @@ const store =  new Vuex.Store({
       }
     },
     directionTrigger(state){
-      return state.directionTrigger;
+      return state.triggerStore.directionTrigger;
     },
     guideTrigger(state){
-      return state.guideTrigger;
+      return state.triggerStore.guideTrigger;
     },
     showSearchBox(state){
-      return state.showSearchBox;
+      return state.triggerStore.showSearchBox;
     },
     postTrriger(state){
-      return state.postTrriger;
+      return state.triggerStore.postTrriger;
     },
     activeTab(state){
       return state.activeTab;
@@ -139,18 +141,18 @@ const store =  new Vuex.Store({
         }
       }
     },
-    directionTrigger(state) {
-      state.directionTrigger = !state.directionTrigger;
-    },
-    guideTrigger(state) {
-      state.guideTrigger = !state.guideTrigger;
-    },
-    showSearchBox(state) {
-      state.showSearchBox = !state.showSearchBox;
-    },
-    postTrriger(state) {
-      state.postTrriger = !state.postTrriger;
-    },
+    // directionTrigger(state) {
+    //   state.directionTrigger = !state.directionTrigger;
+    // },
+    // guideTrigger(state) {
+    //   state.guideTrigger = !state.guideTrigger;
+    // },
+    // showSearchBox(state) {
+    //   state.showSearchBox = !state.showSearchBox;
+    // },
+    // postTrriger(state) {
+    //   state.postTrriger = !state.postTrriger;
+    // },
     activeTab(state, payload){
       state.activeTab = payload;
     },
@@ -199,21 +201,21 @@ const store =  new Vuex.Store({
       context.commit('resetPageStack');
     },
 
-    directionTrigger(context) {
-      context.commit('directionTrigger');
-    },
+    // directionTrigger(context) {
+    //   context.commit('directionTrigger');
+    // },
 
-    guideTrigger(context) {
-      context.commit('guideTrigger');
-    },
+    // guideTrigger(context) {
+    //   context.commit('guideTrigger');
+    // },
 
-    showSearchBox(context){
-      context.commit('showSearchBox');
-    },
+    // showSearchBox(context){
+    //   context.commit('showSearchBox');
+    // },
 
-    postTrriger(context){
-      context.commit('postTrriger');
-    },
+    // postTrriger(context){
+    //   context.commit('postTrriger');
+    // },
 
     activeTab(context, newVal){
       context.commit('activeTab', newVal);

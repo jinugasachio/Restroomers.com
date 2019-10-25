@@ -29,15 +29,10 @@ export default {
 
   computed: {
     map(){
-      return this.$store.state.map;
+      return this.$store.getters.map;
     },
     room(){
-      if(this.activeTab == 0){
-        return this.$store.state.room.powder_room;
-      }
-      else if(this.activeTab == 1){
-        return this.$store.state.room_1.powder_room;
-      }
+      return this.$store.getters.room.powder_room;
     },
     label(){
       if(this.atRoomPage && this.successId !== null){
