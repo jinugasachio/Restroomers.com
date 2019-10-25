@@ -1,5 +1,5 @@
 <template>
-  <v-ons-page>
+  <v-ons-page id ="room">
     <ToolBar/>
     <v-ons-card>
 
@@ -101,7 +101,14 @@ export default {
  }
 </script>
 
-<style>
+<style lang="scss" scoped>
+
+#room {
+  .card {
+    max-width: 500px;
+    margin: 1rem auto;
+  }
+}
 
 .top_image {
   display: block;

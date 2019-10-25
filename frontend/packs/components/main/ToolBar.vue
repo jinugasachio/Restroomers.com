@@ -62,7 +62,6 @@ export default {
       return this.$store.getters.signFormData.length
     },
     currentUser(){
-      debugger;
       return this.$store.getters.currentUser
     },
     headers(){
