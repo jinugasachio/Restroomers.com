@@ -1,9 +1,9 @@
 import 'babel-polyfill'
 import Vue from 'vue'
 import Vuex from 'vuex'
-import GoogleMap from './components/GoogleMap.vue'
-import SignTop from './components/SignTop.vue'
-import RoomList from './components/RoomList.vue'
+import GoogleMap from './components/others/GoogleMap.vue'
+import SignTop from './components/others/SignTop.vue'
+import RoomList from './components/room/RoomList.vue'
 import defaultData from './modules/default_data.json'
 
 Vue.use(Vuex)
@@ -415,6 +415,7 @@ const store =  new Vuex.Store({
     },
 
     postReview(context, reviewParams){
+      debugger;
       axios.post('/api/reviews', reviewParams, { headers: context.state.headers })
       .then(function(response){
         context.commit('postReview', { newReview: response.data })

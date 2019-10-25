@@ -15,7 +15,7 @@
 
 <script>
 import HeartButton from './HeartButton.vue'
-import Star from './StarRating.vue'
+import Star        from '../others/StarRating.vue'
 
 export default {
   name: 'UnderBox',

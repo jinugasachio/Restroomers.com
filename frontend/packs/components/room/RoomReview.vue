@@ -32,8 +32,8 @@
 </template>
 
 <script>
-import ReviewForm from './ReviewForm.vue'
-import Star from './StarRating.vue'
+import ReviewForm from '../form/ReviewForm.vue'
+import Star       from '../others/StarRating.vue'
 
 export default {
 

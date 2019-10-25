@@ -47,7 +47,7 @@
 
 
 <script>
-import ToolBar from './ToolBar.vue'
+import ToolBar from '../main/ToolBar.vue'
 
 
 export default {

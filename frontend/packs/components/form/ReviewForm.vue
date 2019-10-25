@@ -9,12 +9,13 @@
             <v-ons-list-header>レビュースター</v-ons-list-header>
             <v-ons-list-item>
               <div class="center">
-                <validation-provider
-                  mode="eager"
-                  rules="required"
+                <validation-provider mode="eager" rules="required"
                   v-slot="{ errors }"
                 >
-                    <v-ons-select v-model="formRate" @change="updateFormRate">
+                    <v-ons-select
+                      v-model="formRate"
+                      @change="updateFormRate"
+                    >
                       <option 
                         v-for="num in numbers"
                         :value="num.value" 
@@ -29,18 +30,21 @@
               </div>
             </v-ons-list-item>
 
+            <v-ons-list-header>写真 ( 複数可 )</v-ons-list-header>
+            <ImageForm
+              class="image-form"
+              :previewImages="previewImages"
+              @previewImage="previewImage"
+              @removeImage="removeImage"
+            />
+            
             <v-ons-list-header>口コミ</v-ons-list-header>
             <v-ons-list-item>
               <div class="center">
-                <validation-provider
-                  mode="eager"
-                  rules="required"
+                <validation-provider mode="eager" rules="required" class="validate-span"
                   v-slot="{ errors }"
-                  class="validate-span"
                 >
-                <textarea
-                  class="review-text"
-                  placeholder="口コミを入力してください。"
+                <textarea class="review-text" placeholder="口コミを入力してください。"
                   v-model="review"
                 ></textarea>
                 <p class="error-text"><span>{{ errors[0] }}</span></p>
@@ -49,9 +53,7 @@
             </v-ons-list-item>
 
           </v-ons-list>
-          <v-ons-button
-            modifier="large"
-            id="post-button" 
+          <v-ons-button id="post-button" modifier="large"
             :disabled="invalid"
             @click="postReview"
           >
@@ -65,9 +67,9 @@
 
 
 <script>
-import ToolBar from './ToolBar.vue'
-import Star from './StarRating.vue'
-
+import ToolBar   from '../main/ToolBar.vue'
+import ImageForm from './ImageForm.vue'
+import Star      from '../others/StarRating.vue'
 
 export default {
 
@@ -76,6 +78,7 @@ export default {
   data(){
     return{
       formRate: null,
+      previewImages: [],
       review: null,
       numbers: [
         { text: '評価', value: null },
@@ -90,7 +93,8 @@ export default {
 
   components:{
     ToolBar,
-    Star 
+    Star,
+    ImageForm
   },
 
   computed:{
@@ -109,10 +113,16 @@ export default {
       vm.$ons.notification.confirm({ message: '投稿してもよろしいですか?', title: '' })
         .then(function(response){
           if(response == 1){
+            const unwatch = vm.$watch('roomReviews', function(){
+                              vm.$store.dispatch('popPage')
+                              vm.$ons.notification.alert({ message: '投稿が完了しました。', title: '' })
+                              unwatch();
+                            })
             const reviewParams = {
               "rate":           vm.formRate,
               "review":         vm.review,
-              "powder_room_id": vm.room.id
+              "powder_room_id": vm.room.id,
+              "urls":           vm.previewImages
             }
             vm.roomReviews = reviewParams
           }
@@ -120,19 +130,16 @@ export default {
     },
     updateFormRate(){
       this.$refs.formStar.bindRate = this.formRate;
-    }
+    },
+    previewImage(image){
+      this.previewImages.push(image);
+    },
+    removeImage(targetImage){
+      this.previewImages = this.previewImages.filter(function(image){
+        return image !== targetImage;
+      });
+    },
   },
-
-  watch:{
-    roomReviews:{
-      handler(){
-        this.$store.dispatch('popPage')
-        this.$ons.notification.alert({ message: '投稿が完了しました。', title: '' })
-      }
-    }
-  }
-
-  
 
 }
 </script>
@@ -195,6 +202,10 @@ export default {
       background-color: #ff8b85;
       border-bottom: solid 2px #b5b5b5;
       box-shadow: inset 0 2px 0 #ffffff80, 0 2px 2px #00000030;
+    }
+
+    .image-form {
+      padding-left: 1rem;
     }
   }
 }

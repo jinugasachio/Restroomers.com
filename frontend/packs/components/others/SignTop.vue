@@ -24,9 +24,9 @@
 
 
 <script>
-import signFormData from "../modules/sign_form.json"
-import ToolBar from './ToolBar.vue'
-import SignForm from './SignForm.vue'
+import signFormData from "../../modules/sign_form.json"
+import ToolBar      from '../main/ToolBar.vue'
+import SignForm     from '../form/SignForm.vue'
 
 export default {
 

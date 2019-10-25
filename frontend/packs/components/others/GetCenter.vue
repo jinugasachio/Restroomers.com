@@ -11,7 +11,7 @@
 
 <script>
 
-import RoomForm from './RoomForm.vue'
+import RoomForm from '../form/RoomForm.vue'
 
 export default {
 
@@ -68,7 +68,7 @@ export default {
 
   #target {
     position: absolute;
-    top: 41vh;
+    top: 39vh;
     right: 0;
     left: 0;
     z-index: 2;
@@ -78,7 +78,7 @@ export default {
 
   .button-box {
     position: absolute;
-    top: 55vh;
+    top: 53vh;
     z-index: 2;
     width: 100%;
     text-align: center;
