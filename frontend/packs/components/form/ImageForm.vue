@@ -29,7 +29,7 @@
 
 export default {
 
-  name: 'PictureForm',
+  name: 'ImageForm',
   props:{
     previewImages: Array
   },
