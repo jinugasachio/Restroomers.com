@@ -70,15 +70,15 @@ export default {
       })
     },
 
-    // deleteReview(context, params){
-    //   axios.delete('/api/reviews/' + params.id,  { headers: context.rootState.userStore.headers })
-    //   .then(function(response){
-    //     context.commit('deleteReview', { review: response.data })
-    //   })
-    //   .catch(function (error) {
-    //     alert('予期しないエラーが発生しました。');
-    //   })
-    // },
+    deleteReview(context, params){
+      axios.delete('/api/reviews/' + params.id,  { headers: context.rootState.userStore.headers })
+      .then(function(response){
+        context.commit('deleteReview', { review: response.data })
+      })
+      .catch(function (error) {
+        alert('予期しないエラーが発生しました。');
+      })
+    },
 
   }
 }

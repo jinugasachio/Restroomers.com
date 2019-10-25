@@ -1,8 +1,10 @@
 export default {
 
   state: {
+
     map: null,
     center: null,
+    
   },
 
   gettes: {

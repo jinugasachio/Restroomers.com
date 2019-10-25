@@ -1,13 +1,13 @@
 import 'babel-polyfill'
-import Vue from 'vue'
-import Vuex from 'vuex'
-import GoogleMap from './components/others/GoogleMap.vue'
-import SignTop from './components/others/SignTop.vue'
-import RoomList from './components/room/RoomList.vue'
-import roomStore from './stores/room/room.js'
+import Vue          from 'vue'
+import Vuex         from 'vuex'
+import GoogleMap    from './components/others/GoogleMap.vue'
+import SignTop      from './components/others/SignTop.vue'
+import RoomList     from './components/room/RoomList.vue'
+import roomStore    from './stores/room/room.js'
 import triggerStore from './stores/trigger.js'
-import mapStore from './stores/map.js'
-import userStore from './stores/user.js'
+import mapStore     from './stores/map.js'
+import userStore    from './stores/user.js'
 
 Vue.use(Vuex)
 

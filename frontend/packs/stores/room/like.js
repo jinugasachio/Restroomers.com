@@ -1,13 +1,16 @@
 export default {
 
   state: {
+
     roomLikes:[],
     roomLikes_1:[],
     favoriteRooms: [],
     activeTab: 0
+    
   },
 
   getters: {
+
     roomLikes(state){
       if (state.activeTab == 0){
         return state.roomLikes;
@@ -19,6 +22,7 @@ export default {
     favoriteRooms(state){
       return state.favoriteRooms;
     },
+
   },
 
   mutations: {
@@ -70,6 +74,7 @@ export default {
 
 
   actions: {
+
     like(context, likeParams){
       axios.post('/api/likes', likeParams, { headers: context.rootState.userStore.headers })
       .then(function(response){

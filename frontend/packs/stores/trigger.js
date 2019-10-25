@@ -1,10 +1,12 @@
 export default {
 
   state: {
+
     directionTrigger: false,
     guideTrigger:     false,
     postTrriger:      false,
     showSearchBox:    false,
+    
   },
 
   getters: {
