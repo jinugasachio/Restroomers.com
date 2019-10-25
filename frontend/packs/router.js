@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 
 
 //Components for router
-import TopPage from './components/TopPage.vue'
+import TopPage from './components/main/TopPage.vue'
 
 Vue.use(VueRouter)
 

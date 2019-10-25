@@ -16,8 +16,8 @@
 </template>
 
 <script>
-import ToolBar from './ToolBar.vue'
-import Room from './Room.vue'
+import ToolBar from '../main/ToolBar.vue'
+import Room    from './Room.vue'
 
 export default {
 

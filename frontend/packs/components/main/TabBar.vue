@@ -28,11 +28,11 @@
 
 
 <script>
-import Navigator1 from './Navigator1.vue'
-import Navigator2 from './Navigator2.vue'
-import SearchTab from './SearchTab.vue'
-import DirectionTab from './DirectionTab.vue'
-import ActionButton from './ActionButton.vue'
+import Navigator1   from '../tabs/Navigator1.vue'
+import Navigator2   from '../tabs/Navigator2.vue'
+import SearchTab    from '../tabs/SearchTab.vue'
+import DirectionTab from '../tabs/DirectionTab.vue'
+import ActionButton from '../others/ActionButton.vue'
 
 
 

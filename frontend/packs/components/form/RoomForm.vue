@@ -31,10 +31,10 @@
 
 
 <script>
-import ToolBar from './ToolBar.vue'
-import ImageForm from './ImageForm.vue'
+import ToolBar      from '../main/ToolBar.vue'
+import ImageForm    from './ImageForm.vue'
 import FacilityForm from './FacilityForm.vue'
-import DetailForm from './DetailForm.vue'
+import DetailForm   from './DetailForm.vue'
 
 export default {
 

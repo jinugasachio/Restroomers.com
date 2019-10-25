@@ -20,13 +20,13 @@
 </template>
 
 <script>
-import ToolBar from './ToolBar.vue'
-import UnderBox from './UnderBox.vue'
-import HeartButton from './HeartButton.vue'
-import Images from './Images.vue'
-import Facility from './RoomFacility.vue'
-import Detail from './RoomDetail.vue'
-import Review from './Review.vue'
+import ToolBar      from '../main/ToolBar.vue'
+import UnderBox     from './UnderBox.vue'
+import HeartButton  from './HeartButton.vue'
+import Images       from './Images.vue'
+import Facility     from './RoomFacility.vue'
+import Detail       from './RoomDetail.vue'
+import Review       from './RoomReview.vue'
 
 export default {
 

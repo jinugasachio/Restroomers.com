@@ -8,12 +8,12 @@
 </template>
 
 <script>
-import GmapStyle from "../modules/gmap_style.json"
-import Room from './Room.vue'
-import RoomList from './RoomList.vue'
-import Navigator1 from './Navigator1.vue'
-import GetCenter from './GetCenter.vue'
-import SearchBox from './SearchBox.vue'
+import GmapStyle  from "../../modules/gmap_style.json"
+import Room       from '../room/Room.vue'
+import RoomList   from '../room/RoomList.vue'
+import Navigator1 from '../tabs/Navigator1.vue'
+import GetCenter  from './GetCenter.vue'
+import SearchBox  from './SearchBox.vue'
 
 export default {
 

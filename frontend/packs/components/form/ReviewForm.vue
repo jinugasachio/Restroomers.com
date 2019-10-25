@@ -67,9 +67,9 @@
 
 
 <script>
-import ToolBar from './ToolBar.vue'
+import ToolBar   from '../main/ToolBar.vue'
 import ImageForm from './ImageForm.vue'
-import Star from './StarRating.vue'
+import Star      from '../others/StarRating.vue'
 
 export default {
 
