@@ -70,7 +70,6 @@ export default {
         else{
           this.$ons.notification.alert({ message: 'ログインしてください。', title: '' });
         }
-       
       }
     },
     signOut(){
@@ -84,7 +83,6 @@ export default {
                                 unwatch();
                               }
                             );
-                                        debugger;
             vm.$store.dispatch('signOut');
           }
         })

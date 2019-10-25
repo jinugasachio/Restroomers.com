@@ -2,12 +2,23 @@
     <v-ons-page>
       <ToolBar/>
       <div class="wrapper">
-        <ImageForm
-          :previewImages="previewImages"
-          @inputRoomName="inputRoomName"
-          @previewImage="previewImage"
-          @removeImage="removeImage"
-        />
+        <v-ons-card id="name-and-photo">
+          <v-ons-list>
+            <v-ons-list-header>名前</v-ons-list-header>
+            <v-ons-list-item>
+                <v-ons-input placeholder="例) 渋谷ストリーム 2F" type="text" class="name-input"
+                  @change="inputRoomName"
+                >
+                </v-ons-input>
+            </v-ons-list-item>
+            <v-ons-list-header>写真 ( 複数可 )</v-ons-list-header>
+            <ImageForm
+              :previewImages="previewImages"
+              @previewImage="previewImage"
+              @removeImage="removeImage"
+            />
+          </v-ons-list>
+        </v-ons-card>
         <FacilityForm @inputFacility="inputFacility"/>
         <DetailForm  @inputDetail="inputDetail"/>
         <v-ons-button id="post-button" modifier="large"
@@ -78,8 +89,8 @@ export default {
   },
 
   methods: {
-    inputRoomName(name){
-      this.roomParams["name"] = name;
+    inputRoomName(e){
+      this.roomParams["name"] = e.target.value;
     },
     previewImage(image){
       this.previewImages.push(image);
@@ -127,6 +138,14 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
+#name-and-photo {
+  margin-bottom: 2rem;
+
+  .name-input {
+    width: 100%;
+  }
+}
 
 #post-button {
   width: 65%;

@@ -9,12 +9,13 @@
             <v-ons-list-header>レビュースター</v-ons-list-header>
             <v-ons-list-item>
               <div class="center">
-                <validation-provider
-                  mode="eager"
-                  rules="required"
+                <validation-provider mode="eager" rules="required"
                   v-slot="{ errors }"
                 >
-                    <v-ons-select v-model="formRate" @change="updateFormRate">
+                    <v-ons-select
+                      v-model="formRate"
+                      @change="updateFormRate"
+                    >
                       <option 
                         v-for="num in numbers"
                         :value="num.value" 
@@ -30,38 +31,20 @@
             </v-ons-list-item>
 
             <v-ons-list-header>写真 ( 複数可 )</v-ons-list-header>
-            <v-ons-list-item>
-                <label for="file_photo">
-                  <img src="packs/images/camera.png" id="camera">
-                  <input type="file" multiple="multiple" id="file_photo" style="display: none;"
-                    @change="getImages"
-                  >
-                </label>
-                <div class="preview-box"  v-show="previewImages.length > 0">
-                  <div class="preview-box__inner"
-                    v-for=" image in previewImages"
-                    :key="image.name"
-                  >
-                    <button @click="removeImages" class="preview-box__inner__button">
-                      <img  src="packs/images/cancel.png" class="preview-box__inner__cancel">
-                    </button>
-                    <img :src="image" class="preview-box__inner__image">
-                  </div>
-                </div>
-            </v-ons-list-item>
-
+            <ImageForm
+              class="image-form"
+              :previewImages="previewImages"
+              @previewImage="previewImage"
+              @removeImage="removeImage"
+            />
+            
             <v-ons-list-header>口コミ</v-ons-list-header>
             <v-ons-list-item>
               <div class="center">
-                <validation-provider
-                  mode="eager"
-                  rules="required"
+                <validation-provider mode="eager" rules="required" class="validate-span"
                   v-slot="{ errors }"
-                  class="validate-span"
                 >
-                <textarea
-                  class="review-text"
-                  placeholder="口コミを入力してください。"
+                <textarea class="review-text" placeholder="口コミを入力してください。"
                   v-model="review"
                 ></textarea>
                 <p class="error-text"><span>{{ errors[0] }}</span></p>
@@ -70,9 +53,7 @@
             </v-ons-list-item>
 
           </v-ons-list>
-          <v-ons-button
-            modifier="large"
-            id="post-button" 
+          <v-ons-button id="post-button" modifier="large"
             :disabled="invalid"
             @click="postReview"
           >
@@ -87,6 +68,7 @@
 
 <script>
 import ToolBar from './ToolBar.vue'
+import ImageForm from './ImageForm.vue'
 import Star from './StarRating.vue'
 
 export default {
@@ -111,7 +93,8 @@ export default {
 
   components:{
     ToolBar,
-    Star 
+    Star,
+    ImageForm
   },
 
   computed:{
@@ -130,6 +113,11 @@ export default {
       vm.$ons.notification.confirm({ message: '投稿してもよろしいですか?', title: '' })
         .then(function(response){
           if(response == 1){
+            const unwatch = vm.$watch('roomReviews', function(){
+                              vm.$store.dispatch('popPage')
+                              vm.$ons.notification.alert({ message: '投稿が完了しました。', title: '' })
+                              unwatch();
+                            })
             const reviewParams = {
               "rate":           vm.formRate,
               "review":         vm.review,
@@ -137,37 +125,22 @@ export default {
               "urls":           vm.previewImages
             }
             vm.roomReviews = reviewParams
-            vm.$store.dispatch('popPage')
-            vm.$ons.notification.alert({ message: '投稿が完了しました。', title: '' })
           }
         })
     },
     updateFormRate(){
       this.$refs.formStar.bindRate = this.formRate;
     },
-    getImages(e){
-      const vm = this;
-      const images = Array.from(e.target.files);
-      images.forEach(function(image){
-        vm.preview(image);
-      });
+    previewImage(image){
+      this.previewImages.push(image);
     },
-    preview(image) {
-      const vm = this;
-      const reader = new FileReader();
-      reader.onload = e => {
-        vm.previewImages.push(e.target.result);
-      };
-      reader.readAsDataURL(image);
-    },
-    removeImages(e){
-      const targetImage = e.currentTarget.nextElementSibling.src;
+    removeImage(targetImage){
       this.previewImages = this.previewImages.filter(function(image){
         return image !== targetImage;
       });
-    }
+    },
   },
-  
+
 }
 </script>
 
@@ -215,48 +188,6 @@ export default {
           resize: none;
         }
       }
-
-      .preview-box {
-        display: flex;
-        flex-wrap: wrap;
-        margin-left: 20px;
-
-        &__inner {
-          position: relative;
-          display: flex;
-          align-items: flex-start;
-          margin-right: 10px;
-
-          &__image {
-            width: 2rem;
-          }
-
-          &__button {
-            position: absolute;
-            top: -5px;
-            left: -10px;
-            width: 1rem;
-            padding: 0;
-            background-color: #ececec;
-            border: none;
-            border-radius: 50%;
-
-            &:focus {
-              outline: 0;
-            }
-          }
-
-          &__cancel {
-            width: 0.6rem;
-            cursor: pointer;
-          }
-        }
-      }
-
-      #camera {
-        width: 1rem;
-        padding-left: 1rem;
-      }
     }
 
     .error-text {
@@ -271,6 +202,10 @@ export default {
       background-color: #ff8b85;
       border-bottom: solid 2px #b5b5b5;
       box-shadow: inset 0 2px 0 #ffffff80, 0 2px 2px #00000030;
+    }
+
+    .image-form {
+      padding-left: 1rem;
     }
   }
 }
