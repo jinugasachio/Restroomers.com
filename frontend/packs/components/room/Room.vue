@@ -1,21 +1,21 @@
 <template>
-  <v-ons-page>
+  <v-ons-page id ="room">
     <ToolBar/>
-    <v-ons-card>
-
-      <img v-if="roomImage" :src=activeImage class="top_image">
-
-      <img v-else src="packs/images/no_image.png" class="top_image">
-      <UnderBox/>
-      <div class="content">
-        <Images v-if="roomImage" 
-                :imageUrls="imageUrls"
-                @addActive="addActive"/>
-        <Facility/>
-        <Detail/>
-        <Review/>
-      </div>
-    </v-ons-card>
+    <div class="page__content">
+      <v-ons-card>
+        <img v-if="roomImage" :src=activeImage class="top_image">
+        <img v-else src="packs/images/no_image.png" class="top_image">
+        <UnderBox/>
+        <div class="content">
+          <Images v-if="roomImage" 
+                  :imageUrls="imageUrls"
+                  @addActive="addActive"/>
+          <Facility/>
+          <Detail/>
+          <Review/>
+        </div>
+      </v-ons-card>
+    </div>
   </v-ons-page>
 </template>
 
@@ -101,13 +101,24 @@ export default {
  }
 </script>
 
-<style>
+<style lang="scss" scoped>
+
+#room {
+  .page__content {
+    padding: 0 5px;
+
+    .card {
+      max-width: 450px;
+      margin: 0.5rem auto;
+    }
+  }
+}
 
 .top_image {
   display: block;
   width: 100%;
-  max-width: 450px;
-  height: 20rem;
+  max-width: 360px;
+  height: 19rem;
   margin: 0 auto 0.4rem;
 }
 

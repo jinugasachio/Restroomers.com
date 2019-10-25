@@ -44,12 +44,15 @@ export default {
     markers(){
       return this.$store.getters.allRooms
     },
+    roomList(){
+      return this.$store.getters.roomList
+    }
   },
 
   methods: {
 
     push(){
-      if (this.$store.state.roomList.length > 1){
+      if (this.roomList.length > 1){
         this.$store.dispatch('pushPage', RoomList)
       } else {
         this.$store.dispatch('pushPage', Room)
