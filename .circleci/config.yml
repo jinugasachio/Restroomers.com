@@ -2,13 +2,8 @@ version: 2.1
 orbs:
   aws-ecr: circleci/aws-ecr@6.2.0
   aws-ecs: circleci/aws-ecs@0.0.8
-  #aws-cli: circleci/aws-cli@0.1.1
-# executors:
-#   docker:
-#     docker:
-#       - image: 'docker:18.06.0-ce'
+
 jobs:
-  
   rubocop:
     docker:
       - image: circleci/ruby:2.5.5-stretch-node-browsers-legacy
@@ -22,7 +17,6 @@ jobs:
           MYSQL_HOST: 127.0.0.1
           MYSQL_USERNAME: root
           MYSQL_ROOT_PASSWORD: root
-          # MYSQL_PASSWORD: root        
           MYSQL_DATABASE: myapp_test
 
     working_directory: ~/repo
@@ -48,7 +42,6 @@ jobs:
           paths:
             - ./vendor/bundler
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-      # Rubocop
       - run:
           name: Rubocop
           command: bundle exec rubocop
@@ -66,12 +59,10 @@ jobs:
           MYSQL_HOST: 127.0.0.1
           MYSQL_USERNAME: root
           MYSQL_ROOT_PASSWORD: root
-          # MYSQL_PASSWORD: root        
           MYSQL_DATABASE: myapp_test
 
     working_directory: ~/repo
 
-    
     steps:
       - checkout
       - run:
@@ -85,7 +76,6 @@ jobs:
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "Gemfile.lock" }}
-            # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
       - run: bundle install --jobs=4 --retry=3 --path vendor/bundler
       - run: yarn install
@@ -94,13 +84,11 @@ jobs:
             - ./vendor/bundler
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
       - run: bundle exec rails db:create         
-      # - run: bundle exec rails db:schema:load 
+      - run: bundle exec rails db:schema:load 
       #上は実際にマイグレーションファイルを実行してスキーマフィルが生成されたら解放する,
       #以下それまでのエラー文
       #(/home/circleci/repo/db/schema.rb doesn't exist yet. Run `rails db:migrate` to create it, then try again. )
 
-
-      # Rspec
       - run:
           name: Rspec
           command: bundle exec rspec
@@ -129,14 +117,10 @@ workflows:
           filters:
             branches:
               only: master
-          # setup-remote-docker: true
-          # image: '18.06.0-ce'
-          # executor: 'docker'
       - aws-ecs/deploy-service-update:
           requires:
             - aws-ecr/build-and-push-image
-          verify-revision-is-deployed: true #ちゃんとデプロイが反映されたか確認するもの、今の所http500で落ちるのでコメントアウト、デフォルトはfalse
-          # task-definition-arn: arn:aws:iam::289066077618:role/ecs-env-myapp
+          verify-revision-is-deployed: true
           aws-region: ${AWS_DEFAULT_REGION}
           family: "${AWS_RESOURCE_NAME_PREFIX}-task"
           cluster-name: "${AWS_RESOURCE_NAME_PREFIX}-cluster"
