@@ -2,9 +2,18 @@
   <v-ons-list>
     <v-ons-list-header>設備情報</v-ons-list-header>
     <div class="f-container">
-      <div class="f-item" v-for="item in facilities" :key="item.name" :id="item.id">
+      <div class="f-item"
+        v-for="item in facilities"
+        :key="item.name"
+        :id="item.id"
+      >
         <p class="f-item-name" v-text="item.name"></p>
-        <div><p :class="item.class" v-text="item.value"></p></div>
+        <div>
+          <p
+            :class="item.class"
+            v-text="item.value"
+          ></p>
+        </div>
       </div>
     </div>
   </v-ons-list>
