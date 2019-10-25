@@ -89,7 +89,6 @@
 import ToolBar from './ToolBar.vue'
 import Star from './StarRating.vue'
 
-
 export default {
 
   name: "ReviewForm",
@@ -138,6 +137,8 @@ export default {
               "urls":           vm.previewImages
             }
             vm.roomReviews = reviewParams
+            vm.$store.dispatch('popPage')
+            vm.$ons.notification.alert({ message: '投稿が完了しました。', title: '' })
           }
         })
     },
@@ -166,18 +167,7 @@ export default {
       });
     }
   },
-
-  watch:{
-    roomReviews:{
-      handler(){
-        this.$store.dispatch('popPage')
-        this.$ons.notification.alert({ message: '投稿が完了しました。', title: '' })
-      }
-    }
-  }
-
   
-
 }
 </script>
 
