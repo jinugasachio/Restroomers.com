@@ -41,8 +41,8 @@ export default {
     cursor: pointer;
 
     .image {
-      width: 3.5rem;
-      height: 3.5rem;
+      width: 3.8rem;
+      height: 3.8rem;
       margin: 0 0.3rem 0 0;
 
       &:active {
