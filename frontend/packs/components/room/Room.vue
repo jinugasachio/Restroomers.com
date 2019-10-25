@@ -108,7 +108,7 @@ export default {
     padding: 0 5px;
 
     .card {
-      max-width: 600px;
+      max-width: 450px;
       margin: 0.5rem auto;
     }
   }
@@ -117,7 +117,7 @@ export default {
 .top_image {
   display: block;
   width: 100%;
-  max-width: 450px;
+  max-width: 360px;
   height: 19rem;
   margin: 0 auto 0.4rem;
 }
