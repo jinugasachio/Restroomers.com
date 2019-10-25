@@ -7,6 +7,22 @@ export default {
     showSearchBox:    false,
   },
 
+  getters: {
+
+    directionTrigger(state){
+      return state.directionTrigger;
+    },
+    guideTrigger(state){
+      return state.guideTrigger;
+    },
+    postTrriger(state){
+      return state.postTrriger;
+    },
+    showSearchBox(state){
+      return state.showSearchBox;
+    },
+
+  },
 
   mutations: {
 

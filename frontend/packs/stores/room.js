@@ -1,6 +1,11 @@
 import defaultData from '../modules/default_data.json'
+import userStore from './user.js'
 
 export default {
+
+  modules: {
+    userStore
+  },
 
   state: {
     room: defaultData,
@@ -13,6 +18,42 @@ export default {
     roomList: [],
     favoriteRooms: [],
     activeTab: 0,
+  },
+
+  getters: {
+    room(state) {
+      if (state.activeTab == 0){
+        return state.room
+      }
+      else if (state.activeTab == 1){
+        return state.room_1
+      }
+    },
+    roomLikes(state){
+      if (state.activeTab == 0){
+        return state.roomLikes;
+      }
+      else if (state.activeTab == 1){
+        return state.roomLikes_1;
+      }
+    },
+    roomReviews(state){
+      if (state.activeTab == 0){
+        return state.roomReviews;
+      }
+      else if (state.activeTab == 1){
+        return state.roomReviews_1;
+      }
+    },
+    allRooms(state) {
+      return state.allRooms;
+    },
+    roomList(state) {
+      return state.roomList;
+    },
+    favoriteRooms(state){
+      return state.favoriteRooms;
+    },
   },
 
 
@@ -143,7 +184,7 @@ export default {
     },
 
     like(context, likeParams){
-      axios.post('/api/likes', likeParams, { headers: context.rootState.headers })
+      axios.post('/api/likes', likeParams, { headers: context.state.userStore.headers })
       .then(function(response){
         const favoriteRoom = context.rootGetters.room.powder_room
         context.commit('addLike', { newLike: response.data })
@@ -155,7 +196,7 @@ export default {
     },
 
     unlike(context, params){
-      axios.delete('/api/likes/' + params.id,  { headers: context.rootState.headers })
+      axios.delete('/api/likes/' + params.id,  { headers: context.state.userStore.headers })
       .then(function(response){
         const favoriteRoom = context.rootGetters.room.powder_room
         context.commit('deleteLike', { like: response.data })
@@ -168,7 +209,7 @@ export default {
 
     favoriteRooms(context){
       debugger
-      axios.get('/api/likes/favorite_rooms', { headers: context.rootState.headers })
+      axios.get('/api/likes/favorite_rooms', { headers: context.state.userStore.headers })
       .then(function(response){
         context.commit('favoriteRooms', { favoriteRooms: response.data })
       })
@@ -178,7 +219,7 @@ export default {
     },
 
     postReview(context, reviewParams){
-      axios.post('/api/reviews', reviewParams, { headers: context.rootState.headers })
+      axios.post('/api/reviews', reviewParams, { headers: context.state.userStore.headers })
       .then(function(response){
         context.commit('postReview', { newReview: response.data })
       })
@@ -188,7 +229,7 @@ export default {
     },
 
     deleteReview(context, params){
-      axios.delete('/api/reviews/' + params.id,  { headers: context.rootState.headers })
+      axios.delete('/api/reviews/' + params.id,  { headers: context.state.userStore.headers })
       .then(function(response){
         context.commit('deleteReview', { review: response.data })
       })
@@ -198,7 +239,7 @@ export default {
     },
 
     postRoom(context, roomParams){
-      axios.post('/api/powder_rooms', roomParams,  { headers: context.rootState.headers })
+      axios.post('/api/powder_rooms', roomParams,  { headers: context.state.userStore.headers })
       .then(function(response){
         context.commit ('postRoom', response.data)
       })
