@@ -2,58 +2,9 @@
   <v-ons-list>
     <v-ons-list-header>設備情報</v-ons-list-header>
     <div class="f-container">
-      <div class="f-item">
-        <p class="f-item-name">ドレッサー</p>
-        <div><p>{{ facility.dresser }}</p></div>
-      </div>
-      <div class="f-item">
-        <p class="f-item-name">全身鏡</p>
-        <div><p>{{ facility.body_mirror }}</p></div>
-      </div>
-      <div class="f-item">
-        <p class="f-item-name">拡大鏡</p>
-        <div><p>{{ facility.makeup_mirror }}</p></div>
-      </div>
-      <div class="f-item">
-        <p class="f-item-name">無料Wi-Fi</p>
-        <div><p>{{ facility.wifi }}</p></div>
-      </div>
-      <div class="f-item">
-        <p class="f-item-name">フィッティングブース</p>
-        <div><p>{{ facility.fitting_booth }}</p></div>
-      </div>
-      <div class="f-item">
-        <p class="f-item-name">手洗いボウル</p>
-        <div><p>{{ facility.washstands }}</p></div>
-      </div>
-      <div class="f-item">
-        <p class="f-item-name">荷物置き</p>
-        <div><p>{{ facility.luggage_storage }}</p></div>
-      </div>
-      <div class="f-item">
-        <p class="f-item-name">コンセント</p>
-        <div><p>{{ facility.outlet }}</p></div>
-      </div>
-      <div class="f-item">
-        <p class="f-item-name">ウェイティングブース</p>
-        <div><p>{{ facility.waiting_space }}</p></div>
-      </div>
-      <div class="f-item">
-        <p class="f-item-name">ゴミ箱</p>
-        <div><p>{{ facility.dust_box }}</p></div>
-      </div>
-      
-      <div class="f-item">
-        <p class="f-item-name">利用条件</p>
-        <div><p class="letter">{{ facility.membership }}</p></div>
-      </div>
-      <div class="f-item">
-        <p class="f-item-name">料金プラン</p>
-        <div><p class="letter">{{ facility.rate_plan }}</p></div>
-      </div>
-      <div class="f-item others">
-        <p class="f-item-name">その他</p>
-        <div><p class="letter">{{ facility.others }}</p></div>
+      <div class="f-item" v-for="item in facilities" :key="item.name" :id="item.id">
+        <p class="f-item-name" v-text="item.name"></p>
+        <div><p :class="item.class" v-text="item.value"></p></div>
       </div>
     </div>
   </v-ons-list>
@@ -63,11 +14,42 @@
 
 export default {
 
+  data(){
+    return{
+      facilities: [
+        { name: "ドレッサー",         key: "dresser",          value: null },
+        { name: "全身鏡",            key: "body_mirror",      value: null },
+        { name: "拡大鏡",            key: "makeup_mirror",    value: null },
+        { name: "無料Wi-Fi",         key: "wifi",             value: null },
+        { name: "フィッティングブース", key: "fitting_booth",   value: null },
+        { name: "手洗いボウル",        key: "washstands",      value: null },
+        { name: "荷物置き",           key: "luggage_storage", value: null },
+        { name: "コンセント",         key: "outlet",          value: null },
+        { name: "ウェイティングブース", key: "waiting_space",   value: null },
+        { name: "ゴミ箱",             key: "dust_box",        value: null },
+        { name: "利用条件",           key: "membership",      value: null, class: "letter" },
+        { name: "料金プラン",         key: "rate_plan",        value: null, class: "letter" },
+        { name: "その他",            key: "others",           value: null, class: "letter", id: "others" },
+      ]
+    }
+  },
+
   computed: {
     facility(){
-      return this.$store.getters.room.facility
+      return this.$store.getters.room.facility;
     },
   },
+  methods:{
+    updateFacilities(){
+      const vm = this;
+      vm.facilities.forEach(function(item){
+        item.value = vm.facility[item.key]
+      })
+    }
+  },
+  mounted(){
+    this.updateFacilities();
+  }
 
 }
 </script>
@@ -94,7 +76,7 @@ export default {
       padding: 0.1rem 0 !important;
     }
 
-    &.others {
+    &#others {
       width: 97%;
 
       .letter {
