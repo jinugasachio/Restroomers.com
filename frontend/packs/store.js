@@ -4,10 +4,10 @@ import Vuex from 'vuex'
 import GoogleMap from './components/others/GoogleMap.vue'
 import SignTop from './components/others/SignTop.vue'
 import RoomList from './components/room/RoomList.vue'
-import roomStore from './stores/room.js'
+import roomStore from './stores/room/room.js'
 import triggerStore from './stores/trigger.js'
 import mapStore from './stores/map.js'
-import userStore from './stores/map.js'
+import userStore from './stores/user.js'
 
 Vue.use(Vuex)
 
@@ -25,8 +25,8 @@ const store =  new Vuex.Store({
 
     pageStack1: [GoogleMap],
     pageStack2: [SignTop],
+    signFormData: [],
     activeTab: 0,
-    signFormData: []
 
   },
 

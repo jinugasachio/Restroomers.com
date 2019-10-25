@@ -1,22 +1,21 @@
-import defaultData from '../modules/default_data.json'
-import userStore from './user.js'
+import defaultData from '../../modules/default_data.json'
+import reviewStore from './review.js'
+import likeStore from './like.js'
 
 export default {
 
   modules: {
-    userStore
+    reviewStore,
+    likeStore
   },
 
   state: {
     room: defaultData,
     room_1: defaultData,
-    roomLikes:[],
-    roomLikes_1:[],
     roomReviews:[],
     roomReviews_1:[],
     allRooms: [],
     roomList: [],
-    favoriteRooms: [],
     activeTab: 0,
   },
 
@@ -27,14 +26,6 @@ export default {
       }
       else if (state.activeTab == 1){
         return state.room_1
-      }
-    },
-    roomLikes(state){
-      if (state.activeTab == 0){
-        return state.roomLikes;
-      }
-      else if (state.activeTab == 1){
-        return state.roomLikes_1;
       }
     },
     roomReviews(state){
@@ -51,9 +42,6 @@ export default {
     roomList(state) {
       return state.roomList;
     },
-    favoriteRooms(state){
-      return state.favoriteRooms;
-    },
   },
 
 
@@ -64,34 +52,6 @@ export default {
       }
       else if(state.activeTab == 1){
         state.room_1 = payload.room;
-      }
-    },
-    roomLikes(state, payload){
-      if(state.activeTab == 0){
-        state.roomLikes = payload.roomLikes;
-      }
-      else if(state.activeTab == 1){
-        state.roomLikes_1 = payload.roomLikes;
-      }
-    },
-    addLike(state, payload){
-      if(state.activeTab == 0){
-        state.roomLikes.push(payload.newLike);
-      }
-      else if(state.activeTab == 1){
-        state.roomLikes_1.push(payload.newLike);
-      }
-    },
-    deleteLike(state, payload){
-      if(state.activeTab == 0){
-        state.roomLikes = state.roomLikes.filter(function(like){
-          return like.id !== payload.like.id
-        })
-      }
-      else if(state.activeTab == 1){
-        state.roomLikes_1 = state.roomLikes_1.filter(function(like){
-          return like.id !== payload.like.id
-        })
       }
     },
     roomReviews(state, payload){
@@ -121,17 +81,6 @@ export default {
           return review.id !== payload.review.id
         })
       }
-    },
-    favoriteRooms(state, payload){
-      state.favoriteRooms = payload.favoriteRooms;
-    },
-    addFavorite(state, payload){
-      state.favoriteRooms.push(payload)
-    },
-    deleteFavorite(state, payload){
-      state.favoriteRooms = state.favoriteRooms.filter(function(room){
-        return room.id !== payload.id
-      })
     },
     updateAllRooms(state, payload) {
       state.allRooms = payload.allRooms;
@@ -183,43 +132,9 @@ export default {
       context.commit('resetRoomList');
     },
 
-    like(context, likeParams){
-      axios.post('/api/likes', likeParams, { headers: context.state.userStore.headers })
-      .then(function(response){
-        const favoriteRoom = context.rootGetters.room.powder_room
-        context.commit('addLike', { newLike: response.data })
-        context.commit('addFavorite', favoriteRoom)
-      })
-      .catch(function () {
-        alert('予期しないエラーが発生しました。');
-      })
-    },
-
-    unlike(context, params){
-      axios.delete('/api/likes/' + params.id,  { headers: context.state.userStore.headers })
-      .then(function(response){
-        const favoriteRoom = context.rootGetters.room.powder_room
-        context.commit('deleteLike', { like: response.data })
-        context.commit('deleteFavorite', favoriteRoom)
-      })
-      .catch(function (error) {
-        alert('予期しないエラーが発生しました。');
-      })
-    },
-
-    favoriteRooms(context){
-      debugger
-      axios.get('/api/likes/favorite_rooms', { headers: context.state.userStore.headers })
-      .then(function(response){
-        context.commit('favoriteRooms', { favoriteRooms: response.data })
-      })
-      .catch(function (error) {
-        alert('予期しないエラーが発生しました。');
-      })
-    },
-
     postReview(context, reviewParams){
-      axios.post('/api/reviews', reviewParams, { headers: context.state.userStore.headers })
+      debugger;
+      axios.post('/api/reviews', reviewParams, { headers: context.rootState.userStore.headers })
       .then(function(response){
         context.commit('postReview', { newReview: response.data })
       })
@@ -229,7 +144,7 @@ export default {
     },
 
     deleteReview(context, params){
-      axios.delete('/api/reviews/' + params.id,  { headers: context.state.userStore.headers })
+      axios.delete('/api/reviews/' + params.id,  { headers: context.rootState.userStore.headers })
       .then(function(response){
         context.commit('deleteReview', { review: response.data })
       })
@@ -239,7 +154,7 @@ export default {
     },
 
     postRoom(context, roomParams){
-      axios.post('/api/powder_rooms', roomParams,  { headers: context.state.userStore.headers })
+      axios.post('/api/powder_rooms', roomParams,  { headers: context.rootState.userStore.headers })
       .then(function(response){
         context.commit ('postRoom', response.data)
       })
