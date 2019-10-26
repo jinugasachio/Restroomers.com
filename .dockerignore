@@ -9,3 +9,7 @@ tmp
 .rubocop.yml
 docker-compose.yml
 Procfile
+node_modules
+README.md
+tmp
+.dockerignore
