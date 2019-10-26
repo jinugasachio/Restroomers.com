@@ -10,7 +10,7 @@ jobs:
         environment:
           RAILS_ENV: test
           MYSQL_HOST: 127.0.0.1
-          BUNDLER_VERSION: 2.0.2        
+          BUNDLER_VERSION: 2.0.2
       - image: circleci/mysql:8.0.16-ram
         command: --default-authentication-plugin=mysql_native_password
         environment:
@@ -83,12 +83,8 @@ jobs:
           paths:
             - ./vendor/bundler
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-      - run: bundle exec rails db:create         
+      - run: bundle exec rails db:create
       - run: bundle exec rails db:schema:load 
-      #上は実際にマイグレーションファイルを実行してスキーマフィルが生成されたら解放する,
-      #以下それまでのエラー文
-      #(/home/circleci/repo/db/schema.rb doesn't exist yet. Run `rails db:migrate` to create it, then try again. )
-
       - run:
           name: Rspec
           command: bundle exec rspec
