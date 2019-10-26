@@ -5,7 +5,8 @@ RUN apt-get update -qq && apt-get install -y --no-install-recommends \
     build-essential \
     vim \
     mysql-client && \
-    rm -rf /var/lib/apt/lists/*\
+    rm -rf /var/lib/apt/lists/*
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
     curl apt-transport-https wget && \
     curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
@@ -15,7 +16,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     yarn \
     nodejs && \
     gem install bundler && \
-    rm -rf /var/lib/apt/lists/*\
+    rm -rf /var/lib/apt/lists/*
+
 COPY Gemfile Gemfile
 COPY Gemfile.lock Gemfile.lock
 RUN bundle install
