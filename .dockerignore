@@ -5,3 +5,7 @@ vendor
 tmp
 .git
 .gitignore
+.rubocop_todo.yml
+.rubocop.yml
+docker-compose.yml
+Procfile
