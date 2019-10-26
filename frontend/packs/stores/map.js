@@ -7,7 +7,7 @@ export default {
     
   },
 
-  gettes: {
+  getters: {
 
     map(state) {
       return state.map;
