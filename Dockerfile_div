@@ -21,6 +21,3 @@ RUN bundle install
 
 WORKDIR /myapp
 COPY . /myapp
-
-RUN rm -f tmp/pids/server.pid
-CMD ["bundle", "exec", "rails", "s", "puma", "-b", "0.0.0.0", "-p", "3000", "-e", "production"]
