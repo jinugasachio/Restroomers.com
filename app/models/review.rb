@@ -1,7 +1,9 @@
 class Review < ApplicationRecord
+  # Association
   belongs_to :user
   belongs_to :powder_room
 
-  validates :rate, presence: true
+  # Validation
+  validates :rate,   presence: true, numericality: { only_integer: true }
   validates :review, presence: true
 end
