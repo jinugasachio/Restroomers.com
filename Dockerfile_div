@@ -1,4 +1,4 @@
-FROM ruby:2.5.5-stretch
+FROM ruby:2.5.5-stretch AS builder
 ENV LANG C.UTF-8
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -21,6 +21,3 @@ RUN bundle install
 
 WORKDIR /myapp
 COPY . /myapp
-
-RUN rm -f tmp/pids/server.pid
-CMD ["bundle", "exec", "rails", "s", "puma", "-b", "0.0.0.0", "-p", "3000", "-e", "production"]
