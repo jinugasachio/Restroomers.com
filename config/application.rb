@@ -11,6 +11,7 @@ module Myapp
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
     config.time_zone = 'Tokyo'
+    config.i18n.default_locale = :ja
     config.autoload_paths += Dir[Rails.root.join('app', 'uploaders')]
     config.generators do |g|
       g.test_framework = 'rspec'
