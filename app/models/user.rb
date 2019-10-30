@@ -15,9 +15,7 @@ class User < ApplicationRecord
 
   validates :provider,              presence: true
   validates :uid,                   presence: true
-  validates :password,              presence: true, length: { minimum: 6, maximum: 128 }
-  validates :password_confirmation, presence: true, length: { minimum: 6, maximum: 128 }
+  validates :encrypted_password,    presence: true
   validates :nickname,              presence: true, length: { maximum: 20 }
-  validates :email,                 presence: true, uniqueness: true,
-                                    format: { with: VALID_EMAIL_REGEX }
+  validates :email,                 presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
 end

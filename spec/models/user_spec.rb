@@ -23,12 +23,6 @@ RSpec.describe User, type: :model do
     expect(user.errors[:password]).to include('を入力してください')
   end
 
-  it 'password_confirmationなしでは保存できない' do
-    user = build(:user, password_confirmation: '')
-    user.valid?
-    expect(user.errors[:password_confirmation]).to include('を入力してください')
-  end
-
   it 'nicknameなしでは保存できない' do
     user = build(:user, nickname: '')
     user.valid?
@@ -47,22 +41,10 @@ RSpec.describe User, type: :model do
     expect(user.errors[:password]).to include('は6文字以上で入力してください')
   end
 
-  it 'password_confirmationが6文字以上でないと保存できない' do
-    user = build(:user, password_confirmation: '12345')
-    user.valid?
-    expect(user.errors[:password_confirmation]).to include('は6文字以上で入力してください')
-  end
-
   it 'passwordが128文字以内でないと保存できない' do
     user = build(:user, password: ('1' * 129).to_s)
     user.valid?
     expect(user.errors[:password]).to include('は128文字以内で入力してください')
-  end
-
-  it 'password_confirmationが128文字以内でないと保存できない' do
-    user = build(:user, password_confirmation: ('1' * 129).to_s)
-    user.valid?
-    expect(user.errors[:password_confirmation]).to include('は128文字以内で入力してください')
   end
 
   it 'nicknameが20文字以内でないと保存できない' do
