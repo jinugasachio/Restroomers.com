@@ -1,10 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe Image, type: :model do
+
+  let(:room) { create(:powder_room) }
+
   describe '#create' do
-    # it '保存できる' do
-    #   expect(build(:image)).to be_valid
-    # end
+    it '保存できる' do
+      expect(build(:image, powder_room_id: room.id)).to be_valid
+    end
 
     it 'urlsなしでは保存できない' do
       image = build(:image, urls: nil)

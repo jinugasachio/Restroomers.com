@@ -1,10 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe Like, type: :model do
+
+  let(:user) { create(:user) }
+  let(:room) { create(:powder_room) }
+
   describe '#create' do
-    # it '保存できる' do
-    #   expect(build(:like)).to be_valid
-    # end
+    it '保存できる' do
+      expect(build(:like, user_id: user.id, powder_room_id: room.id)).to be_valid
+    end
 
     it 'user_idなしでは保存できない' do
       like = build(:like, user_id: '')

@@ -13,6 +13,6 @@ FactoryBot.define do
     others          { '-' }
     membership      { 'なし' }
     rate_plan       { '無料' }
-    powder_room_id  { 1 }
+    powder_room
   end
 end

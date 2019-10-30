@@ -1,10 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe Review, type: :model do
+
+  let(:user) { create(:user) }
+  let(:room) { create(:powder_room) }
+
   describe 'create' do
-    # it '保存できる' do
-    #   expect(build(:review)).to be_valid
-    # end
+    it '保存できる' do
+      expect(build(:review, user_id: user.id, powder_room_id: room.id)).to be_valid
+    end
 
     it 'rateなしでは保存できない' do
       review = build(:review, rate: nil)

@@ -2,10 +2,12 @@ require 'rails_helper'
 
 RSpec.describe Facility, type: :model do
 
+  let(:room) { create(:powder_room) }
+
   describe '#create' do
-    # it '保存できる' do
-    #   expect(build(:facility)).to be_valid
-    # end
+    it '保存できる' do
+      expect(build(:facility, powder_room_id: room.id)).to be_valid
+    end
 
     it 'dresserなしでは保存できない' do
       facility = build(:facility, dresser: '')
