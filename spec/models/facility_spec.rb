@@ -84,5 +84,24 @@ RSpec.describe Facility, type: :model do
       facility.valid?
       expect(facility.errors[:others]).to include('を入力してください')
     end
+
+    it 'membershipがあり、なし以外では保存できない' do
+      facility = build(:facility, membership: '○')
+      facility.valid?
+      expect(facility.errors[:membership]).to include('は不正な値です')
+    end
+
+    it 'rate_planが無料、有料以外では保存できない' do
+      facility = build(:facility, rate_plan: '○')
+      facility.valid?
+      expect(facility.errors[:rate_plan]).to include('は不正な値です')
+    end
+
+    it 'othersが400文字以内でないと保存できない' do
+      facility = build(:facility, others: ('a' * 401).to_s)
+      facility.valid?
+      expect(facility.errors[:others]).to include('は400文字以内で入力してください')
+    end
+
   end
 end
