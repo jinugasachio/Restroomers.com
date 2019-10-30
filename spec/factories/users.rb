@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :user do
     provider              { 'email' }
-    uid                   { 'testtesttest@gmail.com' }
+    uid                   { Faker::Internet.email }
     password              { '123456' }
     nickname              { 'ugain' }
-    email                 { 'testtesttest@gmail.com' }
+    email                 { Faker::Internet.email }
   end
 end
