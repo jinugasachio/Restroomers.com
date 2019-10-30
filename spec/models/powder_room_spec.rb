@@ -2,10 +2,12 @@ require 'rails_helper'
 
 RSpec.describe PowderRoom, type: :model do
 
+  let(:user) { create(:user) }
+
   describe '#create' do
-    # it '保存できる' do
-    #   expect(build(:powder_room)).to be_valid
-    # end
+    it '保存できる' do
+      expect(build(:powder_room, user_id: user.id)).to be_valid
+    end
 
     it 'nameなしでは保存できない' do
       room = build(:powder_room, name: '')
