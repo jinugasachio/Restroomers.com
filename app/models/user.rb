@@ -7,8 +7,8 @@ class User < ApplicationRecord
 
   # Associations
   has_many :powder_rooms, dependent: :destroy
-  has_many :likes, dependent: :destroy
-  has_many :reviews, dependent: :destroy
+  has_many :likes,        dependent: :destroy
+  has_many :reviews,      dependent: :destroy
 
   # Validation
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
