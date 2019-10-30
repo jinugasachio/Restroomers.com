@@ -1,14 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe Detail, type: :model do
+
+  let(:room) { create(:powder_room) }
   
   describe '#create' do
     it '保存できる' do
-      expect(build(:detail)).to be_valid
+      expect(build(:detail, powder_room_id: room.id)).to be_valid
     end
 
     it 'phone_numberが11桁でも保存できる' do
-      detail = build(:detail, phone_number: '01234567890')
+      detail = build(:detail, phone_number: '01234567890', powder_room_id: room.id)
       expect(detail).to be_valid
     end
 
