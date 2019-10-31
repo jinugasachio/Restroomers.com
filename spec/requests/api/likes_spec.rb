@@ -28,7 +28,7 @@ RSpec.describe 'Likes', type: :request do
     expect(response.status).to eq(200)
   end
 
-  it 'ログインしているユーザーのお気に入りの部屋を出力できる' do
+  it 'ユーザーのお気に入りの部屋を出力できる' do
     post(api_likes_path, params: like_params, headers: @headers)
     like = JSON.parse(response.body)
     room_id = like['powder_room_id']
