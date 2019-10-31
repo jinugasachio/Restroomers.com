@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe 'Users', type: :request do
 
   let(:current_user) { create(:user) }
-  let(:params) { attributes_for(:user) }
+  let(:params)       { attributes_for(:user) }
+  subject            { post(api_user_session_path, params: { email: current_user.email, password: current_user.password }) }
 
   it '新規登録できる' do
     post(api_user_registration_path, params: params)
@@ -14,10 +15,7 @@ RSpec.describe 'Users', type: :request do
   end
 
   it 'ログインできる' do
-    post(api_user_session_path, params: {
-      email:    current_user.email,
-      password: current_user.password
-    })
+    subject
     expect(response.status).to eq(200)
     expect(response.headers['uid']).to be_present
     expect(response.headers['access-token']).to be_present
@@ -47,10 +45,7 @@ RSpec.describe 'Users', type: :request do
   end
 
   it 'ログアウトできる' do
-    post(api_user_session_path, params: {
-      email:    current_user.email,
-      password: current_user.password
-    })
+    subject
     delete(destroy_api_user_session_path, headers: {
       'uid':          response.headers['uid'],
       'client':       response.headers['client'],
