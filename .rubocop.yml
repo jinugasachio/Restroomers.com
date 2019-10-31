@@ -51,3 +51,6 @@ Layout/AlignHash:
 
 Layout/IndentFirstHashElement:
   Enabled: false
+
+Layout/MultilineBlockLayout:
+  Enabled: false
