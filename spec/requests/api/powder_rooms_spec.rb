@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'PowderRoomsAPI', type: :request do
 
   let(:current_user) { create(:user) }
-  let(:room_params)  { { room: { room_params:   { name: 'テストルーム', lat: 35.66019636, lng: 139.70036142 }, images_params: { urls: [nil] } } } }
+  let(:room_params)  { { room: { room_params: { name: 'テストルーム', lat: 35.66019636, lng: 139.70036142 }, images_params: { urls: [nil] } } } }
   subject            { post(api_user_session_path, params: { email: current_user.email, password: current_user.password }) }
 
   before do
@@ -32,10 +32,6 @@ RSpec.describe 'PowderRoomsAPI', type: :request do
   end
 
   it '新しいpowder_roomを投稿する' do
-    post(api_user_session_path, params: {
-      email:    current_user.email,
-      password: current_user.password
-    })
     expect { post(api_powder_rooms_path, params: room_params, headers: @headers) }.to change(PowderRoom, :count).by(+1)
     expect(response.status).to eq(200)
   end
