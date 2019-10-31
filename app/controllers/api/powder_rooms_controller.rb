@@ -23,7 +23,7 @@ class Api::PowderRoomsController < ApplicationController
 
     if room.save
       image_files = []
-      images_data = room_params[:images_params][:urls]
+      images_data = room_params[:images_params]
       images_data.each do |data|
         image_files.push(decode_base64(data, room))
       end
