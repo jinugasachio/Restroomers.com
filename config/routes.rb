@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     }
     resources :powder_rooms
     resources :reviews, only: [:index, :create, :destroy]
-    resources :likes,   only: [:index, :create, :destroy] do
+    resources :likes,   only: [:create, :destroy] do
       collection do
         get 'favorite_rooms'
       end
