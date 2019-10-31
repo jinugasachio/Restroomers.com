@@ -5,7 +5,7 @@ RSpec.describe 'Users', type: :request do
   let(:current_user) { create(:user) }
   let(:params) { attributes_for(:user) }
 
-  it 'ユーザー登録できる' do
+  it '新規登録できる' do
     post(api_user_registration_path, params: params)
     json = JSON.parse(response.body)
     expect(response.status).to eq(200)
@@ -51,8 +51,6 @@ RSpec.describe 'Users', type: :request do
       email:    current_user.email,
       password: current_user.password
     })
-    expect(response.status).to eq(200)
-
     delete(destroy_api_user_session_path, headers: {
       'uid':          response.headers['uid'],
       'client':       response.headers['client'],
