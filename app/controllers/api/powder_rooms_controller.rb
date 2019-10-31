@@ -21,7 +21,7 @@ class Api::PowderRoomsController < ApplicationController
     room.build_facility(room_params[:facility_params])
     room.build_detail(room_params[:detail_params])
 
-    if room.save && room_params[:images_params][:urls].length > 0
+    if room.save
       image_files = []
       images_data = room_params[:images_params][:urls]
       images_data.each do |data|
