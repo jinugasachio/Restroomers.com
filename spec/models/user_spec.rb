@@ -11,12 +11,6 @@ RSpec.describe User, type: :model do
     expect(user.errors[:provider]).to include('を入力してください')
   end
 
-  it 'uidなしでは保存できない' do
-    user = build(:user, uid: '')
-    user.valid?
-    expect(user.errors[:uid]).to include('を入力してください')
-  end
-
   it 'passwordなしでは保存できない' do
     user = build(:user, password: '')
     user.valid?
