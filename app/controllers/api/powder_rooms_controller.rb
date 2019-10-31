@@ -22,6 +22,7 @@ class Api::PowderRoomsController < ApplicationController
     room.build_detail(room_params[:detail_params])
 
     if room_params[:images_params][:urls].length.positive?
+      binding.pry
       image_files = []
       images_data = room_params[:images_params][:urls]
       images_data.each do |data|

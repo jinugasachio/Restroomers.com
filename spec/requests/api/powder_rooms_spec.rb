@@ -22,7 +22,7 @@ RSpec.describe 'PowderRoomsAPI', type: :request do
   # end
 
   it '新しいpowder_roomを作成する' do
-    room_params = { room: { room_params: { name: 'テストルーム', lat: 35.66019636, lng: 139.70036142 } } }
+    room_params = { room: { room_params: { name: 'テストルーム', lat: 35.66019636, lng: 139.70036142 }, images_params: { urls: nil } } }
     post(api_user_session_path, params: {
       email:    current_user.email,
       password: current_user.password
