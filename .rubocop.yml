@@ -48,3 +48,6 @@ Layout/IndentationConsistency:
 
 Layout/AlignHash:
   Enabled: false
+
+Layout/IndentFirstHashElement:
+  Enabled: false
