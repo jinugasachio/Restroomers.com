@@ -7,7 +7,7 @@ RSpec.describe 'PowderRoomsAPI', type: :request do
     get '/api/powder_rooms'
     json = JSON.parse(response.body)
     expect(response.status).to eq(200)
-    expect(json['data'].length).to eq(10)
+    expect(json.length).to eq(10)
   end
 
 
