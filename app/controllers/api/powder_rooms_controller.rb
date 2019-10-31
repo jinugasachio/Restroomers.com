@@ -17,12 +17,12 @@ class Api::PowderRoomsController < ApplicationController
   end
 
   def create
+
     room = current_api_user.powder_rooms.new(room_params[:room_params])
     room.build_facility(room_params[:facility_params])
     room.build_detail(room_params[:detail_params])
 
     if room_params[:images_params][:urls].length.positive?
-      binding.pry
       image_files = []
       images_data = room_params[:images_params][:urls]
       images_data.each do |data|
