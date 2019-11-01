@@ -29,8 +29,7 @@ jobs:
             sudo gem update --system
             sudo gem uninstall bundler
             sudo rm /usr/local/bin/bundle
-            # sudo rm /usr/local/bin/bundler
-            sudo gem install bundler      
+            sudo gem install bundler
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "Gemfile.lock" }}
@@ -70,7 +69,6 @@ jobs:
             sudo gem update --system
             sudo gem uninstall bundler
             sudo rm /usr/local/bin/bundle
-            # sudo rm /usr/local/bin/bundler
             sudo gem install bundler
       - restore_cache:
           keys:
