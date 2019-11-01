@@ -49,7 +49,7 @@ shibuya_parent_details = [{
 }, {
   open:         '10:00',
   close:        '19:30(土曜日は18:00)',
-  phone_number: '0120-055-979',
+  phone_number: '0120055979',
   address:      '東京都渋谷区道玄坂2-6-17 渋東シネタワー12Ｆ',
   official_url: 'https://www.dhc-cs.com/',
 }, {
@@ -67,7 +67,7 @@ shibuya_parent_details = [{
 }]
 
 # 共通のchildrenは同じdetailを当てるようにする
-rooms = PowderRoom.all
+rooms = PowderRoom.where(id: 1..25)
 
 rooms.each_with_index do |room, num|
   d = shibuya_parent_details[num]
@@ -84,5 +84,19 @@ rooms.each_with_index do |room, num|
       official_url: d[:official_url],
     )
   end
+  detail.save
+end
+
+
+others = PowderRoom.where(id: 26..75)
+
+others.each do |room|
+  detail = room.build_detail(
+    open:         '10:00',
+    close:        '21:00',
+    phone_number: '0312345678',
+    address:      '東京都テスト区テスト町123-4',
+    official_url: 'https://www.restroomers.com/',
+  )
   detail.save
 end

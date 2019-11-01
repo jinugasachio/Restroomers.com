@@ -14,12 +14,11 @@ services:
     command: foreman start
     environment:
       RAILS_ENV: development
-      DATABASE_URL: mysql2://root:root@mysql:3306 #これ超重！要絶対パスで場所を指定ってことなのかな？
+      DATABASE_URL: mysql2://root:root@mysql:3306
     volumes:
       - .:/myapp
     depends_on:
       - mysql
-      - chrome
 
   mysql:
     image: mysql:8.0.16
@@ -34,11 +33,6 @@ services:
     - 4306:3306
     volumes:
       -  ./mysql_data:/var/lib/mysql
- 
-  chrome:
-    image: selenium/standalone-chrome:3.141.59-dubnium
-    ports:
-      - 4444:4444
 
 volumes:
   bundle:
