@@ -29,9 +29,18 @@ reviews = [
   )
 end
 
+user_like = [1, 2, 8, 10, 11, 12, 13, 14, 15, 16]
+
+5.times do
+  Like.create(
+    user_id: 1,
+    powder_room_id: user_like.sample
+  )
+end
+
 200.times do
   Like.create(
-    user_id: rand(1..20),
+    user_id: rand(2..20),
     powder_room_id: rand(1..75)
   )
 end
