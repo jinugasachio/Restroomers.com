@@ -5,5 +5,5 @@ class Review < ApplicationRecord
 
   # Validation
   validates :rate,   presence: true, numericality: { only_integer: true }
-  validates :review, presence: true
+  validates :review, presence: true, length: { maximum: 1000 }
 end

@@ -350,7 +350,7 @@ shibuya_facilities = [{
   others:          'ドレッサーはないが化粧ブースあり。近くに授乳室、ベビー休憩室あり'
 }]
 
-rooms = PowderRoom.all
+rooms = PowderRoom.where(id: 1..25)
 
 rooms.each_with_index do |room, num|
   f = shibuya_facilities[num]
@@ -367,8 +367,29 @@ rooms.each_with_index do |room, num|
     waiting_space:    f[:waiting_space],
     membership:       f[:membership],
     rate_plan:        f[:rate_plan],
-    
     others:           f[:others]
+  )
+  facility.save
+end
+
+others = PowderRoom.where(id: 26..75)
+select = ['×', '○']
+
+others.each do |room|
+  facility = room.build_facility(
+    dresser:          select.sample,
+    body_mirror:      select.sample,
+    makeup_mirror:    select.sample,
+    wifi:             select.sample,
+    fitting_booth:    select.sample,
+    washstands:       select.sample,
+    luggage_storage:  select.sample,
+    outlet:           select.sample,
+    dust_box:         select.sample,
+    waiting_space:    select.sample,
+    membership:       'なし',
+    rate_plan:        '無料',
+    others:           'これはテストデータです。'
   )
   facility.save
 end

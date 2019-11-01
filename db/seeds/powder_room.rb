@@ -176,3 +176,12 @@ shibuya_children.each do |room|
     ancestry: room[:ancestry]
   )
 end
+
+50.times do
+  PowderRoom.create(
+    name: 'テストルーム',
+    lat: rand(35.610413..35.742251),
+    lng: rand(139.694401..139.781383),
+    user_id: 1
+  )
+end

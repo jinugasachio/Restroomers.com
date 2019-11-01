@@ -6,10 +6,10 @@
           <v-ons-list>
             <v-ons-list-header>名前</v-ons-list-header>
             <v-ons-list-item>
-                <v-ons-input placeholder="例) 渋谷ストリーム 2F" type="text" class="name-input"
-                  @change="inputRoomName"
-                >
-                </v-ons-input>
+              <v-ons-input placeholder="例) 渋谷ストリーム 2F" type="text" class="name-input"
+                @change="inputRoomName"
+              >
+              </v-ons-input>
             </v-ons-list-item>
             <v-ons-list-header>写真 ( 複数可 )</v-ons-list-header>
             <ImageForm
@@ -25,6 +25,7 @@
           @click="postRoom"
         >投稿する
         </v-ons-button>
+
       </div>
     </v-ons-page>
 </template>
@@ -50,7 +51,7 @@ export default {
     return{
       previewImages: [],
       roomParams: {
-        "name": null,
+        "name": '名無しルーム',
         "lat":  null,
         "lng":  null
       },

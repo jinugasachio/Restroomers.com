@@ -48,3 +48,9 @@ Layout/IndentationConsistency:
 
 Layout/AlignHash:
   Enabled: false
+
+Layout/IndentFirstHashElement:
+  Enabled: false
+
+Layout/MultilineBlockLayout:
+  Enabled: false

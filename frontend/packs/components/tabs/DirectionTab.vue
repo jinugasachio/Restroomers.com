@@ -100,8 +100,6 @@ export default {
           const data = position.coords;
           const latlng = new google.maps.LatLng(data.latitude, data.longitude);
           const nowTime = ~~(new Date() / 1000);
-
-
           if( (vm.lastTime + 3) > nowTime){
             return false;
           };
@@ -136,7 +134,9 @@ export default {
           enableHighAccuracy: false, //正確な位置情報を取得するか否か、消費電力多なので要注意
           timeout: 5000, //30秒でタイムアウト
           maximumAge: 5 * 60 * 1000, //位置情報の有効期限
-          freaquency: 300 //一定間隔で位置情報を取得する際の間隔を指定
+          freaquency: 500 //一定間隔で位置情報を取得する際の間隔を指定、
+                          //ただ取得できる位置情報が変わらなければ描写はしないらしい。実際に動いてみて検証するしかない。
+                          //https://thinkit.co.jp/story/2012/05/18/3550?page=0%2C2
         };
 
         vm.count = 0;
