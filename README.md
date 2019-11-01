@@ -4,9 +4,8 @@
 https://www.restroomers.com/
 
 ### 使用画面サンプル
-<div align="center"><img src="https://i.gyazo.com/4e20f6e0fb70683b3eca0be1112ad970.png" width="250px"></div>
-<img src="https://i.gyazo.com/e88ba7fb14074d80a3efc8d10d8931ff.png" width="250px">
-<img src="https://i.gyazo.com/e0b9941f13fea7d2ff396c9d63e1f273.png" width="250px">
+<div align="center"><img src="https://i.gyazo.com/4e20f6e0fb70683b3eca0be1112ad970.png" width="300px"></div><img src="https://i.gyazo.com/e88ba7fb14074d80a3efc8d10d8931ff.png" width="300px">
+<img src="https://i.gyazo.com/e0b9941f13fea7d2ff396c9d63e1f273.png" width="300px">
 
 
 # 使用技術
