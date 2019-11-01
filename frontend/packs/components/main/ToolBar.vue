@@ -83,7 +83,7 @@ export default {
 
 <style lang="scss">
 .back-button__icon {
-  fill: #ff7070;
+  fill: #ff7070 !important;
 }
 
 </style>
