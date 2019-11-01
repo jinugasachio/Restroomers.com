@@ -2,7 +2,7 @@
     <v-ons-page>
       <ToolBar/>
       <div class="wrapper">
-        <v-ons-card id="name-and-photo">
+        <v-ons-card id="name-and-photo" class="card">
           <v-ons-list>
             <v-ons-list-header>名前</v-ons-list-header>
             <v-ons-list-item>
@@ -19,8 +19,8 @@
             />
           </v-ons-list>
         </v-ons-card>
-        <FacilityForm @inputFacility="inputFacility"/>
-        <DetailForm  @inputDetail="inputDetail"/>
+        <FacilityForm @inputFacility="inputFacility" class="card"/>
+        <DetailForm  @inputDetail="inputDetail" class="card"/>
         <v-ons-button id="post-button" modifier="large"
           @click="postRoom"
         >投稿する
@@ -140,6 +140,15 @@ export default {
 
 <style scoped lang="scss">
 
+.wrapper {
+  padding: 0 8px;
+
+  .card {
+    max-width: 450px;
+    margin: 0.5rem auto;
+  }
+}
+
 #name-and-photo {
   margin-bottom: 2rem;
 
@@ -150,6 +159,7 @@ export default {
 
 #post-button {
   width: 65%;
+  max-width: 350px;
   margin: 30px auto 10px;
   background-color: #ff8585;
   border-bottom: solid 2px #b5b5b5;
