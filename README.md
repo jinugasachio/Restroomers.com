@@ -1,5 +1,6 @@
 # Restroomers.com
 
+
 # 使用技術
 ### フロントエンド
 - Webpack
@@ -9,14 +10,18 @@
   - Vee-validate
   - OnsenUI-framework
 ### バックエンド
-- Ruby 2.5.5
-- Rails(API) 5.2.3
+- Ruby
+- Rails(API)
 - RSpec
+- Google API
+  - Maps JavaScript
+  - Geolocation
+  - Directions
 ### インフラストラクチャー
-- MySQL 8.0.16
+- MySQL
 - Docker
 - docker-compose
-- CircleCI 2.1
+- CircleCI
   - orbs
 - AWS
   - ECR/ECS
