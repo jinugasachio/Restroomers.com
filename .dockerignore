@@ -13,3 +13,4 @@ node_modules
 README.md
 tmp
 .dockerignore
+public/uploads
