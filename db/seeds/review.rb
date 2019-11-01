@@ -18,12 +18,12 @@ reviews = [
   '先日始めで利用しましたが、リピーターになること間違いなしです。'
 ]
 
-70.times do
+200.times do
   Review.create(
     rate:           rand(2..5),
     review:         reviews.sample,
     user_id:        rand(3..22),
-    powder_room_id: rand(1..25),
+    powder_room_id: rand(1..75),
     created_at:     Faker::Time.between(from: DateTime.now - 2, to: DateTime.now),
     updated_at:     Faker::Time.between(from: DateTime.now - 2, to: DateTime.now)
   )
@@ -31,7 +31,7 @@ end
 
 200.times do
   Like.create(
-    user_id: rand(2..20),
-    powder_room_id: rand(1..25)
+    user_id: rand(1..20),
+    powder_room_id: rand(1..75)
   )
 end

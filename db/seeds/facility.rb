@@ -371,3 +371,25 @@ rooms.each_with_index do |room, num|
   )
   facility.save
 end
+
+others = PowderRoom.where(id: 26..75)
+select = ['×', '○']
+
+others.each do |room|
+  facility = room.build_facility(
+    dresser:          select.sample,
+    body_mirror:      select.sample,
+    makeup_mirror:    select.sample,
+    wifi:             select.sample,
+    fitting_booth:    select.sample,
+    washstands:       select.sample,
+    luggage_storage:  select.sample,
+    outlet:           select.sample,
+    dust_box:         select.sample,
+    waiting_space:    select.sample,
+    membership:       'なし',
+    rate_plan:        '無料',
+    others:           'これはテストデータです。'
+  )
+  facility.save
+end
