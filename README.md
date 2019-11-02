@@ -5,13 +5,18 @@
 よく使う場所をお気に入りにしたり、新しい場所をマップ上に投稿したりしてみましょう。  
 初めての場所、分かりにくい場所へはルート表示機能を使ってみましょう。
 
+## 作成した理由
+渋谷駅構内の女子トイレに多くの女性が化粧直しのための行列を作っている光景を目にしました。
+それがあまりスマートに見えなかったので、その光景がなくなるかつ自分が女性だったら欲しいなと思うアプリを考え、作成しました。
+
 #### リンク
 [Restroomers.com](https://www.restroomers.com/ "サイトを見る")
 
 
 ## 使用画面サンプル
+<br/>
 
-| サインイン/サインアップ | トップ画面 | 検索機能 |
+| 新規登録/ログイン| トップ | 検索機能 |
 | :---: | :---: | :---: |
 | <img src="https://i.gyazo.com/4e20f6e0fb70683b3eca0be1112ad970.png" width="265px"> | <img src="https://i.gyazo.com/b1ab5a6777da8fb10379cd9042941f93.png" width="265px"> | <img src="https://i.gyazo.com/1697c67daed0f21d064e7041adef2401.png" width="265px"> |  
 <br/>
@@ -28,7 +33,9 @@
 | ルーム | 設備・詳細 | 口コミ |
 | :---: | :---: | :---: |
 | <img src="https://i.gyazo.com/e88ba7fb14074d80a3efc8d10d8931ff.png" width="265px"> | <img src="https://i.gyazo.com/3da843e9cc7ec9b837a96d8d82fcc8c3.png" width="265px"> | <img src="https://i.gyazo.com/c1d74dd242c214ba5bb42e2212d2b91b.png" width="265px"> |
-
+<br/>
+<br/>
+<br/>
 
 
 
