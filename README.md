@@ -11,15 +11,19 @@
 
 ## 使用画面サンプル
 
-| トップ | マップ | 検索 |
+| サインイン/サインアップ | トップ画面 | 検索機能 |
 | :---: | :---: | :---: |
 | <img src="https://i.gyazo.com/4e20f6e0fb70683b3eca0be1112ad970.png" width="265px"> | <img src="https://i.gyazo.com/b1ab5a6777da8fb10379cd9042941f93.png" width="265px"> | <img src="https://i.gyazo.com/1697c67daed0f21d064e7041adef2401.png" width="265px"> |  
-
+<br/>
+<br/>
+<br/>
 
 | 新規投稿 | 投稿フォーム | ルート表示 |
 | :---: | :---: | :---: |
 | <img src="https://i.gyazo.com/e3414c0196bdc9e10abb78d6f2f3b600.png" width="265px"> | <img src="https://i.gyazo.com/3a4dff5ca8858e9895df859657bef811.png" width="265px"> | <img src="https://i.gyazo.com/a8551577eed47d1a16d6f2ee337c6196.png" width="265px"> |
-
+<br/>
+<br/>
+<br/>
 
 | ルーム | 設備・詳細 | 口コミ |
 | :---: | :---: | :---: |
