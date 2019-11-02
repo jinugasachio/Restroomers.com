@@ -1,4 +1,4 @@
-# Restroomers.com<img src="https://user-images.githubusercontent.com/49634472/68065579-b23bbc80-fd6e-11e9-947b-f48931f5fc17.png" width="25px" padding-top="10px" >
+# Restroomers.com<img src="https://user-images.githubusercontent.com/49634472/68065579-b23bbc80-fd6e-11e9-947b-f48931f5fc17.png" width="25px" style="position: absolute;max-width:100%;top: 136px;left: 314px;">
 
 
 ## アプリ概要
@@ -6,8 +6,8 @@
 よく使う場所をお気に入りにしたり、新しい場所をマップ上に投稿したりしてみましょう。  
 初めての場所、分かりにくい場所へはルート表示機能を使ってみましょう。
 
-#### リンク
-[Restroomers.com](https://www.restroomers.com/)
+### リンク
+[Restroomers.com](https://www.restroomers.com/ "サイトを見る")
 
 
 ## 使用画面サンプル
