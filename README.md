@@ -1,4 +1,4 @@
-# Restroomers.com<img src="https://user-images.githubusercontent.com/49634472/68065579-b23bbc80-fd6e-11e9-947b-f48931f5fc17.png" width="25px" style="position: absolute;max-width:100%;top: 136px;left: 314px;">
+# Restroomers.com<img src="https://user-images.githubusercontent.com/49634472/68065579-b23bbc80-fd6e-11e9-947b-f48931f5fc17.png" width="25px" style="position: absolute !important; top: 136px; left: 314px;">
 
 
 ## アプリ概要
