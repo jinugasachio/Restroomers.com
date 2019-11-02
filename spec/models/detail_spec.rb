@@ -20,18 +20,6 @@ RSpec.describe Detail, type: :model do
       expect(detail.errors[:powder_room]).to include('を入力してください')
     end
 
-    # it 'phone_numberがハイフンありでは保存できない' do
-    #   detail = build(:detail, phone_number: '03-1234-5432')
-    #   detail.valid?
-    #   expect(detail.errors[:phone_number]).to include('は不正な値です')
-    # end
-
-    # it 'phone_numberが数値以外では保存できない' do
-    #   detail = build(:detail, phone_number: 'アイウエオ')
-    #   detail.valid?
-    #   expect(detail.errors[:phone_number]).to include('は不正な値です')
-    # end
-
     it 'official_urlがurl形式でないと保存できない' do
       detail = build(:detail, official_url: 'アイウエオ')
       detail.valid?
