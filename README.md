@@ -4,7 +4,7 @@
 https://www.restroomers.com/
 
 ### 使用画面サンプル
-<div align="right">
+<div display="flex" justify-content="space-around">
 <img src="https://i.gyazo.com/4e20f6e0fb70683b3eca0be1112ad970.png" width="300px">
 <img src="https://i.gyazo.com/e88ba7fb14074d80a3efc8d10d8931ff.png" width="300px">
 <img src="https://i.gyazo.com/e0b9941f13fea7d2ff396c9d63e1f273.png" width="300px">
@@ -21,14 +21,16 @@ https://www.restroomers.com/
   - Vuex
   - Vee-validate
   - OnsenUI-framework
-### バックエンド
-- Ruby
-- Rails(API)
-- RSpec
 - Google API
   - Maps JavaScript
   - Geolocation
   - Directions
+  
+### バックエンド
+- Ruby
+- Rails(API)
+- RSpec
+
 ### インフラストラクチャー
 - MySQL
 - Docker
