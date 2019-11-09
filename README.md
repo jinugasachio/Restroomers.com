@@ -52,27 +52,27 @@
 スマートフォンでの使用を想定し、ベースにOnsenUIを用いて**ネイティブアプリを意識したSPA**を作成しました。
 
 ### フロントエンド
-- Webpack
-- Vue.js
-  - axios
-  - Vuex
-  - Vee-validate
-  - OnsenUI-framework
+- Webpack       4.40.0
+- Vue           2.9.6
+- axios         0.19.0
+- Vuex          3.1.1
+- Vee-validate  3.0.11
+- OnsenUI       2.10.10
 - Google API
   - Maps JavaScript
   - Geolocation
   - Directions
   
 ### バックエンド
-- Ruby
-- Rails(API)
+- Ruby        2.5.5
+- Rails(API)  5.2.3
 - RSpec
 
 ### インフラストラクチャー
-- MySQL
-- Docker
-- docker-compose
-- CircleCI
+- MySQL           8.0.16
+- Docker          18.09.2
+- docker-compose  3
+- CircleCI        2.1
   - orbs
 - AWS
   - ECR/ECS
