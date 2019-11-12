@@ -21,7 +21,7 @@ export default {
 
   methods: {
     addActive(e){
-      this.$emit('addActive', e)
+      this.$emit('addActive', e);
     }
   },
 

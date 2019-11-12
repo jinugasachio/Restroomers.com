@@ -82,10 +82,10 @@ export default {
 
   computed: {
     center(){
-      return this.$store.getters.center
+      return this.$store.getters.center;
     },
     markers(){
-      return this.$store.getters.allRooms
+      return this.$store.getters.allRooms;
     },
   },
 
@@ -119,7 +119,7 @@ export default {
               detail_params:   vm.detailParams,
               images_params:   { "urls": vm.previewImages },
             }}
-            vm.$store.dispatch('postRoom', params)
+            vm.$store.dispatch('postRoom', params);
           }
         })
     },
@@ -130,8 +130,8 @@ export default {
   },
   watch:{
     markers(){
-      this.$ons.notification.alert({ message: '投稿が完了しました。', title: '' })
-      this.$store.dispatch('resetPageStack')
+      this.$ons.notification.alert({ message: '投稿が完了しました。', title: '' });
+      this.$store.dispatch('resetPageStack');
     }
   }
   

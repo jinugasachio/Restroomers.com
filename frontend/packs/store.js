@@ -33,7 +33,7 @@ const store =  new Vuex.Store({
   getters: {
 
     pageStack(state){
-      if(state.activeTab == 0){
+      if(state.activeTab === 0){
         return state.pageStack1
       }
       else if(state.activeTab == 1){
@@ -52,7 +52,7 @@ const store =  new Vuex.Store({
   mutations: {
 
     pushPage(state, payload) {
-      if(state.activeTab == 0){
+      if(state.activeTab === 0){
         state.pageStack1.push(payload);
       }
       else if(state.activeTab == 1){
@@ -60,7 +60,7 @@ const store =  new Vuex.Store({
       }
     },
     popPage(state) {
-      if(state.activeTab == 0){
+      if(state.activeTab === 0){
         state.pageStack1.pop();
       }
       else if(state.activeTab == 1){
@@ -68,7 +68,7 @@ const store =  new Vuex.Store({
       }
     },
     resetPageStack(state) {
-      if(state.activeTab == 0){
+      if(state.activeTab === 0){
         state.pageStack1 = [GoogleMap];
       }
       else if(state.activeTab == 1){

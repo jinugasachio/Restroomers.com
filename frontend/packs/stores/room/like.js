@@ -12,7 +12,7 @@ export default {
   getters: {
 
     roomLikes(state){
-      if (state.activeTab == 0){
+      if (state.activeTab === 0){
         return state.roomLikes;
       }
       else if (state.activeTab == 1){
@@ -28,7 +28,7 @@ export default {
   mutations: {
 
     roomLikes(state, payload){
-      if(state.activeTab == 0){
+      if(state.activeTab === 0){
         state.roomLikes = payload.roomLikes;
       }
       else if(state.activeTab == 1){
@@ -36,7 +36,7 @@ export default {
       }
     },
     addLike(state, payload){
-      if(state.activeTab == 0){
+      if(state.activeTab === 0){
         state.roomLikes.push(payload.newLike);
       }
       else if(state.activeTab == 1){
@@ -44,7 +44,7 @@ export default {
       }
     },
     deleteLike(state, payload){
-      if(state.activeTab == 0){
+      if(state.activeTab === 0){
         state.roomLikes = state.roomLikes.filter(function(like){
           return like.id !== payload.like.id
         })

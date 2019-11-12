@@ -67,10 +67,10 @@ export default {
     },
     buttonName(){
       if(this.signFormData.length == 4){
-        return '登録する'
+        return '登録する';
       }
       else if(this.signFormData.length == 2){
-        return 'ログインする'
+        return 'ログインする';
       }
     }
   },
@@ -91,14 +91,14 @@ export default {
         "password":              this.signFormData[2].model,
         "password_confirmation": this.signFormData[3].model
       }
-      this.$store.dispatch('signUp', userParams)
+      this.$store.dispatch('signUp', userParams);
     },
     signIn(){
       const userParams = {
         "email":    this.signFormData[0].model,
         "password": this.signFormData[1].model
       }
-      this.$store.dispatch('signIn', userParams)
+      this.$store.dispatch('signIn', userParams);
     },
   },
 

@@ -25,19 +25,19 @@ export default {
   },
   computed:{
     roomReviews(){
-      return this.$store.getters.roomReviews
+      return this.$store.getters.roomReviews;
     },
     averageRate(){
       if(this.roomReviews.length > 0){
-        let totalRate = 0
+        let totalRate = 0;
         this.roomReviews.forEach(function(review){
-          totalRate += review.rate
+          totalRate += review.rate;
         })
         const average = totalRate / this.roomReviews.length
-        return Math.round(average * 100) / 100
+        return Math.round(average * 100) / 100;
       }
       else{
-        return 0
+        return 0;
       }
     }
   }

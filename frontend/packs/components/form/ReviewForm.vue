@@ -99,7 +99,7 @@ export default {
 
   computed:{
     room(){
-      return this.$store.getters.room.powder_room
+      return this.$store.getters.room.powder_room;
     },
     roomReviews: {
       get()         { return this.$store.getters.roomReviews },
@@ -114,8 +114,8 @@ export default {
         .then(function(response){
           if(response == 1){
             const unwatch = vm.$watch('roomReviews', function(){
-                              vm.$store.dispatch('popPage')
-                              vm.$ons.notification.alert({ message: '投稿が完了しました。', title: '' })
+                              vm.$store.dispatch('popPage');
+                              vm.$ons.notification.alert({ message: '投稿が完了しました。', title: '' });
                               unwatch();
                             })
             const reviewParams = {
@@ -124,7 +124,7 @@ export default {
               "powder_room_id": vm.room.id,
               "urls":           vm.previewImages
             }
-            vm.roomReviews = reviewParams
+            vm.roomReviews = reviewParams;
           }
         })
     },

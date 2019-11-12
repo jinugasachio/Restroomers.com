@@ -46,8 +46,8 @@ export default {
       const vm = this;
       const reader = new FileReader();
       reader.onload = e => {
-        vm.$emit('previewImage', e.target.result)
-      };
+        vm.$emit('previewImage', e.target.result);
+      }
       reader.readAsDataURL(image);
     },
     remove(e){

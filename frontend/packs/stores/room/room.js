@@ -24,7 +24,7 @@ export default {
   getters: {
 
     room(state) {
-      if (state.activeTab == 0){
+      if (state.activeTab === 0){
         return state.room
       }
       else if (state.activeTab == 1){
@@ -44,7 +44,7 @@ export default {
   mutations: {
 
     updateRoom(state, payload) {
-      if(state.activeTab == 0){
+      if(state.activeTab === 0){
         state.room = payload.room;
       }
       else if(state.activeTab == 1){

@@ -13,26 +13,26 @@ export default {
   computed:{
 
     room(){
-      return this.$store.getters.room.powder_room
+      return this.$store.getters.room.powder_room;
     },
     headers(){
-      return this.$store.getters.headers
+      return this.$store.getters.headers;
     },
     currentUser(){
-      return this.$store.getters.currentUser.data
+      return this.$store.getters.currentUser.data;
     },
     roomLikes(){
-      return this.$store.getters.roomLikes 
+      return this.$store.getters.roomLikes;
     },
     activeTab(){
-      return this.$store.getters.activeTab
+      return this.$store.getters.activeTab;
     },
     isLiked(){
       const vm = this;
       const liked = this.roomLikes.filter(function(like){
-        return like.user_id == vm.currentUser.id
+        return like.user_id == vm.currentUser.id;
       })
-      return liked
+      return liked;
     },
     
   },
@@ -41,9 +41,9 @@ export default {
 
     like(){
       if(this.headers !== null){
-        if(this.isLiked.length == 0){
+        if(this.isLiked.length === 0){
           this.changeClass();
-          const likeParams = { "powder_room_id": this.room.id }
+          const likeParams = { "powder_room_id": this.room.id };
           this.$store.dispatch('like', likeParams);
         }
         else if(this.isLiked.length > 0){
@@ -56,17 +56,17 @@ export default {
       }
     },
     unLike(){
-      const params = { "id": this.isLiked[0].id }
-      this.$store.dispatch('unlike', params)
+      const params = { "id": this.isLiked[0].id };
+      this.$store.dispatch('unlike', params);
     },
     changeClass(){
       const vm = this;
       const buttons = document.querySelectorAll('.heart');
       if(buttons.length > 1){
-        buttons[vm.activeTab].classList.toggle('isAnimating')
+        buttons[vm.activeTab].classList.toggle('isAnimating');
       }
       else{
-        buttons[0].classList.toggle('isAnimating')
+        buttons[0].classList.toggle('isAnimating');
       }
     },
   },

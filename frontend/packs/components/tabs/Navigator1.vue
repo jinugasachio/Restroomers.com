@@ -14,7 +14,7 @@ export default {
 
   computed: {
     pageStack1(){
-      return this.$store.state.pageStack1
+      return this.$store.state.pageStack1;
     }
   },
 

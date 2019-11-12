@@ -42,10 +42,10 @@ export default {
   computed: {
     
     markers(){
-      return this.$store.getters.allRooms
+      return this.$store.getters.allRooms;
     },
     roomList(){
-      return this.$store.getters.roomList
+      return this.$store.getters.roomList;
     }
   },
 
@@ -53,9 +53,10 @@ export default {
 
     push(){
       if (this.roomList.length > 1){
-        this.$store.dispatch('pushPage', RoomList)
-      } else {
-        this.$store.dispatch('pushPage', Room)
+        this.$store.dispatch('pushPage', RoomList);
+      }
+      else {
+        this.$store.dispatch('pushPage', Room);
       }
     },
 
@@ -68,11 +69,11 @@ export default {
         gestureHandling: 'greedy',
       };
       this.map = new google.maps.Map(mapArea, mapOptions);
-      this.$store.dispatch('updateMap', this.map)
+      this.$store.dispatch('updateMap', this.map);
     },
 
     fixInfoWindow(){
-      const set = google.maps.InfoWindow.prototype.set
+      const set = google.maps.InfoWindow.prototype.set;
       google.maps.InfoWindow.prototype.set = function(key, val) {
           if (key === "map") {
               if (!this.get("noSuppress")) {
@@ -88,14 +89,14 @@ export default {
   mounted() {
     this.createMap();
     this.fixInfoWindow();
-    this.$store.dispatch('getAllRooms')
+    this.$store.dispatch('getAllRooms');
   },
 
   watch: {
     markers(){
-      const vm = this
-      const allRooms = vm.markers
-      let   openWindow = null
+      const vm = this;
+      const allRooms = vm.markers;
+      let   openWindow = null;
 
       allRooms.forEach(function(room){
         const markerOptions = { 
@@ -107,7 +108,7 @@ export default {
         const roomName = `<div id='room_name' data-id=${room.id}>
                             ${room.name}
                             <img src='packs/images/lipstick.png' alt='口紅の写真' class='lip_image'>
-                          </div>`
+                          </div>`;
         const infoWindow = new google.maps.InfoWindow({
           content: roomName,
           noSuppress: true 
@@ -116,7 +117,7 @@ export default {
         google.maps.event.addListener(marker, 'click', function() {
 
           if (openWindow) {
-            vm.$store.dispatch('resetRoomList')
+            vm.$store.dispatch('resetRoomList');
             openWindow.close();
           };
 
@@ -126,8 +127,8 @@ export default {
           infoWindow.open(map, marker);
           openWindow = infoWindow;
           google.maps.event.addListener(openWindow, 'domready', function() {
-            const roomName = document.getElementById('room_name')
-            vm.$store.dispatch('getRoom', roomName.dataset.id)
+            const roomName = document.getElementById('room_name');
+            vm.$store.dispatch('getRoom', roomName.dataset.id);
             roomName.addEventListener('click', vm.push);
           });
         });

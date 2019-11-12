@@ -53,7 +53,7 @@ export default {
   computed:{
 
     currentUser(){
-      return this.$store.getters.currentUser
+      return this.$store.getters.currentUser;
     },
     pageStack:{
       get()    { return this.$store.getters.pageStack },
@@ -73,12 +73,12 @@ export default {
 
     push(event){
       if(event.target.id == 'sign_up'){
-        this.formData   = this.signUpForm
-        this.pageStack = SignForm
+        this.formData  = this.signUpForm;
+        this.pageStack = SignForm;
       }
       else if(event.target.id == 'sign_in'){
-        this.formData   = this.signInForm
-        this.pageStack = SignForm
+        this.formData  = this.signInForm;
+        this.pageStack = SignForm;
       }
     },
 
@@ -87,15 +87,14 @@ export default {
       vm.$ons.notification.confirm({message: 'ログインしてもよろしいですか?', title: ''})
         .then(function(response){
           if(response == 1){
-
-            vm.$store.dispatch('signIn', vm.testUser)
+            vm.$store.dispatch('signIn', vm.testUser);
           }
         })
     },
 
     showUserPage(){
-      this.$store.dispatch('resetPageStack')
-      this.$store.dispatch('showUserPage')
+      this.$store.dispatch('resetPageStack');
+      this.$store.dispatch('showUserPage');
     }
   },
 

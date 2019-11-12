@@ -38,7 +38,7 @@ export default {
   },
   methods:{
     inputDetail(e){
-      this.$emit('inputDetail', e.currentTarget)
+      this.$emit('inputDetail', e.currentTarget);
     }
   }
   
