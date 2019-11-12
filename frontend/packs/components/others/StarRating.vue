@@ -29,7 +29,7 @@ export default {
 
   computed:{
     pageStack(){
-      return this.$store.getters.pageStack
+      return this.$store.getters.pageStack;
     },
     size:{
       get(){ return this.starSize },
@@ -40,11 +40,11 @@ export default {
   methods:{
     changeBindModel(){
       if(this.$el.classList[0] == "average-rate"){
-        this.bindRate = this.averageRate
+        this.bindRate = this.averageRate;
       }
       else if(this.$el.classList[0] == "user-review__inner__star"){
-        this.bindRate = this.userRate
-        this.size = 14
+        this.bindRate = this.userRate;
+        this.size = 14;
       }
     },
   },

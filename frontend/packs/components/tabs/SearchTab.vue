@@ -18,15 +18,15 @@ export default {
       return this.$store.getters.map;
     },
     showSearchBox(){
-      return this.$store.getters.showSearchBox
+      return this.$store.getters.showSearchBox;
     }
   },
 
   methods: {
 
     activeSearchBox(){
-      this.$emit('backToMap')
-      this.$store.dispatch('showSearchBox')
+      this.$emit('backToMap');
+      this.$store.dispatch('showSearchBox');
     },
 
   },
@@ -35,10 +35,10 @@ export default {
     showSearchBox:{
       handler(){
         if(this.showSearchBox){
-          this.$emit('addClass','search','search-mode')
+          this.$emit('addClass','search','search-mode');
         }
         else{
-          this.$emit('removeClass','search','search-mode')
+          this.$emit('removeClass','search','search-mode');
         }
       }
     },

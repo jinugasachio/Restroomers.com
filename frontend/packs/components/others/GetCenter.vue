@@ -21,10 +21,10 @@ export default {
   },
   computed: {
     map(){
-      return this.$store.getters.map
+      return this.$store.getters.map;
     },
     postTrriger(){
-      return this.$store.getters.postTrriger
+      return this.$store.getters.postTrriger;
     }
   },
   methods:{
@@ -41,7 +41,7 @@ export default {
         })
     },
     close(){
-      this.$store.dispatch('postTrriger')
+      this.$store.dispatch('postTrriger');
     }
   }
 

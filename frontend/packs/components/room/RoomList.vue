@@ -36,19 +36,19 @@ export default {
     },
     headerName(){
       if(this.activeTab == 1){
-        return "お気に入りリスト"
+        return "お気に入りリスト";
       }
     },
     roomList(){
       if(this.activeTab == 1){
-        return this.$store.getters.favoriteRooms
+        return this.$store.getters.favoriteRooms;
       }
       else{
-        return this.$store.getters.roomList
+        return this.$store.getters.roomList;
       }
     },
     activeTab(){
-      return this.$store.getters.activeTab
+      return this.$store.getters.activeTab;
     },
 
   },
@@ -57,20 +57,20 @@ export default {
 
     pushPage(event){
       const unwatch = this.$watch('room', function(){
-        this.$store.dispatch('pushPage', Room)
-        unwatch()
+        this.$store.dispatch('pushPage', Room);
+        unwatch();
       })
-      this.room = event.currentTarget
+      this.room = event.currentTarget;
     },
 
     popPage(){
-      this.$store.dispatch('popPage')
+      this.$store.dispatch('popPage');
     }
   },
 
   created(){
     if(this.activeTab == 1){
-      this.$store.dispatch('favoriteRooms')
+      this.$store.dispatch('favoriteRooms');
     }
   },
  

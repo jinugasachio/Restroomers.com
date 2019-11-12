@@ -36,31 +36,31 @@ export default {
     },
     label(){
       if(this.atRoomPage && this.successId !== null){
-        return 'Active'
+        return 'Active';
       }
       else if(this.atRoomPage){
-        return 'ルートを表示'
+        return 'ルートを表示';
       }
       else if(this.successId !== null){
-        return 'Active'
+        return 'Active';
       }
     },
     pageStack(){
-      return this.$store.getters.pageStack
+      return this.$store.getters.pageStack;
     },
     directionTrigger(){
-      return this.$store.getters.directionTrigger
+      return this.$store.getters.directionTrigger;
     },
     guideTrigger(){
-      return this.$store.getters.guideTrigger
+      return this.$store.getters.guideTrigger;
     },
     activeTab(){
-      return this.$store.getters.activeTab
+      return this.$store.getters.activeTab;
     },
     atRoomPage(){
       const page = this.pageStack[this.pageStack.length - 1]
       if(page.name == "Room"){
-        return true
+        return true;
       }
     },
     targetForDirectMode(){
@@ -88,7 +88,7 @@ export default {
           });
       }
       else{
-        vm.$store.dispatch('directionTrigger')
+        vm.$store.dispatch('directionTrigger');
       }
     },
 
@@ -96,10 +96,11 @@ export default {
       const vm = this;
       if(navigator.geolocation){
         const geoSuccess = function(position){
-          vm.successId = vm.id; //gps-modeクラスと連動させるため
-          const data = position.coords;
-          const latlng = new google.maps.LatLng(data.latitude, data.longitude);
+          vm.successId  = vm.id; //gps-modeクラスと連動させるため
+          const data    = position.coords;
+          const latlng  = new google.maps.LatLng(data.latitude, data.longitude);
           const nowTime = ~~(new Date() / 1000);
+          
           if( (vm.lastTime + 3) > nowTime){
             return false;
           };

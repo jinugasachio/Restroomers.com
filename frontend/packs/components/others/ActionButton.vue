@@ -17,44 +17,44 @@ export default {
   computed: {
     
     activeTab(){
-      return this.$store.getters.activeTab
+      return this.$store.getters.activeTab;
     },
     headers(){
-      return this.$store.getters.headers
+      return this.$store.getters.headers;
     },
     pageStack(){
-      return this.$store.getters.pageStack
+      return this.$store.getters.pageStack;
     },
     userPage(){
-      const page = this.pageStack[this.pageStack.length - 1]
+      const page = this.pageStack[this.pageStack.length - 1];
       if(page.name == "RoomList"){
-        return true
+        return true;
       }
     },
     mapPage(){
-      const page = this.pageStack[this.pageStack.length - 1]
+      const page = this.pageStack[this.pageStack.length - 1];
       if(page.name == "GoogleMap"){
-        return true
+        return true;
       }
     },
     showButton(){
-      if(this.activeTab == 1 && this.userPage){
-        return true
+      if(this.activeTab === 1 && this.userPage){
+        return true;
       }
-      if(this.activeTab == 0 && this.mapPage){
-        return true
+      if(this.activeTab === 0 && this.mapPage){
+        return true;
       }
     },
     imageSrc(){
       if(this.userPage){
-        return "packs/images/sign_out2.png" 
+        return "packs/images/sign_out2.png";
       }
       else if(this.mapPage){
-        return "packs/images/woman2.png" 
+        return "packs/images/woman2.png";
       }
     },
     postTrriger(){
-      return this.$store.getters.postTrriger
+      return this.$store.getters.postTrriger;
     }
   },
 
@@ -78,7 +78,7 @@ export default {
         .then(function(response){
           if(response == 1){
             const unwatch = vm.$watch('headers', function(){
-                                vm.$ons.notification.alert({message: 'ログアウトしました。', title: ''})
+                                vm.$ons.notification.alert({message: 'ログアウトしました。', title: ''});
                                 vm.$store.dispatch('resetPageStack');
                                 unwatch();
                               }
@@ -93,7 +93,7 @@ export default {
         this.$ons.notification.confirm({message: '新しいレストルームを投稿しますか?', title: ''})
        .then(function(response){
           if(response == 1){
-            vm.$store.dispatch('postTrriger')
+            vm.$store.dispatch('postTrriger');
           }
         })
       }

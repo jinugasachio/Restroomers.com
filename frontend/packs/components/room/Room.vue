@@ -52,10 +52,10 @@ export default {
   computed: {
 
     room(){
-      return this.$store.getters.room.powder_room
+      return this.$store.getters.room.powder_room;
     },
     images(){
-      return this.$store.getters.room.images
+      return this.$store.getters.room.images;
     },
     imageUrls(){
       let urlsArray = []
@@ -67,21 +67,21 @@ export default {
       return urlsArray
     },
     activeTab(){
-      return this.$store.getters.activeTab
+      return this.$store.getters.activeTab;
     }
 
   },
 
   methods: {
     addActive(event){
-      const url = event.target.getAttribute('src')
-      this.activeImage = url
+      const url = event.target.getAttribute('src');
+      this.activeImage = url;
     },
   },
 
   mounted(){
     if(this.images.length > 0){
-      this.activeImage = this.imageUrls[0].url
+      this.activeImage = this.imageUrls[0].url;
     }
   },
 
@@ -90,7 +90,7 @@ export default {
     images: {
       handler() {
         if (this.images.length != 0){
-          this.roomImage = true
+          this.roomImage = true;
         }
       },
       immediate: true

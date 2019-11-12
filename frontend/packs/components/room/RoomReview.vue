@@ -44,16 +44,16 @@ export default {
   },
   computed: {
     headers(){
-      return this.$store.getters.headers
+      return this.$store.getters.headers;
     },
     roomReviews(){
-      return this.$store.getters.roomReviews 
+      return this.$store.getters.roomReviews;
     }
   },
   methods: {
     pushPage(){
       if(this.headers !== null){
-        this.$store.dispatch('pushPage', ReviewForm)
+        this.$store.dispatch('pushPage', ReviewForm);
       }
       else{
         this.$ons.notification.alert({ message: 'ログインしてください。', title: '' });

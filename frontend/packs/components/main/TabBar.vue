@@ -77,17 +77,17 @@ export default {
     },
 
     backToMap(){
-      this.activeTab = 0
-      this.$store.dispatch('resetPageStack')
+      this.activeTab = 0;
+      this.$store.dispatch('resetPageStack');
     },
     addClass(idName, className){
       const button = document.getElementById(idName);
-      button.classList.add(className)
+      button.classList.add(className);
 
     },
     removeClass(idName, className){
       const button = document.getElementById(idName);
-      button.classList.remove(className)
+      button.classList.remove(className);
     },
   },
 

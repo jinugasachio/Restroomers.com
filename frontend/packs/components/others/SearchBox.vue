@@ -38,7 +38,7 @@ export default {
       return this.$store.getters.map;
     },
     showSearchBox(){
-      return this.$store.getters.showSearchBox
+      return this.$store.getters.showSearchBox;
     },
   },
 
@@ -54,10 +54,10 @@ export default {
         const service = new google.maps.places.PlacesService(this.map);
         service.findPlaceFromQuery( request, function(results, status) {
           if ( status === google.maps.places.PlacesServiceStatus.OK ) {
-            vm.map.panTo( results[0].geometry.location)
-            vm.map.setZoom(16)
-            vm.$store.dispatch('showSearchBox')
-            vm.inputWords = null
+            vm.map.panTo( results[0].geometry.location);
+            vm.map.setZoom(16);
+            vm.$store.dispatch('showSearchBox');
+            vm.inputWords = null;
           }
           else{
             vm.$ons.notification.alert({message: 'お探しの場所が見つかりませんでした。', title: ''});

@@ -52,7 +52,7 @@ export default {
     updateFacilities(){
       const vm = this;
       vm.facilities.forEach(function(item){
-        item.value = vm.facility[item.key]
+        item.value = vm.facility[item.key];
       })
     }
   },

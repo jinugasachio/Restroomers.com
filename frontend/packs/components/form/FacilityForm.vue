@@ -94,21 +94,21 @@ export default {
     check(e){
       const unwatch = this.$watch('checkBoxList', function(){
         const index = e.target.id;
-        const key = e.currentTarget.dataset.key
-        const checked = this.checkBoxList[index].model
+        const key = e.currentTarget.dataset.key;
+        const checked = this.checkBoxList[index].model;
         if(checked){
-          this.$emit('inputFacility', { key: key, value: '○' })
+          this.$emit('inputFacility', { key: key, value: '○' });
         }
         else{
-          this.$emit('inputFacility',  { key: key, value: '×' })
+          this.$emit('inputFacility',  { key: key, value: '×' });
         }
         unwatch()
-      }, { deep: true })
+      }, { deep: true });
     },
     selectOrText(e){
       const key = e.currentTarget.dataset.key;
       const value = e.target.value;
-      this.$emit('inputFacility',  { key: key, value: value })
+      this.$emit('inputFacility',  { key: key, value: value });
     },
   },
 }
