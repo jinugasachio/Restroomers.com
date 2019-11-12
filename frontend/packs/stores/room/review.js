@@ -11,7 +11,7 @@ export default {
   getters: {
 
     roomReviews(state){
-      if (state.activeTab == 0){
+      if (state.activeTab === 0){
         return state.roomReviews;
       }
       else if (state.activeTab == 1){
@@ -24,7 +24,7 @@ export default {
   mutations: {
 
     roomReviews(state, payload){
-      if(state.activeTab == 0){
+      if(state.activeTab === 0){
         state.roomReviews = payload.roomReviews;
       }
       else if(state.activeTab == 1){
@@ -32,7 +32,7 @@ export default {
       }
     },
     postReview(state, payload){
-      if(state.activeTab == 0){
+      if(state.activeTab === 0){
         state.roomReviews.push(payload.newReview);
       }
       else if(state.activeTab == 1){
@@ -40,7 +40,7 @@ export default {
       }
     },
     deleteReview(state, payload){
-      if(state.activeTab == 0){
+      if(state.activeTab === 0){
         state.roomReviews = state.roomReviews.filter(function(review){
           return review.id !== payload.review.id
         })

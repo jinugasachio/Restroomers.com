@@ -41,7 +41,7 @@ export default {
 
     like(){
       if(this.headers !== null){
-        if(this.isLiked.length == 0){
+        if(this.isLiked.length === 0){
           this.changeClass();
           const likeParams = { "powder_room_id": this.room.id };
           this.$store.dispatch('like', likeParams);

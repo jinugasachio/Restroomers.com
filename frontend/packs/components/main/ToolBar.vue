@@ -21,7 +21,7 @@ export default {
   computed: {
 
     pageName(){
-      if(this.activeTab == 0){
+      if(this.activeTab === 0){
         if (this.pageStack.length == 2 && this.pageStack[1].name == "RoomList"){
           const num = this.$store.getters.roomList[0].ancestry;
           const parent = this.$store.getters.allRooms[num - 1];
