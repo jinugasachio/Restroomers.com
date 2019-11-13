@@ -34,8 +34,6 @@ import SearchTab    from '../tabs/SearchTab.vue'
 import DirectionTab from '../tabs/DirectionTab.vue'
 import ActionButton from '../others/ActionButton.vue'
 
-
-
 export default {
 
   name: "TabBar",

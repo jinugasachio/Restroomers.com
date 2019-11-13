@@ -20,7 +20,6 @@
 </template>
 
 <script>
-
 export default {
 
   name: 'DetailForm',
@@ -36,12 +35,13 @@ export default {
       ]
     }
   },
+
   methods:{
     inputDetail(e){
       this.$emit('inputDetail', e.currentTarget);
     }
   }
-  
+
 }
 </script>
 

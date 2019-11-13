@@ -8,7 +8,6 @@ class Facility < ApplicationRecord
   validates :membership, format: { with: VALID_MEMBERSHIP_REGEX }
   validates :rate_plan,  format: { with: VALID_RATE_PLAN_REGEX }
   validates :others,     length: { maximum: 400 }
-
   validates :dresser,
             :body_mirror,
             :makeup_mirror,

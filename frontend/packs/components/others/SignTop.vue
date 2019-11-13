@@ -50,6 +50,7 @@ export default {
       signUpForm: signFormData[1],
     }
   },
+
   computed:{
 
     currentUser(){
@@ -65,7 +66,7 @@ export default {
     },
   },
 
-  methods: {
+  methods:{
 
     notice(message, title){
       return this.$ons.notification.alert({message: message, title: title});
@@ -83,19 +84,14 @@ export default {
     },
 
     easySignIn(){
-      const vm = this;
-      vm.$ons.notification.confirm({message: 'ログインしてもよろしいですか?', title: ''})
-        .then(function(response){
-          if(response == 1){
-            vm.$store.dispatch('signIn', vm.testUser);
-          }
-        })
+      this.$store.dispatch('signIn', this.testUser);
     },
 
     showUserPage(){
       this.$store.dispatch('resetPageStack');
       this.$store.dispatch('showUserPage');
     }
+
   },
 
   watch:{
@@ -120,8 +116,6 @@ export default {
       }
     }
   }
-
-
 
 }
 </script>

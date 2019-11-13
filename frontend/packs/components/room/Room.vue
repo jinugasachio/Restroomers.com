@@ -76,7 +76,7 @@ export default {
     addActive(event){
       const url = event.target.getAttribute('src');
       this.activeImage = url;
-    },
+    }
   },
 
   mounted(){

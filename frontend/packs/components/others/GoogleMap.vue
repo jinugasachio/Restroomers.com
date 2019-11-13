@@ -134,8 +134,8 @@ export default {
         });
       });
     }
-
   }
+  
 }
 </script>
 

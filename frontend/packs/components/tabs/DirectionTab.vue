@@ -139,7 +139,6 @@ export default {
                           //ただ取得できる位置情報が変わらなければ描写はしないらしい。実際に動いてみて検証するしかない。
                           //https://thinkit.co.jp/story/2012/05/18/3550?page=0%2C2
         };
-
         vm.count = 0;
         vm.id = navigator.geolocation.watchPosition(geoSuccess, geoError, geoOptions);
         if(vm.guideTrigger == false){

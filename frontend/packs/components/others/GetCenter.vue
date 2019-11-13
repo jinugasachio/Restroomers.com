@@ -10,7 +10,6 @@
 </template>
 
 <script>
-
 import RoomForm from '../form/RoomForm.vue'
 
 export default {
