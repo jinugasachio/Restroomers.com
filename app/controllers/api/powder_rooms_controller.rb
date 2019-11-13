@@ -17,7 +17,6 @@ class Api::PowderRoomsController < ApplicationController
   end
 
   def create
-
     room = current_api_user.powder_rooms.new(room_params[:room_params])
     room.build_facility(room_params[:facility_params])
     room.build_detail(room_params[:detail_params])
@@ -37,12 +36,11 @@ class Api::PowderRoomsController < ApplicationController
   private
 
     def convert_to_json(room)
-      images      = room.images
-      detail      = room.detail
-      facility    = room.facility
-      likes       = room.likes
-      reviews     = room.reviews
-
+      images    = room.images
+      detail    = room.detail
+      facility  = room.facility
+      likes     = room.likes
+      reviews   = room.reviews
       {
         powder_room: room,
         facility:    facility,

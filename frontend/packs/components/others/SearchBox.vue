@@ -22,7 +22,6 @@
 
 
 <script>
-
 export default {
 
   name: "SeatrchBox",
@@ -64,8 +63,7 @@ export default {
           }
         });
       }
-    },
-
+    }
   }
 }
 </script>

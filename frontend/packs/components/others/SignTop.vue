@@ -50,6 +50,7 @@ export default {
       signUpForm: signFormData[1],
     }
   },
+
   computed:{
 
     currentUser(){
@@ -65,7 +66,7 @@ export default {
     },
   },
 
-  methods: {
+  methods:{
 
     notice(message, title){
       return this.$ons.notification.alert({message: message, title: title});
@@ -90,6 +91,7 @@ export default {
       this.$store.dispatch('resetPageStack');
       this.$store.dispatch('showUserPage');
     }
+
   },
 
   watch:{
@@ -114,8 +116,6 @@ export default {
       }
     }
   }
-
-
 
 }
 </script>

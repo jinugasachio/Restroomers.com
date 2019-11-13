@@ -8,7 +8,6 @@
 
 
 <script>
-
 export default {
 
   name: "SeatrchTab",
@@ -23,12 +22,10 @@ export default {
   },
 
   methods: {
-
     activeSearchBox(){
       this.$emit('backToMap');
       this.$store.dispatch('showSearchBox');
-    },
-
+    }
   },
 
   watch:{

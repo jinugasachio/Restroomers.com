@@ -18,11 +18,14 @@ import HeartButton from './HeartButton.vue'
 import Star        from '../others/StarRating.vue'
 
 export default {
+
   name: 'UnderBox',
+
   components:{
     HeartButton,
     Star
   },
+
   computed:{
     roomReviews(){
       return this.$store.getters.roomReviews;
@@ -41,6 +44,7 @@ export default {
       }
     }
   }
+  
 }
 </script>
 

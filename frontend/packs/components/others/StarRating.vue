@@ -10,7 +10,6 @@
 </template>
 
 <script>
-
 export default {
 
   name: 'Star',
@@ -48,8 +47,10 @@ export default {
       }
     },
   },
+
   mounted(){
     this.changeBindModel();
   }
+
 }
 </script>

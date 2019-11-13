@@ -25,8 +25,6 @@
 </template>
 
 <script>
-
-
 export default {
 
   name: 'ImageForm',
@@ -54,7 +52,8 @@ export default {
       const targetImage = e.currentTarget.nextElementSibling.src;
       this.$emit('removeImage', targetImage);
     }
-  },
+  }
+
 }
 </script>
 

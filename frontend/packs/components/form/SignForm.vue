@@ -49,7 +49,6 @@
 <script>
 import ToolBar from '../main/ToolBar.vue'
 
-
 export default {
 
   name: "SignPage",

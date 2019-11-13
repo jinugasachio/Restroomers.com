@@ -42,6 +42,7 @@ export default {
     ReviewForm,
     Star
   },
+  
   computed: {
     headers(){
       return this.$store.getters.headers;
@@ -50,6 +51,7 @@ export default {
       return this.$store.getters.roomReviews;
     }
   },
+
   methods: {
     pushPage(){
       if(this.headers !== null){

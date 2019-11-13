@@ -55,7 +55,6 @@
 </template>
 
 <script>
-
 export default {
 
   name: 'FacilityForm',
@@ -111,6 +110,7 @@ export default {
       this.$emit('inputFacility',  { key: key, value: value });
     },
   },
+
 }
 </script>
 
