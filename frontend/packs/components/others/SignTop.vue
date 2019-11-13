@@ -83,13 +83,7 @@ export default {
     },
 
     easySignIn(){
-      const vm = this;
-      vm.$ons.notification.confirm({message: 'ログインしてもよろしいですか?', title: ''})
-        .then(function(response){
-          if(response == 1){
-            vm.$store.dispatch('signIn', vm.testUser);
-          }
-        })
+      this.$store.dispatch('signIn', this.testUser);
     },
 
     showUserPage(){
