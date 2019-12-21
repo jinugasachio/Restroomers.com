@@ -15,8 +15,10 @@
 
 
 ## リンク
-[Restroomers.com](https://www.restroomers.com/ "サイトを見る")  
-簡単ログインボタンからそのままログイン可能です。
+[~~Restroomers.com~~](https://www.restroomers.com/)  
+ ~~簡単ログインボタンからそのままログイン可能です。~~
+ <br/>
+ ※ 現在インスタンス停止中です。
 <br/>
 <br/>
 <br/>
