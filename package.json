@@ -54,7 +54,7 @@
     "stylelint-config-standard": "^18.3.0",
     "stylelint-scss": "^3.10.1",
     "vue-onsenui": "^2.6.2",
-    "webpack": "^4.40.0",
+    "webpack": "^5.104.1",
     "webpack-cli": "^3.3.8",
     "webpack-dev-server": "^3.8.0",
     "webpack-manifest-plugin": "^2.0.4"
